@@ -6,6 +6,8 @@ Wir wollen ein 2D fighting game entwickeln, ähnlich wie zum Beispiel Street Fig
 
 ## Mockups
 ![Mockup](Mockup/Mockup.png)
+Für das AdobeXD file [hier](Mockup.xd) klicken.
+
 
 ## Tastenbelegung
 
