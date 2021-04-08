@@ -22,7 +22,7 @@ public class Navigator {
     public void goTo(SceneType scene) {
         Scene activeScene = viewMap.get(scene);
         if (activeScene instanceof Initializable) {
-            ((Initializable) activeScene).onInitialize();
+            ((Initializable) activeScene).initialise();
         }
         stage.setScene(activeScene);
     }

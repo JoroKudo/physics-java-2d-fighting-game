@@ -13,11 +13,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            public void uncaughtException(Thread t, Throwable e) {
-                JOptionPane.showMessageDialog(null, "Something goes wrong!");
-            }
-        });
+
 
         Navigator navigator = new Navigator(primaryStage);
 
