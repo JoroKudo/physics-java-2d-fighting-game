@@ -4,22 +4,22 @@ application/common/Initializable.java
  application.common.Initializable
 application/Game.java
  application.Game
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/gameobjects/Background.java
+ application.gameobjects.Background
 application/common/KeyHandler.java
  application.common.KeyHandler
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/constants/Const.java
- application.constants.Const
+application/constants/Images.java
+ application.constants.Images
 application/Navigation/Navigator.java
  application.Navigation.Navigator
 application/Launcher.java
  application.Launcher
-application/constants/Images.java
- application.constants.Images
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/constants/Const.java
+ application.constants.Const
 application/App.java
  application.App
-application/gameobjects/Background.java
- application.gameobjects.Background

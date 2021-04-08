@@ -4,6 +4,7 @@ import application.Game;
 import application.Navigation.Navigator;
 import application.common.FancyAnimationTimer;
 import application.common.Initializable;
+import application.constants.Const;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -23,7 +24,7 @@ public class GameScene extends Scene implements Initializable {
         super(root);
         this.navigator = navigator;
 
-        Canvas canvas = new Canvas(800, 600);
+        Canvas canvas = new Canvas(Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT);
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
     }
