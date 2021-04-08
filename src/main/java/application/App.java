@@ -22,7 +22,7 @@ public class App extends Application {
         Navigator navigator = new Navigator(primaryStage);
 
         navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator));
-        navigator.navigateTo(SceneType.GAME_SCENE);
+        navigator.goTo(SceneType.GAME_SCENE);
         primaryStage.show();
     }
 }

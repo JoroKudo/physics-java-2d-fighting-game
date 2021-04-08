@@ -2,25 +2,28 @@ package application.Navigation;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import application.common.Initializable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Navigator {
+
     private final Stage stage;
-    private final Map<SceneType, Scene> sceneMap = new HashMap<>();
+    private final Map<SceneType, Scene> viewMap = new HashMap<>();
 
     public Navigator(Stage stage) {
         this.stage = stage;
     }
 
-    public void registerScene(SceneType sceneType, Scene scene) {
-        sceneMap.put(sceneType, scene);
+    public void registerScene(SceneType enumScene, Scene scene) {
+        viewMap.put(enumScene, scene);
     }
 
-    public void navigateTo(SceneType sceneType) {
-        Scene scene = sceneMap.get(sceneType);
-        stage.setScene(scene);
-        stage.show();
+    public void goTo(SceneType scene) {
+        Scene activeScene = viewMap.get(scene);
+        if (activeScene instanceof Initializable) {
+            ((Initializable) activeScene).onInitialize();
+        }
+        stage.setScene(activeScene);
     }
 }
