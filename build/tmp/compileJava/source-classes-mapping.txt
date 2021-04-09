@@ -1,25 +1,29 @@
-application/Navigation/SceneType.java
- application.Navigation.SceneType
 application/Launcher.java
  application.Launcher
 application/Game.java
  application.Game
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
-application/common/KeyHandler.java
- application.common.KeyHandler
-application/constants/Images.java
- application.constants.Images
 application/constants/Const.java
  application.constants.Const
 application/Navigation/Navigator.java
  application.Navigation.Navigator
-application/App.java
- application.App
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/gameobjects/Background.java
- application.gameobjects.Background
 application/common/Initializable.java
  application.common.Initializable
+application/gameobjects/GameObject.java
+ application.gameobjects.GameObject
+application/Navigation/SceneType.java
+ application.Navigation.SceneType
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/gameobjects/Fighter.java
+ application.gameobjects.Fighter
+application/common/KeyHandler.java
+ application.common.KeyHandler
+application/constants/Images.java
+ application.constants.Images
+application/App.java
+ application.App
+application/gameobjects/Background.java
+ application.gameobjects.Background
