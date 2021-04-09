@@ -1,4 +1,4 @@
-package application;
+package application.main;
 
 
 public class Launcher {

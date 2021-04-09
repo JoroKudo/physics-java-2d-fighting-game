@@ -20,11 +20,11 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'application.Launcher'
+mainClassName = 'application.main.Launcher'
 
 jar {
     manifest{
-        attributes 'Main-Class': 'application.Launcher'
+        attributes 'Main-Class': 'application.main.Launcher'
     }
 
     from {

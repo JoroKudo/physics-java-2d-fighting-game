@@ -1,52 +1,34 @@
 package application.gui;
 
-import application.Game;
-import application.Navigation.Navigator;
+import application.common.BaseScene;
 import application.common.FancyAnimationTimer;
 import application.common.Initializable;
-import application.constants.Const;
-import javafx.animation.AnimationTimer;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
-import application.common.KeyHandler;
+import application.common.Navigator;
+import application.game.*;
 
-public class GameScene extends Scene implements Initializable {
-
-    private static final StackPane root = new StackPane();
-    private final Navigator navigator;
-    private final GraphicsContext gc;
-    private Game game;
-    private AnimationTimer animationTimer;
-
+public class GameScene extends BaseScene implements Initializable {
     public GameScene(Navigator navigator) {
-        super(root);
-        this.navigator = navigator;
-
-        Canvas canvas = new Canvas(Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT);
-        root.getChildren().add(canvas);
-        gc = canvas.getGraphicsContext2D();
+        super(navigator);
     }
 
     @Override
-    public void initialise() {
+    public void onInitialize() {
 
-        KeyHandler keyHandler = new KeyHandler();
+        KeyEventHandler keyEventHandler = new KeyEventHandler();
+        this.setOnKeyPressed(keyEventHandler);
+        this.setOnKeyReleased(keyEventHandler);
 
-        game = new Game(navigator, keyHandler, () -> animationTimer.stop());
-
-//        game.initialise();
-        animationTimer = new FancyAnimationTimer() {
+        Game game = new Game(keyEventHandler, navigator);
+        game.load();
+        FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override
-            protected void doHandle(double deltaInSec) {
-
-//                game.update(deltaInSec);
-                game.paint(gc);
+            public void doHandle(double deltaInSec) {
+                game.update(deltaInSec)
+                ;
+                game.draw(canvas.getGraphicsContext2D());
 
             }
         };
-
-        animationTimer.start();
+        gameLoop.start();
     }
 }

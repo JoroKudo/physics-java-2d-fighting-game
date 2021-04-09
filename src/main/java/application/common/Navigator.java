@@ -1,8 +1,9 @@
-package application.Navigation;
+package application.common;
 
+import application.gui.SceneType;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import application.common.Initializable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class Navigator {
     public void goTo(SceneType scene) {
         Scene activeScene = viewMap.get(scene);
         if (activeScene instanceof Initializable) {
-            ((Initializable) activeScene).initialise();
+            ((Initializable) activeScene).onInitialize();
         }
         stage.setScene(activeScene);
     }
