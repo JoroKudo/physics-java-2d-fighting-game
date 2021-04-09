@@ -14,6 +14,8 @@ application/game/Game.java
  application.game.Game
 application/game/Images.java
  application.game.Images
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
