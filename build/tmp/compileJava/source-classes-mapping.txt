@@ -12,19 +12,19 @@ application/common/Initializable.java
  application.common.Initializable
 application/main/Launcher.java
  application.main.Launcher
-application/game/Images.java
- application.game.Images
+application/common/Navigator.java
+ application.common.Navigator
 application/GameObjects/Direction.java
  application.GameObjects.Direction
 application/common/BaseScene.java
  application.common.BaseScene
-application/common/Navigator.java
- application.common.Navigator
-application/GameObjects/Floor.java
- application.GameObjects.Floor
 application/game/KeyEventHandler.java
  application.game.KeyEventHandler
  application.game.KeyEventHandler$1
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/game/Images.java
+ application.game.Images
 application/game/Game.java
  application.game.Game
 application/GameObjects/Fighter.java

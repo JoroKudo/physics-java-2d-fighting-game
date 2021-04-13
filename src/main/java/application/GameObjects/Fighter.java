@@ -13,9 +13,7 @@ import org.dyn4j.world.World;
 
 public class Fighter extends GameObject {
     private final World<Body> physicWorld;
-    private Direction currentDirect = Direction.RIGHT;
     private final KeyEventHandler keyEventHandler;
-
     public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
@@ -28,17 +26,30 @@ public class Fighter extends GameObject {
             walkRight();
         if (keyEventHandler.isAPressed())
             walkLeft();
+        if (keyEventHandler.isWPressed())
+            jump();
+        if (keyEventHandler.isEPressed())
+            punch();
+        if (keyEventHandler.isAReleased() && keyEventHandler.isDReleased() && keyEventHandler.isWReleased() && keyEventHandler.isEReleased())
+            this.image = Images.fighter_look_right;
+    }
+
+    private void jump() {
+        this.applyImpulse(new Vector2(0,-5));
+        this.image = Images.jump_right;
     }
 
     public void walkLeft() {
-        currentDirect = Direction.LEFT;
-        System.out.println("LEFT");
         this.applyImpulse(new Vector2(-1,0));
+        this.image = Images.fighter_Bwalk_right;
     }
 
     public void walkRight() {
-        currentDirect = Direction.RIGHT;
-        System.out.println("RIGHT");
         this.applyImpulse(new Vector2(1,0));
+        this.image = Images.fighter_walk_right;
+    }
+
+    public void punch() {
+        this.image = Images.punch_right;
     }
 }
