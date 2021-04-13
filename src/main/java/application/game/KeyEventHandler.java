@@ -5,12 +5,11 @@ import javafx.scene.input.KeyEvent;
 
 public class KeyEventHandler implements EventHandler<KeyEvent> {
 
-    private boolean isLeftKeyPressed = false;
-
-    private boolean isRightKeyPressed = false;
+    private boolean isAPressed = false;
+    private boolean isDPressed = false;
     private boolean isSpaceKeyPressed = false;
-    private boolean isLeftKeyReleased = true;
-    private boolean isRightKeyReleased = true;
+    private boolean isAReleased = true;
+    private boolean isDReleased = true;
 
 
 
@@ -18,41 +17,34 @@ public class KeyEventHandler implements EventHandler<KeyEvent> {
     public void handle(KeyEvent event) {
         boolean pressed = event.getEventType() == KeyEvent.KEY_PRESSED;
         switch (event.getCode()) {
-            case A -> isLeftKeyPressed = pressed;
-            case D -> isRightKeyPressed = pressed;
+            case A -> isAPressed = pressed;
+            case D -> isDPressed = pressed;
             case SPACE -> isSpaceKeyPressed = pressed;
-
-
-
-
         }
         boolean released = event.getEventType() == KeyEvent.KEY_RELEASED;
         switch (event.getCode()) {
-            case A -> isLeftKeyReleased = released;
-            case D -> isRightKeyReleased = released;
+            case A -> isAReleased = released;
+            case D -> isDReleased = released;
         }
     }
 
-    public boolean isLeftKeyPressed() {
-        return isLeftKeyPressed;
+    public boolean isAPressed() {
+        return isAPressed;
     }
 
-    public boolean isRightKeyPressed() {
-        return isRightKeyPressed;
+    public boolean isDPressed() {
+        return isDPressed;
     }
 
     public boolean isSpaceKeyPressed() {
         return isSpaceKeyPressed;
     }
 
-    public boolean isLeftKeyReleased() {
-        return isLeftKeyReleased;
+    public boolean isAReleased() {
+        return isAReleased;
     }
 
-    public boolean isRightKeyReleased() {
-        return isRightKeyReleased;
+    public boolean isDReleased() {
+        return isDReleased;
     }
-
-
-
 }

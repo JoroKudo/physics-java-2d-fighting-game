@@ -19,7 +19,6 @@ public abstract class GameObject extends Body {
     }
 
     public void draw(GraphicsContext gc) {
-
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
         transform.appendTranslation(this.transform.getTranslationX() * Const.BLOCK_SIZE, this.transform.getTranslationY() * Const.BLOCK_SIZE);

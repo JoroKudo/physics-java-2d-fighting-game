@@ -5,7 +5,8 @@ import javafx.scene.image.Image;
 
 public class Images {
     public final static Image background = getImageSize("background.png");
-    public final static Image fighter_standing = getImageSize("standing_still.gif");
+    public final static Image fighter_look_right = getImageSize("LookRight.gif");
+    public final static Image fighter_look_left = getImageSize("LookLeft.gif");
     public final static Image FLOOR = getImageSize("Floor.png");
 
 
