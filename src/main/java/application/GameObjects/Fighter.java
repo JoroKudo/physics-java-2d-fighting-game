@@ -33,7 +33,7 @@ public class Fighter extends GameObject {
         if (keyEventHandler.isAReleased() && keyEventHandler.isDReleased() && keyEventHandler.isWReleased() && keyEventHandler.isEReleased())
             this.image = Images.fighter_look_right;
         if ((keyEventHandler.isDReleased() && isOnGround()) && (keyEventHandler.isAReleased() && isOnGround())) {
-            setLinearVelocity(0, getLinearVelocity().y);
+            setLinearVelocity(0.001, getLinearVelocity().y);
         }
     }
 
