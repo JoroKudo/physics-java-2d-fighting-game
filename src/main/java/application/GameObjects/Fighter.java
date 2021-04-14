@@ -18,7 +18,7 @@ public class Fighter extends GameObject {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
         this.keyEventHandler = keyEventHandler;
-        setMass(MassType.NORMAL);
+        setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
 
     public void handleNavigationEvents() {
@@ -33,22 +33,23 @@ public class Fighter extends GameObject {
         if (keyEventHandler.isAReleased() && keyEventHandler.isDReleased() && keyEventHandler.isWReleased() && keyEventHandler.isEReleased())
             this.image = Images.fighter_look_right;
         if ((keyEventHandler.isDReleased() && isOnGround()) && (keyEventHandler.isAReleased() && isOnGround())) {
-            setLinearVelocity(0, 0);
+            setLinearVelocity(0, getLinearVelocity().y);
         }
     }
 
     private void jump() {
-        this.applyImpulse(new Vector2(0,-5));
-        this.image = Images.jump_right;
+        if (isOnGround()) {
+        this.applyImpulse(new Vector2(0,-60));
+        this.image = Images.jump_right;}
     }
 
     public void walkLeft() {
-        this.applyImpulse(new Vector2(-1,0));
+        setLinearVelocity(-4, getLinearVelocity().y);
         this.image = Images.fighter_Bwalk_right;
     }
 
     public void walkRight() {
-        this.applyImpulse(new Vector2(1,0));
+        setLinearVelocity(4, getLinearVelocity().y);
         this.image = Images.fighter_walk_right;
     }
 
@@ -60,7 +61,7 @@ public class Fighter extends GameObject {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this, body)) {
                 if (!(body instanceof Fighter)) {
-                    setLinearVelocity(getLinearVelocity().x, 0);
+
                     return true;
                 }
             }

@@ -40,7 +40,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-        fighter = new Fighter(10, 11, physicWorld, keyEventHandler);
+        fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
         Floor floor  = new Floor(10, 13);
         physicWorld.setGravity(new Vector2(0, 15));
         physicWorld.addBody(fighter);
