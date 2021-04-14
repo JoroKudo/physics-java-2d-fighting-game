@@ -32,3 +32,5 @@ application/GameObjects/Fighter.java
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
