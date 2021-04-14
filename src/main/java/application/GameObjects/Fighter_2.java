@@ -1,19 +1,17 @@
 package application.GameObjects;
 
 
-import application.constants.Images;
-
 import application.common.KeyEventHandler;
+import application.constants.Images;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.MassType;
-
 import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.World;
 
-public class Fighter extends GameObject {
+public class Fighter_2 extends GameObject {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
-    public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
+    public Fighter_2(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
         this.keyEventHandler = keyEventHandler;
@@ -21,17 +19,17 @@ public class Fighter extends GameObject {
     }
 
     public void handleNavigationEvents() {
-        if (keyEventHandler.isDPressed())
+        if (keyEventHandler.isLPressed())
             walkRight();
-        if (keyEventHandler.isAPressed())
+        if (keyEventHandler.isJPressed())
             walkLeft();
-        if (keyEventHandler.isWPressed())
+        if (keyEventHandler.isIPressed())
             jump();
-        if (keyEventHandler.isEPressed())
+        if (keyEventHandler.isOPressed())
             punch();
-        if (keyEventHandler.isAReleased() && keyEventHandler.isDReleased() && keyEventHandler.isWReleased() && keyEventHandler.isEReleased())
+        if (keyEventHandler.isJReleased() && keyEventHandler.isLReleased() && keyEventHandler.isIReleased() && keyEventHandler.isOReleased())
             this.image = Images.fighter_look_right;
-        if ((keyEventHandler.isDReleased() && isOnGround()) && (keyEventHandler.isAReleased() && isOnGround())) {
+        if ((keyEventHandler.isLReleased() && isOnGround()) && (keyEventHandler.isJReleased() && isOnGround())) {
             setLinearVelocity(0.001, getLinearVelocity().y);
         }
     }
@@ -59,7 +57,7 @@ public class Fighter extends GameObject {
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this, body)) {
-                if (!(body instanceof Fighter)) {
+                if (!(body instanceof Fighter_2)) {
 
                     return true;
                 }

@@ -1,4 +1,4 @@
-package application.game;
+package application.constants;
 
 
 import javafx.scene.image.Image;

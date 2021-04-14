@@ -1,14 +1,11 @@
 package application.main;
 
-import application.GameObjects.Fighter;
-import application.GameObjects.Fist;
-import application.GameObjects.Floor;
-import application.GameObjects.GameObject;
+import application.GameObjects.*;
 
 import application.common.KeyEventHandler;
 import application.common.Navigator;
 
-import application.game.Images;
+import application.constants.Images;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 
@@ -22,6 +19,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public Fighter fighter;
+    public Fighter_2 fighter_2;
     public Fist fist;
     public final KeyEventHandler keyEventHandler;
     public final World<Body> physicWorld = new World<>();
@@ -45,10 +43,12 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void load() {
         fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
+        fighter_2 = new Fighter_2(10, 8, physicWorld, keyEventHandler);
         fist = new Fist(fighter.getWorldCenter().x, fighter.getWorldCenter().y);
         Floor floor  = new Floor(10, 13);
         physicWorld.setGravity(new Vector2(0, 15));
         physicWorld.addBody(fighter);
+        physicWorld.addBody(fighter_2);
         physicWorld.addBody(fist);
 
         physicWorld.addBody(floor);
@@ -57,6 +57,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public void update(double elapsedTime) {
         physicWorld.update(elapsedTime);
         fighter.handleNavigationEvents();
+        fighter_2.handleNavigationEvents();
         fist.update(fighter);
     }
 

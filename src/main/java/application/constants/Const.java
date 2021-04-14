@@ -1,4 +1,4 @@
-package application.game;
+package application.constants;
 
 public class Const {
 

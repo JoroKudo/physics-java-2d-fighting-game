@@ -1,6 +1,6 @@
 package application.GameObjects;
 
-import application.game.Const;
+import application.constants.Const;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.transform.Affine;
