@@ -69,18 +69,18 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
 
         if (punchcooldown > 1) {
-            fist.setLinearVelocity(-5, 0);
+            fist.setLinearVelocity(5, 0);
 
 
             if (keyEventHandler.isEPressed()) {
 
                 physicWorld.removeJoint(punchshould);
-                fist.setLinearVelocity(5, 0);
+
                 punchcooldown = 0;
             }
         } else {
             punchcooldown += 10 * elapsedTime;
-            fist.setLinearVelocity(0, 0);
+
 
         }
 
