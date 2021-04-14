@@ -1,10 +1,9 @@
 package application.GameObjects;
 
 
-import application.game.Const;
 import application.game.Images;
 
-import application.game.KeyEventHandler;
+import application.common.KeyEventHandler;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.MassType;
 
@@ -68,4 +67,5 @@ public class Fighter extends GameObject {
         }
         return false;
     }
+
 }

@@ -1,10 +1,7 @@
 package application.gui;
 
-import application.common.BaseScene;
-import application.common.FancyAnimationTimer;
-import application.common.Initializable;
-import application.common.Navigator;
-import application.game.*;
+import application.common.*;
+import application.main.Game;
 
 public class GameScene extends BaseScene implements Initializable {
     public GameScene(Navigator navigator) {
@@ -23,8 +20,7 @@ public class GameScene extends BaseScene implements Initializable {
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override
             public void doHandle(double deltaInSec) {
-                game.update(deltaInSec)
-                ;
+                game.update(deltaInSec);
                 game.draw(canvas.getGraphicsContext2D());
 
             }

@@ -1,5 +1,8 @@
-application/GameObjects/GameObject.java
- application.GameObjects.GameObject
+application/common/KeyEventHandler.java
+ application.common.KeyEventHandler
+ application.common.KeyEventHandler$1
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
 application/main/App.java
  application.main.App
 application/game/Const.java
@@ -10,27 +13,24 @@ application/gui/SceneType.java
  application.gui.SceneType
 application/common/Initializable.java
  application.common.Initializable
-application/main/Launcher.java
- application.main.Launcher
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
+application/common/BaseScene.java
+ application.common.BaseScene
 application/game/Images.java
  application.game.Images
 application/GameObjects/Direction.java
  application.GameObjects.Direction
-application/common/BaseScene.java
- application.common.BaseScene
+application/main/Launcher.java
+ application.main.Launcher
 application/common/Navigator.java
  application.common.Navigator
 application/GameObjects/Floor.java
  application.GameObjects.Floor
-application/game/KeyEventHandler.java
- application.game.KeyEventHandler
- application.game.KeyEventHandler$1
-application/game/Game.java
- application.game.Game
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
-application/GameObjects/Fist.java
- application.GameObjects.Fist
+application/main/Game.java
+ application.main.Game
