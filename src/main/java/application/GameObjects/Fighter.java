@@ -32,6 +32,9 @@ public class Fighter extends GameObject {
             punch();
         if (keyEventHandler.isAReleased() && keyEventHandler.isDReleased() && keyEventHandler.isWReleased() && keyEventHandler.isEReleased())
             this.image = Images.fighter_look_right;
+        if ((keyEventHandler.isDReleased() && isOnGround()) && (keyEventHandler.isAReleased() && isOnGround())) {
+            setLinearVelocity(0, 0);
+        }
     }
 
     private void jump() {
@@ -51,5 +54,17 @@ public class Fighter extends GameObject {
 
     public void punch() {
         this.image = Images.punch_right;
+    }
+
+    public boolean isOnGround() {
+        for (Body body : physicWorld.getBodies()) {
+            if (physicWorld.isInContact(this, body)) {
+                if (!(body instanceof Fighter)) {
+                    setLinearVelocity(getLinearVelocity().x, 0);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
