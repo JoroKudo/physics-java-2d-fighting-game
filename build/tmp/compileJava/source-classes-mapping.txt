@@ -13,14 +13,15 @@ application/gui/SceneType.java
  application.gui.SceneType
 application/common/Initializable.java
  application.common.Initializable
-application/GameObjects/GameObject.java
- application.GameObjects.GameObject
+application/main/Game.java
+ application.main.Game
 application/GameObjects/Fist.java
  application.GameObjects.Fist
 application/GameObjects/Direction.java
  application.GameObjects.Direction
-application/main/Launcher.java
- application.main.Launcher
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
 application/common/Navigator.java
  application.common.Navigator
 application/constants/Images.java
@@ -29,10 +30,9 @@ application/GameObjects/Floor.java
  application.GameObjects.Floor
 application/common/BaseScene.java
  application.common.BaseScene
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
 application/GameObjects/Fighter_2.java
  application.GameObjects.Fighter_2
-application/main/Game.java
- application.main.Game
+application/main/Launcher.java
+ application.main.Launcher

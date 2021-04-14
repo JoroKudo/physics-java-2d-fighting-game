@@ -4,7 +4,9 @@ package application.GameObjects;
 import application.constants.Images;
 
 import application.common.KeyEventHandler;
+import application.main.Game;
 import org.dyn4j.dynamics.Body;
+import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.MassType;
 
 import org.dyn4j.geometry.Vector2;
@@ -13,6 +15,7 @@ import org.dyn4j.world.World;
 public class Fighter extends GameObject {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
+    private  Game game;
     public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
@@ -53,7 +56,9 @@ public class Fighter extends GameObject {
     }
 
     public void punch() {
+
         this.image = Images.punch_right;
+
     }
 
     public boolean isOnGround() {
