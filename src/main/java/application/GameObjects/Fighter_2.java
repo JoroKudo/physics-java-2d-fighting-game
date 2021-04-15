@@ -27,15 +27,23 @@ public class Fighter_2 extends GameObject {
             jump();
         if (keyEventHandler.isKeyPressed("O"))
             punch();
-        if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O"))
+        if (keyEventHandler.isKeyPressed("K"))
+            duck();
+        if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O") && !keyEventHandler.isKeyPressed("K"))
             this.image = Images.fighter_look_right;
         if ((!keyEventHandler.isKeyPressed("L") && isOnGround()) && (!keyEventHandler.isKeyPressed("J") && isOnGround())) {
             setLinearVelocity(0, getLinearVelocity().y);
         }
     }
 
-    private void jump() {
+    private void duck() {
         if (isOnGround()) {
+            this.image = Images.duck_right;
+        }
+    }
+
+    private void jump() {
+        if (isOnGround() && !keyEventHandler.isKeyPressed("K")) {
         this.applyImpulse(new Vector2(0,-60));
         this.image = Images.jump_right;}
     }
