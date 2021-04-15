@@ -1,7 +1,7 @@
-application/common/KeyEventHandler.java
- application.common.KeyEventHandler
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
+application/constants/Images.java
+ application.constants.Images
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
 application/main/App.java
  application.main.App
 application/constants/Const.java
@@ -22,12 +22,10 @@ application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/common/Navigator.java
  application.common.Navigator
-application/constants/Images.java
- application.constants.Images
-application/GameObjects/Floor.java
- application.GameObjects.Floor
 application/GameObjects/Fist.java
  application.GameObjects.Fist
+application/common/KeyEventHandler.java
+ application.common.KeyEventHandler
 application/GameObjects/Fighter.java
  application.GameObjects.Fighter
 application/gui/GameScene.java
@@ -35,6 +33,8 @@ application/gui/GameScene.java
  application.gui.GameScene$1
 application/common/CollisionDetector.java
  application.common.CollisionDetector
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
 application/main/Game.java
  application.main.Game
  application.main.Game$1

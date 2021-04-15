@@ -18,17 +18,15 @@ public class KeyEventHandler implements EventHandler<KeyEvent> {
             pressedKeys.add(event.getCode());
         }
         if(event.getEventType() == KeyEvent.KEY_RELEASED) {
-            for (KeyCode key : pressedKeys) {
-                if (key.equals(event.getCode())) {
-                    pressedKeys.remove(event.getCode());
-                }
-            }
+            pressedKeys.remove(event.getCode());
         }
     }
 
     public boolean isKeyPressed(String s) {
         for (KeyCode key : pressedKeys) {
+
             if (s.equals(key.getChar())) {
+                System.out.println(key.getChar());
                 return true;
             }
         }

@@ -13,7 +13,7 @@ public class Fist extends GameObject {
     }
 
     public void update(Fighter fighter) {
-        System.out.println(this.getWorldCenter());
+
 
         if (keyEventHandler.isKeyPressed("E")) {
             this.translateToOrigin();
