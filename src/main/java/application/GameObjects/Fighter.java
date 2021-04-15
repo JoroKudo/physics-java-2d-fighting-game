@@ -32,15 +32,23 @@ public class Fighter extends GameObject {
             jump();
         if (keyEventHandler.isKeyPressed("E"))
             punch();
-        if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E"))
+        if (keyEventHandler.isKeyPressed("S"))
+            duck();
+        if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E") && !keyEventHandler.isKeyPressed("S"))
             this.image = Images.fighter_look_right;
         if ((!keyEventHandler.isKeyPressed("D") && isOnGround()) && (!keyEventHandler.isKeyPressed("A") && isOnGround())) {
             setLinearVelocity(0, getLinearVelocity().y);
         }
     }
 
-    private void jump() {
+    private void duck() {
         if (isOnGround()) {
+            this.image = Images.duck_right;
+        }
+    }
+
+    private void jump() {
+        if (isOnGround() && !keyEventHandler.isKeyPressed("S")) {
         this.applyImpulse(new Vector2(0,-60));
         this.image = Images.jump_right;}
     }
@@ -57,14 +65,12 @@ public class Fighter extends GameObject {
 
     public void punch() {
         this.image = Images.punch_right;
-
     }
 
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this, body)) {
                 if (!(body instanceof Fighter)) {
-
                     return true;
                 }
             }

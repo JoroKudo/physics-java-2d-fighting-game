@@ -10,6 +10,7 @@ public class Images {
     public final static Image fighter_walk_right= getImageSize("FWalkRight.gif");
     public final static Image jump_right= getImageSize("JumpRight.gif");
     public final static Image punch_right= getImageSize("PunchRight.gif");
+    public final static Image duck_right= getImageSize("DuckRight.gif");
     public final static Image fighter_look_left = getImageSize("LookLeft.gif");
     public final static Image FLOOR = getImageSize("Floor.png");
     public final static Image fist_hitbox = getImageSize("fist.png");
