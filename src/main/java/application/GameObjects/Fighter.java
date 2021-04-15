@@ -24,17 +24,17 @@ public class Fighter extends GameObject {
     }
 
     public void handleNavigationEvents() {
-        if (keyEventHandler.isDPressed())
+        if (keyEventHandler.isKeyPressed("D"))
             walkRight();
-        if (keyEventHandler.isAPressed())
+        if (keyEventHandler.isKeyPressed("A"))
             walkLeft();
-        if (keyEventHandler.isWPressed())
+        if (keyEventHandler.isKeyPressed("W"))
             jump();
-        if (keyEventHandler.isEPressed())
+        if (keyEventHandler.isKeyPressed("E"))
             punch();
-        if (keyEventHandler.isAReleased() && keyEventHandler.isDReleased() && keyEventHandler.isWReleased() && keyEventHandler.isEReleased())
+        if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E"))
             this.image = Images.fighter_look_right;
-        if ((keyEventHandler.isDReleased() && isOnGround()) && (keyEventHandler.isAReleased() && isOnGround())) {
+        if ((!keyEventHandler.isKeyPressed("D") && isOnGround()) && (!keyEventHandler.isKeyPressed("A") && isOnGround())) {
             setLinearVelocity(0.001, getLinearVelocity().y);
         }
     }
@@ -56,7 +56,6 @@ public class Fighter extends GameObject {
     }
 
     public void punch() {
-
         this.image = Images.punch_right;
 
     }

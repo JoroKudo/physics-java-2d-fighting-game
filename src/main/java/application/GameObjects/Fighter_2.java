@@ -19,17 +19,17 @@ public class Fighter_2 extends GameObject {
     }
 
     public void handleNavigationEvents() {
-        if (keyEventHandler.isLPressed())
+        if (keyEventHandler.isKeyPressed("L"))
             walkRight();
-        if (keyEventHandler.isJPressed())
+        if (keyEventHandler.isKeyPressed("J"))
             walkLeft();
-        if (keyEventHandler.isIPressed())
+        if (keyEventHandler.isKeyPressed("I"))
             jump();
-        if (keyEventHandler.isOPressed())
+        if (keyEventHandler.isKeyPressed("O"))
             punch();
-        if (keyEventHandler.isJReleased() && keyEventHandler.isLReleased() && keyEventHandler.isIReleased() && keyEventHandler.isOReleased())
+        if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O"))
             this.image = Images.fighter_look_right;
-        if ((keyEventHandler.isLReleased() && isOnGround()) && (keyEventHandler.isJReleased() && isOnGround())) {
+        if ((!keyEventHandler.isKeyPressed("L") && isOnGround()) && (keyEventHandler.isKeyPressed("J") && isOnGround())) {
             setLinearVelocity(0.001, getLinearVelocity().y);
         }
     }

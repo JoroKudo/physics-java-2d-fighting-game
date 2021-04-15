@@ -72,7 +72,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             fist.setLinearVelocity(5, 0);
 
 
-            if (keyEventHandler.isEPressed()) {
+            if (keyEventHandler.isKeyPressed("E")) {
 
                 physicWorld.removeJoint(punchshould);
 
