@@ -15,16 +15,26 @@ public class KeyEventHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent event) {
         if(event.getEventType() == KeyEvent.KEY_PRESSED) {
-            pressedKeys.add(event.getCode());
+            if (notInList(event.getCode())) {
+                pressedKeys.add(event.getCode());
+            }
         }
         if(event.getEventType() == KeyEvent.KEY_RELEASED) {
             pressedKeys.remove(event.getCode());
         }
     }
 
+    private boolean notInList(KeyCode code) {
+        for (KeyCode key : pressedKeys) {
+            if (code.equals(key)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isKeyPressed(String s) {
         for (KeyCode key : pressedKeys) {
-
             if (s.equals(key.getChar())) {
                 System.out.println(key.getChar());
                 return true;
@@ -32,5 +42,7 @@ public class KeyEventHandler implements EventHandler<KeyEvent> {
         }
         return false;
     }
+
+
 
 }

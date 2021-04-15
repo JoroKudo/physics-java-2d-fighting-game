@@ -29,8 +29,8 @@ public class Fighter_2 extends GameObject {
             punch();
         if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O"))
             this.image = Images.fighter_look_right;
-        if ((!keyEventHandler.isKeyPressed("L") && isOnGround()) && (keyEventHandler.isKeyPressed("J") && isOnGround())) {
-            setLinearVelocity(0.001, getLinearVelocity().y);
+        if ((!keyEventHandler.isKeyPressed("L") && isOnGround()) && (!keyEventHandler.isKeyPressed("J") && isOnGround())) {
+            setLinearVelocity(0, getLinearVelocity().y);
         }
     }
 

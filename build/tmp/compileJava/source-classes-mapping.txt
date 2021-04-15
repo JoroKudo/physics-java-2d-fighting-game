@@ -1,7 +1,7 @@
-application/constants/Images.java
- application.constants.Images
 application/GameObjects/Floor.java
  application.GameObjects.Floor
+application/common/BaseScene.java
+ application.common.BaseScene
 application/main/App.java
  application.main.App
 application/constants/Const.java
@@ -10,16 +10,16 @@ application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/gui/SceneType.java
  application.gui.SceneType
-application/common/BaseScene.java
- application.common.BaseScene
-application/common/Initializable.java
- application.common.Initializable
-application/main/Launcher.java
- application.main.Launcher
-application/GameObjects/Direction.java
- application.GameObjects.Direction
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
+application/common/Initializable.java
+ application.common.Initializable
+application/constants/Images.java
+ application.constants.Images
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/main/Launcher.java
+ application.main.Launcher
 application/common/Navigator.java
  application.common.Navigator
 application/GameObjects/Fist.java
