@@ -1,3 +1,5 @@
+application/stats/Lifebar.java
+ application.stats.Lifebar
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
 application/common/BaseScene.java
@@ -10,33 +12,31 @@ application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/gui/SceneType.java
  application.gui.SceneType
-application/common/Navigator.java
- application.common.Navigator
+application/common/CollisionDetector.java
+ application.common.CollisionDetector
 application/common/Initializable.java
  application.common.Initializable
 application/main/Launcher.java
  application.main.Launcher
 application/GameObjects/Direction.java
  application.GameObjects.Direction
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/common/Navigator.java
+ application.common.Navigator
+application/constants/Images.java
+ application.constants.Images
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/GameObjects/Fighter_2.java
  application.GameObjects.Fighter_2
-application/GameObjects/Floor.java
- application.GameObjects.Floor
-application/GameObjects/Fist.java
- application.GameObjects.Fist
-application/constants/Images.java
- application.constants.Images
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
-application/stats/Lifebar.java
- application.stats.Lifebar
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
-application/common/CollisionDetector.java
- application.common.CollisionDetector
 application/main/Game.java
  application.main.Game
  application.main.Game$1
