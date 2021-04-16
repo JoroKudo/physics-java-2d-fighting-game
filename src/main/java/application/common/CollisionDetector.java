@@ -27,21 +27,21 @@ public class CollisionDetector {
         this.body1 = body1;
         this.body2 = body2;
 
-        handleLucioPain();
+        handleFighterPain();
 
     }
 
 
-    public void handleLucioPain() {
+    public void handleFighterPain() {
 
         if ((body1 instanceof Fighter_2) && (body2 instanceof Fist)) {
 
-            physicWorld.removeBody(body1);
+            game.handleHit();
 
         }
         if ((body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
 
-            physicWorld.removeBody(body2);
+            game.handleHit();
 
         }
     }

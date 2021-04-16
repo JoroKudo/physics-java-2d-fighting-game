@@ -7,6 +7,7 @@ import application.common.KeyEventHandler;
 import application.common.Navigator;
 
 import application.constants.Images;
+import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 
@@ -27,11 +28,14 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public Fighter fighter;
     public Fighter_2 fighter_2;
     public Fist fist;
+    public Lifebar lifebar;
     public WeldJoint<Body> punchshould;
     public final KeyEventHandler keyEventHandler;
     public final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
     private final CollisionDetector collision;
+    public boolean hit = false;
+    public double timePassedSinceCooldown;
 
     //RoomChanger
     private double punchcooldown = 2;
@@ -44,6 +48,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
+        lifebar.draw(gc);
         for (Body body : physicWorld.getBodies()) {
             GameObject gameObject = (GameObject) body;
             gameObject.draw(gc);
@@ -54,6 +59,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
         fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
         fist = new Fist(fighter.getWorldCenter().x, fighter.getWorldCenter().y-1,keyEventHandler);
+        lifebar = new Lifebar();
         Floor floor = new Floor(10, 13);
         physicWorld.setGravity(new Vector2(0, 15));
         physicWorld.addBody(fighter);
@@ -83,9 +89,19 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         fighter.handleNavigationEvents();
         fighter_2.handleNavigationEvents();
         fist.update(fighter);
+        timePassedSinceCooldown += elapsedTime;
+        if (hit && timePassedSinceCooldown >= 0.7) {
+            lifebar.update(10);
+            timePassedSinceCooldown = 0;
+            hit = false;
+            if (lifebar.getKO()) {
+                physicWorld.removeBody(fighter_2);
+            }
+        }
+    }
 
-
-
+    public void handleHit() {
+        hit =true;
     }
 
 

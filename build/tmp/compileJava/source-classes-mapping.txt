@@ -20,21 +20,23 @@ application/GameObjects/Direction.java
  application.GameObjects.Direction
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
+application/constants/Images.java
+ application.constants.Images
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
+application/stats/Lifebar.java
+ application.stats.Lifebar
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
 application/common/CollisionDetector.java
  application.common.CollisionDetector
-application/GameObjects/Fist.java
- application.GameObjects.Fist
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
-application/constants/Images.java
- application.constants.Images
-application/GameObjects/Floor.java
- application.GameObjects.Floor
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
 application/main/Game.java
  application.main.Game
  application.main.Game$1

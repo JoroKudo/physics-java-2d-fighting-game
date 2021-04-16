@@ -5,12 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.transform.Affine;
 import org.dyn4j.dynamics.Body;
-import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Rectangle;
-import org.dyn4j.geometry.Vector2;
-
-import java.util.List;
 
 public abstract class GameObject extends Body {
 
@@ -23,9 +19,6 @@ public abstract class GameObject extends Body {
     }
 
     public void draw(GraphicsContext gc) {
-        drawHitboxes(getFixtures(), gc);
-
-
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
         transform.appendTranslation(this.transform.getTranslationX() * Const.BLOCK_SIZE, this.transform.getTranslationY() * Const.BLOCK_SIZE);
@@ -39,17 +32,5 @@ public abstract class GameObject extends Body {
 
         gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
         gc.setTransform(originTrans);
-    }
-
-    private void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
-
-        for (BodyFixture fixture : fixtures) {
-            Rectangle rectangle = (Rectangle) fixture.getShape();
-            rectangle.getVertices()[0];
-
-
-        }
-
-
     }
 }
