@@ -2,16 +2,16 @@ application/common/KeyEventHandler.java
  application.common.KeyEventHandler
 application/GameObjects/Fighter.java
  application.GameObjects.Fighter
-application/main/App.java
- application.main.App
+application/GameObjects/BasePlayer.java
+ application.GameObjects.BasePlayer
 application/Navigation/Navigator.java
  application.Navigation.Navigator
 application/constants/Const.java
  application.constants.Const
 application/stats/Lifebar_2.java
  application.stats.Lifebar_2
-application/main/Welcome.java
- application.main.Welcome
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/main/Game.java
@@ -34,18 +34,15 @@ application/constants/Images.java
  application.constants.Images
 application/GameObjects/Floor.java
  application.GameObjects.Floor
-application/gui/WelcomeScene.java
- application.gui.WelcomeScene
- application.gui.WelcomeScene$1
+application/main/Launcher.java
+ application.main.Launcher
 application/common/BaseScene.java
  application.common.BaseScene
 application/common/CollisionDetector.java
  application.common.CollisionDetector
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
-application/GameObjects/BasePlayer.java
- application.GameObjects.BasePlayer
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
-application/main/Launcher.java
- application.main.Launcher
+application/main/App.java
+ application.main.App
+application/gui/WelcomeScene.java
+ application.gui.WelcomeScene
