@@ -11,10 +11,12 @@ import org.dyn4j.geometry.MassType;
 import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.World;
 
-public class Fighter extends GameObject {
+public class Fighter extends BasePlayer {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
     private  Game game;
+    public boolean p =true;
+    public double cooldown = 1.1;
     public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
@@ -22,19 +24,22 @@ public class Fighter extends GameObject {
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
 
-    public void handleNavigationEvents() {
+    public void handleNavigationEvents(double elapsedTime) {
+        punch(elapsedTime);
+
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
         if (keyEventHandler.isKeyPressed("A"))
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))
             jump();
-        if (keyEventHandler.isKeyPressed("E"))
-            punch();
         if (keyEventHandler.isKeyPressed("S"))
             duck();
         if (keyEventHandler.isKeyPressed("Q"))
             block();
+        if (keyEventHandler.isKeyPressed("D"))
+            walkRight();
+
         if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E") && !keyEventHandler.isKeyPressed("S") && !keyEventHandler.isKeyPressed("Q"))
             this.image = Images.fighter_look_right;
         if ((!keyEventHandler.isKeyPressed("D") && isOnGround()) && (!keyEventHandler.isKeyPressed("A") && isOnGround())) {
@@ -51,6 +56,7 @@ public class Fighter extends GameObject {
     private void jump() {
         if (isOnGround() && !keyEventHandler.isKeyPressed("S")) {
         this.applyImpulse(new Vector2(0,-60));
+
         this.image = Images.jump_right;}
     }
 
@@ -64,8 +70,26 @@ public class Fighter extends GameObject {
         this.image = Images.fighter_walk_right;
     }
 
-    public void punch() {
+    public void punch(double elapsedTime) {
         this.image = Images.punch_right;
+        if (keyEventHandler.isKeyPressed("E")&&p) {
+
+            this.getFixture(3).getShape().translate(2,0);
+            p=false;
+
+        }
+        else{
+            cooldown += 10 * elapsedTime;
+        }
+        if (!p&& cooldown>1) {
+
+            this.getFixture(3).getShape().translate(-2,0);
+            p=true;
+            cooldown=0;
+
+        }
+
+
     }
 
     public void block() {

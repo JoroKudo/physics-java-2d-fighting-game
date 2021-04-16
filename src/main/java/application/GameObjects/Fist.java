@@ -15,14 +15,7 @@ public class Fist extends GameObject {
     public void update(Fighter fighter) {
 
 
-        if (keyEventHandler.isKeyPressed("E")) {
-            this.translateToOrigin();
-            this.translate(fighter.getWorldCenter().x+2, fighter.getWorldCenter().y-1);
-        }
-        else{
-            this.translateToOrigin();
-            this.translate(fighter.getWorldCenter().x, fighter.getWorldCenter().y-1);
-        }
+
 
     }
 
