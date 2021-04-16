@@ -5,14 +5,14 @@ import org.dyn4j.geometry.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-public class Lifebar {
+public class Lifebar_2 {
 
     private int damage = 0;
     private boolean ko = false;
 
     public void update(int damage) {
         this.damage += damage;
-        if (this.damage > 400) {
+        if (this.damage >= 400) {
             ko = true;
         }
     }
