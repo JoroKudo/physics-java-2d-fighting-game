@@ -55,6 +55,8 @@ public abstract class GameObject extends Body {
 
 
         for (BodyFixture fixture : fixtures) {
+            Rectangle rectangle = (Rectangle) fixture.getShape();
+         //   rectangle.getVertices()[0];
 
             Polygon polygon = (Polygon) fixture.getShape();
             var vertices = polygon.getVertices();

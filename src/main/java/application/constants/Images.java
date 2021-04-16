@@ -16,6 +16,7 @@ public class Images {
     public final static Image fist_hitbox = getImageSize("fist.png");
     public final static Image block = getImageSize("Block.gif");
     public final static Image KO = getImageSize("KO.png");
+    public final static Image welcome = getImageSize("Welcome.gif");
 
     private static Image getImage(String imagePath, double height, double width) {
         try {

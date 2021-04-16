@@ -1,6 +1,6 @@
-package application.common;
+package application.Navigation;
 
-import application.gui.SceneType;
+import application.common.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Navigator {
-
     private final Stage stage;
     private final Map<SceneType, Scene> viewMap = new HashMap<>();
 

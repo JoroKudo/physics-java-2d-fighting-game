@@ -6,7 +6,6 @@ import application.constants.Images;
 import application.common.KeyEventHandler;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
-import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.MassType;
 
 import org.dyn4j.geometry.Vector2;

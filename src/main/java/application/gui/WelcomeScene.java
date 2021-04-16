@@ -3,10 +3,10 @@ package application.gui;
 import application.Navigation.Navigator;
 import application.common.KeyEventHandler;
 import application.common.*;
-import application.main.Game;
+import application.main.Welcome;
 
-public class GameScene extends BaseScene implements Initializable {
-    public GameScene(Navigator navigator) {
+public class WelcomeScene extends BaseScene implements Initializable {
+    public WelcomeScene(Navigator navigator) {
         super(navigator);
     }
 
@@ -16,16 +16,20 @@ public class GameScene extends BaseScene implements Initializable {
         this.setOnKeyPressed(keyEventHandler);
         this.setOnKeyReleased(keyEventHandler);
 
-        Game game = new Game(keyEventHandler, navigator);
-        game.load();
+        Welcome welcome= new Welcome(keyEventHandler, navigator);
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override
             public void doHandle(double deltaInSec) {
-                game.update(deltaInSec);
-                game.draw(canvas.getGraphicsContext2D());
-
+                welcome.update(deltaInSec);
+                welcome.draw(canvas.getGraphicsContext2D());
             }
         };
         gameLoop.start();
+
+
     }
+
+
+
+
 }

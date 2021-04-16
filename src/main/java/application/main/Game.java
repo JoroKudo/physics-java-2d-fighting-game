@@ -1,10 +1,10 @@
 package application.main;
 
 import application.GameObjects.*;
+import application.common.KeyEventHandler;
 
 import application.common.CollisionDetector;
-import application.common.KeyEventHandler;
-import application.common.Navigator;
+import application.Navigation.Navigator;
 
 import application.constants.Const;
 import application.constants.Images;
@@ -20,7 +20,6 @@ import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.BroadphaseCollisionData;
 import org.dyn4j.world.World;
 import org.dyn4j.world.listener.CollisionListenerAdapter;
-
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -74,8 +73,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         punchshould = new WeldJoint<Body>(fighter, fist, new Vector2(fighter.getWorldCenter().x, fighter.getWorldCenter().y-1));
         physicWorld.addJoint(punchshould);
 
-
-
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
             @Override
             public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision) {
@@ -108,8 +105,5 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public void handleHit() {
         hit =true;
     }
-
-
-
 }
 
