@@ -1,3 +1,5 @@
+application/stats/Lifebar.java
+ application.stats.Lifebar
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
 application/main/Launcher.java
@@ -12,8 +14,13 @@ application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/gui/SceneType.java
  application.gui.SceneType
+<<<<<<< HEAD
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
+=======
+application/common/CollisionDetector.java
+ application.common.CollisionDetector
+>>>>>>> 8ecdc6665f6efd5f21a6571f9edc7d225b0c645e
 application/common/Initializable.java
  application.common.Initializable
 application/GameObjects/Fist.java
@@ -22,12 +29,19 @@ application/stats/Lifebar_1.java
  application.stats.Lifebar_1
 application/GameObjects/Direction.java
  application.GameObjects.Direction
+<<<<<<< HEAD
 application/GameObjects/Fighter_2.java
  application.GameObjects.Fighter_2
+=======
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+>>>>>>> 8ecdc6665f6efd5f21a6571f9edc7d225b0c645e
 application/common/Navigator.java
  application.common.Navigator
 application/constants/Images.java
  application.constants.Images
+<<<<<<< HEAD
 application/GameObjects/Floor.java
  application.GameObjects.Floor
 application/common/BaseScene.java
@@ -39,6 +53,18 @@ application/gui/GameScene.java
  application.gui.GameScene$1
 application/common/CollisionDetector.java
  application.common.CollisionDetector
+=======
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
+>>>>>>> 8ecdc6665f6efd5f21a6571f9edc7d225b0c645e
 application/main/Game.java
  application.main.Game
  application.main.Game$1
