@@ -1,4 +1,3 @@
-
 package application.GameObjects;
 
 
@@ -11,7 +10,6 @@ import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Rectangle;
-import org.dyn4j.geometry.Vector2;
 
 import java.util.List;
 
@@ -20,27 +18,26 @@ public abstract class BasePlayer extends Body {
     protected Image image;
 
 
-
     public BasePlayer(Image image, double x, double y) {
         this.image = image;
         this.translate(x, y);
 
-        Fixture img = addFixture(new Rectangle(72 / Const.BLOCK_SIZE, 103 / Const.BLOCK_SIZE ));
-        img.getShape().translate(0,1);
+        Fixture img = addFixture(new Rectangle(72 / Const.BLOCK_SIZE, 103 / Const.BLOCK_SIZE));
+        img.getShape().translate(0, 1);
 
-        Fixture body = addFixture(new Rectangle(50 / Const.BLOCK_SIZE, 50 / Const.BLOCK_SIZE-13 / Const.BLOCK_SIZE));
-        body.getShape().translate(0,0.5);
+        Fixture body = addFixture(new Rectangle(50 / Const.BLOCK_SIZE, 50 / Const.BLOCK_SIZE - 13 / Const.BLOCK_SIZE));
+        body.getShape().translate(0, 0.5);
 
         Fixture head = addFixture(new Rectangle(20 / Const.BLOCK_SIZE, 23 / Const.BLOCK_SIZE));
-        head.getShape().translate(.17,0);
+        head.getShape().translate(.17, 0);
 
         Fixture fist = addFixture(new Rectangle(17 / Const.BLOCK_SIZE, 13 / Const.BLOCK_SIZE));
-        fist.getShape().translate(.17,0);
+        fist.getShape().translate(.17, 0);
     }
 
     public void draw(GraphicsContext gc) {
 
-this.drawHitboxes(this.getFixtures(),gc);
+        this.drawHitboxes(this.getFixtures(), gc);
         Affine originTrans = gc.getTransform();
 
         Affine transform = new Affine();
@@ -53,11 +50,10 @@ this.drawHitboxes(this.getFixtures(),gc);
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
 
-        gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
         gc.setTransform(originTrans);
     }
 
-    public void drawHitboxes(List<BodyFixture> fixtures,GraphicsContext gc) {
+    public void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
 
         Affine originTrans = gc.getTransform();
 
@@ -66,7 +62,6 @@ this.drawHitboxes(this.getFixtures(),gc);
         transform.appendRotation(this.transform.getRotation().toDegrees());
         transform.appendTranslation(1, -1);
         gc.transform(transform);
-
 
 
         for (BodyFixture fixture : fixtures) {
@@ -87,7 +82,8 @@ this.drawHitboxes(this.getFixtures(),gc);
 
 
     }
-    public double currentXPosition(){
+
+    public double currentXPosition() {
         return this.getWorldCenter().x;
     }
 

@@ -1,7 +1,7 @@
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
 application/main/App.java
  application.main.App
 application/Navigation/Navigator.java
@@ -14,22 +14,20 @@ application/main/Welcome.java
  application.main.Welcome
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/main/Game.java
- application.main.Game
- application.main.Game$1
+application/common/BaseScene.java
+ application.common.BaseScene
 application/common/Initializable.java
  application.common.Initializable
-application/GameObjects/Fist.java
- application.GameObjects.Fist
+application/main/Launcher.java
+ application.main.Launcher
 application/stats/Lifebar_1.java
  application.stats.Lifebar_1
 application/Navigation/SceneType.java
  application.Navigation.SceneType
 application/GameObjects/Direction.java
  application.GameObjects.Direction
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
 application/constants/Images.java
  application.constants.Images
 application/GameObjects/Floor.java
@@ -37,15 +35,19 @@ application/GameObjects/Floor.java
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
  application.gui.WelcomeScene$1
-application/common/BaseScene.java
- application.common.BaseScene
-application/common/CollisionDetector.java
- application.common.CollisionDetector
-application/GameObjects/GameObject.java
- application.GameObjects.GameObject
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
 application/GameObjects/BasePlayer.java
  application.GameObjects.BasePlayer
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
-application/main/Launcher.java
- application.main.Launcher
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/common/CollisionDetector.java
+ application.common.CollisionDetector
+application/stats/Timer.java
+ application.stats.Timer
+application/main/Game.java
+ application.main.Game
+ application.main.Game$1

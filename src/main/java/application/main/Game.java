@@ -10,6 +10,7 @@ import application.constants.Const;
 import application.constants.Images;
 import application.stats.Lifebar_1;
 import application.stats.Lifebar_2;
+import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 
@@ -30,6 +31,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public Fist fist;
     public Lifebar_2 lifebar2;
     public Lifebar_1 lifebar_1;
+    public Timer timer;
     public WeldJoint<Body> punchshould;
     public final KeyEventHandler keyEventHandler;
     public final World<Body> physicWorld = new World<>();
@@ -52,6 +54,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) / 2, 50);
         lifebar_1.draw(gc);
         lifebar2.draw(gc);
+        timer.draw(gc);
         for (Body body : physicWorld.getBodies()) {
             if (body == fighter) {
                 fighter.draw(gc);
@@ -70,6 +73,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             fist = new Fist(fighter.getWorldCenter().x, fighter.getWorldCenter().y - 1, keyEventHandler);
             lifebar_1 = new Lifebar_1();
             lifebar2 = new Lifebar_2();
+            timer = new Timer();
             Floor floor = new Floor(10, 13);
             physicWorld.setGravity(new Vector2(0, 15));
             physicWorld.addBody(fighter);
@@ -98,6 +102,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             fighter_2.handleNavigationEvents();
             fist.update(fighter);
             timePassedSinceCooldown += elapsedTime;
+            timer.update(elapsedTime);
             if (hit && timePassedSinceCooldown >= 0.7) {
                 lifebar2.update(10);
                 timePassedSinceCooldown = 0;
