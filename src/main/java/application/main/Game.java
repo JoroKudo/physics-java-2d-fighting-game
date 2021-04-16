@@ -1,6 +1,7 @@
 package application.main;
 
 import application.GameObjects.*;
+import application.Navigation.SceneType;
 import application.common.KeyEventHandler;
 
 import application.common.CollisionDetector;
@@ -109,6 +110,11 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hit = false;
                 if (lifebar2.getKO()) {
                     physicWorld.removeBody(fighter_2);
+                    navigator.goTo(SceneType.GAME_OVER_SCENE);
+                }
+                if (lifebar_1.getKO()) {
+                    physicWorld.removeBody(fighter);
+                    navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }
             }
         }
