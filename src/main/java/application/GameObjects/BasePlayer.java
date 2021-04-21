@@ -33,6 +33,10 @@ public abstract class BasePlayer extends Body {
         Fixture head = addFixture(new Rectangle(20 / Const.BLOCK_SIZE, 23 / Const.BLOCK_SIZE));
         head.getShape().translate(.17, 0);
 
+        Fixture fist = addFixture(new Rectangle(20 / Const.BLOCK_SIZE, 23 / Const.BLOCK_SIZE));
+        fist.getShape().translate(.17, 0);
+
+
 
 
     }

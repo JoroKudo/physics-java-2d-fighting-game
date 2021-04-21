@@ -20,6 +20,7 @@ public class Fighter extends BasePlayer {
     public WeldJoint punchshould;
     public boolean p =true;
     public double cooldown = 1.1;
+    private double jumpCooldown = 1;
     public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
@@ -33,16 +34,18 @@ public class Fighter extends BasePlayer {
 
 
     public void handleNavigationEvents(double elapsedTime) {
-        punch(elapsedTime);
+
 
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
+        if (keyEventHandler.isKeyPressed("E"))
+            punch(elapsedTime);
         if (keyEventHandler.isKeyPressed("A"))
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))
-            jump();
+            jump(elapsedTime);
         if (keyEventHandler.isKeyPressed("S"))
-            duck();
+            duck(elapsedTime);
         if (keyEventHandler.isKeyPressed("Q"))
             block();
         if (keyEventHandler.isKeyPressed("D"))
@@ -55,17 +58,37 @@ public class Fighter extends BasePlayer {
         }
     }
 
-    private void duck() {
-        if (isOnGround()) {
-            this.image = Images.duck_right;
+    private void duck(double elapsedTime) {
+        this.image = Images.duck_right;
+        if (keyEventHandler.isKeyPressed("S")&&p) {
+
+            this.fist.translate(0,3);
+            p=false;
+
         }
+        else{
+            cooldown += 10 * elapsedTime;
+        }
+        if (!p&& cooldown>1) {
+
+            this.fist.translate(0,-3);
+            p=true;
+            cooldown=0;
+
+        }
+
     }
 
-    private void jump() {
-        if (isOnGround() && !keyEventHandler.isKeyPressed("S")) {
-        this.applyImpulse(new Vector2(0,-80));
 
-        this.image = Images.jump_right;}
+    public void jump(double deltaInSec) {
+        if (isOnGround()) {
+            if (jumpCooldown > 1) {
+                applyImpulse(new Vector2(0, -100));
+                jumpCooldown = 0;
+            }else {
+                jumpCooldown += 5 * deltaInSec;
+            }
+        }
     }
 
     public void walkLeft() {

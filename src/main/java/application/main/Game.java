@@ -67,7 +67,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 fighter_2.draw(gc);
 
 
-            }else {
+            } else {
                 GameObject gameObject = (GameObject) body;
                 gameObject.draw(gc);
             }
@@ -84,6 +84,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             Floor floor = new Floor(10, 13);
             physicWorld.addBody(hadouken);
             physicWorld.setGravity(new Vector2(0, 15));
+
             physicWorld.addBody(fighter);
             physicWorld.addBody(fighter_2);
             physicWorld.addBody(fighter.fist);
@@ -122,6 +123,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 if (lifebar_1.getKO()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_OVER_SCENE);
+                }
+                Body f = (Body) fighter.getFixture(3).getShape();
+                if(physicWorld.isInContact(f,fighter_2)){
+                    System.out.println("hey");
                 }
             }
         }

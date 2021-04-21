@@ -13,6 +13,4 @@ public class Fist extends GameObject {
     }
 
 
-
-
 }

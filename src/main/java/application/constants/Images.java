@@ -19,6 +19,7 @@ public class Images {
     public final static Image welcome = getImageSize("Welcome.gif");
     public final static Image Game_over = getImageSize("GameOver.png");
     public final static Image hadouken = getImageSize("Hadouken.png");
+    public final static Image GameWin = getImageSize("GameWin.gif");
 
 
     private static Image getImage(String imagePath, double height, double width) {

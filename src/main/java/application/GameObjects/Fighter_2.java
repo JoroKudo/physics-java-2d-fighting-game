@@ -99,7 +99,7 @@ public class Fighter_2 extends BasePlayer {
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this, body)) {
-                if (!(body instanceof Fighter)) {
+                if (!(body instanceof Fighter_2)) {
                     return true;
                 }
             }
