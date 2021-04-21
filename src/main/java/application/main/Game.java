@@ -65,7 +65,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 fighter_2.draw(gc);
 
 
-            }else {
+            } else {
                 GameObject gameObject = (GameObject) body;
                 gameObject.draw(gc);
             }
