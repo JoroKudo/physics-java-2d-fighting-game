@@ -9,6 +9,7 @@ import application.Navigation.Navigator;
 
 import application.constants.Const;
 import application.constants.Images;
+import application.gui.GameWinScene;
 import application.stats.Lifebar_1;
 import application.stats.Lifebar_2;
 import application.stats.Timer;
@@ -39,8 +40,11 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
     private final CollisionDetector collision;
-    private boolean hit = false;
-    private double timePassedSinceCooldown;
+    public boolean hit = false;
+    public double timePassedSinceCooldown;
+
+    public boolean Player1Wins = false;
+    public boolean Player2Wins = false;
 
     //RoomChanger
     private double punchcooldown = 2;
@@ -113,14 +117,16 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             timePassedSinceCooldown += elapsedTime;
             timer.update(elapsedTime);
             if (hit && timePassedSinceCooldown >= 0.7) {
-                lifebar2.update(10);
+                lifebar2.update(100);
                 timePassedSinceCooldown = 0;
                 hit = false;
                 if (lifebar2.getKO()) {
+                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
                     physicWorld.removeBody(fighter_2);
                     navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }
                 if (lifebar_1.getKO()) {
+                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }

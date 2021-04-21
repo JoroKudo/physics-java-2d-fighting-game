@@ -1,19 +1,19 @@
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
-application/main/App.java
- application.main.App
+application/common/Initializable.java
+ application.common.Initializable
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
-application/Navigation/Navigator.java
- application.Navigation.Navigator
 application/constants/Const.java
  application.constants.Const
+application/Navigation/Navigator.java
+ application.Navigation.Navigator
 application/stats/Lifebar_2.java
  application.stats.Lifebar_2
-application/gui/GameWinScene.java
- application.gui.GameWinScene
+application/constants/Images.java
+ application.constants.Images
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/stats/Timer.java
@@ -24,9 +24,8 @@ application/stats/Lifebar_1.java
  application.stats.Lifebar_1
 application/Navigation/SceneType.java
  application.Navigation.SceneType
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/common/BaseScene.java
+ application.common.BaseScene
 application/GameObjects/Floor.java
  application.GameObjects.Floor
 application/gui/WelcomeScene.java
@@ -37,18 +36,19 @@ application/GameObjects/BasePlayer.java
  application.GameObjects.BasePlayer
 application/main/Launcher.java
  application.main.Launcher
-application/common/CollisionDetector.java
- application.common.CollisionDetector
-application/common/Initializable.java
- application.common.Initializable
-application/GameObjects/Direction.java
- application.GameObjects.Direction
-application/constants/Images.java
- application.constants.Images
-application/common/BaseScene.java
- application.common.BaseScene
 application/GameObjects/Fighter.java
  application.GameObjects.Fighter
+application/common/CollisionDetector.java
+ application.common.CollisionDetector
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
+application/main/App.java
+ application.main.App
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
 application/main/Game.java
  application.main.Game
  application.main.Game$1
