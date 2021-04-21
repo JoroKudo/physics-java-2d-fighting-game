@@ -1,16 +1,22 @@
 package application.GameObjects;
 
 
-import application.common.KeyEventHandler;
 import application.constants.Images;
+
+import application.common.KeyEventHandler;
+import application.main.Game;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.MassType;
+
 import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.World;
 
-public class Fighter_2 extends GameObject {
+public class Fighter_2 extends BasePlayer {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
+    private  Game game;
+    public boolean p =true;
+    public double cooldown = 1.1;
     public Fighter_2(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
         super(Images.fighter_look_right, x, y);
         this.physicWorld = physicWorld;
@@ -18,18 +24,23 @@ public class Fighter_2 extends GameObject {
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
 
-    public void handleNavigationEvents() {
+    public void handleNavigationEvents(double elapsedTime) {
+        punch(elapsedTime);
+
         if (keyEventHandler.isKeyPressed("L"))
             walkRight();
         if (keyEventHandler.isKeyPressed("J"))
             walkLeft();
         if (keyEventHandler.isKeyPressed("I"))
             jump();
-        if (keyEventHandler.isKeyPressed("O"))
-            punch();
         if (keyEventHandler.isKeyPressed("K"))
             duck();
-        if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O") && !keyEventHandler.isKeyPressed("K"))
+        if (keyEventHandler.isKeyPressed("U"))
+            block();
+        if (keyEventHandler.isKeyPressed("L"))
+            walkRight();
+
+        if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O") && !keyEventHandler.isKeyPressed("K") && !keyEventHandler.isKeyPressed("U"))
             this.image = Images.fighter_look_right;
         if ((!keyEventHandler.isKeyPressed("L") && isOnGround()) && (!keyEventHandler.isKeyPressed("J") && isOnGround())) {
             setLinearVelocity(0, getLinearVelocity().y);
@@ -44,8 +55,9 @@ public class Fighter_2 extends GameObject {
 
     private void jump() {
         if (isOnGround() && !keyEventHandler.isKeyPressed("K")) {
-        this.applyImpulse(new Vector2(0,-60));
-        this.image = Images.jump_right;}
+            this.applyImpulse(new Vector2(0,-60));
+
+            this.image = Images.jump_right;}
     }
 
     public void walkLeft() {
@@ -58,20 +70,42 @@ public class Fighter_2 extends GameObject {
         this.image = Images.fighter_walk_right;
     }
 
-    public void punch() {
+    public void punch(double elapsedTime) {
         this.image = Images.punch_right;
+        if (keyEventHandler.isKeyPressed("O")&&p) {
+
+            this.getFixture(3).getShape().translate(2,0);
+            p=false;
+
+        }
+        else{
+            cooldown += 10 * elapsedTime;
+        }
+        if (!p&& cooldown>1) {
+
+            this.getFixture(3).getShape().translate(-2,0);
+            p=true;
+            cooldown=0;
+
+        }
+
+
+    }
+
+    public void block() {
+        this.image = Images.block;
     }
 
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this, body)) {
-                if (!(body instanceof Fighter_2)) {
-
+                if (!(body instanceof Fighter)) {
                     return true;
                 }
             }
         }
         return false;
     }
+
 
 }

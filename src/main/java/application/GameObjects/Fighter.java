@@ -6,6 +6,7 @@ import application.constants.Images;
 import application.common.KeyEventHandler;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
+import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.MassType;
 
 import org.dyn4j.geometry.Vector2;
@@ -15,6 +16,8 @@ public class Fighter extends BasePlayer {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
     private  Game game;
+    public GameObject  fist;
+    public WeldJoint punchshould;
     public boolean p =true;
     public double cooldown = 1.1;
     public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
@@ -22,7 +25,12 @@ public class Fighter extends BasePlayer {
         this.physicWorld = physicWorld;
         this.keyEventHandler = keyEventHandler;
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
+        fist = (GameObject) new Fist(x, y, keyEventHandler);
+
+        punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
+
     }
+
 
     public void handleNavigationEvents(double elapsedTime) {
         punch(elapsedTime);
@@ -74,7 +82,7 @@ public class Fighter extends BasePlayer {
         this.image = Images.punch_right;
         if (keyEventHandler.isKeyPressed("E")&&p) {
 
-            this.getFixture(3).getShape().translate(2,0);
+            fist.translate(2,0);
             p=false;
 
         }
@@ -83,7 +91,7 @@ public class Fighter extends BasePlayer {
         }
         if (!p&& cooldown>1) {
 
-            this.getFixture(3).getShape().translate(-2,0);
+            fist.translate(-2,0);
             p=true;
             cooldown=0;
 

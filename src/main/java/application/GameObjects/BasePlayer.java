@@ -18,6 +18,8 @@ public abstract class BasePlayer extends Body {
     protected Image image;
 
 
+
+
     public BasePlayer(Image image, double x, double y) {
         this.image = image;
         this.translate(x, y);
@@ -31,8 +33,8 @@ public abstract class BasePlayer extends Body {
         Fixture head = addFixture(new Rectangle(20 / Const.BLOCK_SIZE, 23 / Const.BLOCK_SIZE));
         head.getShape().translate(.17, 0);
 
-        Fixture fist = addFixture(new Rectangle(17 / Const.BLOCK_SIZE, 13 / Const.BLOCK_SIZE));
-        fist.getShape().translate(.17, 0);
+
+
     }
 
     public void draw(GraphicsContext gc) {
@@ -49,7 +51,7 @@ public abstract class BasePlayer extends Body {
         Polygon rect = (Polygon) this.getFixture(0).getShape();
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
-
+        gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
         gc.setTransform(originTrans);
     }
 

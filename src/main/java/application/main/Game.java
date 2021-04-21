@@ -61,7 +61,11 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 fighter.draw(gc);
 
 
-            } else {
+            } else if (body == fighter_2) {
+                fighter_2.draw(gc);
+
+
+            }else {
                 GameObject gameObject = (GameObject) body;
                 gameObject.draw(gc);
             }
@@ -71,7 +75,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         public void load() {
             fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
             fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
-            fist = new Fist(fighter.getWorldCenter().x, fighter.getWorldCenter().y - 1, keyEventHandler);
             lifebar_1 = new Lifebar_1();
             lifebar2 = new Lifebar_2();
             timer = new Timer();
@@ -79,10 +82,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             physicWorld.setGravity(new Vector2(0, 15));
             physicWorld.addBody(fighter);
             physicWorld.addBody(fighter_2);
-            physicWorld.addBody(fist);
+            physicWorld.addBody(fighter.fist);
             physicWorld.addBody(floor);
-            punchshould = new WeldJoint<Body>(fighter, fist, new Vector2(fighter.getWorldCenter().x, fighter.getWorldCenter().y - 1));
-            physicWorld.addJoint(punchshould);
+            physicWorld.addJoint(fighter.punchshould);
+
 
             physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
                 @Override
@@ -100,8 +103,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         public void update(double elapsedTime){
             physicWorld.update(elapsedTime);
             fighter.handleNavigationEvents(elapsedTime);
-            fighter_2.handleNavigationEvents();
-            fist.update(fighter);
+            fighter_2.handleNavigationEvents(elapsedTime);
+
             timePassedSinceCooldown += elapsedTime;
             timer.update(elapsedTime);
             if (hit && timePassedSinceCooldown >= 0.7) {
