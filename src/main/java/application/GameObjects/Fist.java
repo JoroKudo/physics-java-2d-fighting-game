@@ -12,12 +12,6 @@ public class Fist extends GameObject {
         setMass(MassType.NORMAL);
     }
 
-    public void update(Fighter fighter) {
-
-
-
-
-    }
 
 
 

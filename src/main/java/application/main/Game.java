@@ -27,19 +27,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends CopyOnWriteArrayList<GameObject> {
 
-    public Fighter fighter;
-    public Fighter_2 fighter_2;
-    public Fist fist;
-    public Lifebar_2 lifebar2;
-    public Lifebar_1 lifebar_1;
-    public Timer timer;
-    public WeldJoint<Body> punchshould;
-    public final KeyEventHandler keyEventHandler;
-    public final World<Body> physicWorld = new World<>();
+    private Fighter fighter;
+    private Fighter_2 fighter_2;
+    private Fist fist;
+    private Lifebar_2 lifebar2;
+    private Lifebar_1 lifebar_1;
+    private Timer timer;
+    private Hadouken hadouken;
+    private WeldJoint<Body> punchshould;
+    private final KeyEventHandler keyEventHandler;
+    private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
     private final CollisionDetector collision;
-    public boolean hit = false;
-    public double timePassedSinceCooldown;
+    private boolean hit = false;
+    private double timePassedSinceCooldown;
 
     //RoomChanger
     private double punchcooldown = 2;
@@ -56,6 +57,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         lifebar_1.draw(gc);
         lifebar2.draw(gc);
         timer.draw(gc);
+        hadouken.draw(gc);
         for (Body body : physicWorld.getBodies()) {
             if (body == fighter) {
                 fighter.draw(gc);
@@ -75,10 +77,12 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         public void load() {
             fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
             fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
+            hadouken = new Hadouken(12, 8, physicWorld, keyEventHandler);
             lifebar_1 = new Lifebar_1();
             lifebar2 = new Lifebar_2();
             timer = new Timer();
             Floor floor = new Floor(10, 13);
+            physicWorld.addBody(hadouken);
             physicWorld.setGravity(new Vector2(0, 15));
             physicWorld.addBody(fighter);
             physicWorld.addBody(fighter_2);
@@ -104,7 +108,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             physicWorld.update(elapsedTime);
             fighter.handleNavigationEvents(elapsedTime);
             fighter_2.handleNavigationEvents(elapsedTime);
-
+            hadouken.update();
             timePassedSinceCooldown += elapsedTime;
             timer.update(elapsedTime);
             if (hit && timePassedSinceCooldown >= 0.7) {

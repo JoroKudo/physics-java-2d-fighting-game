@@ -63,7 +63,7 @@ public class Fighter extends BasePlayer {
 
     private void jump() {
         if (isOnGround() && !keyEventHandler.isKeyPressed("S")) {
-        this.applyImpulse(new Vector2(0,-60));
+        this.applyImpulse(new Vector2(0,-80));
 
         this.image = Images.jump_right;}
     }
