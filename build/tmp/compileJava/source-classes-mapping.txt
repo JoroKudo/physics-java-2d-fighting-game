@@ -1,52 +1,52 @@
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
-application/common/CollisionDetector.java
- application.common.CollisionDetector
-application/gui/GameWinScene.java
- application.gui.GameWinScene
-application/constants/Const.java
- application.constants.Const
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
+application/main/App.java
+ application.main.App
 application/Navigation/Navigator.java
  application.Navigation.Navigator
+application/constants/Const.java
+ application.constants.Const
 application/stats/Lifebar_2.java
  application.stats.Lifebar_2
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/stats/Timer.java
  application.stats.Timer
-application/GameObjects/BasePlayer.java
- application.GameObjects.BasePlayer
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
 application/stats/Lifebar_1.java
  application.stats.Lifebar_1
 application/Navigation/SceneType.java
  application.Navigation.SceneType
-application/common/BaseScene.java
- application.common.BaseScene
-application/common/Initializable.java
- application.common.Initializable
-application/GameObjects/Direction.java
- application.GameObjects.Direction
-application/GameObjects/GameObject.java
- application.GameObjects.GameObject
-application/GameObjects/Fist.java
- application.GameObjects.Fist
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
-application/main/Game.java
- application.main.Game
- application.main.Game$1
-application/constants/Images.java
- application.constants.Images
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
 application/GameObjects/Floor.java
  application.GameObjects.Floor
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
-application/main/App.java
- application.main.App
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
+application/GameObjects/BasePlayer.java
+ application.GameObjects.BasePlayer
 application/main/Launcher.java
  application.main.Launcher
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
+application/common/Initializable.java
+ application.common.Initializable
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
+application/common/BaseScene.java
+ application.common.BaseScene
+application/common/CollisionDetector.java
+ application.common.CollisionDetector
+application/main/Game.java
+ application.main.Game
+ application.main.Game$1
