@@ -30,6 +30,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Fighter fighter;
     private Fighter_2 fighter_2;
 
+    public RagFighter ragfighter;
+
     private Lifebar lifebar1;
     private Lifebar lifebar2;
     private Fist fist;
@@ -58,25 +60,21 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) / 2, 50);
         lifebar1.draw(gc);
         lifebar2.draw(gc);
+        ragfighter.drawed(gc);
         timer.draw(gc);
         hadouken.draw(gc);
-        for (Body body : physicWorld.getBodies()) {
-            if (body == fighter) {
-                fighter.draw(gc);
+        for (Body  body : physicWorld.getBodies()) {
 
+                GameBody gameBody = (GameBody) body;
+                gameBody.draw(gc);
 
-            } else if (body == fighter_2) {
-                fighter_2.draw(gc);
-
-
-            } else {
-                GameObject gameObject = (GameObject) body;
-                gameObject.draw(gc);
-            }
         }
     }
 
     public void load() {
+
+        ragfighter = new RagFighter(11, 8,  keyEventHandler);
+
         fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
         fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
         hadouken = new Hadouken(12, 4, physicWorld, keyEventHandler);
@@ -85,8 +83,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         timer = new Timer();
         floor = new Floor(10, 13);
         physicWorld.addBody(hadouken);
-        physicWorld.setGravity(new Vector2(0, 15));
-
         physicWorld.addBody(fighter);
         physicWorld.addBody(fighter_2);
         physicWorld.addBody(fighter.fist);
@@ -94,6 +90,37 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         physicWorld.addBody(floor);
         physicWorld.addJoint(fighter.punchshould);
         physicWorld.addJoint(fighter.punchfoot);
+
+        physicWorld.setGravity(new Vector2(0, 15));
+
+        ragfighter.initializeWorld(physicWorld);
+
+        //BAD GARBAGE CODE THAT JIRO WILL FIX
+        ragfighter.torso.rotate(154);
+        ragfighter.righteb.rotate(154);
+        ragfighter.righthand.rotate(154);
+        ragfighter.rightHumerus.rotate(154);
+        ragfighter.rightUlna.rotate(154);
+        ragfighter.lefteb.rotate(154);
+        ragfighter.lefthand.rotate(154);
+        ragfighter.leftHumerus.rotate(154);
+        ragfighter.leftUlna.rotate(154);
+
+//BAD GARBAGE CODE PT 2
+        ragfighter.torso.translate(12,4);
+        ragfighter.righteb.translate(12,4);
+        ragfighter.righthand.translate(12,4);
+        ragfighter.rightHumerus.translate(12,4);
+        ragfighter.rightUlna.translate(12,4);
+        ragfighter.lefteb.translate(12,4);
+        ragfighter.lefthand.translate(12,4);
+        ragfighter.leftHumerus.translate(12,4);
+        ragfighter.leftUlna.translate(12,4);
+
+
+
+
+
 
 
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
@@ -115,6 +142,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             physicWorld.update(elapsedTime);
             fighter.handleNavigationEvents(elapsedTime);
             fighter_2.handleNavigationEvents(elapsedTime);
+            ragfighter.handleNavigationEventss(elapsedTime);
             hadouken.update();
             timePassedSinceCooldown += elapsedTime;
             timer.update(elapsedTime);
@@ -140,6 +168,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void handleHit() {
         hit = true;
+
     }
 }
 

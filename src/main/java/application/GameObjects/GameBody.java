@@ -1,6 +1,7 @@
 package application.GameObjects;
 
 import application.constants.Const;
+import application.constants.Images;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.transform.Affine;
@@ -36,7 +37,8 @@ public class GameBody extends Body {
         Polygon rect = (Polygon) this.getFixture(0).getShape();
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
-        gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
+        if(image != Images.fist_hitbox){
+        gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);}
         gc.setTransform(originTrans);
     }
 
@@ -59,12 +61,18 @@ public class GameBody extends Body {
             var secondPoint = vertices[1];
             var thirdPoint = vertices[2];
             var fourthPoint = vertices[3];
-            gc.strokeLine(firstPoint.x * Const.BLOCK_SIZE, firstPoint.y * Const.BLOCK_SIZE, secondPoint.x * Const.BLOCK_SIZE, secondPoint.y * Const.BLOCK_SIZE);
-            gc.strokeLine(secondPoint.x * Const.BLOCK_SIZE, secondPoint.y * Const.BLOCK_SIZE, thirdPoint.x * Const.BLOCK_SIZE, thirdPoint.y * Const.BLOCK_SIZE);
-            gc.strokeLine(thirdPoint.x * Const.BLOCK_SIZE, thirdPoint.y * Const.BLOCK_SIZE, fourthPoint.x * Const.BLOCK_SIZE, fourthPoint.y * Const.BLOCK_SIZE);
-            gc.strokeLine(fourthPoint.x * Const.BLOCK_SIZE, fourthPoint.y * Const.BLOCK_SIZE, firstPoint.x * Const.BLOCK_SIZE, firstPoint.y * Const.BLOCK_SIZE);
 
+            double ypoints[] = { firstPoint.y* Const.BLOCK_SIZE,secondPoint.y* Const.BLOCK_SIZE,thirdPoint.y* Const.BLOCK_SIZE,fourthPoint.y* Const.BLOCK_SIZE};
+            double xpoints[] = { firstPoint.x* Const.BLOCK_SIZE,secondPoint.x* Const.BLOCK_SIZE,thirdPoint.x* Const.BLOCK_SIZE,fourthPoint.x* Const.BLOCK_SIZE};
+
+
+
+            gc.strokePolygon(xpoints,ypoints,4);
+            if(image == Images.fist_hitbox){
+            gc.fillPolygon(xpoints,ypoints,4);}
         }
+
+
         gc.setTransform(originTrans);
 
 
