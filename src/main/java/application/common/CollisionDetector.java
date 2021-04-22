@@ -39,14 +39,23 @@ public class CollisionDetector implements CollisionListener<Body, BodyFixture> {
 
     public void handleFighterPain() {
 
-        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist)) {
+        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist)||(body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
 
             game.handleHit();
+
 
         }
-        if ((body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
+        if ((body1 instanceof Fighter_2) && (body2 instanceof Foot)) {
 
-            game.handleHit();
+            if(body2.getLinearVelocity().y>50){
+            game.handleHit();}
+
+
+        }
+        if ((body2 instanceof Fighter_2) && (body1 instanceof Foot)) {
+
+            if(body1.getLinearVelocity().y>50){
+                game.handleHit();}
 
         }
     }

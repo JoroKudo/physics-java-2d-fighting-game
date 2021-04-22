@@ -77,69 +77,68 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         }
     }
 
-        public void load() {
-            fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
-            fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
-            hadouken = new Hadouken(12, 8, physicWorld, keyEventHandler);
-            lifebar_1 = new Lifebar_1();
-            lifebar2 = new Lifebar_2();
-            timer = new Timer();
-            floor = new Floor(10, 13);
-            physicWorld.addBody(hadouken);
-            physicWorld.setGravity(new Vector2(0, 15));
+    public void load() {
+        fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
+        fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
+        hadouken = new Hadouken(12, 4, physicWorld, keyEventHandler);
+        lifebar_1 = new Lifebar_1();
+        lifebar2 = new Lifebar_2();
+        timer = new Timer();
+        floor = new Floor(10, 13);
+        physicWorld.addBody(hadouken);
+        physicWorld.setGravity(new Vector2(0, 15));
 
-            physicWorld.addBody(fighter);
-            physicWorld.addBody(fighter_2);
-            physicWorld.addBody(fighter.fist);
-            physicWorld.addBody(floor);
-            physicWorld.addJoint(fighter.punchshould);
-
-
-            physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
-                @Override
-                public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision) {
-                    Body body1 = collision.getBody1();
-                    Body body2 = collision.getBody2();
-                    Game.this.collision.handle(body1, body2, physicWorld);
-                    return true;
-                }
+        physicWorld.addBody(fighter);
+        physicWorld.addBody(fighter_2);
+        physicWorld.addBody(fighter.fist);
+        physicWorld.addBody(fighter.foot);
+        physicWorld.addBody(floor);
+        physicWorld.addJoint(fighter.punchshould);
+        physicWorld.addJoint(fighter.punchfoot);
 
 
-            });
-        }
-
-        public void update(double elapsedTime){
-            physicWorld.update(elapsedTime);
-            fighter.handleNavigationEvents(elapsedTime);
-            fighter_2.handleNavigationEvents(elapsedTime);
-            hadouken.update();
-            timePassedSinceCooldown += elapsedTime;
-            timer.update(elapsedTime);
-            if (hit && timePassedSinceCooldown >= 0.7) {
-                lifebar2.update(100);
-                timePassedSinceCooldown = 0;
-                hit = false;
-                if (lifebar2.getKO()) {
-                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
-                    physicWorld.removeBody(fighter_2);
-                    navigator.goTo(SceneType.GAME_OVER_SCENE);
-                }
-                if (lifebar_1.getKO()) {
-                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
-                    physicWorld.removeBody(fighter);
-                    navigator.goTo(SceneType.GAME_OVER_SCENE);
-                }
-                Body f = (Body) fighter.getFixture(3).getShape();
-                if(physicWorld.isInContact(f,fighter_2)){
-                    System.out.println("hey");
-                }
+        physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
+            @Override
+            public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision) {
+                Body body1 = collision.getBody1();
+                Body body2 = collision.getBody2();
+                Game.this.collision.handle(body1, body2, physicWorld);
+                return true;
             }
-        }
 
-        public void handleHit () {
-            hit = true;
+
+        });
+    }
+
+    public void update(double elapsedTime) {
+        physicWorld.update(elapsedTime);
+        fighter.handleNavigationEvents(elapsedTime);
+        fighter_2.handleNavigationEvents(elapsedTime);
+        hadouken.update();
+        timePassedSinceCooldown += elapsedTime;
+        timer.update(elapsedTime);
+        if (hit && timePassedSinceCooldown >= 0.7) {
+            lifebar2.update(100);
+            timePassedSinceCooldown = 0;
+            hit = false;
+            if (lifebar2.getKO()) {
+                navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
+                physicWorld.removeBody(fighter_2);
+                navigator.goTo(SceneType.GAME_OVER_SCENE);
+            }
+            if (lifebar_1.getKO()) {
+                navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
+                physicWorld.removeBody(fighter);
+                navigator.goTo(SceneType.GAME_OVER_SCENE);
+            }
+
         }
     }
+
+    public void handleHit() {
+        hit = true;
+    }
+}
 
 
 

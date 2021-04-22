@@ -16,8 +16,10 @@ public class Fighter extends BasePlayer {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
     private  Game game;
-    public GameObject  fist;
+    public Fist  fist;
+    public Foot  foot;
     public WeldJoint punchshould;
+    public WeldJoint punchfoot;
     public boolean p =true;
     public double cooldown = 1.1;
     private double jumpCooldown = 1;
@@ -26,9 +28,12 @@ public class Fighter extends BasePlayer {
         this.physicWorld = physicWorld;
         this.keyEventHandler = keyEventHandler;
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
-        fist = (GameObject) new Fist(x, y, keyEventHandler);
+        fist =  new Fist(x, y, keyEventHandler);
+        foot =  new Foot(x, y+2.23, keyEventHandler);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
+        punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y+2.23));
+
 
     }
 
@@ -45,7 +50,7 @@ public class Fighter extends BasePlayer {
         if (keyEventHandler.isKeyPressed("W"))
             jump();
         if (keyEventHandler.isKeyPressed("S"))
-            duck(elapsedTime);
+            duck();
         if (keyEventHandler.isKeyPressed("Q"))
             block();
         if (keyEventHandler.isKeyPressed("D"))
@@ -58,25 +63,10 @@ public class Fighter extends BasePlayer {
         }
     }
 
-    private void duck(double elapsedTime) {
+    private void duck() {
         this.image = Images.duck_right;
         applyImpulse(new Vector2(0, 100));
-        if (keyEventHandler.isKeyPressed("S")&&p) {
 
-            this.fist.translate(0,3);
-            p=false;
-
-        }
-        else{
-            cooldown += 10 * elapsedTime;
-        }
-        if (!p&& cooldown>1) {
-
-            this.fist.translate(0,-3);
-            p=true;
-            cooldown=0;
-
-        }
 
     }
 
@@ -117,17 +107,20 @@ public class Fighter extends BasePlayer {
         if (keyEventHandler.isKeyPressed("E")&&p) {
 
             fist.translate(2,0);
+
             p=false;
+            cooldown=0;
 
         }
         else{
-            cooldown += 10 * elapsedTime;
+            cooldown += 2 * elapsedTime;
         }
         if (!p&& cooldown>1) {
 
-            fist.translate(-2,0);
+
             p=true;
             cooldown=0;
+
 
         }
 
@@ -140,8 +133,8 @@ public class Fighter extends BasePlayer {
 
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
-            if (physicWorld.isInContact(this, body)) {
-                if (!(body instanceof BasePlayer)) {
+            if (physicWorld.isInContact(this.foot, body)) {
+                if (!(body instanceof Fist)) {
                     return true;
                 }
             }
