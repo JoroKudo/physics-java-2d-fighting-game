@@ -28,33 +28,33 @@ application/GameObjects/Direction.java
  application.GameObjects.Direction
 application/main/Launcher.java
  application.main.Launcher
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
+application/GameObjects/BasePlayer.java
+ application.GameObjects.BasePlayer
 application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
 application/GameObjects/Foot.java
  application.GameObjects.Foot
-application/stats/Timer.java
- application.stats.Timer
-application/main/Game.java
- application.main.Game
- application.main.Game$1
+application/GameObjects/GameBody.java
+ application.GameObjects.GameBody
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
 application/GameObjects/Fist.java
  application.GameObjects.Fist
+application/stats/Timer.java
+ application.stats.Timer
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
-application/GameObjects/Floor.java
- application.GameObjects.Floor
 application/common/CollisionDetector.java
  application.common.CollisionDetector
-application/GameObjects/GameObject.java
- application.GameObjects.GameObject
-application/GameObjects/BasePlayer.java
- application.GameObjects.BasePlayer
 application/GameObjects/Fighter_2.java
  application.GameObjects.Fighter_2
-application/GameObjects/GameBody.java
- application.GameObjects.GameBody
+application/main/Game.java
+ application.main.Game
+ application.main.Game$1

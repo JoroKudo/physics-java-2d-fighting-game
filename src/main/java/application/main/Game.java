@@ -155,14 +155,12 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 timePassedSinceCooldown = 0;
                 hit = false;
                 if (lifebar2.getKO()) {
-                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
                     physicWorld.removeBody(fighter_2);
-                    navigator.goTo(SceneType.GAME_OVER_SCENE);
+                    navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
                 if (lifebar1.getKO()) {
-                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
                     physicWorld.removeBody(fighter);
-                    navigator.goTo(SceneType.GAME_OVER_SCENE);
+                    navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
                 Body f = (Body) fighter.getFixture(3).getShape();
                 if(physicWorld.isInContact(f,fighter_2)){

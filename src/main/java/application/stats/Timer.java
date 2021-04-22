@@ -8,7 +8,7 @@ import javafx.scene.text.FontWeight;
 
 public class Timer {
 
-    private double time = 100;
+    private double time = 15;
 
     public double getTime() {
         return time;
