@@ -17,7 +17,6 @@ import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 
 import org.dyn4j.dynamics.BodyFixture;
-import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.Vector2;
 
 import org.dyn4j.world.BroadphaseCollisionData;
@@ -35,7 +34,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Lifebar_1 lifebar_1;
     private Timer timer;
     private Hadouken hadouken;
-    private WeldJoint<Body> punchshould;
+    public Floor floor;
     private final KeyEventHandler keyEventHandler;
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
@@ -85,7 +84,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             lifebar_1 = new Lifebar_1();
             lifebar2 = new Lifebar_2();
             timer = new Timer();
-            Floor floor = new Floor(10, 13);
+            floor = new Floor(10, 13);
             physicWorld.addBody(hadouken);
             physicWorld.setGravity(new Vector2(0, 15));
 

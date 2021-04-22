@@ -43,7 +43,7 @@ public class Fighter extends BasePlayer {
         if (keyEventHandler.isKeyPressed("A"))
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))
-            jump(elapsedTime);
+            jump();
         if (keyEventHandler.isKeyPressed("S"))
             duck(elapsedTime);
         if (keyEventHandler.isKeyPressed("Q"))
@@ -60,6 +60,7 @@ public class Fighter extends BasePlayer {
 
     private void duck(double elapsedTime) {
         this.image = Images.duck_right;
+        applyImpulse(new Vector2(0, 100));
         if (keyEventHandler.isKeyPressed("S")&&p) {
 
             this.fist.translate(0,3);
@@ -80,16 +81,25 @@ public class Fighter extends BasePlayer {
     }
 
 
-    public void jump(double deltaInSec) {
+// public void jump(double deltaInSec) {
+//     if (isOnGround()) {
+//         if (jumpCooldown > 1) {
+//             applyImpulse(new Vector2(0, -100));
+//             jumpCooldown = 0;
+//         }else {
+//             jumpCooldown += 5 * deltaInSec;
+//         }
+//     }
+// }
+
+
+    public void jump() {
         if (isOnGround()) {
-            if (jumpCooldown > 1) {
                 applyImpulse(new Vector2(0, -100));
-                jumpCooldown = 0;
-            }else {
-                jumpCooldown += 5 * deltaInSec;
+
             }
         }
-    }
+
 
     public void walkLeft() {
         setLinearVelocity(-4, getLinearVelocity().y);
@@ -130,7 +140,7 @@ public class Fighter extends BasePlayer {
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this, body)) {
-                if (!(body instanceof Fighter)) {
+                if (!(body instanceof BasePlayer)) {
                     return true;
                 }
             }
