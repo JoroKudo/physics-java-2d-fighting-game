@@ -95,6 +95,7 @@ public class Fighter extends BasePlayer {
 
     public void jump() {
         if (isOnGround()) {
+            this.image = Images.jump_right;
                 applyImpulse(new Vector2(0, -100));
 
             }

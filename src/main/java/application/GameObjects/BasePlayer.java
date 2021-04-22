@@ -9,14 +9,15 @@ import org.dyn4j.geometry.Rectangle;
 
 public abstract class BasePlayer extends GameBody {
 
-    protected Image image;
+
 
 
 
 
     public BasePlayer(Image image, double x, double y) {
         super(image);
-        this.image = image;
+
+
         this.translate(x, y);
 
         Fixture img = addFixture(new Rectangle(72 / Const.BLOCK_SIZE, 103 / Const.BLOCK_SIZE));
