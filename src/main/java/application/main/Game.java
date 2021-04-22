@@ -10,8 +10,8 @@ import application.Navigation.Navigator;
 import application.constants.Const;
 import application.constants.Images;
 import application.gui.GameWinScene;
-import application.stats.Lifebar_1;
-import application.stats.Lifebar_2;
+import application.stats.Lifebar;
+import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
@@ -29,9 +29,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     private Fighter fighter;
     private Fighter_2 fighter_2;
+
+    private Lifebar lifebar1;
+    private Lifebar lifebar2;
     private Fist fist;
-    private Lifebar_2 lifebar2;
-    private Lifebar_1 lifebar_1;
     private Timer timer;
     private Hadouken hadouken;
     public Floor floor;
@@ -42,8 +43,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hit = false;
     public double timePassedSinceCooldown;
 
-    public boolean Player1Wins = false;
-    public boolean Player2Wins = false;
 
     //RoomChanger
     private double punchcooldown = 2;
@@ -57,7 +56,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
         gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) / 2, 50);
-        lifebar_1.draw(gc);
+        lifebar1.draw(gc);
         lifebar2.draw(gc);
         timer.draw(gc);
         hadouken.draw(gc);
@@ -81,8 +80,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
         fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
         hadouken = new Hadouken(12, 4, physicWorld, keyEventHandler);
-        lifebar_1 = new Lifebar_1();
-        lifebar2 = new Lifebar_2();
+        lifebar1 = new Lifebar(1);
+        lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(10, 13);
         physicWorld.addBody(hadouken);
@@ -110,35 +109,40 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         });
     }
 
-    public void update(double elapsedTime) {
-        physicWorld.update(elapsedTime);
-        fighter.handleNavigationEvents(elapsedTime);
-        fighter_2.handleNavigationEvents(elapsedTime);
-        hadouken.update();
-        timePassedSinceCooldown += elapsedTime;
-        timer.update(elapsedTime);
-        if (hit && timePassedSinceCooldown >= 0.7) {
-            lifebar2.update(100);
-            timePassedSinceCooldown = 0;
-            hit = false;
-            if (lifebar2.getKO()) {
-                navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
-                physicWorld.removeBody(fighter_2);
-                navigator.goTo(SceneType.GAME_OVER_SCENE);
-            }
-            if (lifebar_1.getKO()) {
-                navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
-                physicWorld.removeBody(fighter);
-                navigator.goTo(SceneType.GAME_OVER_SCENE);
+
+
+        public void update(double elapsedTime){
+            physicWorld.update(elapsedTime);
+            fighter.handleNavigationEvents(elapsedTime);
+            fighter_2.handleNavigationEvents(elapsedTime);
+            hadouken.update();
+            timePassedSinceCooldown += elapsedTime;
+            timer.update(elapsedTime);
+            if (hit && timePassedSinceCooldown >= 0.7) {
+                lifebar2.update(100);
+                timePassedSinceCooldown = 0;
+                hit = false;
+                if (lifebar2.getKO()) {
+                    physicWorld.removeBody(fighter_2);
+                    navigator.goTo(SceneType.GAME_OVER_SCENE);
+                }
+                if (lifebar1.getKO()) {
+                    physicWorld.removeBody(fighter);
+                    navigator.goTo(SceneType.GAME_OVER_SCENE);
+                }
+                Body f = (Body) fighter.getFixture(3).getShape();
+                if(physicWorld.isInContact(f,fighter_2)){
+                }
             }
 
         }
-    }
+
 
     public void handleHit() {
         hit = true;
     }
 }
+
 
 
 

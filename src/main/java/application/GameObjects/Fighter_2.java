@@ -26,7 +26,6 @@ public class Fighter_2 extends BasePlayer {
 
     public void handleNavigationEvents(double elapsedTime) {
         punch(elapsedTime);
-
         if (keyEventHandler.isKeyPressed("L"))
             walkRight();
         if (keyEventHandler.isKeyPressed("J"))
@@ -88,10 +87,7 @@ public class Fighter_2 extends BasePlayer {
             cooldown=0;
 
         }
-
-
     }
-
     public void block() {
         this.image = Images.block;
     }
@@ -106,6 +102,4 @@ public class Fighter_2 extends BasePlayer {
         }
         return false;
     }
-
-
 }

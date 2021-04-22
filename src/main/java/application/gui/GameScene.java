@@ -23,7 +23,6 @@ public class GameScene extends BaseScene implements Initializable {
             public void doHandle(double deltaInSec) {
                 game.update(deltaInSec);
                 game.draw(canvas.getGraphicsContext2D());
-
             }
         };
         gameLoop.start();

@@ -4,24 +4,19 @@ import application.Navigation.Navigator;
 import application.Navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Images;
-import application.main.Game;
-import application.stats.Lifebar_1;
-import application.stats.Lifebar_2;
+import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 
 public class GameWinScene extends BaseScene  {
 
-    Lifebar_1 lifebar1 = new Lifebar_1();
-    Lifebar_2 lifebar2 = new Lifebar_2();
-    static String text = "123";
-
-
+    private Lifebar lifebar1  = new Lifebar(1);
+    private Lifebar lifebar2  = new Lifebar(2);
 
     public GameWinScene(Navigator navigator) {
         super(navigator, Images.GameWin);
 
-        checkwhowins();
+        String text = checkwhowins();
         drawtext(text, 420, 150);
 
         setOnKeyPressed(e -> {
@@ -33,16 +28,12 @@ public class GameWinScene extends BaseScene  {
 
     private String checkwhowins() {
         if (lifebar1.getKO()== true){
-            text = "Player 1 Wins";
-            return text;
+            return "Player 1 Wins";
         }
         if (lifebar2.getKO() == true){
-            text = "Player 2 Wins";
-            return text;
+            return "Player 2 Wins";
         }
-        text = "Winner can not be identified";
-
-        return text;
+        return "Winner can not be identified";
     }
 
     private void drawtext(String text, int x, int y){

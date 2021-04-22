@@ -67,7 +67,6 @@ public class Fighter extends BasePlayer {
         this.image = Images.duck_right;
         applyImpulse(new Vector2(0, 100));
 
-
     }
 
 
