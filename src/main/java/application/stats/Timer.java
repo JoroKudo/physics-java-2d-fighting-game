@@ -10,6 +10,10 @@ public class Timer {
 
     private double time = 100;
 
+    public double getTime() {
+        return time;
+    }
+
     public void update(Double deltaInSec) {
         time -= deltaInSec;
     }

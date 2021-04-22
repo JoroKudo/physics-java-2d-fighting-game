@@ -1,9 +1,12 @@
 package application.GameObjects;
 
 
+import application.Navigation.SceneType;
+import application.constants.Const;
 import application.constants.Images;
 
 import application.common.KeyEventHandler;
+import application.gui.GameWinScene;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.joint.WeldJoint;
@@ -36,7 +39,6 @@ public class Fighter extends BasePlayer {
 
 
     }
-
 
     public void handleNavigationEvents(double elapsedTime) {
         punch(elapsedTime);
@@ -116,12 +118,7 @@ public class Fighter extends BasePlayer {
             fist.translate(-2,0);
 
             p=true;
-
-
         }
-
-
-
     }
 
     public void block() {

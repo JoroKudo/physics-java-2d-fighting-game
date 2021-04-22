@@ -38,7 +38,6 @@ public class Fighter_2 extends BasePlayer {
             block();
         if (keyEventHandler.isKeyPressed("L"))
             walkRight();
-
         if (!keyEventHandler.isKeyPressed("J") && !keyEventHandler.isKeyPressed("L") && !keyEventHandler.isKeyPressed("I") && !keyEventHandler.isKeyPressed("O") && !keyEventHandler.isKeyPressed("K") && !keyEventHandler.isKeyPressed("U"))
             this.image = Images.fighter_look_right;
         if ((!keyEventHandler.isKeyPressed("L") && isOnGround()) && (!keyEventHandler.isKeyPressed("J") && isOnGround())) {

@@ -27,13 +27,15 @@ public class GameWinScene extends BaseScene  {
     }
 
     private String checkwhowins() {
-        if (lifebar1.getKO()== true){
-            return "Player 1 Wins";
-        }
-        if (lifebar2.getKO() == true){
+        if (lifebar1.checkifko() == true){
             return "Player 2 Wins";
         }
-        return "Winner can not be identified";
+        if (lifebar2.checkifko() == true){
+            return "Player 1 Wins";
+        }
+        else {
+            return "Winner can't be indentified";
+        }
     }
 
     private void drawtext(String text, int x, int y){

@@ -46,6 +46,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public double timePassedSinceCooldown;
 
 
+
     //RoomChanger
     private double punchcooldown = 2;
 
@@ -146,15 +147,20 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             hadouken.update();
             timePassedSinceCooldown += elapsedTime;
             timer.update(elapsedTime);
+            if (timer.getTime() <= 0){
+                navigator.goTo(SceneType.GAME_OVER_SCENE);
+            }
             if (hit && timePassedSinceCooldown >= 0.7) {
                 lifebar2.update(100);
                 timePassedSinceCooldown = 0;
                 hit = false;
                 if (lifebar2.getKO()) {
+                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
                     physicWorld.removeBody(fighter_2);
                     navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }
                 if (lifebar1.getKO()) {
+                    navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameWinScene(navigator));
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }
@@ -164,7 +170,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             }
 
         }
-
 
     public void handleHit() {
         hit = true;

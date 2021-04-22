@@ -9,11 +9,6 @@ import org.dyn4j.geometry.Rectangle;
 
 public abstract class BasePlayer extends GameBody {
 
-
-
-
-
-
     public BasePlayer(Image image, double x, double y) {
         super(image);
 

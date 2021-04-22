@@ -39,4 +39,17 @@ public class Lifebar {
     public boolean getKO() {
         return ko;
     }
+
+    public boolean checkifko(){
+        if (this.damage >= Const.LIFEBAR_LENGTH) {
+            ko = true;
+            return ko;
+        }
+        else {
+            ko = false;
+            return ko;
+        }
+    }
+
+
 }
