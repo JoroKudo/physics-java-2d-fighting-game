@@ -39,12 +39,12 @@ public class Fighter extends BasePlayer {
 
 
     public void handleNavigationEvents(double elapsedTime) {
-
+        punch(elapsedTime);
 
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
-        if (keyEventHandler.isKeyPressed("E"))
-            punch(elapsedTime);
+        //if (keyEventHandler.isKeyPressed("E"))
+
         if (keyEventHandler.isKeyPressed("A"))
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))
@@ -59,7 +59,7 @@ public class Fighter extends BasePlayer {
         if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E") && !keyEventHandler.isKeyPressed("S") && !keyEventHandler.isKeyPressed("Q"))
             this.image = Images.fighter_look_right;
         if ((!keyEventHandler.isKeyPressed("D") && isOnGround()) && (!keyEventHandler.isKeyPressed("A") && isOnGround())) {
-            setLinearVelocity(0, getLinearVelocity().y);
+           applyImpulse(new Vector2(-2*getLinearVelocity().x,0));
         }
     }
 
@@ -109,20 +109,18 @@ public class Fighter extends BasePlayer {
             fist.translate(2,0);
 
             p=false;
-            cooldown=0;
+
 
         }
-        else{
-            cooldown += 2 * elapsedTime;
-        }
-        if (!p&& cooldown>1) {
+        if (!keyEventHandler.isKeyPressed("E")&&!p) {
 
+            fist.translate(-2,0);
 
             p=true;
-            cooldown=0;
 
 
         }
+
 
 
     }
