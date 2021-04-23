@@ -23,6 +23,7 @@ import org.dyn4j.world.BroadphaseCollisionData;
 import org.dyn4j.world.World;
 import org.dyn4j.world.listener.CollisionListenerAdapter;
 
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends CopyOnWriteArrayList<GameObject> {
@@ -30,21 +31,19 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Fighter fighter;
     private Fighter_2 fighter_2;
 
-    public RagFighter ragfighter;
-
     private Lifebar lifebar1;
     private Lifebar lifebar2;
     private Fist fist;
     private Timer timer;
-    private Hadouken hadouken;
     public Floor floor;
     private final KeyEventHandler keyEventHandler;
+    private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
+    public RagFighter ragfighter;
     private final CollisionDetector collision;
     public boolean hit = false;
     public double timePassedSinceCooldown;
-
 
 
     //RoomChanger
@@ -61,10 +60,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) / 2, 50);
         lifebar1.draw(gc);
         lifebar2.draw(gc);
-        ragfighter.drawed(gc);
         timer.draw(gc);
-        hadouken.draw(gc);
         for (Body  body : physicWorld.getBodies()) {
+
+
 
                 GameBody gameBody = (GameBody) body;
                 gameBody.draw(gc);
@@ -78,12 +77,12 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
         fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
         fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
-        hadouken = new Hadouken(12, 4, physicWorld, keyEventHandler);
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(10, 13);
-        physicWorld.addBody(hadouken);
+        physicWorld.setGravity(new Vector2(0, 15));
+
         physicWorld.addBody(fighter);
         physicWorld.addBody(fighter_2);
         physicWorld.addBody(fighter.fist);
@@ -144,11 +143,13 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             fighter.handleNavigationEvents(elapsedTime);
             fighter_2.handleNavigationEvents(elapsedTime);
             ragfighter.handleNavigationEventss(elapsedTime);
-            hadouken.update();
             timePassedSinceCooldown += elapsedTime;
             timer.update(elapsedTime);
-            if (timer.getTime() <= 0){
-                navigator.goTo(SceneType.GAME_OVER_SCENE);
+            if (fighter.isDoesFighterNeedsToReturnHadouken()) {
+                hadoukens.add(fighter.getHadouken());
+            }
+            for (Hadouken hadouken : hadoukens) {
+                hadouken.update();
             }
             if (hit && timePassedSinceCooldown >= 0.7) {
                 lifebar2.update(100);
@@ -156,11 +157,11 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hit = false;
                 if (lifebar2.getKO()) {
                     physicWorld.removeBody(fighter_2);
-                    navigator.goTo(SceneType.GAME_WIN_SCENE);
+                    navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }
                 if (lifebar1.getKO()) {
                     physicWorld.removeBody(fighter);
-                    navigator.goTo(SceneType.GAME_WIN_SCENE);
+                    navigator.goTo(SceneType.GAME_OVER_SCENE);
                 }
                 Body f = (Body) fighter.getFixture(3).getShape();
                 if(physicWorld.isInContact(f,fighter_2)){
@@ -169,9 +170,9 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
         }
 
+
     public void handleHit() {
         hit = true;
-
     }
 }
 

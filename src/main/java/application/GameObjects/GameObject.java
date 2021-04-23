@@ -19,6 +19,4 @@ public abstract class GameObject extends GameBody {
         addFixture(new Rectangle(image.getWidth() / Const.BLOCK_SIZE, image.getHeight() / Const.BLOCK_SIZE));
     }
 
-
-
 }
