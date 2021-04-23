@@ -46,7 +46,6 @@ public class Fighter extends BasePlayer {
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
         //if (keyEventHandler.isKeyPressed("E"))
-
         if (keyEventHandler.isKeyPressed("A"))
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))

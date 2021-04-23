@@ -16,8 +16,6 @@ import org.dyn4j.world.listener.CollisionListenerAdapter;
 public class CollisionDetector implements CollisionListener<Body, BodyFixture> {
 
     private final Game game;
-
-
     private Body body1;
     private Body body2;
     private World<Body> physicWorld;
@@ -32,30 +30,32 @@ public class CollisionDetector implements CollisionListener<Body, BodyFixture> {
         this.physicWorld = physicWorld;
         this.body1 = body1;
         this.body2 = body2;
-
         handleFighterPain();
 
     }
 
     public void handleFighterPain() {
-
-        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist)||(body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
-
-            game.handleHit();
-
-
+        //player 2 hits player 1 by fist
+        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist)) {
+            game.handleHitFighter1();
         }
+
+        //player 1 hits player 2 by fist
+        if ((body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
+            game.handleHitFighter2();
+        }
+
+        // Player 2 hits Player 1 by Foot
         if ((body1 instanceof Fighter_2) && (body2 instanceof Foot)) {
-
             if(body2.getLinearVelocity().y>50){
-            game.handleHit();}
+            game.handleHitFighter1();}
 
 
         }
+        // Player 1 hits Player 2 by Foot
         if ((body2 instanceof Fighter_2) && (body1 instanceof Foot)) {
-
             if(body1.getLinearVelocity().y>50){
-                game.handleHit();}
+                game.handleHitFighter2();}
 
         }
     }

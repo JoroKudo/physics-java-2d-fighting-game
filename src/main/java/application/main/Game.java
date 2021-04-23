@@ -30,7 +30,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     private Fighter fighter;
     private Fighter_2 fighter_2;
-
+    public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
     private Fist fist;
@@ -40,9 +40,9 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
-    public RagFighter ragfighter;
     private final CollisionDetector collision;
-    public boolean hit = false;
+    public boolean  hitFighter1 = false;
+    public boolean  hitFighter2 = false;
     public double timePassedSinceCooldown;
 
 
@@ -118,11 +118,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         ragfighter.leftUlna.translate(12,4);
 
 
-
-
-
-
-
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
             @Override
             public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision) {
@@ -135,8 +130,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
         });
     }
-
-
 
         public void update(double elapsedTime){
             physicWorld.update(elapsedTime);
@@ -151,17 +144,25 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             for (Hadouken hadouken : hadoukens) {
                 hadouken.update();
             }
-            if (hit && timePassedSinceCooldown >= 0.7) {
-                lifebar2.update(100);
+            if (hitFighter1 && timePassedSinceCooldown >= 0.7 ) {
+                lifebar1.update(100);
                 timePassedSinceCooldown = 0;
-                hit = false;
-                if (lifebar2.getKO()) {
-                    physicWorld.removeBody(fighter_2);
-                    navigator.goTo(SceneType.GAME_OVER_SCENE);
-                }
+                hitFighter1 = false;
                 if (lifebar1.getKO()) {
                     physicWorld.removeBody(fighter);
-                    navigator.goTo(SceneType.GAME_OVER_SCENE);
+                    navigator.goTo(SceneType.GAME_WIN_SCENE);
+                }
+                Body f = (Body) fighter.getFixture(3).getShape();
+                if(physicWorld.isInContact(f,fighter_2)){
+                }
+            }
+            if (hitFighter2 && timePassedSinceCooldown >= 0.7) {
+                lifebar2.update(100);
+                timePassedSinceCooldown = 0;
+                hitFighter2 = false;
+                if (lifebar2.getKO()) {
+                    physicWorld.removeBody(fighter);
+                    navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
                 Body f = (Body) fighter.getFixture(3).getShape();
                 if(physicWorld.isInContact(f,fighter_2)){
@@ -171,10 +172,16 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         }
 
 
-    public void handleHit() {
-        hit = true;
+    public void handleHitFighter1() {
+        hitFighter1 = true;
     }
+
+    public void handleHitFighter2() {
+        hitFighter2 = true;
+    }
+
 }
+
 
 
 
