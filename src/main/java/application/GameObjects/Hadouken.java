@@ -12,11 +12,9 @@ import org.dyn4j.world.World;
 public class Hadouken extends GameObject {
 
     private final World<Body> physicWorld;
-    private double x;
-    private double y;
 
     public Hadouken(double x, double y, World<Body> physicWorld) {
-        super(Images.hadouken,x,y);
+        super(Images.hadouken,x+1.8,y);
         this.physicWorld = physicWorld;
         setMass(MassType.FIXED_LINEAR_VELOCITY);
     }

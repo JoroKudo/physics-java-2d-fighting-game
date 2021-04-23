@@ -42,7 +42,7 @@ public class Fighter extends BasePlayer {
 
     public void handleNavigationEvents(double elapsedTime) {
         punch(elapsedTime);
-        cooldown -= 10* elapsedTime;
+        cooldown -= elapsedTime;
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
         //if (keyEventHandler.isKeyPressed("E"))

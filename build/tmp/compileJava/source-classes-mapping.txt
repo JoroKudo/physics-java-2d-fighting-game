@@ -2,12 +2,12 @@ application/stats/Lifebar.java
  application.stats.Lifebar
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
-application/constants/Images.java
- application.constants.Images
-application/main/App.java
- application.main.App
 application/GameObjects/Fighter_2.java
  application.GameObjects.Fighter_2
+application/main/App.java
+ application.main.App
+application/common/CollisionDetector.java
+ application.common.CollisionDetector
 application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
 application/Navigation/Navigator.java
@@ -26,8 +26,9 @@ application/GameObjects/Fist.java
  application.GameObjects.Fist
 application/Navigation/SceneType.java
  application.Navigation.SceneType
-application/GameObjects/Direction.java
- application.GameObjects.Direction
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
 application/GameObjects/Floor.java
  application.GameObjects.Floor
 application/gui/WelcomeScene.java
@@ -46,15 +47,14 @@ application/common/BaseScene.java
  application.common.BaseScene
 application/common/Initializable.java
  application.common.Initializable
-application/common/CollisionDetector.java
- application.common.CollisionDetector
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
 application/main/Game.java
  application.main.Game
  application.main.Game$1
