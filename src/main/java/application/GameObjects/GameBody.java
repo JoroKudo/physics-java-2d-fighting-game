@@ -14,7 +14,7 @@ import org.dyn4j.geometry.Rectangle;
 
 import java.util.List;
 
-public class GameBody extends Body {
+public  class GameBody extends Body {
 
     protected Image image;
 
@@ -38,9 +38,11 @@ public class GameBody extends Body {
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
         if(image != Images.fist_hitbox){
-        gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);}
+            drawimage(image,x,y,gc);
+        }
         gc.setTransform(originTrans);
     }
+
 
     public void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
 
@@ -76,5 +78,9 @@ public class GameBody extends Body {
         gc.setTransform(originTrans);
 
 
+    }
+
+    public  void drawimage(Image image, double x, double y,GraphicsContext gc){
+        gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
     }
 }

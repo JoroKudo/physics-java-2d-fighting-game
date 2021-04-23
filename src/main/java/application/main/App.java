@@ -5,6 +5,7 @@ import application.Navigation.SceneType;
 import application.gui.*;
 import javafx.application.Application;
 
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
