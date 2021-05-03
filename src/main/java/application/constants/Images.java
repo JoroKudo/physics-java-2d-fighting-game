@@ -4,29 +4,27 @@ package application.constants;
 import javafx.scene.image.Image;
 
 public class Images {
-    public final static Image background = getImageSize("background.png");
+
     public final static Image fighter_look_right = getImageSize("LookRight.gif");
     public final static Image fighter_Bwalk_right= getImageSize("BWalkRight.gif");
     public final static Image fighter_walk_right= getImageSize("FWalkRight.gif");
     public final static Image jump_right= getImageSize("JumpRight.gif");
-
     public final static Image fighter_Bwalk_left= getImageSize("BWalkLeft.gif");
     public final static Image fighter_walk_left= getImageSize("FWalkLeft.gif");
-
     public final static Image punch_right= getImageSize("PunchRight2.gif");
     public final static Image punch_left= getImageSize("PunchLeft.gif");
-
-
-    public final static Image duck_right= getImageSize("DuckRight.gif");
     public final static Image fighter_look_left = getImageSize("LookLeft.gif");
     public final static Image FLOOR = getImageSize("Floor.png");
     public final static Image fist_hitbox = getImageSize("fist.png");
     public final static Image foot_hitbox = getImageSize("foot.png");
     public final static Image block = getImageSize("Block.gif");
-    public final static Image KO = getImageSize("KO.png");
-    public final static Image welcome = getImageSize("Welcome.gif");
     public final static Image Game_over = getImageSize("GameOver.png");
     public final static Image hadouken = getImageSize("Hadouken.png");
+
+    public final static Image duck_right= getImageSize("DuckRight.gif");
+    public final static Image background = getImageSize("background.png");
+    public final static Image KO = getImageSize("KO.png");
+    public final static Image welcome = getImageSize("Welcome.gif");
     public final static Image GameWin = getImageSize("GameWin.gif");
 
 

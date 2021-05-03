@@ -1,12 +1,8 @@
 package application.GameObjects;
 
-import application.common.KeyEventHandler;
 import application.constants.Images;
-import application.main.Game;
 import org.dyn4j.dynamics.Body;
-import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.MassType;
-import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.World;
 
 public class Hadouken extends GameObject {

@@ -5,11 +5,10 @@ import application.constants.Images;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.transform.Affine;
-import org.dyn4j.collision.Fixture;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Polygon;
-import org.dyn4j.geometry.Rectangle;
+
 
 
 import java.util.List;

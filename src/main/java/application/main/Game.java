@@ -9,8 +9,6 @@ import application.Navigation.Navigator;
 
 import application.constants.Const;
 import application.constants.Images;
-import application.gui.GameWinScene;
-import application.stats.Lifebar;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -46,8 +44,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public double timePassedSinceCooldown;
 
 
-    //RoomChanger
-    private double punchcooldown = 2;
+
+
 
     public Game(KeyEventHandler keyEventHandler, Navigator navigator) {
         this.keyEventHandler = keyEventHandler;

@@ -24,6 +24,18 @@ public abstract class BaseScene extends Scene {
         drawBackgroundImage(backgroundImage);
     }
 
+
+
+    private void drawBackgroundImage(Image backgroundImage) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.drawImage(backgroundImage, 0, 0);
+    }
+    //NOT USED BUT LOOKS IMPORTANT
+/*
+    private void drawtext(String text, int x, int y){
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.fillText(text, x, y);
+    }
     protected BaseScene(Navigator navigator, Image backgroundImage, String text, int x, int y) {
         this(navigator);
         drawBackgroundImage(backgroundImage);
@@ -34,16 +46,6 @@ public abstract class BaseScene extends Scene {
         this(navigator);
         drawtext(text, x, y);
     }
-
-    private void drawBackgroundImage(Image backgroundImage) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(backgroundImage, 0, 0);
-    }
-
-    private void drawtext(String text, int x, int y){
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.fillText(text, x, y);
-    }
-
+*/
 
 }

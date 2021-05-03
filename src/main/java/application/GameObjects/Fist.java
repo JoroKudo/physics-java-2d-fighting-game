@@ -3,7 +3,7 @@ package application.GameObjects;
 import application.common.KeyEventHandler;
 import application.constants.Images;
 import org.dyn4j.geometry.MassType;
-import org.dyn4j.geometry.Vector2;
+
 
 public class Fist extends GameObject {
     private final KeyEventHandler keyEventHandler;

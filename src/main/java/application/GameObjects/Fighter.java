@@ -15,7 +15,6 @@ import org.dyn4j.world.World;
 public class Fighter extends BasePlayer {
     private final World<Body> physicWorld;
     private final KeyEventHandler keyEventHandler;
-    private Game game;
     public Fist fist;
     private Hadouken hadouken;
     public Foot foot;

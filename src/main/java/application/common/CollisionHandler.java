@@ -4,14 +4,8 @@ import application.GameObjects.*;
 
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
-
-import org.dyn4j.dynamics.BodyFixture;
-import org.dyn4j.world.BroadphaseCollisionData;
-import org.dyn4j.world.ManifoldCollisionData;
-import org.dyn4j.world.NarrowphaseCollisionData;
 import org.dyn4j.world.World;
-import org.dyn4j.world.listener.CollisionListener;
-import org.dyn4j.world.listener.CollisionListenerAdapter;
+
 
 public class CollisionHandler {
 
