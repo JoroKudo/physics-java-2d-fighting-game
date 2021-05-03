@@ -60,9 +60,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         lifebar2.draw(gc);
         timer.draw(gc);
         for (Body  body : physicWorld.getBodies()) {
-
-
-
                 GameBody gameBody = (GameBody) body;
                 gameBody.draw(gc);
 
@@ -152,7 +149,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 lifebar1.update(100);
                 timePassedSinceCooldown = 0;
                 hitFighter1 = false;
-                if (lifebar1.getKO()) {
+                if (lifebar1.checkifko()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
@@ -164,7 +161,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 lifebar2.update(100);
                 timePassedSinceCooldown = 0;
                 hitFighter2 = false;
-                if (lifebar2.getKO()) {
+                if (lifebar2.checkifko()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }

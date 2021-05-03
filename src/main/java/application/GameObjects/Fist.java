@@ -12,8 +12,4 @@ public class Fist extends GameObject {
         this.keyEventHandler = keyEventHandler;
         setMass(MassType.NORMAL);
     }
-
-
-
-
 }

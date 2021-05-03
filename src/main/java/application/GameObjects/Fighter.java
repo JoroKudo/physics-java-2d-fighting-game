@@ -45,16 +45,13 @@ public class Fighter extends BasePlayer {
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
         if (keyEventHandler.isKeyPressed("V")) {
-
             if (cooldown <= 0) {
-
                 hadoukenShoot(elapsedTime);
                 if (animcooldown <= 0) {
                     createHadouken(elapsedTime,physicWorld);
                 }
             } else {
                 hadoukenCharge(elapsedTime);
-
             }
         }
         if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E") && !keyEventHandler.isKeyPressed("S") && !keyEventHandler.isKeyPressed("Q") && !keyEventHandler.isKeyPressed("V"))

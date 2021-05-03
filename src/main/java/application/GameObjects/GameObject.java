@@ -6,8 +6,6 @@ import application.constants.Const;
 import javafx.scene.image.Image;
 import org.dyn4j.geometry.Rectangle;
 
-
-
 public abstract class GameObject extends GameBody {
 
     protected Image image;

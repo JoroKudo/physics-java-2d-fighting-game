@@ -35,21 +35,8 @@ public class Lifebar {
                 gc.fillRect(Const.CANVAS_WIDTH-(Const.CANVAS_WIDTH-(2*Const.LIFEBAR_LENGTH)-Const.DISTANCE_BETWEEN_LIFEBAR)/2-damage, 50, damage, 50);
         }
     }
-
-    public boolean getKO() {
+    
+    public boolean getKo(){
         return ko;
     }
-
-    public boolean checkifko(){
-        if (this.damage >= Const.LIFEBAR_LENGTH) {
-            ko = true;
-            return ko;
-        }
-        else {
-            ko = false;
-            return ko;
-        }
-    }
-
-
 }
