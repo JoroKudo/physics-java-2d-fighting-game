@@ -20,6 +20,8 @@ public class Images {
     public final static Image block = getImageSize("fighter/Block.gif");
     public final static Image Game_over = getImageSize("GameOver.png");
     public final static Image hadouken = getImageSize("fighter/Hadouken.png");
+    public final static Image shootright = getImageSize("fighter/ShootRight.gif");
+    public final static Image chargeright = getImageSize("fighter/RightCharge.gif");
 
     public final static Image duck_right= getImageSize("fighter/DuckRight.gif");
     public final static Image background = getImageSize("background.png");

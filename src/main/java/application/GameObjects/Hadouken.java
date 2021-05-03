@@ -12,10 +12,11 @@ public class Hadouken extends GameObject {
     public Hadouken(double x, double y, World<Body> physicWorld) {
         super(Images.hadouken,x+1.8,y);
         this.physicWorld = physicWorld;
-        setMass(MassType.FIXED_LINEAR_VELOCITY);
+        this.setGravityScale(0);
+        setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
 
     public void update() {
-        setLinearVelocity(4, getLinearVelocity().y);
+        setLinearVelocity(10, getLinearVelocity().y);
     }
 }
