@@ -52,7 +52,6 @@ public class Fighter extends BasePlayer {
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))
             jump();
-
         if (keyEventHandler.isKeyPressed("Q"))
             block();
         if (keyEventHandler.isKeyPressed("D"))
@@ -70,7 +69,8 @@ public class Fighter extends BasePlayer {
 
     private void createHadouken() {
         cooldown = 1;
-        hadouken = new Hadouken(this.getWorldCenter().x, this.getWorldCenter().y, physicWorld);
+        //hadouken = new Hadouken(this.getWorldCenter().x, this.getWorldCenter().y, physicWorld);
+        hadouken=null;
         physicWorld.addBody(hadouken);
         doesFighterNeedsToReturnHadouken = true;
     }
