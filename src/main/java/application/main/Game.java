@@ -149,7 +149,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 lifebar1.update(100);
                 timePassedSinceCooldown = 0;
                 hitFighter1 = false;
-                if (lifebar1.checkifko()) {
+                if (lifebar1.getKo()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
@@ -161,7 +161,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 lifebar2.update(100);
                 timePassedSinceCooldown = 0;
                 hitFighter2 = false;
-                if (lifebar2.checkifko()) {
+                if (lifebar2.getKo()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }

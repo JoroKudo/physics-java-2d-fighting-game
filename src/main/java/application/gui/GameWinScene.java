@@ -27,10 +27,10 @@ public class GameWinScene extends BaseScene  {
     }
 
     private String checkwhowins() {
-        if (lifebar1.checkifko() == true){
+        if (lifebar1.getKo() == true){
             return "Player 2 Wins";
         }
-        if (lifebar2.checkifko() == true){
+        if (lifebar2.getKo() == true){
             return "Player 1 Wins";
         }
         else {

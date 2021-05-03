@@ -1,53 +1,53 @@
-application/GameObjects/GameObject.java
- application.GameObjects.GameObject
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
 application/common/BaseScene.java
  application.common.BaseScene
-application/main/App.java
- application.main.App
 application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
-application/constants/Images.java
- application.constants.Images
+application/GameObjects/Hadouken.java
+ application.GameObjects.Hadouken
 application/Navigation/Navigator.java
  application.Navigation.Navigator
 application/constants/Const.java
  application.constants.Const
-application/GameObjects/GameBody.java
- application.GameObjects.GameBody
-application/GameObjects/BasePlayer.java
- application.GameObjects.BasePlayer
-application/common/FancyAnimationTimer.java
- application.common.FancyAnimationTimer
-application/gui/GameOverScene.java
- application.gui.GameOverScene
-application/stats/Timer.java
- application.stats.Timer
-application/main/Launcher.java
- application.main.Launcher
-application/Navigation/SceneType.java
- application.Navigation.SceneType
-application/GameObjects/Direction.java
- application.GameObjects.Direction
-application/common/Initializable.java
- application.common.Initializable
-application/gui/WelcomeScene.java
- application.gui.WelcomeScene
-application/GameObjects/Fist.java
- application.GameObjects.Fist
-application/GameObjects/Fighter.java
- application.GameObjects.Fighter
-application/GameObjects/Hadouken.java
- application.GameObjects.Hadouken
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
-application/GameObjects/Floor.java
- application.GameObjects.Floor
 application/GameObjects/Foot.java
  application.GameObjects.Foot
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/common/FancyAnimationTimer.java
+ application.common.FancyAnimationTimer
+application/common/Initializable.java
+ application.common.Initializable
+application/stats/Timer.java
+ application.stats.Timer
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
+application/Navigation/SceneType.java
+ application.Navigation.SceneType
+application/constants/Images.java
+ application.constants.Images
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/gui/WelcomeScene.java
+ application.gui.WelcomeScene
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
+application/GameObjects/BasePlayer.java
+ application.GameObjects.BasePlayer
+application/main/Launcher.java
+ application.main.Launcher
+application/GameObjects/GameBody.java
+ application.GameObjects.GameBody
+application/gui/GameOverScene.java
+ application.gui.GameOverScene
 application/stats/Lifebar.java
  application.stats.Lifebar
+application/main/App.java
+ application.main.App
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
