@@ -7,14 +7,14 @@ import javafx.scene.paint.Color;
 public class Lifebar {
 
     private Integer LifebarNumber;
-    private int damage = 0;
+    private double damage = 0;
     private boolean ko = false;
 
     public Lifebar(Integer lifebarNumber) {
         LifebarNumber = lifebarNumber;
     }
 
-    public void update(int damage) {
+    public void update(double damage) {
         this.damage += damage;
         if (this.damage >= Const.LIFEBAR_LENGTH) {
             ko = true;
