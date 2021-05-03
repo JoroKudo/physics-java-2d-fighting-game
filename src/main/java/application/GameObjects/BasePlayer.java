@@ -57,7 +57,7 @@ public class BasePlayer extends GameBody {
         foot = new Foot(x, y + 4.23, keyEventHandler);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
-        punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 2.23));
+        punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
     }
 
     @Override
