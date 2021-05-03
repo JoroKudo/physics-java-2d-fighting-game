@@ -21,6 +21,7 @@ public class Hadouken extends GameObject {
 
     public void update() {
         setLinearVelocity(speed, getLinearVelocity().y);
+
         this.image =img;
     }
 
