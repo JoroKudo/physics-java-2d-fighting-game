@@ -78,7 +78,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();
-        floor = new Floor(10, 13);
+        floor = new Floor(10, 23);
         physicWorld.setGravity(new Vector2(0, 15));
 
         physicWorld.addBody(fighter);
