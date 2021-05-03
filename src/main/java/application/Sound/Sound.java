@@ -40,6 +40,14 @@ public class Sound {
                 return "hadouken.mp3";
             case BLOCK:
                 return "block.mp3";
+            case FIGHTER_GETS_HIT:
+                return "fighter_gets_hit.wav";
+            case JUMP_LANDING:
+                return "jump_landing.wav";
+            case SCREAM:
+                return "scream.wav";
+            case PAIN:
+                return "man-in-pain.wav";
             default:
                 throw new RuntimeException("No Soundfilename set for this enum value:" + soundEffect);
         }
