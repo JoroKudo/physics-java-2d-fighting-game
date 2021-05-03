@@ -20,11 +20,9 @@ public class Fighter extends BasePlayer {
         super(Images.fighter_look_right, x, y,keyEventHandler);
         this.physicWorld = physicWorld;
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
-        fist = new Fist(x, y, keyEventHandler);
-        foot = new Foot(x, y + 4.23, keyEventHandler);
 
-        punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
-        punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 2.23));
+
+
 
 
     }

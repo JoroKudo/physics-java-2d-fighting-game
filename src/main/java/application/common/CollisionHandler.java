@@ -58,7 +58,7 @@ public class CollisionHandler {
         }
 
         if ((body2 instanceof Fighter) && (body1 instanceof Foot)) {
-            if (body2.getLinearVelocity().y > 10) {
+            if (body1.getLinearVelocity().y > 10) {
                 game.handleHitFighter1();
             }
 

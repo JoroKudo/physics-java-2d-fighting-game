@@ -53,7 +53,7 @@ public class BasePlayer extends GameBody {
         Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE * 2, 21 / Const.BLOCK_SIZE * 2));
         hips.getShape().translate(0, 2.4);
 
-        fist = new Fist(x, y+100, keyEventHandler);
+        fist = new Fist(x, y+2, keyEventHandler);
         foot = new Foot(x, y + 4.23, keyEventHandler);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
