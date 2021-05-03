@@ -21,20 +21,20 @@ public  class BasePlayer extends GameBody  {
 
 
 
-        Fixture legs = addFixture(new Rectangle(72 / Const.BLOCK_SIZE, 30 / Const.BLOCK_SIZE));
-        legs.getShape().translate(0, 1.98);
+        Fixture legs = addFixture(new Rectangle(72 / Const.BLOCK_SIZE *2, 30 / Const.BLOCK_SIZE*2));
+        legs.getShape().translate(0, 1.8*2);
 
-        Fixture head = addFixture(new Rectangle(20 / Const.BLOCK_SIZE, 23 / Const.BLOCK_SIZE));
-        head.getShape().translate(.17, 0);
+        Fixture head = addFixture(new Rectangle(20 / Const.BLOCK_SIZE*2, 23 / Const.BLOCK_SIZE*2));
+        head.getShape().translate(.17*2, 0);
 
-        Fixture torso = addFixture(new Rectangle(45 / Const.BLOCK_SIZE, 25 / Const.BLOCK_SIZE));
-        torso.getShape().translate(0, 0.7);
+        Fixture torso = addFixture(new Rectangle(45 / Const.BLOCK_SIZE*2, 25 / Const.BLOCK_SIZE*2));
+        torso.getShape().translate(0, 0.7*2);
 
-        Fixture body = addFixture(new Rectangle(50 / Const.BLOCK_SIZE, 30 / Const.BLOCK_SIZE - 13 / Const.BLOCK_SIZE));
-        body.getShape().translate(0, 0.2);
+        Fixture body = addFixture(new Rectangle(50 / Const.BLOCK_SIZE*2, 30 / Const.BLOCK_SIZE*2 - 13 / Const.BLOCK_SIZE*2));
+        body.getShape().translate(0, 0.2*2);
 
-        Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE, 20 / Const.BLOCK_SIZE));
-        hips.getShape().translate(0, 1.3);
+        Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE*2, 21 / Const.BLOCK_SIZE*2));
+        hips.getShape().translate(0, 1.3*2);
 
 
 

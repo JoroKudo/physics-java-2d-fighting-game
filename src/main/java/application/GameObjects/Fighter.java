@@ -32,7 +32,7 @@ public class Fighter extends BasePlayer {
         this.keyEventHandler = keyEventHandler;
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
         fist = new Fist(x, y, keyEventHandler);
-        foot = new Foot(x, y + 2.23, keyEventHandler);
+        foot = new Foot(x, y+ 4.5, keyEventHandler);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
         punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 2.23));
