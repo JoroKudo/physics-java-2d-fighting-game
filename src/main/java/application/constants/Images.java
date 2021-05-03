@@ -14,6 +14,7 @@ public class Images {
     public final static Image punch_right= getImageSize("fighter/PunchRight2.gif");
     public final static Image punch_left= getImageSize("fighter/PunchLeft.gif");
     public final static Image fighter_look_left = getImageSize("fighter/LookLeft.gif");
+
     public final static Image FLOOR = getImageSize("Floor.png");
     public final static Image fist_hitbox = getImageSize("fist.png");
     public final static Image foot_hitbox = getImageSize("foot.png");

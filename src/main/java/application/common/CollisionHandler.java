@@ -2,6 +2,8 @@ package application.common;
 
 import application.GameObjects.*;
 
+import application.Sound.Sound;
+import application.Sound.SoundEffectType;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.world.World;
@@ -42,7 +44,7 @@ public class CollisionHandler {
         // Player 2 hits Player 1 by Foot
         if ((body1 instanceof Fighter_2) && (body2 instanceof Foot)) {
             if(body2.getLinearVelocity().y>50){
-            game.handleHitFighter1();}
+                game.handleHitFighter1();}
 
 
         }

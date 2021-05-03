@@ -2,6 +2,8 @@ package application.main;
 
 import application.GameObjects.*;
 import application.Navigation.SceneType;
+import application.Sound.Sound;
+import application.Sound.SoundEffectType;
 import application.common.KeyEventHandler;
 
 import application.common.CollisionHandler;

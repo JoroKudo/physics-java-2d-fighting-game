@@ -2,6 +2,7 @@ application/GameObjects/Fighter_2.java
  application.GameObjects.Fighter_2
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
+<<<<<<< HEAD
 application/GameObjects/Fighter.java
  application.GameObjects.Fighter
 application/common/BaseScene.java
@@ -10,6 +11,22 @@ application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
+=======
+<<<<<<< Updated upstream
+application/common/BaseScene.java
+ application.common.BaseScene
+=======
+application/GameObjects/Fighter.java
+ application.GameObjects.Fighter
+>>>>>>> Stashed changes
+application/main/App.java
+ application.main.App
+application/GameObjects/RagFighter.java
+ application.GameObjects.RagFighter
+<<<<<<< Updated upstream
+application/constants/Images.java
+ application.constants.Images
+>>>>>>> Created sound class
 application/Navigation/Navigator.java
  application.Navigation.Navigator
 application/constants/Const.java
@@ -53,6 +70,60 @@ application/gui/GameScene.java
  application.gui.GameScene$1
 application/gui/GameWinScene.java
  application.gui.GameWinScene
+=======
+application/GameObjects/Hadouken.java
+ application.GameObjects.Hadouken
+application/constants/Const.java
+ application.constants.Const
+application/Navigation/Navigator.java
+ application.Navigation.Navigator
+application/GameObjects/Foot.java
+ application.GameObjects.Foot
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
+application/common/FancyAnimationTimer.java
+ application.common.FancyAnimationTimer
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
+application/stats/Timer.java
+ application.stats.Timer
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
+application/Navigation/SceneType.java
+ application.Navigation.SceneType
+application/Sound/MusicType.java
+ application.Sound.MusicType
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/gui/WelcomeScene.java
+ application.gui.WelcomeScene
+application/GameObjects/GameObject.java
+ application.GameObjects.GameObject
+application/GameObjects/BasePlayer.java
+ application.GameObjects.BasePlayer
+application/main/Launcher.java
+ application.main.Launcher
+application/GameObjects/GameBody.java
+ application.GameObjects.GameBody
+application/gui/GameOverScene.java
+ application.gui.GameOverScene
+application/common/Initializable.java
+ application.common.Initializable
+application/common/BaseScene.java
+ application.common.BaseScene
+application/Sound/SoundEffectType.java
+ application.Sound.SoundEffectType
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+>>>>>>> Stashed changes
 application/common/CollisionHandler.java
  application.common.CollisionHandler
 application/main/Game.java
