@@ -33,6 +33,7 @@ public class Fighter extends BasePlayer {
     public void handleNavigationEvents(double elapsedTime) {
         punch("E",elapsedTime);
         duck("S");
+        block("Q");
 
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
@@ -40,18 +41,21 @@ public class Fighter extends BasePlayer {
             walkLeft();
         if (keyEventHandler.isKeyPressed("W"))
             jump(isOnGround());
-        if (keyEventHandler.isKeyPressed("Q"))
-            block();
+
+
         if (keyEventHandler.isKeyPressed("D"))
             walkRight();
         if (keyEventHandler.isKeyPressed("V")) {
+
             if (cooldown <= 0) {
+
                 hadoukenShoot(elapsedTime);
                 if (animcooldown <= 0) {
                     createHadouken(elapsedTime,physicWorld);
                 }
             } else {
                 hadoukenCharge(elapsedTime);
+
             }
         }
         if (!keyEventHandler.isKeyPressed("A") && !keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("W") && !keyEventHandler.isKeyPressed("E") && !keyEventHandler.isKeyPressed("S") && !keyEventHandler.isKeyPressed("Q") && !keyEventHandler.isKeyPressed("V"))

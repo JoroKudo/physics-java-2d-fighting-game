@@ -6,7 +6,6 @@ import application.constants.Images;
 import application.common.KeyEventHandler;
 
 import org.dyn4j.dynamics.Body;
-import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.MassType;
 
 import org.dyn4j.geometry.Vector2;
@@ -29,6 +28,7 @@ public class Fighter_2 extends BasePlayer {
     public void handleNavigationEvents(double elapsedTime) {
         punch("P",elapsedTime);
         duck("K");
+        block("U");
 
         if (keyEventHandler.isKeyPressed("L"))
             walkRight();
@@ -36,8 +36,8 @@ public class Fighter_2 extends BasePlayer {
             walkLeft();
         if (keyEventHandler.isKeyPressed("I"))
             jump(isOnGround());
-        if (keyEventHandler.isKeyPressed("U"))
-            block();
+
+
         if (keyEventHandler.isKeyPressed("L"))
             walkRight();
         if (keyEventHandler.isKeyPressed("M")) {

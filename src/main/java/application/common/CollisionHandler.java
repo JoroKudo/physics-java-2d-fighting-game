@@ -2,8 +2,6 @@ package application.common;
 
 import application.GameObjects.*;
 
-import application.Sound.Sound;
-import application.Sound.SoundEffectType;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.world.World;
@@ -31,32 +29,68 @@ public class CollisionHandler {
     }
 
     public void handleFighterPain() {
-        //player 2 hits player 1 by fist
-        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist)) {
-            game.handleHitFighter1();
-        }
-
-        //player 1 hits player 2 by fist
-        if ((body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
+        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist) || (body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
             game.handleHitFighter2();
         }
 
-        // Player 2 hits Player 1 by Foot
+
+        if ((body1 instanceof Fighter) && (body2 instanceof Fist) || (body2 instanceof Fighter) && (body1 instanceof Fist)) {
+            game.handleHitFighter1();
+        }
+
+
         if ((body1 instanceof Fighter_2) && (body2 instanceof Foot)) {
-            if(body2.getLinearVelocity().y>50){
-                game.handleHitFighter1();}
+            if (body2.getLinearVelocity().y > 10) {
+                game.handleHitFighter2();
+            }
+        }
 
+        if ((body1 instanceof Fighter) && (body2 instanceof Foot)) {
+            if (body2.getLinearVelocity().y > 10) {
+                game.handleHitFighter1();
+            }
 
         }
-        // Player 1 hits Player 2 by Foot
         if ((body2 instanceof Fighter_2) && (body1 instanceof Foot)) {
-            if(body1.getLinearVelocity().y>50){
-                game.handleHitFighter2();}
+            if (body1.getLinearVelocity().y > 10) {
+                game.handleHitFighter2();
+            }
+        }
+
+        if ((body2 instanceof Fighter) && (body1 instanceof Foot)) {
+            if (body2.getLinearVelocity().y > 10) {
+                game.handleHitFighter1();
+            }
 
         }
+
+        if ((body1 instanceof Fighter_2) && (body2 instanceof Hadouken)) {
+
+            game.handleHitFighter1();
+
+
+        }
+
+        if ((body2 instanceof Fighter_2) && (body1 instanceof Hadouken)) {
+
+
+            game.handleHitFighter2();
+
+
+        }
+        if ((body1 instanceof Fighter) && (body2 instanceof Hadouken)) {
+
+            game.handleHitFighter1();
+        }
+        if ((body2 instanceof Fighter) && (body1 instanceof Hadouken)) {
+
+
+            game.handleHitFighter1();
+        }
+
     }
-
-
-
-
 }
+
+
+
+
