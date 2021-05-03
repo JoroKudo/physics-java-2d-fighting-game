@@ -1,6 +1,7 @@
 package application.GameObjects;
 
 import application.constants.Images;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.MassType;
@@ -10,7 +11,7 @@ public class Hadouken extends GameObject {
 
     private final World<Body> physicWorld;
     private int speed = 10;
-    private Image img =Images.hadouken;
+
 
     public Hadouken(double x, double y, World<Body> physicWorld) {
         super(Images.hadouken,x+1.8,y);
@@ -22,7 +23,7 @@ public class Hadouken extends GameObject {
     public void update() {
         setLinearVelocity(speed, getLinearVelocity().y);
 
-        this.image =Images.expolsion;
+
     }
 
     public void explode() {
@@ -31,8 +32,10 @@ public class Hadouken extends GameObject {
 
 
         speed = 0;
-        img = Images.expolsion;
+        this.image=Images.expolsion;
+        image =Images.expolsion;
 
     }
+
 
 }

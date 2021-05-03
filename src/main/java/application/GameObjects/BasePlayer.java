@@ -1,6 +1,8 @@
 package application.GameObjects;
 
 
+import application.Sound.SoundEffectType;
+import application.Sound.Sound;
 import application.common.KeyEventHandler;
 import application.constants.Const;
 import application.constants.Images;
@@ -82,6 +84,7 @@ public class BasePlayer extends GameBody {
     }
 
     protected void hadoukenShoot(double elapsedTime) {
+        Sound.play(SoundEffectType.HADOUKEN);
         this.image = Images.shootright;
         animcooldown -= elapsedTime;
 
@@ -141,6 +144,7 @@ public class BasePlayer extends GameBody {
     public void punch(String key, double elapsedTime) {
 
         if (keyEventHandler.isKeyPressed(key) && punchcooldown > 0 && p) {
+
             this.image = Images.punch_right;
             this.fist.getFixture(0).getShape().translate(2, 0);
             p = false;

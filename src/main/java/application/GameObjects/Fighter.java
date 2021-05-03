@@ -17,19 +17,16 @@ public class Fighter extends BasePlayer {
 
 
     public Fighter(double x, double y, World<Body> physicWorld, KeyEventHandler keyEventHandler) {
-        super(Images.fighter_look_right, x, y,keyEventHandler);
+        super(Images.fighter_look_right, x, y, keyEventHandler);
         this.physicWorld = physicWorld;
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
-
-
-
 
 
     }
 
 
     public void handleNavigationEvents(double elapsedTime) {
-        punch("E",elapsedTime);
+        punch("E", elapsedTime);
         duck("S");
         block("Q");
 
@@ -49,7 +46,7 @@ public class Fighter extends BasePlayer {
 
                 hadoukenShoot(elapsedTime);
                 if (animcooldown <= 0) {
-                    createHadouken(elapsedTime,physicWorld);
+                    createHadouken(elapsedTime, physicWorld);
                 }
             } else {
                 hadoukenCharge(elapsedTime);

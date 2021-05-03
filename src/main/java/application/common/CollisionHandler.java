@@ -2,6 +2,8 @@ package application.common;
 
 import application.GameObjects.*;
 
+import application.Sound.Sound;
+import application.Sound.SoundEffectType;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.world.World;
@@ -30,11 +32,13 @@ public class CollisionHandler {
 
     public void handleFighterPain() {
         if ((body1 instanceof Fighter_2) && (body2 instanceof Fist) || (body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
+            Sound.play(SoundEffectType.FISTPUNCH);
             game.handleHitFighter2();
         }
 
 
         if ((body1 instanceof Fighter) && (body2 instanceof Fist) || (body2 instanceof Fighter) && (body1 instanceof Fist)) {
+            Sound.play(SoundEffectType.FISTPUNCH);
             game.handleHitFighter1();
         }
 

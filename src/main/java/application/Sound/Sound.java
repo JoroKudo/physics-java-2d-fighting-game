@@ -11,7 +11,21 @@ public class Sound {
     private final static Map<String, Media> cache = new HashMap<>();
     private static MediaPlayer musicPlayer;
 
-
+    public static void play(MusicType music) {
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+        }
+        musicPlayer = createMediaPlayer(getSoundFileName(music));
+        musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        musicPlayer.play();
+    }
+    public static void stop(MusicType music) {
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+        }
+        musicPlayer = createMediaPlayer(getSoundFileName(music));
+        musicPlayer.stop();
+    }
     public static void play(SoundEffectType soundEffect) {
         MediaPlayer player = createMediaPlayer(getSoundFileName(soundEffect));
         player.play();
@@ -51,6 +65,13 @@ public class Sound {
             default:
                 throw new RuntimeException("No Soundfilename set for this enum value:" + soundEffect);
         }
+    }
+    private static String getSoundFileName(MusicType music) {
+        return switch (music) {
+            case GAME_BACKGROUND -> null;
+            case FIGHT -> "Fight.mp3";
+
+        };
     }
 
 
