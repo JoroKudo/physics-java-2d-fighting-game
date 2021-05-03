@@ -32,6 +32,7 @@ public class BasePlayer extends GameBody {
     protected double punchcooldown = 0;
     protected boolean doesFighterNeedsToReturnHadouken = false;
 
+
     public BasePlayer(Image image, double x, double y, KeyEventHandler keyEventHandler) {
         super(image);
 
@@ -69,7 +70,7 @@ public class BasePlayer extends GameBody {
 
     protected void createHadouken(double elapsedTime, World physicWorld) {
 
-
+        Sound.play(SoundEffectType.HADOUKEN);
         cooldown = 5;
         hadouken = new Hadouken(this.getWorldCenter().x, this.getWorldCenter().y, physicWorld);
         image = Images.shootright;
@@ -78,13 +79,16 @@ public class BasePlayer extends GameBody {
     }
 
     protected void hadoukenCharge(double elapsedTime) {
+            Sound.play(SoundEffectType.CHARGEUP);
+
+
         this.image = Images.chargeright;
         cooldown -= elapsedTime;
 
     }
 
     protected void hadoukenShoot(double elapsedTime) {
-        Sound.play(SoundEffectType.HADOUKEN);
+
         this.image = Images.shootright;
         animcooldown -= elapsedTime;
 

@@ -7,6 +7,7 @@ public enum SoundEffectType {
     FIGHTER_GETS_HIT,
     JUMP_LANDING,
     SCREAM,
-    PAIN
+    PAIN,
+    CHARGEUP
 
 }

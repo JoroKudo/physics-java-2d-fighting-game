@@ -62,6 +62,8 @@ public class Sound {
                 return "scream.wav";
             case PAIN:
                 return "man-in-pain.wav";
+            case CHARGEUP:
+                return "chargeup.wav";
             default:
                 throw new RuntimeException("No Soundfilename set for this enum value:" + soundEffect);
         }
