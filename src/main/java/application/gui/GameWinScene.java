@@ -17,7 +17,7 @@ public class GameWinScene extends BaseScene  {
         super(navigator, Images.GameWin);
 
         String text = checkwhowins();
-        drawtext(text, 420, 150);
+        drawtext(text, 710, 350);
 
         setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.SPACE) {

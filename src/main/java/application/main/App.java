@@ -18,7 +18,7 @@ public class App extends Application {
         navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator));
         navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameOverScene(navigator));
         navigator.goTo(SceneType.WELCOME_SCENE);
-        primaryStage.setMaximized(true);
+
         primaryStage.show();
     }
 }
