@@ -4,6 +4,7 @@ import application.GameObjects.*;
 
 import application.Sound.Sound;
 import application.Sound.SoundEffectType;
+import application.constants.Images;
 import application.main.Game;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.world.World;
@@ -70,34 +71,40 @@ public class CollisionHandler {
 
         if ((body1 instanceof Fighter_2) && (body2 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body2;
+            if (hadouken.owner != body1) {
+                game.handleHitFighter2();
 
-            game.handleHitFighter1();
-            hadouken.explode();
+                physicWorld.removeBody(hadouken);
+            }
 
 
         }
 
         if ((body2 instanceof Fighter_2) && (body1 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body1;
+            if (hadouken.owner != body2) {
 
-
-            game.handleHitFighter2();
-            hadouken.explode();
+                game.handleHitFighter2();
+                physicWorld.removeBody(hadouken);
+            }
 
 
         }
         if ((body1 instanceof Fighter) && (body2 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body2;
-            game.handleHitFighter1();
-            hadouken.explode();
+            if (hadouken.owner != body1) {
+                game.handleHitFighter1();
+                physicWorld.removeBody(hadouken);
+            }
 
         }
         if ((body2 instanceof Fighter) && (body1 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body1;
+            if (hadouken.owner != body2) {
 
-
-            game.handleHitFighter1();
-            hadouken.explode();
+                game.handleHitFighter1();
+                physicWorld.removeBody(hadouken);
+            }
         }
 
     }

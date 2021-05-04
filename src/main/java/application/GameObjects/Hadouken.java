@@ -9,13 +9,14 @@ import org.dyn4j.world.World;
 
 public class Hadouken extends GameObject {
 
-    private final World<Body> physicWorld;
+
     private int speed = 10;
+    public BasePlayer owner;
 
 
-    public Hadouken(double x, double y, World<Body> physicWorld) {
+    public Hadouken(double x, double y, BasePlayer owner) {
         super(Images.hadouken,x+1.8,y);
-        this.physicWorld = physicWorld;
+        this.owner=owner;
         this.setGravityScale(0);
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
@@ -26,16 +27,7 @@ public class Hadouken extends GameObject {
 
     }
 
-    public void explode() {
 
-        setMass(MassType.INFINITE);
-
-
-        speed = 0;
-        this.image=Images.expolsion;
-        image =Images.expolsion;
-
-    }
 
 
 }

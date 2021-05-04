@@ -72,7 +72,7 @@ public class BasePlayer extends GameBody {
 
         Sound.play(SoundEffectType.HADOUKEN);
         cooldown = 5;
-        hadouken = new Hadouken(this.getWorldCenter().x, this.getWorldCenter().y, physicWorld);
+        hadouken = new Hadouken(this.getWorldCenter().x+1, this.getWorldCenter().y, this);
         image = Images.shootright;
         physicWorld.addBody(hadouken);
         doesFighterNeedsToReturnHadouken = true;

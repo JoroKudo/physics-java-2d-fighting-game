@@ -134,6 +134,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         physicWorld.update(elapsedTime);
         fighter.handleNavigationEvents(elapsedTime);
         fighter_2.handleNavigationEvents(elapsedTime);
+
         //ragfighter.handleNavigationEventss(elapsedTime);
         timePassedSinceCooldown += elapsedTime;
         timer.update(elapsedTime);

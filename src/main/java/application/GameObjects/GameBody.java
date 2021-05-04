@@ -63,14 +63,14 @@ public  class GameBody extends Body {
             var thirdPoint = vertices[2];
             var fourthPoint = vertices[3];
 
-            double ypoints[] = { firstPoint.y* Const.BLOCK_SIZE,secondPoint.y* Const.BLOCK_SIZE,thirdPoint.y* Const.BLOCK_SIZE,fourthPoint.y* Const.BLOCK_SIZE};
-            double xpoints[] = { firstPoint.x* Const.BLOCK_SIZE,secondPoint.x* Const.BLOCK_SIZE,thirdPoint.x* Const.BLOCK_SIZE,fourthPoint.x* Const.BLOCK_SIZE};
+            double ypoints[] = {firstPoint.y * Const.BLOCK_SIZE, secondPoint.y * Const.BLOCK_SIZE, thirdPoint.y * Const.BLOCK_SIZE, fourthPoint.y * Const.BLOCK_SIZE};
+            double xpoints[] = {firstPoint.x * Const.BLOCK_SIZE, secondPoint.x * Const.BLOCK_SIZE, thirdPoint.x * Const.BLOCK_SIZE, fourthPoint.x * Const.BLOCK_SIZE};
 
 
-
-            gc.strokePolygon(xpoints,ypoints,4);
-            if(image == Images.fist_hitbox){
-            gc.fillPolygon(xpoints,ypoints,4);}
+            gc.strokePolygon(xpoints, ypoints, 4);
+            if (image == Images.fist_hitbox) {
+                gc.fillPolygon(xpoints, ypoints, 4);
+            }
         }
 
 
