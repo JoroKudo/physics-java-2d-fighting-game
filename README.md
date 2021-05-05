@@ -5,8 +5,17 @@
 Wir wollen ein 2D fighting game entwickeln, ähnlich wie zum Beispiel Street Fighter. Man sollte zu zweit lokal gegeneinander spielen können. Beide Spieler werden eine Lebensleiste haben, wer zuerst auf null ist hat verloren. Schaden machen kann man mit einem Schlag, es gibt auch die Option Schläge zu blocken oder ihnen auszuweichen in dem man sich z.B. duckt. Man kann mit dem richtigen Timing auch kritische Treffer landen. 
 
 ## Mockups
+
 ![Mockup](Mockup/Mockup.png)
 Für das AdobeXD file [hier](Mockup.xd) klicken.
+
+## Zusätzliche Features
+
+* Unterstützung für Controller
+* Über Netzwerk gegeneinander spielen
+* Cloud Datenbank um Spieler und Ergebnisse zu speichern
+* Leaderboard
+* Unterstützung für Kinect
 
 
 ## Tastenbelegung
@@ -46,4 +55,5 @@ Die Charaktere wollen wir als Skelleton implementieren, das heist, dass die vers
 * Desktop UI-Framework: JavaFX 
 * Physik Engine: Dyn4j
 * Build Tool: Gradle 
+* Database: Google Firebase
 
