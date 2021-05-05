@@ -28,12 +28,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game extends CopyOnWriteArrayList<GameObject> {
 
-    private Fighter fighter;
-    private Fighter_2 fighter_2;
+    private BasePlayer fighter;
+    private BasePlayer fighter_2;
+    private  final String[] keys1 = {"W", "A", "S", "D","E","Q","V"};
+    private  final String[] keys2 = {"I", "J", "K", "L","O","U","M"};
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
-    private Fist fist;
+
     private Timer timer;
     public Floor floor;
     public boolean rag=false;
@@ -69,8 +71,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public void load() {
 
 
-        fighter = new Fighter(10, 8, physicWorld, keyEventHandler);
-        fighter_2 = new Fighter_2(14, 8, physicWorld, keyEventHandler);
+        fighter = new BasePlayer(1,10, 8, keyEventHandler,keys1,physicWorld);
+        fighter_2 = new BasePlayer(2,14, 8,  keyEventHandler,keys2,physicWorld);
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();
@@ -83,12 +85,12 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         physicWorld.addBody(fighter_2.foot);
         physicWorld.addBody(fighter.fist);
         physicWorld.addBody(fighter.foot);
-        physicWorld.addBody(floor);
+
         physicWorld.addJoint(fighter.punchshould);
         physicWorld.addJoint(fighter.punchfoot);
         physicWorld.addJoint(fighter_2.punchshould);
         physicWorld.addJoint(fighter_2.punchfoot);
-
+        physicWorld.addBody(floor);
         physicWorld.setGravity(new Vector2(0, 15));
 
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
@@ -107,6 +109,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         physicWorld.update(elapsedTime);
         fighter.handleNavigationEvents(elapsedTime);
         fighter_2.handleNavigationEvents(elapsedTime);
+        fighter.dirupdate();
+        fighter_2.dirupdate();
 
 
         timePassedSinceCooldown += elapsedTime;

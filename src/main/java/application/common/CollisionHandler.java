@@ -32,44 +32,44 @@ public class CollisionHandler {
     }
 
     public void handleFighterPain() {
-        if ((body1 instanceof Fighter_2) && (body2 instanceof Fist) || (body2 instanceof Fighter_2) && (body1 instanceof Fist)) {
+        if ((body1 instanceof BasePlayer) && (body2 instanceof Fist) || (body2 instanceof BasePlayer) && (body1 instanceof Fist)) {
             Sound.play(SoundEffectType.FISTPUNCH);
             game.handleHitFighter2();
         }
 
 
-        if ((body1 instanceof Fighter) && (body2 instanceof Fist) || (body2 instanceof Fighter) && (body1 instanceof Fist)) {
+        if ((body1 instanceof BasePlayer) && (body2 instanceof Fist) || (body2 instanceof BasePlayer) && (body1 instanceof Fist)) {
             Sound.play(SoundEffectType.FISTPUNCH);
             game.handleHitFighter1();
         }
 
 
-        if ((body1 instanceof Fighter_2) && (body2 instanceof Foot)) {
+        if ((body1 instanceof BasePlayer) && (body2 instanceof Foot)) {
             if (body2.getLinearVelocity().y > 10) {
                 game.handleHitFighter2();
             }
         }
 
-        if ((body1 instanceof Fighter) && (body2 instanceof Foot)) {
+        if ((body1 instanceof BasePlayer) && (body2 instanceof Foot)) {
             if (body2.getLinearVelocity().y > 10) {
                 game.handleHitFighter1();
             }
 
         }
-        if ((body2 instanceof Fighter_2) && (body1 instanceof Foot)) {
+        if ((body2 instanceof BasePlayer) && (body1 instanceof Foot)) {
             if (body1.getLinearVelocity().y > 10) {
                 game.handleHitFighter2();
             }
         }
 
-        if ((body2 instanceof Fighter) && (body1 instanceof Foot)) {
+        if ((body2 instanceof BasePlayer) && (body1 instanceof Foot)) {
             if (body1.getLinearVelocity().y > 10) {
                 game.handleHitFighter1();
             }
 
         }
 
-        if ((body1 instanceof Fighter_2) && (body2 instanceof Hadouken)) {
+        if ((body1 instanceof BasePlayer) && (body2 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body2;
             if (hadouken.owner != body1) {
                 game.handleHitFighter2();
@@ -80,7 +80,7 @@ public class CollisionHandler {
 
         }
 
-        if ((body2 instanceof Fighter_2) && (body1 instanceof Hadouken)) {
+        if ((body2 instanceof BasePlayer) && (body1 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body1;
             if (hadouken.owner != body2) {
 
@@ -90,7 +90,7 @@ public class CollisionHandler {
 
 
         }
-        if ((body1 instanceof Fighter) && (body2 instanceof Hadouken)) {
+        if ((body1 instanceof BasePlayer) && (body2 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body2;
             if (hadouken.owner != body1) {
                 game.handleHitFighter1();
@@ -98,7 +98,7 @@ public class CollisionHandler {
             }
 
         }
-        if ((body2 instanceof Fighter) && (body1 instanceof Hadouken)) {
+        if ((body2 instanceof BasePlayer) && (body1 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body1;
             if (hadouken.owner != body2) {
 
