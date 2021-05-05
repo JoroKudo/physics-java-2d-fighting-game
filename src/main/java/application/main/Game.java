@@ -36,6 +36,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Fist fist;
     private Timer timer;
     public Floor floor;
+    public boolean rag=false;
     private final KeyEventHandler keyEventHandler;
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
@@ -90,33 +91,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
         physicWorld.setGravity(new Vector2(0, 15));
 
-/*
-        ragfighter = new RagFighter(11, 8,  keyEventHandler);
-        ragfighter.initializeWorld(physicWorld);
-
-        //BAD GARBAGE CODE THAT JIRO WILL FIX
-        ragfighter.torso.rotate(154);
-        ragfighter.righteb.rotate(154);
-        ragfighter.righthand.rotate(154);
-        ragfighter.rightHumerus.rotate(154);
-        ragfighter.rightUlna.rotate(154);
-        ragfighter.lefteb.rotate(154);
-        ragfighter.lefthand.rotate(154);
-        ragfighter.leftHumerus.rotate(154);
-        ragfighter.leftUlna.rotate(154);
-
-        //BAD GARBAGE CODE PT 2
-        ragfighter.torso.translate(12,4);
-        ragfighter.righteb.translate(12,4);
-        ragfighter.righthand.translate(12,4);
-        ragfighter.rightHumerus.translate(12,4);
-        ragfighter.rightUlna.translate(12,4);
-        ragfighter.lefteb.translate(12,4);
-        ragfighter.lefthand.translate(12,4);
-        ragfighter.leftHumerus.translate(12,4);
-        ragfighter.leftUlna.translate(12,4);
-*/
-
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
             @Override
             public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision) {
@@ -126,7 +100,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 return true;
             }
 
-
         });
     }
 
@@ -135,7 +108,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         fighter.handleNavigationEvents(elapsedTime);
         fighter_2.handleNavigationEvents(elapsedTime);
 
-        //ragfighter.handleNavigationEventss(elapsedTime);
+
         timePassedSinceCooldown += elapsedTime;
         timer.update(elapsedTime);
         if (fighter.isDoesFighterNeedsToReturnHadouken()) {
@@ -143,6 +116,18 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         }
         for (Hadouken hadouken : hadoukens) {
             hadouken.update();
+        }
+        if(rag)
+            ragfighter.handleNavigationEventss(elapsedTime);
+        if(keyEventHandler.isKeyPressed("B")&&!rag){
+
+            ragfighter = new RagFighter(fighter.getWorldCenter().x, fighter.getWorldCenter().y,  keyEventHandler);
+            physicWorld.removeBody(fighter);
+            physicWorld.removeBody(fighter.foot);
+            physicWorld.removeBody(fighter.fist);
+            ragfighter.initializeWorld(physicWorld);
+            ragfighter.setup();
+            rag=true;
         }
 
 

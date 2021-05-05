@@ -229,6 +229,35 @@ public class RagFighter  {
 
 
 
+
+
+
+
+    }
+    public void setup() {
+
+       this.torso.rotate(154);
+       this.righteb.rotate(154);
+       this.righthand.rotate(154);
+       this.rightHumerus.rotate(154);
+       this.rightUlna.rotate(154);
+       this.lefteb.rotate(154);
+       this.lefthand.rotate(154);
+       this.leftHumerus.rotate(154);
+       this.leftUlna.rotate(154);
+
+
+       this.torso.translate(12,4);
+       this.righteb.translate(12,4);
+       this.righthand.translate(12,4);
+       this.rightHumerus.translate(12,4);
+       this.rightUlna.translate(12,4);
+       this.lefteb.translate(12,4);
+       this.lefthand.translate(12,4);
+       this.leftHumerus.translate(12,4);
+       this.leftUlna.translate(12,4);
+
+
     }
     public void drawed(GraphicsContext gc) {
 righthand.draw(gc);
