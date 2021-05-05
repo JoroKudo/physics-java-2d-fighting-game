@@ -7,6 +7,8 @@ import application.common.KeyEventHandler;
 import application.common.*;
 import application.main.Game;
 
+import java.security.PrivateKey;
+
 public class GameScene extends BaseScene implements Initializable {
     public GameScene(Navigator navigator) {
         super(navigator);

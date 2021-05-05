@@ -3,12 +3,16 @@ package application.gui;
 import application.Navigation.Navigator;
 import application.Navigation.SceneType;
 import application.common.BaseScene;
+import application.common.FancyAnimationTimer;
+import application.common.Initializable;
+import application.common.KeyEventHandler;
 import application.constants.Images;
+import application.main.Game;
 import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 
-public class GameWinScene extends BaseScene  {
+public class GameWinScene extends BaseScene {
 
     private Lifebar lifebar1  = new Lifebar(1);
     private Lifebar lifebar2  = new Lifebar(2);
@@ -19,12 +23,16 @@ public class GameWinScene extends BaseScene  {
         String text = checkwhowins();
         drawtext(text, 710, 350);
 
-        setOnKeyPressed(e -> {
+
+       setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.SPACE) {
                 navigator.goTo(SceneType.GAME_SCENE);
             }
         });
     }
+
+
+
 
     private String checkwhowins() {
         if (lifebar1.getKo() == true){
@@ -42,4 +50,6 @@ public class GameWinScene extends BaseScene  {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.fillText(text, x, y);
     }
+
+
 }

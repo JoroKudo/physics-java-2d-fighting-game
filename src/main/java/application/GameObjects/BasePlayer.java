@@ -6,6 +6,8 @@ import application.Sound.Sound;
 import application.common.KeyEventHandler;
 import application.constants.Const;
 import application.constants.Images;
+import com.studiohartman.jamepad.ControllerManager;
+import com.studiohartman.jamepad.ControllerState;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.dyn4j.collision.Fixture;
@@ -77,8 +79,6 @@ public class BasePlayer extends GameBody {
     }
 
     public void handleNavigationEvents(double elapsedTime) {
-
-
         if (keyEventHandler.isKeyPressed(keys[0])) {
             jump(isOnGround());
         }
@@ -131,6 +131,29 @@ public class BasePlayer extends GameBody {
         }
 
     }
+
+    //UNFIXED CODE FOR CONTROLLER
+    public void handleController(double elapsedTime){
+        ControllerManager controllers = new ControllerManager();
+        controllers.initSDLGamepad();
+            ControllerState currState = controllers.getState(0);
+            if(currState.y) {
+                jump(isOnGround());
+            }
+            if(currState.leftStickX == 1) {
+                walkRight();
+            }
+            if (currState.leftStickY == 1){
+                walkLeft();
+            }
+
+
+
+        }
+
+
+
+
 
     @Override
     public void drawimage(Image image, double x, double y, GraphicsContext gc) {

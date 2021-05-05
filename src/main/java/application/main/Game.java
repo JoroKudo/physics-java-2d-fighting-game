@@ -2,8 +2,6 @@ package application.main;
 
 import application.GameObjects.*;
 import application.Navigation.SceneType;
-import application.Sound.Sound;
-import application.Sound.SoundEffectType;
 import application.common.KeyEventHandler;
 
 import application.common.CollisionHandler;
@@ -13,6 +11,7 @@ import application.constants.Const;
 import application.constants.Images;
 import application.stats.Lifebar;
 import application.stats.Timer;
+import com.sun.glass.ui.Accessible;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 
@@ -35,7 +34,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
-
     private Timer timer;
     public Floor floor;
     public boolean rag = false;
@@ -54,6 +52,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
     }
+
+
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
@@ -139,7 +139,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
 
     public void handleHitFighter(int id) {
-
         if (timePassedSinceCooldown >= 0.7) {
             if (id == 1) {
                 if (fighter.isblocking) {
@@ -151,6 +150,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter1 = false;
                 if (lifebar1.getKo()) {
                     physicWorld.removeBody(fighter);
+                    lifebar1.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
 
@@ -167,6 +167,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter2 = false;
                 if (lifebar2.getKo()) {
                     physicWorld.removeBody(fighter);
+                    lifebar2.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
 

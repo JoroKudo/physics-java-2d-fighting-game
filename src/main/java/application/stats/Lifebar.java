@@ -39,4 +39,8 @@ public class Lifebar {
         return ko;
     }
 
+    public void setDamagetoNull(){
+        this.damage = 0;
+    }
+
 }
