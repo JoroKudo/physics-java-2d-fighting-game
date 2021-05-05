@@ -30,15 +30,15 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     private BasePlayer fighter;
     private BasePlayer fighter_2;
-    private  final String[] keys1 = {"W", "A", "S", "D","E","Q","V"};
-    private  final String[] keys2 = {"I", "J", "K", "L","O","U","M"};
+    private final String[] keys1 = {"W", "A", "S", "D", "E", "Q", "V"};
+    private final String[] keys2 = {"I", "J", "K", "L", "O", "U", "M"};
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
 
     private Timer timer;
     public Floor floor;
-    public boolean rag=false;
+    public boolean rag = false;
     private final KeyEventHandler keyEventHandler;
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
@@ -71,8 +71,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public void load() {
 
 
-        fighter = new BasePlayer(1,10, 8, keyEventHandler,keys1,physicWorld);
-        fighter_2 = new BasePlayer(2,14, 8,  keyEventHandler,keys2,physicWorld);
+        fighter = new BasePlayer(1, 10, 8, keyEventHandler, keys1, physicWorld);
+        fighter_2 = new BasePlayer(2, 14, 8, keyEventHandler, keys2, physicWorld);
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();
@@ -121,61 +121,62 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         for (Hadouken hadouken : hadoukens) {
             hadouken.update();
         }
-        if(rag)
+        if (rag)
             ragfighter.handleNavigationEventss(elapsedTime);
-        if(keyEventHandler.isKeyPressed("B")&&!rag){
+        if (keyEventHandler.isKeyPressed("B") && !rag) {
 
-            ragfighter = new RagFighter(fighter.getWorldCenter().x, fighter.getWorldCenter().y,  keyEventHandler);
+            ragfighter = new RagFighter(fighter.getWorldCenter().x, fighter.getWorldCenter().y, keyEventHandler);
             physicWorld.removeBody(fighter);
             physicWorld.removeBody(fighter.foot);
             physicWorld.removeBody(fighter.fist);
             ragfighter.initializeWorld(physicWorld);
             ragfighter.setup();
-            rag=true;
+            rag = true;
         }
 
 
     }
 
 
-    public void handleHitFighter1() {
+    public void handleHitFighter(int id) {
+
         if (timePassedSinceCooldown >= 0.7) {
-            if (fighter.isblocking) {
-                lifebar1.update(50 * 0.35);
-            } else {
-                lifebar1.update(50);
+            if (id == 1) {
+                if (fighter.isblocking) {
+                    lifebar1.update(50 * 0.35);
+                } else {
+                    lifebar1.update(50);
+                }
+                timePassedSinceCooldown = 0;
+                hitFighter1 = false;
+                if (lifebar1.getKo()) {
+                    physicWorld.removeBody(fighter);
+                    navigator.goTo(SceneType.GAME_WIN_SCENE);
+                }
+
             }
-            timePassedSinceCooldown = 0;
-            hitFighter1 = false;
-            if (lifebar1.getKo()) {
-                physicWorld.removeBody(fighter);
-                navigator.goTo(SceneType.GAME_WIN_SCENE);
+
+            if (id == 2) {
+                if (fighter_2.isblocking) {
+                    lifebar2.update(50 * 0.35);
+                } else {
+                    lifebar2.update(50);
+                }
+
+                timePassedSinceCooldown = 0;
+                hitFighter2 = false;
+                if (lifebar2.getKo()) {
+                    physicWorld.removeBody(fighter);
+                    navigator.goTo(SceneType.GAME_WIN_SCENE);
+                }
+
+
             }
-            Body f = (Body) fighter.getFixture(3).getShape();
-            if (physicWorld.isInContact(f, fighter_2)) {
-            }
+
         }
     }
 
-    public void handleHitFighter2() {
-        if (timePassedSinceCooldown >= 0.7) {
-            if (fighter_2.isblocking) {
-                lifebar2.update(50 * 0.35);
-            } else {
-                lifebar2.update(50);
-            }
 
-            timePassedSinceCooldown = 0;
-            hitFighter2 = false;
-            if (lifebar2.getKo()) {
-                physicWorld.removeBody(fighter);
-                navigator.goTo(SceneType.GAME_WIN_SCENE);
-            }
-            Body f = (Body) fighter.getFixture(3).getShape();
-            if (physicWorld.isInContact(f, fighter_2)) {
-            }
-        }
-    }
 }
 
 

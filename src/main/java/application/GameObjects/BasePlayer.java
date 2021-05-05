@@ -16,6 +16,8 @@ import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.World;
 
+import java.util.Arrays;
+
 
 public class BasePlayer extends GameBody {
 
@@ -36,9 +38,11 @@ public class BasePlayer extends GameBody {
     protected Direction currentDirect = Direction.RIGHT;
     protected int dirdecider = 1;
     private String[] keys;
+    public int id;
+    private int i = 0;
 
 
-    public BasePlayer(int id, double x, double y, KeyEventHandler keyEventHandler, String[] keys,World<Body> physicWorld) {
+    public BasePlayer(int id, double x, double y, KeyEventHandler keyEventHandler, String[] keys, World<Body> physicWorld) {
         super(Images.fighter_look_right);
 
 
@@ -46,7 +50,7 @@ public class BasePlayer extends GameBody {
         this.keys = keys;
         this.keyEventHandler = keyEventHandler;
         this.physicWorld = physicWorld;
-
+        this.id = id;
 
 
         Fixture legs = addFixture(new Rectangle(72 / Const.BLOCK_SIZE * 2, 30 / Const.BLOCK_SIZE * 2));
@@ -103,21 +107,24 @@ public class BasePlayer extends GameBody {
             }
         }
 
-        for(int i=0; i< keys.length; i++){
-            if (keyEventHandler.isKeyPressed(keys[i])) {
-                break;
+        if (keyEventHandler.pressedKeys.size() > i) {
+            if (!Arrays.asList(keys).contains(keyEventHandler.pressedKeys.get(i).getChar())) {
+                i++;
+            } else {
+                i = 0;
             }
-            if(i==keys.length){
-                if (currentDirect == Direction.RIGHT) {
-                    this.image = Images.fighter_look_right;
-                } else {
-                    this.image = Images.fighter_look_left;
-                }
-
-            }
-
 
         }
+        if (i >= keyEventHandler.pressedKeys.size()) {
+            i = 0;
+            if (currentDirect == Direction.RIGHT) {
+                this.image = Images.fighter_look_right;
+            } else {
+                this.image = Images.fighter_look_left;
+            }
+
+        }
+
 
         if ((!keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("A")) && isOnGround()) {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
@@ -249,6 +256,7 @@ public class BasePlayer extends GameBody {
             this.dirdecider = 1;
         }
     }
+
     public boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this.foot, body)) {

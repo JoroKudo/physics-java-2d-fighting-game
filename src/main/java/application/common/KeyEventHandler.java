@@ -10,7 +10,7 @@ import java.util.List;
 
 public class KeyEventHandler implements EventHandler<KeyEvent> {
 
-    private List<KeyCode> pressedKeys = new ArrayList<>();
+    public List<KeyCode> pressedKeys = new ArrayList<>();
 
     @Override
     public void handle(KeyEvent event) {
