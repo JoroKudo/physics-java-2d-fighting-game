@@ -15,7 +15,6 @@ Für das AdobeXD file [hier](Mockup.xd) klicken.
 * Über Netzwerk gegeneinander spielen
 * Cloud Datenbank um Spieler und Ergebnisse zu speichern
 * Leaderboard
-* Unterstützung für Kinect
 
 
 ## Tastenbelegung
