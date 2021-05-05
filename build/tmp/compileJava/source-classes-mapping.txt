@@ -4,8 +4,8 @@ application/common/KeyEventHandler.java
  application.common.KeyEventHandler
 application/GameObjects/Fighter.java
  application.GameObjects.Fighter
-application/Sound/MusicType.java
- application.Sound.MusicType
+application/main/App.java
+ application.main.App
 application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
 application/GameObjects/Hadouken.java
@@ -39,8 +39,8 @@ application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/GameObjects/BasePlayer.java
  application.GameObjects.BasePlayer
-application/GameObjects/Fighter_2.java
- application.GameObjects.Fighter_2
+application/main/Launcher.java
+ application.main.Launcher
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
 application/gui/GameOverScene.java
@@ -61,9 +61,9 @@ application/Sound/Sound.java
  application.Sound.Sound$1
 application/common/BaseScene.java
  application.common.BaseScene
-application/main/App.java
- application.main.App
 application/database/Request.java
  application.database.Request
-application/main/Launcher.java
- application.main.Launcher
+application/GameObjects/Fighter_2.java
+ application.GameObjects.Fighter_2
+application/Sound/MusicType.java
+ application.Sound.MusicType

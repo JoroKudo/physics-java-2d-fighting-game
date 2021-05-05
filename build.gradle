@@ -15,6 +15,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     compile 'org.dyn4j:dyn4j:4.0.2'
+    runtime 'com.github.cliftonlabs:json-simple:3.1.1'
 }
 test {
     useJUnitPlatform()
