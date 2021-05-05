@@ -19,8 +19,22 @@ Für das AdobeXD file [hier](Mockup.xd) klicken.
 | Ducken   | s         | k         |
 | Angriff  | e         | o         |
 | Blocken  | q         | u         |
+| Hadouken | v         | m         |
 
-Falls die Zeit reicht, würden wir noch gerne eine Unterstützung für Controller implementieren.
+
+## Controller
+
+| Funktion | Spieler 1 |
+| ---------|:--------------:|
+| Links    | Joystick Links |
+| Rechts   | Joystick Rechts|
+| Springen | y              |
+| Ducken   | a              |
+| Angriff  | b              |
+| Blocken  | rt             |
+| Hadouken | x              |
+
+
 
 ## Technische Implementierung
 
