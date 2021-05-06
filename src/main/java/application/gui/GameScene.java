@@ -1,11 +1,14 @@
 package application.gui;
 
+import application.GameObjects.Controller;
+import application.GameObjects.KeyboardController;
 import application.Navigation.Navigator;
 import application.Sound.MusicType;
 import application.Sound.Sound;
-import application.common.KeyEventHandler;
 import application.common.*;
 import application.main.Game;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 
 public class GameScene extends BaseScene implements Initializable {
     public GameScene(Navigator navigator) {
@@ -14,11 +17,11 @@ public class GameScene extends BaseScene implements Initializable {
 
     @Override
     public void  onInitialize() {
-        KeyEventHandler keyEventHandler = new KeyEventHandler();
-        this.setOnKeyPressed(keyEventHandler);
-        this.setOnKeyReleased(keyEventHandler);
+        KeyboardController controller = new KeyboardController();
+        this.setOnKeyPressed(controller);
+        this.setOnKeyReleased(controller);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(keyEventHandler, navigator);
+        Game game = new Game(controller, navigator);
         game.load();
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override

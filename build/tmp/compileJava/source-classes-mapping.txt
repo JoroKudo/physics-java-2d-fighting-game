@@ -1,19 +1,26 @@
 application/stats/Lifebar.java
  application.stats.Lifebar
+<<<<<<< HEAD
 application/Sound/MusicType.java
  application.Sound.MusicType
 application/common/KeyEventHandler.java
  application.common.KeyEventHandler
 application/Sound/SoundEffectType.java
  application.Sound.SoundEffectType
+=======
+application/GameObjects/KeyboardController.java
+ application.GameObjects.KeyboardController
+application/main/App.java
+ application.main.App
+>>>>>>> 0c42f84ba5d98114c3e8c63325ef806f8e83b2c3
 application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
-application/Navigation/Navigator.java
- application.Navigation.Navigator
 application/constants/Const.java
  application.constants.Const
+application/Navigation/Navigator.java
+ application.Navigation.Navigator
 application/GameObjects/Foot.java
  application.GameObjects.Foot
 application/GameObjects/Direction.java
@@ -43,6 +50,7 @@ application/main/Launcher.java
  application.main.Launcher
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
+<<<<<<< HEAD
 application/database/Request.java
  application.database.Request
 application/main/Game.java
@@ -67,3 +75,31 @@ application/gui/UserSelectionScene.java
  application.gui.UserSelectionScene
 application/main/App.java
  application.main.App
+=======
+application/gui/GameOverScene.java
+ application.gui.GameOverScene
+application/GameObjects/Controller.java
+ application.GameObjects.Controller
+application/GameObjects/GamepadController.java
+ application.GameObjects.GamepadController
+application/common/Initializable.java
+ application.common.Initializable
+application/main/Game.java
+ application.main.Game
+ application.main.Game$1
+application/Sound/SoundEffectType.java
+ application.Sound.SoundEffectType
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
+application/common/BaseScene.java
+ application.common.BaseScene
+application/database/Request.java
+ application.database.Request
+application/Sound/MusicType.java
+ application.Sound.MusicType
+>>>>>>> 0c42f84ba5d98114c3e8c63325ef806f8e83b2c3

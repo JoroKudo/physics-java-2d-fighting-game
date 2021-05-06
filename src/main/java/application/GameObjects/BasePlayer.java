@@ -1,11 +1,11 @@
 package application.GameObjects;
 
-
 import application.Sound.SoundEffectType;
 import application.Sound.Sound;
-import application.common.KeyEventHandler;
 import application.constants.Const;
 import application.constants.Images;
+import com.studiohartman.jamepad.ControllerManager;
+import com.studiohartman.jamepad.ControllerState;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.dyn4j.collision.Fixture;
@@ -18,7 +18,6 @@ import org.dyn4j.world.World;
 
 import java.util.Arrays;
 
-
 public class BasePlayer extends GameBody {
 
     private final World<Body> physicWorld;
@@ -28,7 +27,6 @@ public class BasePlayer extends GameBody {
     public WeldJoint punchshould;
     public WeldJoint punchfoot;
     protected boolean p = true;
-    protected final KeyEventHandler keyEventHandler;
     protected boolean d = true;
     public boolean isblocking = false;
     protected double cooldown = 5;
@@ -40,15 +38,14 @@ public class BasePlayer extends GameBody {
     private String[] keys;
     public int id;
     private int i = 0;
+    private Controller controller;
 
-
-    public BasePlayer(int id, double x, double y, KeyEventHandler keyEventHandler, String[] keys, World<Body> physicWorld) {
+    public BasePlayer(int id, double x, double y, Controller controller, World<Body> physicWorld) {
         super(Images.fighter_look_right);
-
-
+        this.controller = controller;
         this.translate(x, y);
         this.keys = keys;
-        this.keyEventHandler = keyEventHandler;
+
         this.physicWorld = physicWorld;
         this.id = id;
 
@@ -68,8 +65,8 @@ public class BasePlayer extends GameBody {
         Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE * 2, 21 / Const.BLOCK_SIZE * 2));
         hips.getShape().translate(0, 2.4);
 
-        fist = new Fist(x, y + 2, keyEventHandler);
-        foot = new Foot(x, y + 4.23, keyEventHandler);
+        fist = new Fist(x, y + 2, controller);
+        foot = new Foot(x, y + 4.23, controller);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
         punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
@@ -77,36 +74,74 @@ public class BasePlayer extends GameBody {
     }
 
     public void handleNavigationEvents(double elapsedTime) {
-
-
-        if (keyEventHandler.isKeyPressed(keys[0])) {
-            jump(isOnGround());
-        }
-        if (keyEventHandler.isKeyPressed(keys[1])) {
-            walkLeft();
-        }
-        duck(keys[2]);
-        if (keyEventHandler.isKeyPressed(keys[3])) {
-            walkRight();
-        }
-
-        punch(keys[4], elapsedTime);
-
-        block(keys[5]);
-        if (keyEventHandler.isKeyPressed(keys[6])) {
-
-            if (cooldown <= 0) {
-
-                hadoukenShoot(elapsedTime);
-                if (animcooldown <= 0) {
-                    createHadouken();
+        switch (id){
+            case 1:
+                if (controller.Fighter1isJUMP()) {
+                    jump(isOnGround());
                 }
-            } else {
-                hadoukenCharge(elapsedTime);
-
-            }
+                if (controller.Fighter1isWALK_LEFT()) {
+                    walkLeft();
+                }
+                if (controller.Fighter1isWALK_RIGHT()) {
+                    walkRight();
+                }
+                if (controller.Fighter1isPUNCH()) {
+                    punch(elapsedTime);
+                }
+                if (controller.Fighter1isDUCK()) {
+                    duck();
+                }
+                if (controller.Fighter1isBLOCK()) {
+                    block();
+                }
+                if (controller.Fighter1isHADOUKEN()) {
+                    if (cooldown <= 0) {
+                        hadoukenShoot(elapsedTime);
+                        if (animcooldown <= 0) {
+                            createHadouken();
+                        }
+                    } else {
+                        hadoukenCharge(elapsedTime);
+                    }
+                }
+                if ((!controller.Fighter1isWALK_RIGHT() && !controller.Fighter1isWALK_LEFT() && isOnGround())) {
+                    applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
+                }
+            case 2:
+                if (controller.Fighter2isJUMP()) {
+                    jump(isOnGround());
+                }
+                if (controller.Fighter2isWALK_LEFT()) {
+                    walkLeft();
+                }
+                if (controller.Fighter2isWALK_RIGHT()) {
+                    walkRight();
+                }
+                if (controller.Fighter2isPUNCH()) {
+                    punch(elapsedTime);
+                }
+                if (controller.Fighter2isDUCK()) {
+                    duck();
+                }
+                if (controller.Fighter2isBLOCK()) {
+                    block();
+                }
+                if (controller.Fighter2isHADOUKEN()) {
+                    if (cooldown <= 0) {
+                        hadoukenShoot(elapsedTime);
+                        if (animcooldown <= 0) {
+                            createHadouken();
+                        }
+                    } else {
+                        hadoukenCharge(elapsedTime);
+                    }
+                }
+                if ((!controller.Fighter2isWALK_RIGHT() && !controller.Fighter2isWALK_LEFT() && isOnGround())) {
+                    applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
+                }
         }
 
+/*
         if (keyEventHandler.pressedKeys.size() > i) {
             if (!Arrays.asList(keys).contains(keyEventHandler.pressedKeys.get(i).getChar())) {
                 i++;
@@ -122,14 +157,8 @@ public class BasePlayer extends GameBody {
             } else {
                 this.image = Images.fighter_look_left;
             }
-
         }
-
-
-        if ((!keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("A")) && isOnGround()) {
-            applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
-        }
-
+*/
     }
 
     @Override
@@ -153,15 +182,12 @@ public class BasePlayer extends GameBody {
 
         this.image = Images.chargeright;
         cooldown -= elapsedTime;
-
     }
 
     protected void hadoukenShoot(double elapsedTime) {
 
         this.image = Images.shootright;
         animcooldown -= elapsedTime;
-
-
     }
 
     public boolean isDoesFighterNeedsToReturnHadouken() {
@@ -173,26 +199,23 @@ public class BasePlayer extends GameBody {
         return this.hadouken;
     }
 
-    protected void duck(String key) {
-        if (keyEventHandler.isKeyPressed(key)) {
-            applyImpulse(new Vector2(0, 100));
-            if (d) {
-                this.image = Images.duck_right;
-                this.getFixture(1).getShape().translate(0, 1);
-                this.getFixture(2).getShape().translate(0, 1);
-                this.getFixture(3).getShape().translate(0, 1);
-                d = false;
-            }
+    protected void duck() {
+        applyImpulse(new Vector2(0, 100));
+        if (d) {
+            this.image = Images.duck_right;
+            this.getFixture(1).getShape().translate(0, 1);
+            this.getFixture(2).getShape().translate(0, 1);
+            this.getFixture(3).getShape().translate(0, 1);
+            d = false;
+        }
 
 
-        } else if (!d) {
+        if (!d) {
             this.getFixture(1).getShape().translate(0, -1);
             this.getFixture(2).getShape().translate(0, -1);
             this.getFixture(3).getShape().translate(0, -1);
             d = true;
         }
-
-
     }
 
     public void jump(boolean isOnGround) {
@@ -202,7 +225,6 @@ public class BasePlayer extends GameBody {
 
         }
     }
-
 
     public void walkLeft() {
         this.currentDirect = Direction.LEFT;
@@ -217,34 +239,38 @@ public class BasePlayer extends GameBody {
         this.image = Images.fighter_walk_right;
     }
 
-    public void punch(String key, double elapsedTime) {
+    public void punch(double elapsedTime) {
+        this.image = Images.punch_right;
+        this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
+        p = false;
 
-        if (keyEventHandler.isKeyPressed(key) && punchcooldown > 0 && p) {
+        punchcooldown += 10 *  elapsedTime;
 
-            this.image = Images.punch_right;
-            this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
-            p = false;
-
-        } else {
-            punchcooldown += 10 * elapsedTime;
-
-            if (!p && punchcooldown > 3) {
-                this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
-                p = true;
-                punchcooldown = -2.5;
-
-            }
+        if (!p && punchcooldown > 3) {
+            this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
+            p = true;
+            punchcooldown = -2.5;
         }
     }
 
-    public void block(String key) {
-        if (keyEventHandler.isKeyPressed(key)) {
-            isblocking = true;
-            this.image = Images.block;
-        } else {
-            isblocking = false;
-        }
 
+    public void block() {
+        switch (id){
+            case 1:
+                if (controller.Fighter1isBLOCK()) {
+                    isblocking = true;
+                    this.image = Images.block;
+                } else {
+                    isblocking = false;
+                }
+            case 2:
+                if (controller.Fighter2isBLOCK()) {
+                    isblocking = true;
+                    this.image = Images.block;
+                } else {
+                    isblocking = false;
+                }
+        }
 
     }
 
@@ -268,6 +294,3 @@ public class BasePlayer extends GameBody {
         return false;
     }
 }
-
-
-

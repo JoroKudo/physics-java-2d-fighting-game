@@ -9,6 +9,8 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -16,6 +18,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     compile 'org.dyn4j:dyn4j:4.0.2'
     runtime 'com.github.cliftonlabs:json-simple:3.1.1'
+    compile 'com.github.WilliamAHartman:Jamepad:1.4.0'
+    compile 'uk.co.electronstudio.sdl2gdx:sdl2gdx:1.0.4'
 }
 test {
     useJUnitPlatform()
