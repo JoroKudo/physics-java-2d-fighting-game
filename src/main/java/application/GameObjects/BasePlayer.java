@@ -200,14 +200,14 @@ public class BasePlayer extends GameBody {
     }
 
     protected void duck() {
-            applyImpulse(new Vector2(0, 100));
-            if (d) {
-                this.image = Images.duck_right;
-                this.getFixture(1).getShape().translate(0, 1);
-                this.getFixture(2).getShape().translate(0, 1);
-                this.getFixture(3).getShape().translate(0, 1);
-                d = false;
-            }
+        applyImpulse(new Vector2(0, 100));
+        if (d) {
+            this.image = Images.duck_right;
+            this.getFixture(1).getShape().translate(0, 1);
+            this.getFixture(2).getShape().translate(0, 1);
+            this.getFixture(3).getShape().translate(0, 1);
+            d = false;
+        }
 
 
         if (!d) {
@@ -240,18 +240,18 @@ public class BasePlayer extends GameBody {
     }
 
     public void punch(double elapsedTime) {
-            this.image = Images.punch_right;
-            this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
-            p = false;
+        this.image = Images.punch_right;
+        this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
+        p = false;
 
         punchcooldown += 10 *  elapsedTime;
 
-            if (!p && punchcooldown > 3) {
-                this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
-                p = true;
-                punchcooldown = -2.5;
-            }
+        if (!p && punchcooldown > 3) {
+            this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
+            p = true;
+            punchcooldown = -2.5;
         }
+    }
 
 
     public void block() {
@@ -294,6 +294,3 @@ public class BasePlayer extends GameBody {
         return false;
     }
 }
-
-
-

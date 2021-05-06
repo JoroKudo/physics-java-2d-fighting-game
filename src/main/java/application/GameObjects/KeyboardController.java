@@ -14,15 +14,26 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent event) {
 
-        if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-            if (pressedKeys.contains(event.getCode())) {
+        if(event.getEventType() == KeyEvent.KEY_PRESSED) {
+            if (notInList(event.getCode())) {
                 pressedKeys.add(event.getCode());
             }
         }
-        if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+        if(event.getEventType() == KeyEvent.KEY_RELEASED) {
             pressedKeys.remove(event.getCode());
         }
+
+
     }
+    private boolean notInList(KeyCode code) {
+        for (KeyCode key : pressedKeys) {
+            if (code.equals(key)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public boolean Fighter1isJUMP() {
