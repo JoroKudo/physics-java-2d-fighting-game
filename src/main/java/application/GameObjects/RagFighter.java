@@ -1,11 +1,8 @@
 package application.GameObjects;
 
 
-import application.constants.Const;
 import application.constants.Images;
 
-import application.common.KeyEventHandler;
-import application.main.Game;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.joint.PrismaticJoint;

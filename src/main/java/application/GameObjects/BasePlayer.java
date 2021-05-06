@@ -1,9 +1,7 @@
 package application.GameObjects;
 
-
 import application.Sound.SoundEffectType;
 import application.Sound.Sound;
-import application.common.KeyEventHandler;
 import application.constants.Const;
 import application.constants.Images;
 import com.studiohartman.jamepad.ControllerManager;
@@ -20,7 +18,6 @@ import org.dyn4j.world.World;
 
 import java.util.Arrays;
 
-
 public class BasePlayer extends GameBody {
 
     private final World<Body> physicWorld;
@@ -30,7 +27,6 @@ public class BasePlayer extends GameBody {
     public WeldJoint punchshould;
     public WeldJoint punchfoot;
     protected boolean p = true;
-    protected final KeyEventHandler keyEventHandler;
     protected boolean d = true;
     public boolean isblocking = false;
     protected double cooldown = 5;
@@ -42,12 +38,14 @@ public class BasePlayer extends GameBody {
     private String[] keys;
     public int id;
     private int i = 0;
+    private Controller controller;
 
-    public BasePlayer(int id, double x, double y, KeyEventHandler keyEventHandler, String[] keys, World<Body> physicWorld) {
+    public BasePlayer(int id, double x, double y, Controller controller, String[] keys, World<Body> physicWorld) {
         super(Images.fighter_look_right);
+        this.controller = controller;
         this.translate(x, y);
         this.keys = keys;
-        this.keyEventHandler = keyEventHandler;
+
         this.physicWorld = physicWorld;
         this.id = id;
 
@@ -67,8 +65,8 @@ public class BasePlayer extends GameBody {
         Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE * 2, 21 / Const.BLOCK_SIZE * 2));
         hips.getShape().translate(0, 2.4);
 
-        fist = new Fist(x, y + 2, keyEventHandler);
-        foot = new Foot(x, y + 4.23, keyEventHandler);
+        fist = new Fist(x, y + 2, controller);
+        foot = new Foot(x, y + 4.23, controller);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
         punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
@@ -76,10 +74,10 @@ public class BasePlayer extends GameBody {
     }
 
     public void handleNavigationEvents(double elapsedTime) {
-        if (keyEventHandler.isKeyPressed(keys[0])) {
+        if (controller.isJUMP()) {
             jump(isOnGround());
         }
-        if (keyEventHandler.isKeyPressed(keys[1])) {
+        if (controller.isWALK_LEFT()) {
             walkLeft();
         }
         duck(keys[2]);

@@ -1,15 +1,13 @@
 package application.GameObjects;
 
-import application.common.KeyEventHandler;
 import application.constants.Images;
 import org.dyn4j.geometry.MassType;
 
-
 public class Fist extends GameObject {
-    private final KeyEventHandler keyEventHandler;
-    public Fist(double x, double y , KeyEventHandler keyEventHandler) {
+    private final Controller controller;
+    public Fist(double x, double y, Controller controller) {
         super(Images.fist_hitbox, x, y);
-        this.keyEventHandler = keyEventHandler;
+        this.controller = controller;
         setMass(MassType.NORMAL);
     }
 }

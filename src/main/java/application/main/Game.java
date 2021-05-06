@@ -2,7 +2,6 @@ package application.main;
 
 import application.GameObjects.*;
 import application.Navigation.SceneType;
-import application.common.KeyEventHandler;
 
 import application.common.CollisionHandler;
 import application.Navigation.Navigator;
@@ -11,7 +10,6 @@ import application.constants.Const;
 import application.constants.Images;
 import application.stats.Lifebar;
 import application.stats.Timer;
-import com.sun.glass.ui.Accessible;
 import javafx.scene.canvas.GraphicsContext;
 import org.dyn4j.dynamics.Body;
 
@@ -37,7 +35,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Timer timer;
     public Floor floor;
     public boolean rag = false;
-    private final KeyEventHandler keyEventHandler;
+    private final Controller controller;
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
@@ -46,14 +44,11 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
 
-
-    public Game(KeyEventHandler keyEventHandler, Navigator navigator) {
-        this.keyEventHandler = keyEventHandler;
+    public Game(Controller controller, Navigator navigator) {
+        this.controller = controller;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
     }
-
-
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
@@ -64,13 +59,12 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         for (Body body : physicWorld.getBodies()) {
             GameBody gameBody = (GameBody) body;
             gameBody.draw(gc);
-
         }
     }
 
     public void load() {
-        fighter = new BasePlayer(1, 10, 8, keyEventHandler, keys1, physicWorld);
-        fighter_2 = new BasePlayer(2, 14, 8, keyEventHandler, keys2, physicWorld);
+        fighter = new BasePlayer(1, 10, 8, controller, keys1, physicWorld);
+        fighter_2 = new BasePlayer(2, 14, 8, controller, keys2, physicWorld);
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();
@@ -121,16 +115,16 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         }
         if (rag)
             ragfighter.handleNavigationEventss(elapsedTime);
-        if (keyEventHandler.isKeyPressed("B") && !rag) {
+        /*if (controller.isKeyPressed("B") && !rag) {
 
-            ragfighter = new RagFighter(fighter.getWorldCenter().x, fighter.getWorldCenter().y, keyEventHandler);
+            ragfighter = new RagFighter(fighter.getWorldCenter().x, fighter.getWorldCenter().y, controller);
             physicWorld.removeBody(fighter);
             physicWorld.removeBody(fighter.foot);
             physicWorld.removeBody(fighter.fist);
             ragfighter.initializeWorld(physicWorld);
             ragfighter.setup();
             rag = true;
-        }
+        }*/
     }
 
 
