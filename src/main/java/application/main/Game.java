@@ -27,8 +27,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     private BasePlayer fighter;
     private BasePlayer fighter_2;
-    private final String[] keys1 = {"W", "A", "S", "D", "E", "Q", "V"};
-    private final String[] keys2 = {"I", "J", "K", "L", "O", "U", "M"};
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
@@ -63,8 +61,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-        fighter = new BasePlayer(1, 10, 8, controller, keys1, physicWorld);
-        fighter_2 = new BasePlayer(2, 14, 8, controller, keys2, physicWorld);
+        fighter = new BasePlayer(1, 10, 8, controller, physicWorld);
+        fighter_2 = new BasePlayer(2, 14, 8, controller, physicWorld);
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();

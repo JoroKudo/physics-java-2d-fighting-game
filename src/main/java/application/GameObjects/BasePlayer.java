@@ -40,7 +40,7 @@ public class BasePlayer extends GameBody {
     private int i = 0;
     private Controller controller;
 
-    public BasePlayer(int id, double x, double y, Controller controller, String[] keys, World<Body> physicWorld) {
+    public BasePlayer(int id, double x, double y, Controller controller, World<Body> physicWorld) {
         super(Images.fighter_look_right);
         this.controller = controller;
         this.translate(x, y);
@@ -74,34 +74,74 @@ public class BasePlayer extends GameBody {
     }
 
     public void handleNavigationEvents(double elapsedTime) {
-        if (controller.isJUMP()) {
-            jump(isOnGround());
-        }
-        if (controller.isWALK_LEFT()) {
-            walkLeft();
-        }
-        duck(keys[2]);
-        if (keyEventHandler.isKeyPressed(keys[3])) {
-            walkRight();
-        }
-
-        punch(keys[4], elapsedTime);
-
-        block(keys[5]);
-        if (keyEventHandler.isKeyPressed(keys[6])) {
-
-            if (cooldown <= 0) {
-
-                hadoukenShoot(elapsedTime);
-                if (animcooldown <= 0) {
-                    createHadouken();
+        switch (id){
+            case 1:
+                if (controller.Fighter1isJUMP()) {
+                    jump(isOnGround());
                 }
-            } else {
-                hadoukenCharge(elapsedTime);
-
-            }
+                if (controller.Fighter1isWALK_LEFT()) {
+                    walkLeft();
+                }
+                if (controller.Fighter1isWALK_RIGHT()) {
+                    walkRight();
+                }
+                if (controller.Fighter1isPUNCH()) {
+                    punch(elapsedTime);
+                }
+                if (controller.Fighter1isDUCK()) {
+                    duck();
+                }
+                if (controller.Fighter1isBLOCK()) {
+                    block();
+                }
+                if (controller.Fighter1isHADOUKEN()) {
+                    if (cooldown <= 0) {
+                        hadoukenShoot(elapsedTime);
+                        if (animcooldown <= 0) {
+                            createHadouken();
+                        }
+                    } else {
+                        hadoukenCharge(elapsedTime);
+                    }
+                }
+                if ((!controller.Fighter1isWALK_RIGHT() && !controller.Fighter1isWALK_LEFT() && isOnGround())) {
+                    applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
+                }
+            case 2:
+                if (controller.Fighter2isJUMP()) {
+                    jump(isOnGround());
+                }
+                if (controller.Fighter2isWALK_LEFT()) {
+                    walkLeft();
+                }
+                if (controller.Fighter2isWALK_RIGHT()) {
+                    walkRight();
+                }
+                if (controller.Fighter2isPUNCH()) {
+                    punch(elapsedTime);
+                }
+                if (controller.Fighter2isDUCK()) {
+                    duck();
+                }
+                if (controller.Fighter2isBLOCK()) {
+                    block();
+                }
+                if (controller.Fighter2isHADOUKEN()) {
+                    if (cooldown <= 0) {
+                        hadoukenShoot(elapsedTime);
+                        if (animcooldown <= 0) {
+                            createHadouken();
+                        }
+                    } else {
+                        hadoukenCharge(elapsedTime);
+                    }
+                }
+                if ((!controller.Fighter2isWALK_RIGHT() && !controller.Fighter2isWALK_LEFT() && isOnGround())) {
+                    applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
+                }
         }
 
+/*
         if (keyEventHandler.pressedKeys.size() > i) {
             if (!Arrays.asList(keys).contains(keyEventHandler.pressedKeys.get(i).getChar())) {
                 i++;
@@ -118,27 +158,7 @@ public class BasePlayer extends GameBody {
                 this.image = Images.fighter_look_left;
             }
         }
-
-
-        if ((!keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("A")) && isOnGround()) {
-            applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
-        }
-    }
-
-    //UNFIXED CODE FOR CONTROLLER
-    public void handleController(double elapsedTime) {
-        ControllerManager controllers = new ControllerManager();
-        controllers.initSDLGamepad();
-        ControllerState currState = controllers.getState(0);
-        if(currState.y) {
-            jump(isOnGround());
-        }
-        if(currState.leftStickX == 1) {
-            walkRight();
-        }
-        if (currState.leftStickY == 1){
-            walkLeft();
-        }
+*/
     }
 
     @Override
@@ -179,8 +199,7 @@ public class BasePlayer extends GameBody {
         return this.hadouken;
     }
 
-    protected void duck(String key) {
-        if (keyEventHandler.isKeyPressed(key)) {
+    protected void duck() {
             applyImpulse(new Vector2(0, 100));
             if (d) {
                 this.image = Images.duck_right;
@@ -191,7 +210,7 @@ public class BasePlayer extends GameBody {
             }
 
 
-        } else if (!d) {
+        if (!d) {
             this.getFixture(1).getShape().translate(0, -1);
             this.getFixture(2).getShape().translate(0, -1);
             this.getFixture(3).getShape().translate(0, -1);
@@ -220,16 +239,12 @@ public class BasePlayer extends GameBody {
         this.image = Images.fighter_walk_right;
     }
 
-    public void punch(String key, double elapsedTime) {
-
-        if (keyEventHandler.isKeyPressed(key) && punchcooldown > 0 && p) {
-
+    public void punch(double elapsedTime) {
             this.image = Images.punch_right;
             this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
             p = false;
 
-        } else {
-            punchcooldown += 10 * elapsedTime;
+        punchcooldown += 10 *  elapsedTime;
 
             if (!p && punchcooldown > 3) {
                 this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
@@ -237,15 +252,26 @@ public class BasePlayer extends GameBody {
                 punchcooldown = -2.5;
             }
         }
-    }
 
-    public void block(String key) {
-        if (keyEventHandler.isKeyPressed(key)) {
-            isblocking = true;
-            this.image = Images.block;
-        } else {
-            isblocking = false;
+
+    public void block() {
+        switch (id){
+            case 1:
+                if (controller.Fighter1isBLOCK()) {
+                    isblocking = true;
+                    this.image = Images.block;
+                } else {
+                    isblocking = false;
+                }
+            case 2:
+                if (controller.Fighter2isBLOCK()) {
+                    isblocking = true;
+                    this.image = Images.block;
+                } else {
+                    isblocking = false;
+                }
         }
+
     }
 
     public void dirupdate() {

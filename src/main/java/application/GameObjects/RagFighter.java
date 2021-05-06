@@ -18,59 +18,41 @@ import org.dyn4j.world.World;
 
 
 public class RagFighter  {
-    private final KeyEventHandler keyEventHandler;
+    private Controller controller;
     private double x;
     private double y;
 
+    public RagFighter(double x, double y, Controller controller) {
 
-    public RagFighter(double x, double y, KeyEventHandler keyEventHandler) {
-
-        this.keyEventHandler = keyEventHandler;
+        this.controller = controller;
         this.x=x;
         this.y=y;
-
-
     }
 
-
-
     public void handleNavigationEventss(double elapsedTime) {
-
-
-
-
-
-
-        if (keyEventHandler.isKeyPressed("T")) {
+        if (controller.RagFighterJump()) {
             righthand.applyImpulse(new Vector2(0,-20));
             torso.setLinearVelocity(new Vector2(0,0));
 
         }
-        if (keyEventHandler.isKeyPressed("G")) {
-
+        if (controller.RagFighterDuck()) {
             righthand.applyImpulse(new Vector2(0,20));
             torso.setLinearVelocity(new Vector2(0,0));
 
         }
-        if (keyEventHandler.isKeyPressed("F")) {
+        if (controller.RagFighterLeft()) {
 
             righthand.applyImpulse(new Vector2(20,0));
             torso.setLinearVelocity(new Vector2(0,0));
 
         }
-        if (keyEventHandler.isKeyPressed("H")) {
+        if (controller.RagFighterRight()) {
 
             righthand.applyImpulse(new Vector2(-20,0));
             torso.setLinearVelocity(new Vector2(0,0));
 
         }
         }
-
-
-
-
-
-
 
     public GameBody torso;
 
