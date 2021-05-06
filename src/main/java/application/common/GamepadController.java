@@ -1,7 +1,8 @@
-package application.GameObjects;
+package application.common;
+
 
 public class GamepadController implements Controller {
-    
+
     @Override
     public boolean Fighter1isJUMP() {
         return true;

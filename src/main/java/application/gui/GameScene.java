@@ -1,14 +1,11 @@
 package application.gui;
 
-import application.GameObjects.Controller;
-import application.GameObjects.KeyboardController;
+import application.common.KeyboardController;
 import application.Navigation.Navigator;
 import application.Sound.MusicType;
 import application.Sound.Sound;
 import application.common.*;
 import application.main.Game;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 
 public class GameScene extends BaseScene implements Initializable {
     public GameScene(Navigator navigator) {

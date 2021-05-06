@@ -1,6 +1,7 @@
 package application.GameObjects;
 
 
+import application.common.Controller;
 import application.constants.Images;
 
 import javafx.scene.canvas.GraphicsContext;
