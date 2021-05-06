@@ -32,6 +32,7 @@ public class App extends Application {
         Request getRequest = new Request("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/.json", "GET", "-");
         getRequest.doRequest();
         navigator.registerScene(SceneType.WELCOME_SCENE, new WelcomeScene(navigator));
+        navigator.registerScene(SceneType.USER_SELECTION_SCENE, new UserSelectionScene(navigator));
         navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator));
         navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator));
         navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameOverScene(navigator));

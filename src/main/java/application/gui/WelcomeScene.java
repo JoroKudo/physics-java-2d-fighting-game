@@ -11,7 +11,7 @@ public class WelcomeScene extends BaseScene  {
         super(navigator, Images.welcome);
         setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.SPACE) {
-                navigator.goTo(SceneType.GAME_SCENE);
+                navigator.goTo(SceneType.USER_SELECTION_SCENE);
             }
         });
     }
