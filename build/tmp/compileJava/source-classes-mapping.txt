@@ -4,62 +4,62 @@ application/common/KeyEventHandler.java
  application.common.KeyEventHandler
 application/main/App.java
  application.main.App
-application/GameObjects/RagFighter.java
- application.GameObjects.RagFighter
-application/GameObjects/Hadouken.java
- application.GameObjects.Hadouken
+application/database/Request.java
+ application.database.Request
+application/common/BaseScene.java
+ application.common.BaseScene
 application/constants/Const.java
  application.constants.Const
 application/Navigation/Navigator.java
  application.Navigation.Navigator
-application/GameObjects/Foot.java
- application.GameObjects.Foot
+application/constants/Images.java
+ application.constants.Images
 application/gui/GameWinScene.java
  application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/common/CollisionHandler.java
- application.common.CollisionHandler
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
 application/stats/Timer.java
  application.stats.Timer
-application/GameObjects/Fist.java
- application.GameObjects.Fist
+application/Sound/MusicType.java
+ application.Sound.MusicType
 application/Navigation/SceneType.java
  application.Navigation.SceneType
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
-application/GameObjects/Floor.java
- application.GameObjects.Floor
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
+application/Sound/SoundEffectType.java
+ application.Sound.SoundEffectType
+application/common/Initializable.java
+ application.common.Initializable
+application/main/Launcher.java
+ application.main.Launcher
+application/gui/GameOverScene.java
+ application.gui.GameOverScene
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
+application/GameObjects/RagFighter.java
+ application.GameObjects.RagFighter
+application/GameObjects/Hadouken.java
+ application.GameObjects.Hadouken
+application/GameObjects/Floor.java
+ application.GameObjects.Floor
+application/GameObjects/Foot.java
+ application.GameObjects.Foot
+application/common/CollisionHandler.java
+ application.common.CollisionHandler
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/GameObjects/BasePlayer.java
  application.GameObjects.BasePlayer
-application/main/Launcher.java
- application.main.Launcher
-application/GameObjects/GameBody.java
- application.GameObjects.GameBody
-application/gui/GameOverScene.java
- application.gui.GameOverScene
-application/common/Initializable.java
- application.common.Initializable
 application/main/Game.java
  application.main.Game
  application.main.Game$1
-application/Sound/SoundEffectType.java
- application.Sound.SoundEffectType
-application/GameObjects/Direction.java
- application.GameObjects.Direction
-application/constants/Images.java
- application.constants.Images
-application/Sound/Sound.java
- application.Sound.Sound
- application.Sound.Sound$1
-application/common/BaseScene.java
- application.common.BaseScene
-application/database/Request.java
- application.database.Request
-application/Sound/MusicType.java
- application.Sound.MusicType
+application/GameObjects/GameBody.java
+ application.GameObjects.GameBody

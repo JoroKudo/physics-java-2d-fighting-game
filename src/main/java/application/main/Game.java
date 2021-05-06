@@ -69,8 +69,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-
-
         fighter = new BasePlayer(1, 10, 8, keyEventHandler, keys1, physicWorld);
         fighter_2 = new BasePlayer(2, 14, 8, keyEventHandler, keys2, physicWorld);
         lifebar1 = new Lifebar(1);
@@ -133,8 +131,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             ragfighter.setup();
             rag = true;
         }
-
-
     }
 
 

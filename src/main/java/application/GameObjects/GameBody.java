@@ -19,9 +19,8 @@ public  class GameBody extends Body {
 
     public GameBody(Image image) {
         this.image = image;
-
-
     }
+
     public void draw(GraphicsContext gc) {
 
         this.drawHitboxes(this.getFixtures(), gc);
@@ -42,7 +41,6 @@ public  class GameBody extends Body {
         gc.setTransform(originTrans);
     }
 
-
     public void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
 
         Affine originTrans = gc.getTransform();
@@ -52,7 +50,6 @@ public  class GameBody extends Body {
         transform.appendRotation(this.transform.getRotation().toDegrees());
         transform.appendTranslation(1, -1);
         gc.transform(transform);
-
 
         for (BodyFixture fixture : fixtures) {
 
@@ -73,9 +70,7 @@ public  class GameBody extends Body {
             }
         }
 
-
         gc.setTransform(originTrans);
-
 
     }
 

@@ -43,11 +43,8 @@ public class BasePlayer extends GameBody {
     public int id;
     private int i = 0;
 
-
     public BasePlayer(int id, double x, double y, KeyEventHandler keyEventHandler, String[] keys, World<Body> physicWorld) {
         super(Images.fighter_look_right);
-
-
         this.translate(x, y);
         this.keys = keys;
         this.keyEventHandler = keyEventHandler;
@@ -122,38 +119,29 @@ public class BasePlayer extends GameBody {
             } else {
                 this.image = Images.fighter_look_left;
             }
-
         }
 
 
         if ((!keyEventHandler.isKeyPressed("D") && !keyEventHandler.isKeyPressed("A")) && isOnGround()) {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
         }
-
     }
 
     //UNFIXED CODE FOR CONTROLLER
-    public void handleController(double elapsedTime){
+    public void handleController(double elapsedTime) {
         ControllerManager controllers = new ControllerManager();
         controllers.initSDLGamepad();
-            ControllerState currState = controllers.getState(0);
-            if(currState.y) {
-                jump(isOnGround());
-            }
-            if(currState.leftStickX == 1) {
-                walkRight();
-            }
-            if (currState.leftStickY == 1){
-                walkLeft();
-            }
-
-
-
+        ControllerState currState = controllers.getState(0);
+        if(currState.y) {
+            jump(isOnGround());
         }
-
-
-
-
+        if(currState.leftStickX == 1) {
+            walkRight();
+        }
+        if (currState.leftStickY == 1){
+            walkLeft();
+        }
+    }
 
     @Override
     public void drawimage(Image image, double x, double y, GraphicsContext gc) {
@@ -176,15 +164,12 @@ public class BasePlayer extends GameBody {
 
         this.image = Images.chargeright;
         cooldown -= elapsedTime;
-
     }
 
     protected void hadoukenShoot(double elapsedTime) {
 
         this.image = Images.shootright;
         animcooldown -= elapsedTime;
-
-
     }
 
     public boolean isDoesFighterNeedsToReturnHadouken() {
@@ -214,8 +199,6 @@ public class BasePlayer extends GameBody {
             this.getFixture(3).getShape().translate(0, -1);
             d = true;
         }
-
-
     }
 
     public void jump(boolean isOnGround) {
@@ -225,7 +208,6 @@ public class BasePlayer extends GameBody {
 
         }
     }
-
 
     public void walkLeft() {
         this.currentDirect = Direction.LEFT;
@@ -255,7 +237,6 @@ public class BasePlayer extends GameBody {
                 this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
                 p = true;
                 punchcooldown = -2.5;
-
             }
         }
     }
@@ -267,8 +248,6 @@ public class BasePlayer extends GameBody {
         } else {
             isblocking = false;
         }
-
-
     }
 
     public void dirupdate() {

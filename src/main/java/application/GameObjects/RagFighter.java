@@ -228,11 +228,6 @@ public class RagFighter  {
         physicWorld.addJoint(pistonPathJointt);
 
 
-
-
-
-
-
     }
     public void setup() {
 
