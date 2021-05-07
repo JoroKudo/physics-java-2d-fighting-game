@@ -1,4 +1,4 @@
-package application.common;
+/*package application.common;
 
 
 public class GamepadController implements Controller {
@@ -92,5 +92,5 @@ public class GamepadController implements Controller {
     public boolean RagFighterLeft() {
         return true;
     }
-}
+}*/
 

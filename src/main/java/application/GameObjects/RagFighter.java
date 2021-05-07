@@ -31,7 +31,7 @@ public class RagFighter  {
     }
 
     public void handleNavigationEventss(double elapsedTime) {
-        if (controller.RagFighterJump()) {
+       /* if (controller.RagFighterJump()) {
             righthand.applyImpulse(new Vector2(0,-20));
             torso.setLinearVelocity(new Vector2(0,0));
 
@@ -52,7 +52,7 @@ public class RagFighter  {
             righthand.applyImpulse(new Vector2(-20,0));
             torso.setLinearVelocity(new Vector2(0,0));
 
-        }
+        }*/
         }
 
     public GameBody torso;

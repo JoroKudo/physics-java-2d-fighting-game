@@ -2,6 +2,7 @@ package application.GameObjects;
 
 import application.Sound.SoundEffectType;
 import application.Sound.Sound;
+import application.common.ActionType;
 import application.common.Controller;
 import application.constants.Const;
 import application.constants.Images;
@@ -71,72 +72,7 @@ public class BasePlayer extends GameBody {
     }
 
     public void handleNavigationEvents(double elapsedTime) {
-        switch (id){
-            case 1:
-                if (controller.Fighter1isJUMP()) {
-                    jump(isOnGround());
-                }
-                if (controller.Fighter1isWALK_LEFT()) {
-                    walkLeft();
-                }
-                if (controller.Fighter1isWALK_RIGHT()) {
-                    walkRight();
-                }
-                if (controller.Fighter1isPUNCH()) {
-                    punch(elapsedTime);
-                }
-                if (controller.Fighter1isDUCK()) {
-                    duck();
-                }
-                if (controller.Fighter1isBLOCK()) {
-                    block();
-                }
-                if (controller.Fighter1isHADOUKEN()) {
-                    if (cooldown <= 0) {
-                        hadoukenShoot(elapsedTime);
-                        if (animcooldown <= 0) {
-                            createHadouken();
-                        }
-                    } else {
-                        hadoukenCharge(elapsedTime);
-                    }
-                }
-                if ((!controller.Fighter1isWALK_RIGHT() && !controller.Fighter1isWALK_LEFT() && isOnGround())) {
-                    applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
-                }
-            case 2:
-                if (controller.Fighter2isJUMP()) {
-                    jump(isOnGround());
-                }
-                if (controller.Fighter2isWALK_LEFT()) {
-                    walkLeft();
-                }
-                if (controller.Fighter2isWALK_RIGHT()) {
-                    walkRight();
-                }
-                if (controller.Fighter2isPUNCH()) {
-                    punch(elapsedTime);
-                }
-                if (controller.Fighter2isDUCK()) {
-                    duck();
-                }
-                if (controller.Fighter2isBLOCK()) {
-                    block();
-                }
-                if (controller.Fighter2isHADOUKEN()) {
-                    if (cooldown <= 0) {
-                        hadoukenShoot(elapsedTime);
-                        if (animcooldown <= 0) {
-                            createHadouken();
-                        }
-                    } else {
-                        hadoukenCharge(elapsedTime);
-                    }
-                }
-                if ((!controller.Fighter2isWALK_RIGHT() && !controller.Fighter2isWALK_LEFT() && isOnGround())) {
-                    applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
-                }
-        }
+       act(controller.FighterXisActing(id),elapsedTime);
 
 /*
         if (keyEventHandler.pressedKeys.size() > i) {
@@ -196,6 +132,43 @@ public class BasePlayer extends GameBody {
         return this.hadouken;
     }
 
+    public void act(ActionType actionType,double elapsedTime) {
+        if(actionType!=null){
+
+        switch (actionType) {
+            case JUMP:
+                jump();
+                break;
+            case DUCK:
+                duck();
+                break;
+            case WALK_lEFT:
+                walkLeft();
+                break;
+            case WALK_RIGHT:
+                walkRight();
+                break;
+            case BLOCK:
+                block();
+                break;
+            case PUNCH:
+                punch(elapsedTime);
+                break;
+            case HADOUKEN:
+                if (cooldown <= 0) {
+                    hadoukenShoot(elapsedTime);
+                    if (animcooldown <= 0) {
+                        createHadouken();
+                    }
+                } else {
+                    hadoukenCharge(elapsedTime);
+                }
+                break;
+
+
+        }}
+    }
+
     protected void duck() {
         applyImpulse(new Vector2(0, 100));
         if (d) {
@@ -215,8 +188,8 @@ public class BasePlayer extends GameBody {
         }
     }
 
-    public void jump(boolean isOnGround) {
-        if (isOnGround) {
+    public void jump() {
+        if (this.isOnGround()) {
             this.image = Images.jump_right;
             applyImpulse(new Vector2(0, -150));
 
@@ -241,7 +214,7 @@ public class BasePlayer extends GameBody {
         this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
         p = false;
 
-        punchcooldown += 10 *  elapsedTime;
+        punchcooldown += 10 * elapsedTime;
 
         if (!p && punchcooldown > 3) {
             this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
@@ -252,22 +225,8 @@ public class BasePlayer extends GameBody {
 
 
     public void block() {
-        switch (id){
-            case 1:
-                if (controller.Fighter1isBLOCK()) {
-                    isblocking = true;
-                    this.image = Images.block;
-                } else {
-                    isblocking = false;
-                }
-            case 2:
-                if (controller.Fighter2isBLOCK()) {
-                    isblocking = true;
-                    this.image = Images.block;
-                } else {
-                    isblocking = false;
-                }
-        }
+        isblocking = true;
+        this.image = Images.block;
 
     }
 
