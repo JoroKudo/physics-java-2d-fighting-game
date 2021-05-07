@@ -35,8 +35,6 @@ public class UserSelectionScene extends BaseScene {
     public UserSelectionScene(Navigator navigator) {
         super(navigator, Images.background);
         String players[] = {"Fabian", "Leo", "Jiro"}; //TODO insert values form database here
-        canvas.setWidth(Const.CANVAS_WIDTH);
-        canvas.setHeight(Const.CANVAS_HEIGHT);
         //Create first combobox
         ComboBox combo_box = new ComboBox(FXCollections.observableArrayList(players));
         combo_box.setEditable(true);
@@ -47,9 +45,11 @@ public class UserSelectionScene extends BaseScene {
         //create second combobox
         ComboBox combo_box_2 = new ComboBox(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
+
         TilePane tile_pane_2 = new TilePane(combo_box_2);
         tile_pane_2.setLayoutX(900);
         tile_pane_2.setLayoutY(300);
+        tile_pane_2.setHgap(-100);
         parent.add(tile_pane_2);
         //Create Player 1 text
         Text player1 = new Text("Player 1");
