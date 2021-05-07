@@ -73,6 +73,8 @@ public class BasePlayer extends GameBody {
 
     public void handleNavigationEvents(double elapsedTime) {
         act(controller.FighterXisActing(id), elapsedTime);
+        act(controller.FighterXisActing(id), elapsedTime);
+
 
 /*
         if (keyEventHandler.pressedKeys.size() > i) {
@@ -138,7 +140,6 @@ public class BasePlayer extends GameBody {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
         }
         if (actionType != null) {
-
 
             switch (actionType) {
                 case JUMP:

@@ -1,96 +1,85 @@
-/*package application.common;
+package application.common;
 
+
+import com.studiohartman.jamepad.ControllerManager;
+import com.studiohartman.jamepad.ControllerState;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class GamepadController implements Controller {
 
     @Override
-    public boolean Fighter1isJUMP() {
-        return true;
-    }
+    public ActionType FighterXisActing(int id) {
 
-    @Override
-    public boolean Fighter1isDUCK() {
-        return true;
-    }
+        ControllerManager controllers = new ControllerManager();
+        controllers.initSDLGamepad();
+        ControllerState currState = controllers.getState(0);
 
-    @Override
-    public boolean Fighter1isWALK_LEFT() {
-        return true;
-    }
+        switch (id) {
+            case 1:
+                 if (currState.y) {
+                     return ActionType.JUMP;
+                 }
 
-    @Override
-    public boolean Fighter1isWALK_RIGHT() {
-        return true;
-    }
+                 if (currState.leftStickX <= -0.8) {
+                     return ActionType.WALK_lEFT;
+                 }
 
-    @Override
-    public boolean Fighter1isPUNCH() {
-        return true;
-    }
+                 if (currState.leftStickX >=0.8) {
+                     return ActionType.WALK_RIGHT;
+                 }
 
-    @Override
-    public boolean Fighter1isBLOCK() {
-        return true;
-    }
+                 if (currState.b) {
+                     return ActionType.PUNCH;
+                 }
 
-    @Override
-    public boolean Fighter1isHADOUKEN() {
-        return true;
-    }
+                 if (currState.a) {
+                     return ActionType.DUCK;
+                 }
 
-    @Override
-    public boolean Fighter2isJUMP() {
-        return true;
-    }
+                 if (currState.rightTrigger >= 0.1) {
+                     return ActionType.BLOCK;
+                 }
 
-    @Override
-    public boolean Fighter2isDUCK() {
-        return true;
-    }
+                 if (currState.x) {
+                     return ActionType.HADOUKEN;
+                 }
 
-    @Override
-    public boolean Fighter2isWALK_LEFT() {
-        return true;
-    }
+            case 2:/*
+                if (currState.y) {
+                     return ActionType.JUMP;
+                 }
 
-    @Override
-    public boolean Fighter2isWALK_RIGHT() {
-        return true;
-    }
+                 if (currState.leftStickX <= -0.8) {
+                     return ActionType.WALK_lEFT;
+                 }
 
-    @Override
-    public boolean Fighter2isPUNCH() {
-        return true;
-    }
+                 if (currState.leftStickX >=0.8) {
+                     return ActionType.WALK_RIGHT;
+                 }
 
-    @Override
-    public boolean Fighter2isBLOCK() {
-        return true;
-    }
+                 if (currState.b) {
+                     return ActionType.PUNCH;
+                 }
 
-    @Override
-    public boolean Fighter2isHADOUKEN() {
-        return true;
-    }
+                 if (currState.a) {
+                     return ActionType.DUCK;
+                 }
 
-    @Override
-    public boolean RagFighterJump() {
-        return true;
-    }
+                 if (currState.rightTrigger >= 0.1) {
+                     return ActionType.BLOCK;
+                 }
 
-    @Override
-    public boolean RagFighterDuck() {
-        return true;
-    }
+                 if (currState.x) {
+                     return ActionType.HADOUKEN;
+                 }
+                */
+            default:
+                return null;
+        }
 
-    @Override
-    public boolean RagFighterRight() {
-        return true;
-    }
+        }
 
-    @Override
-    public boolean RagFighterLeft() {
-        return true;
-    }
-}*/
+
+}
 

@@ -29,8 +29,6 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
         if (event.getEventType() == KeyEvent.KEY_RELEASED) {
             pressedKeys.remove(event.getCode());
         }
-
-
     }
 
     private boolean notInList(KeyCode code) {
@@ -42,10 +40,8 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
         return true;
     }
 
-
     @Override
     public ActionType FighterXisActing(int id) {
-
 
         if (id == 1) {
 
@@ -56,7 +52,6 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
                 }
             }
 
-
         } else if (id == 2) {
             for (ActionType action : ActionType.values()) {
                 if (pressedKeys.contains(allKeys2[action.ordinal()])) {
@@ -64,13 +59,7 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
                     return action;
                 }
             }
-
-
         }
-
-
         return null;
     }
-
-
 }

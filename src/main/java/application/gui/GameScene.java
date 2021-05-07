@@ -15,10 +15,11 @@ public class GameScene extends BaseScene implements Initializable {
     @Override
     public void  onInitialize() {
         KeyboardController controller = new KeyboardController();
+        GamepadController  gamepadController = new GamepadController();
         this.setOnKeyPressed(controller);
         this.setOnKeyReleased(controller);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(controller, navigator);
+        Game game = new Game(controller,gamepadController, navigator);
         game.load();
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override
