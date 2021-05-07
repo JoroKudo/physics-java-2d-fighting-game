@@ -72,7 +72,7 @@ public class BasePlayer extends GameBody {
     }
 
     public void handleNavigationEvents(double elapsedTime) {
-       act(controller.FighterXisActing(id),elapsedTime);
+        act(controller.FighterXisActing(id), elapsedTime);
 
 /*
         if (keyEventHandler.pressedKeys.size() > i) {
@@ -132,42 +132,55 @@ public class BasePlayer extends GameBody {
         return this.hadouken;
     }
 
-    public void act(ActionType actionType,double elapsedTime) {
-        if(actionType!=null){
+    public void act(ActionType actionType, double elapsedTime) {
+        punch(elapsedTime);
+        if ((actionType != ActionType.WALK_lEFT && actionType != ActionType.WALK_RIGHT) && isOnGround()) {
+            applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
+        }
+        if (actionType != null) {
 
-        switch (actionType) {
-            case JUMP:
-                jump();
-                break;
-            case DUCK:
-                duck();
-                break;
-            case WALK_lEFT:
-                walkLeft();
-                break;
-            case WALK_RIGHT:
-                walkRight();
-                break;
-            case BLOCK:
-                block();
-                break;
-            case PUNCH:
-                punch(elapsedTime);
-                break;
-            case HADOUKEN:
-                if (cooldown <= 0) {
-                    hadoukenShoot(elapsedTime);
-                    if (animcooldown <= 0) {
-                        createHadouken();
+
+            switch (actionType) {
+                case JUMP:
+                    this.jump();
+                    break;
+                case DUCK:
+                    this.duck();
+                    break;
+                case WALK_lEFT:
+                    this.walkLeft();
+                    break;
+                case WALK_RIGHT:
+                    this.walkRight();
+                    break;
+                case BLOCK:
+                    this.block();
+                    break;
+                case PUNCH:
+                    break;
+                case HADOUKEN:
+                    if (cooldown <= 0) {
+                        hadoukenShoot(elapsedTime);
+                        if (animcooldown <= 0) {
+                            this.createHadouken();
+                        }
+                    } else {
+                        this.hadoukenCharge(elapsedTime);
                     }
-                } else {
-                    hadoukenCharge(elapsedTime);
-                }
-                break;
+                    break;
+
+            }
+        }else{
+            if (currentDirect == Direction.RIGHT) {
+                this.image = Images.fighter_look_right;
+            } else {
+                this.image = Images.fighter_look_left;
+            }
+        }
 
 
-        }}
     }
+
 
     protected void duck() {
         applyImpulse(new Vector2(0, 100));
@@ -210,16 +223,22 @@ public class BasePlayer extends GameBody {
     }
 
     public void punch(double elapsedTime) {
-        this.image = Images.punch_right;
-        this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
-        p = false;
 
-        punchcooldown += 10 * elapsedTime;
+        if (controller.FighterXisActing(id) == ActionType.PUNCH && punchcooldown > 0 && p) {
 
-        if (!p && punchcooldown > 3) {
-            this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
-            p = true;
-            punchcooldown = -2.5;
+            this.image = Images.punch_right;
+            this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
+            p = false;
+
+        } else {
+            punchcooldown += 10 * elapsedTime;
+
+            if (!p && punchcooldown > 3) {
+                this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
+                p = true;
+                punchcooldown = -2.5;
+
+            }
         }
     }
 
