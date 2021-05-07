@@ -70,11 +70,6 @@ public class UserSelectionScene extends BaseScene {
         //Draws Imag
         drawImage(Images.fighter_look_right, 500, 350);
         drawImage(Images.fighter_Bwalk_left, 880, 350);
-        //get value of boxes
-        String valueComboBox1 = (String) combo_box.getValue();
-        String valueComboBox2 = (String) combo_box_2.getValue();
-        System.out.println(valueComboBox1);
-        System.out.println(valueComboBox2);
         //Create Submit button
         Button submit = new Button("Submit");
         TilePane tilePane5 = new TilePane(submit);
@@ -82,6 +77,10 @@ public class UserSelectionScene extends BaseScene {
         tilePane5.setLayoutY(300);
         parent.add(tilePane5);
         submit.setOnAction(e -> {
+            String valueComboBox1 = (String) combo_box.getValue();
+            String valueComboBox2 = (String) combo_box_2.getValue();
+            System.out.println(valueComboBox1);
+            System.out.println(valueComboBox2);
                 navigator.goTo(SceneType.GAME_SCENE);
         });
     }
