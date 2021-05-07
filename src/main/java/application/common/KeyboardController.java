@@ -11,6 +11,11 @@ import java.util.List;
 public class KeyboardController implements Controller, EventHandler<KeyEvent> {
 
     public List<KeyCode> pressedKeys = new ArrayList<>();
+    public KeyCode[] allKeys1 = new KeyCode[]{
+            KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Q, KeyCode.E, KeyCode.V};
+    public KeyCode[] allKeys2 = new KeyCode[]{
+            KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
+
     public ActionType action;
 
     @Override
@@ -41,65 +46,31 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
     @Override
     public ActionType FighterXisActing(int id) {
 
+
         if (id == 1) {
-            if (pressedKeys.contains(KeyCode.W)) {
-                return ActionType.JUMP;
-            }
 
-            if (pressedKeys.contains(KeyCode.A)) {
-                return ActionType.WALK_lEFT;
-            }
-            if (pressedKeys.contains(KeyCode.D)) {
-                return ActionType.WALK_RIGHT;
-            }
-            if (pressedKeys.contains(KeyCode.E)) {
-                return ActionType.PUNCH;
-            }
-            if (pressedKeys.contains(KeyCode.S)) {
-                return ActionType.DUCK;
+            for (ActionType action : ActionType.values()) {
 
-            }
-            if (pressedKeys.contains(KeyCode.Q)) {
-                return ActionType.BLOCK;
-
-            }
-            if (pressedKeys.contains(KeyCode.V)) {
-                return ActionType.HADOUKEN;
+                if (pressedKeys.contains(allKeys1[action.ordinal()])) {
+                    return action;
+                }
             }
 
 
         } else if (id == 2) {
-            if (pressedKeys.contains(KeyCode.I)) {
-                return ActionType.JUMP;
-            }
-            if (pressedKeys.contains(KeyCode.J)) {
-                return ActionType.WALK_lEFT;
-            }
-            if (pressedKeys.contains(KeyCode.L)) {
-                return ActionType.WALK_RIGHT;
-            }
-            if (pressedKeys.contains(KeyCode.O)) {
-                return ActionType.PUNCH;
-            }
-            if (pressedKeys.contains(KeyCode.K)) {
-                return ActionType.DUCK;
+            for (ActionType action : ActionType.values()) {
+                if (pressedKeys.contains(allKeys2[action.ordinal()])) {
 
+                    return action;
+                }
             }
-            if (pressedKeys.contains(KeyCode.U)) {
-                return ActionType.BLOCK;
 
-            }
-            if (pressedKeys.contains(KeyCode.M)) {
-                return ActionType.HADOUKEN;
 
-            }
         }
 
 
         return null;
     }
-
-
 
 
 }
