@@ -7,6 +7,7 @@ import application.common.CollisionHandler;
 import application.Navigation.Navigator;
 
 import application.common.Controller;
+import application.common.GamepadController;
 import application.constants.Const;
 import application.constants.Images;
 import application.stats.Lifebar;
@@ -43,7 +44,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
 
-    public Game(Controller controller, Navigator navigator) {
+    public Game(Controller controller, GamepadController gamepadController, Navigator navigator) {
         this.controller = controller;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
