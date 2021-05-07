@@ -11,6 +11,7 @@ import application.constants.Const;
 import application.constants.Images;
 import application.main.Game;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import static javafx.scene.paint.Color.WHITE;
@@ -39,17 +41,17 @@ public class UserSelectionScene extends BaseScene {
         ComboBox combo_box = new ComboBox(FXCollections.observableArrayList(players));
         combo_box.setEditable(true);
         TilePane tile_pane = new TilePane(combo_box);
-        tile_pane.setLayoutX(500);
+        tile_pane.setLayoutX(Const.CANVAS_MIDDLE_X-Const.DISTANCE_CHOICEBOXE_TO_MIDDLE);
         tile_pane.setLayoutY(300);
+        tile_pane.setHgap(0);
         parent.add(tile_pane);
         //create second combobox
         ComboBox combo_box_2 = new ComboBox(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
-
         TilePane tile_pane_2 = new TilePane(combo_box_2);
-        tile_pane_2.setLayoutX(900);
+        tile_pane_2.setLayoutX(Const.CANVAS_MIDDLE_X+Const.DISTANCE_CHOICEBOXE_TO_MIDDLE-combo_box.getWidth());
         tile_pane_2.setLayoutY(300);
-        tile_pane_2.setHgap(-100);
+        tile_pane_2.setHgap(0);
         parent.add(tile_pane_2);
         //Create Player 1 text
         Text player1 = new Text("Player 1");
@@ -73,7 +75,7 @@ public class UserSelectionScene extends BaseScene {
         //Create Submit button
         Button submit = new Button("Submit");
         TilePane tilePane5 = new TilePane(submit);
-        tilePane5.setLayoutX(760);
+        tilePane5.setLayoutX(Const.CANVAS_MIDDLE_X/2-submit.getWidth()/2);
         tilePane5.setLayoutY(300);
         parent.add(tilePane5);
         submit.setOnAction(e -> {
