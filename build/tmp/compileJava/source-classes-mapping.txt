@@ -1,11 +1,20 @@
 application/stats/Lifebar.java
  application.stats.Lifebar
+<<<<<<< HEAD
 application/Sound/MusicType.java
  application.Sound.MusicType
 application/GameObjects/KeyboardController.java
  application.GameObjects.KeyboardController
 application/database/Request.java
  application.database.Request
+=======
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
+application/GameObjects/KeyboardController.java
+ application.GameObjects.KeyboardController
+application/main/App.java
+ application.main.App
+>>>>>>> refs/remotes/origin/master
 application/GameObjects/RagFighter.java
  application.GameObjects.RagFighter
 application/GameObjects/Hadouken.java
@@ -16,8 +25,8 @@ application/constants/Const.java
  application.constants.Const
 application/GameObjects/Foot.java
  application.GameObjects.Foot
-application/GameObjects/Direction.java
- application.GameObjects.Direction
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/main/UserSelection.java
@@ -30,13 +39,13 @@ application/GameObjects/Fist.java
  application.GameObjects.Fist
 application/Navigation/SceneType.java
  application.Navigation.SceneType
-application/Sound/Sound.java
- application.Sound.Sound
- application.Sound.Sound$1
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
 application/GameObjects/Floor.java
  application.GameObjects.Floor
-application/constants/Images.java
- application.constants.Images
+application/gui/WelcomeScene.java
+ application.gui.WelcomeScene
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/GameObjects/BasePlayer.java
@@ -45,12 +54,18 @@ application/main/Launcher.java
  application.main.Launcher
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
+<<<<<<< HEAD
 application/Sound/SoundEffectType.java
  application.Sound.SoundEffectType
+=======
+application/gui/GameOverScene.java
+ application.gui.GameOverScene
+>>>>>>> refs/remotes/origin/master
 application/GameObjects/Controller.java
  application.GameObjects.Controller
 application/GameObjects/GamepadController.java
  application.GameObjects.GamepadController
+<<<<<<< HEAD
 application/main/Game.java
  application.main.Game
  application.main.Game$1
@@ -71,3 +86,25 @@ application/gui/UserSelectionScene.java
  application.gui.UserSelectionScene
 application/main/App.java
  application.main.App
+=======
+application/common/Initializable.java
+ application.common.Initializable
+application/main/Game.java
+ application.main.Game
+ application.main.Game$1
+application/Sound/SoundEffectType.java
+ application.Sound.SoundEffectType
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
+application/common/BaseScene.java
+ application.common.BaseScene
+application/database/Request.java
+ application.database.Request
+application/Sound/MusicType.java
+ application.Sound.MusicType
+>>>>>>> refs/remotes/origin/master

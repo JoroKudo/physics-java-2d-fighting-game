@@ -1,4 +1,4 @@
-package application.GameObjects;
+package application.common;
 
 public interface Controller {
     boolean Fighter1isJUMP();

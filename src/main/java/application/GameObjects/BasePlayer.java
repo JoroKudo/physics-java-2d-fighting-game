@@ -2,10 +2,9 @@ package application.GameObjects;
 
 import application.Sound.SoundEffectType;
 import application.Sound.Sound;
+import application.common.Controller;
 import application.constants.Const;
 import application.constants.Images;
-import com.studiohartman.jamepad.ControllerManager;
-import com.studiohartman.jamepad.ControllerState;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.dyn4j.collision.Fixture;
@@ -15,8 +14,6 @@ import org.dyn4j.geometry.MassType;
 import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.World;
-
-import java.util.Arrays;
 
 public class BasePlayer extends GameBody {
 

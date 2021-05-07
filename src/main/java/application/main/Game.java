@@ -6,6 +6,7 @@ import application.Navigation.SceneType;
 import application.common.CollisionHandler;
 import application.Navigation.Navigator;
 
+import application.common.Controller;
 import application.constants.Const;
 import application.constants.Images;
 import application.stats.Lifebar;

@@ -1,4 +1,4 @@
-package application.GameObjects;
+package application.common;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
