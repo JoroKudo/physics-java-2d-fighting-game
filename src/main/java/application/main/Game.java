@@ -36,6 +36,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public Floor floor;
     public boolean rag = false;
     private final Controller controller;
+    private final Controller gamepadcontroller;
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
@@ -46,6 +47,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public Game(Controller controller, GamepadController gamepadController, Navigator navigator) {
         this.controller = controller;
+        this.gamepadcontroller = gamepadController;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
     }
@@ -63,8 +65,21 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-        fighter = new BasePlayer(1, 10, 8, controller, physicWorld);
-        fighter_2 = new BasePlayer(2, 14, 8, controller, physicWorld);
+
+        boolean controllerinuseF1 = true;
+        boolean controllerinuseF2 = false;
+        if (controllerinuseF1) {
+            fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
+
+        } else {
+            fighter = new BasePlayer(1, 10, 8, controller, physicWorld);
+        }
+        if (controllerinuseF2) {
+            fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
+
+        } else {
+            fighter_2 = new BasePlayer(2, 14, 8, controller, physicWorld);
+        }
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();

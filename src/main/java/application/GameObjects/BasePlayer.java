@@ -73,7 +73,7 @@ public class BasePlayer extends GameBody {
 
     public void handleNavigationEvents(double elapsedTime) {
         act(controller.FighterXisActing(id), elapsedTime);
-        act(controller.FighterXisActing(id), elapsedTime);
+
 
 
 /*
