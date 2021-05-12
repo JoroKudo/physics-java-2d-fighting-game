@@ -9,6 +9,7 @@ import application.Sound.Sound;
 import application.common.*;
 import application.constants.Const;
 import application.constants.Images;
+import application.database.Request;
 import application.main.Game;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -83,7 +84,22 @@ public class UserSelectionScene extends BaseScene {
             String valueComboBox2 = (String) combo_box_2.getValue();
             System.out.println(valueComboBox1);
             System.out.println(valueComboBox2);
+            if (valueComboBox1 != null && valueComboBox2 != null) {
+                Request request = new Request("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/.json", "PUT", "{\n" +
+                        "    \"fighter_1\": {\n" +
+                        "        \"name\": \"" + valueComboBox1 + "\" \n" +
+                        "    },\n" +
+                        "    \"fighter_2\": {\n" +
+                        "        \"name\": \"" + valueComboBox2 + "\"\n" +
+                        "    }\n" +
+                        "}");
+                try {
+                    request.doRequest();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
                 navigator.goTo(SceneType.GAME_SCENE);
+            }
         });
     }
 

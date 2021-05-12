@@ -55,6 +55,8 @@ application/main/Game.java
  application.main.Game$1
 application/common/Initializable.java
  application.common.Initializable
+application/common/GamepadController.java
+ application.common.GamepadController
 application/Sound/SoundEffectType.java
  application.Sound.SoundEffectType
 application/GameObjects/Direction.java
