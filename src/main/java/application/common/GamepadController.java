@@ -21,15 +21,11 @@ public class GamepadController implements Controller {
 
     @Override
     public ActionType FighterXisActing(int id) {
-
-
-        if (id == 1) {
-            if (e == 0) {
+        if (e == 0) {
                 controllers = new ControllerManager();
                 controllers.initSDLGamepad();
                 e++;
             }
-
 
             //Print a message when the "A" button is pressed. Exit if the "B" button is pressed
             //or the controller disconnects.
@@ -63,38 +59,6 @@ public class GamepadController implements Controller {
                 return ActionType.HADOUKEN;
             }
 
-
-        } else if (id == 2) {
-            ControllerState currState = controllers.getState(0);
-            if (currState.y) {
-                return ActionType.JUMP;
-            }
-
-            if (currState.leftStickX <= -0.8) {
-                return ActionType.WALK_lEFT;
-            }
-
-            if (currState.leftStickX >= 0.8) {
-                return ActionType.WALK_RIGHT;
-            }
-
-            if (currState.b) {
-                return ActionType.PUNCH;
-            }
-
-            if (currState.a) {
-                return ActionType.DUCK;
-            }
-
-            if (currState.rightTrigger >= 0.1) {
-                return ActionType.BLOCK;
-            }
-
-            if (currState.x) {
-                return ActionType.HADOUKEN;
-            }
-
-        }
         return null;
     }
 }

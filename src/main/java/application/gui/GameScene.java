@@ -8,18 +8,19 @@ import application.common.*;
 import application.main.Game;
 
 public class GameScene extends BaseScene implements Initializable {
+
     public GameScene(Navigator navigator) {
         super(navigator);
     }
 
     @Override
     public void  onInitialize() {
-        KeyboardController controller = new KeyboardController();
+        KeyboardController  keyboardController = new KeyboardController();
         GamepadController  gamepadController = new GamepadController();
-        this.setOnKeyPressed(controller);
-        this.setOnKeyReleased(controller);
+        this.setOnKeyPressed(keyboardController);
+        this.setOnKeyReleased(keyboardController);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(controller,gamepadController, navigator);
+        Game game = new Game(keyboardController,gamepadController, navigator);
         game.load();
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override

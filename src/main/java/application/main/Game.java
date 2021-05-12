@@ -10,6 +10,7 @@ import application.common.Controller;
 import application.common.GamepadController;
 import application.constants.Const;
 import application.constants.Images;
+import application.gui.ControllerSelectionScene;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -32,10 +33,11 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
+    private ControllerSelectionScene controllerSelectionScene;
     private Timer timer;
     public Floor floor;
     public boolean rag = false;
-    private final Controller controller;
+    private final Controller keyboardController;
     private final Controller gamepadcontroller;
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
@@ -45,8 +47,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
 
-    public Game(Controller controller, GamepadController gamepadController, Navigator navigator) {
-        this.controller = controller;
+    public Game(Controller keyboardController, GamepadController gamepadController, Navigator navigator) {
+        this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
@@ -66,19 +68,33 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void load() {
 
-        boolean controllerinuseF1 = true;
+      //  controllerSelectionScene = new ControllerSelectionScene("", "");
+
+
+        boolean controllerinuseF1 = false;
         boolean controllerinuseF2 = false;
+
+
+        if (controllerSelectionScene.getValueComboBox1().equals("Gamepad")){
+            controllerinuseF1 = true;
+        }
+        if (controllerSelectionScene.getValueComboBox2().equals("Gamepad")) {
+            controllerinuseF2 = true;
+        }
+
+
+
         if (controllerinuseF1) {
             fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
 
         } else {
-            fighter = new BasePlayer(1, 10, 8, controller, physicWorld);
+            fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
         }
         if (controllerinuseF2) {
             fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
 
         } else {
-            fighter_2 = new BasePlayer(2, 14, 8, controller, physicWorld);
+            fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
         }
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);

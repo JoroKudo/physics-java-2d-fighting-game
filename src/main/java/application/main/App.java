@@ -26,6 +26,7 @@ public class App extends Application {
 
 
         navigator.registerScene(SceneType.USER_SELECTION_SCENE, new UserSelectionScene(navigator));
+        navigator.registerScene(SceneType.CONTROLLER_SELECTION_SCENE, new ControllerSelectionScene(navigator));
         navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator));
         navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator));
         navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameOverScene(navigator));
