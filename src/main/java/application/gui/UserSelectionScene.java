@@ -31,6 +31,7 @@ import javafx.scene.text.Text;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 import static javafx.scene.paint.Color.WHITE;
 
@@ -85,16 +86,16 @@ public class UserSelectionScene extends BaseScene {
             System.out.println(valueComboBox1);
             System.out.println(valueComboBox2);
             if (valueComboBox1 != null && valueComboBox2 != null) {
-                Request request = new Request("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/.json", "PUT", "{\n" +
-                        "    \"fighter_1\": {\n" +
-                        "        \"name\": \"" + valueComboBox1 + "\" \n" +
-                        "    },\n" +
-                        "    \"fighter_2\": {\n" +
-                        "        \"name\": \"" + valueComboBox2 + "\"\n" +
-                        "    }\n" +
-                        "}");
+                Request request = new Request();
                 try {
-                    request.doRequest();
+                    request.doRequest("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightlog/fight"+ request.getNumberOfFights("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightlog.json")+".json", "PUT", "{\n" +
+                            "    \"fighter_1\": {\n" +
+                            "        \"name\": \"" + valueComboBox1 + "\"\n" +
+                            "    },\n" +
+                            "    \"fighter_2\": {\n" +
+                            "        \"name\": \"" + valueComboBox2 + "\"\n" +
+                            "    }\n" +
+                            "}");
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }

@@ -1,33 +1,27 @@
 package application.database;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import org.json.*;
 
 
 public class Request {
 
-    String urlString;
-    String requestMethod;
-    String input;
-
-    public Request(String url, String method, String input) {
-        urlString = url;
-        requestMethod = method;
-        this.input = input;
-    }
-
-    public void doRequest() throws Exception {
+    public void doRequest(String urlString, String method, String inputString) throws Exception {
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        if (requestMethod.equals("PUT")) {
+        if (method.equals("PUT")) {
             con.setRequestMethod("PUT");
             con.setRequestProperty("Content-Type", "application/json; utf-8");
             con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
-            String jsonInputString = input;
+            String jsonInputString = inputString;
             try (OutputStream os = con.getOutputStream()) {
                 byte[] input = jsonInputString.getBytes("utf-8");
                 os.write(input, 0, input.length);
@@ -41,7 +35,7 @@ public class Request {
                 System.out.println(response.toString());
             }
         }
-        if (requestMethod.equals("GET")) {
+        if (method.equals("GET")) {
             con.setRequestMethod("GET");
             con.setRequestProperty("Content-Type", "application/json");
             String contentType = con.getHeaderField("Content-Type");
@@ -55,6 +49,24 @@ public class Request {
             con.disconnect();
             System.out.println(content.toString());
         }
+    }
+
+    public int getNumberOfFights(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        int numberOfFights = 0;
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("Content-Type");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+            numberOfFights++;
+        }
+        return numberOfFights;
+
     }
 }
 

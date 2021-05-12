@@ -20,6 +20,7 @@ dependencies {
     runtime 'com.github.cliftonlabs:json-simple:3.1.1'
     compile 'com.github.WilliamAHartman:Jamepad:1.4.0'
     compile 'uk.co.electronstudio.sdl2gdx:sdl2gdx:1.0.4'
+    compile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
 test {
     useJUnitPlatform()
