@@ -1,0 +1,14 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar 
+ */
+
+grammar grammar;
+
+
+public <command>  = (ha do ken | punch | jump | duck | stop | left | right);
+
+
+
+
