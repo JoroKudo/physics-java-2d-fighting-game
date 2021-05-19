@@ -31,6 +31,8 @@ public class Images {
     public final static Image KO = getImageSize("KO.png");
     public final static Image welcome = getImageSize("Welcome.gif");
     public final static Image GameWin = getImageSize("GameWin.gif");
+    public final static Image wall = getImageSize("wall.png");
+
 
 
     private static Image getImage(String imagePath, double height, double width) {

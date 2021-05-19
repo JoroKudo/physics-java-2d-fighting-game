@@ -1,6 +1,7 @@
 package application.main;
 
 import application.GameObjects.*;
+import application.GameObjects.Wall;
 import application.Navigation.SceneType;
 
 import application.common.CollisionHandler;
@@ -16,9 +17,12 @@ import application.gui.UserSelectionScene;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.dyn4j.dynamics.Body;
 
 import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
 import org.dyn4j.world.BroadphaseCollisionData;
@@ -38,6 +42,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private UserSelectionScene controllerSelectionScene ;
     private Timer timer;
     public Floor floor;
+    public Wall wall1;
+    public Wall wall2;
     public boolean rag = false;
     private final Controller keyboardController;
     private final Controller gamepadcontroller;
@@ -54,14 +60,17 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean controllerinuseF2 = false;
 
 
-    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator) {
+    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.voiceContrroll = voiceContrroll;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
+        this.lifebar1 = lifebar1;
+        this.lifebar2 = lifebar2;
         controllerSelectionScene = new UserSelectionScene(navigator);
     }
+
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
@@ -83,11 +92,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
             controllerinuseF2 = true;
         }
-
-
-
         if (controllerinuseF1) {
-            fighter = new BasePlayer(1, 10, 8, voiceContrroll, physicWorld);
+            fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
 
         } else {
             fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
@@ -102,6 +108,9 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(15, 17);
+        wall1 = new Wall(30, 7);
+        wall2 = new Wall(0, 7);
+
         physicWorld.setGravity(new Vector2(0, 15));
 
         physicWorld.addBody(fighter);
@@ -116,6 +125,9 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         physicWorld.addJoint(fighter_2.punchshould);
         physicWorld.addJoint(fighter_2.punchfoot);
         physicWorld.addBody(floor);
+        physicWorld.addBody(wall1);
+        physicWorld.addBody(wall2);
+
         physicWorld.setGravity(new Vector2(0, 15));
 
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {

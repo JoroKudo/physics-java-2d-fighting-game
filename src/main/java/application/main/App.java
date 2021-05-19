@@ -4,6 +4,7 @@ import application.Navigation.Navigator;
 import application.Navigation.SceneType;
 import application.database.Request;
 import application.gui.*;
+import application.stats.Lifebar;
 import javafx.application.Application;
 
 
@@ -20,18 +21,19 @@ public class App extends Application {
 
 
         Navigator navigator = new Navigator(primaryStage);
+        Lifebar lifebar1 = new Lifebar(1);
+        Lifebar lifebar2 = new Lifebar(2);
         welcomescene = new WelcomeScene(navigator);
         welcomescene.getStylesheets().add("button.css");
+        UserSelectionScene userSelectionScene = new UserSelectionScene(navigator);
         navigator.registerScene(SceneType.WELCOME_SCENE,  welcomescene);
 
 
-        navigator.registerScene(SceneType.USER_SELECTION_SCENE, new UserSelectionScene(navigator));
+        navigator.registerScene(SceneType.USER_SELECTION_SCENE, userSelectionScene);
         navigator.registerScene(SceneType.CONTROLLER_SELECTION_SCENE, new ControllerSelectionScene(navigator));
-        navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator));
-        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator));
-        navigator.registerScene(SceneType.GAME_OVER_SCENE, new GameOverScene(navigator));
+        navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator, lifebar1, lifebar2));
+        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, userSelectionScene.getValueComboBox1(), userSelectionScene.getValueComboBox2(), lifebar1, lifebar2));
         navigator.goTo(SceneType.WELCOME_SCENE);
-
         primaryStage.show();
     }
 }
