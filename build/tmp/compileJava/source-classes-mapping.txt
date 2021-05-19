@@ -1,5 +1,6 @@
 application/stats/Lifebar.java
  application.stats.Lifebar
+<<<<<<< HEAD
 application/common/GamepadController.java
  application.common.GamepadController
 application/constants/Images.java
@@ -8,10 +9,21 @@ application/common/BaseScene.java
  application.common.BaseScene
 application/common/ActionType.java
  application.common.ActionType
+=======
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
+application/main/App.java
+ application.main.App
+application/GameObjects/RagFighter.java
+ application.GameObjects.RagFighter
+application/GameObjects/Hadouken.java
+ application.GameObjects.Hadouken
+>>>>>>> refs/remotes/origin/master
 application/common/Controller.java
  application.common.Controller
 application/constants/Const.java
  application.constants.Const
+<<<<<<< HEAD
 application/Navigation/Navigator.java
  application.Navigation.Navigator
 application/Sound/Sound.java
@@ -21,6 +33,14 @@ application/common/Initializable.java
  application.common.Initializable
 application/GameObjects/Direction.java
  application.GameObjects.Direction
+=======
+application/GameObjects/Foot.java
+ application.GameObjects.Foot
+application/gui/ControllerSelectionScene.java
+ application.gui.ControllerSelectionScene
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
+>>>>>>> refs/remotes/origin/master
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
 application/main/UserSelection.java
@@ -80,3 +100,29 @@ application/common/CollisionHandler.java
 application/main/Game.java
  application.main.Game
  application.main.Game$1
+<<<<<<< HEAD
+=======
+application/common/Initializable.java
+ application.common.Initializable
+application/common/VoiceContrroll.java
+ application.common.VoiceContrroll
+application/common/GamepadController.java
+ application.common.GamepadController
+application/Sound/SoundEffectType.java
+ application.Sound.SoundEffectType
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
+application/common/ActionType.java
+ application.common.ActionType
+application/common/BaseScene.java
+ application.common.BaseScene
+application/database/Request.java
+ application.database.Request
+application/Sound/MusicType.java
+ application.Sound.MusicType
+>>>>>>> refs/remotes/origin/master
