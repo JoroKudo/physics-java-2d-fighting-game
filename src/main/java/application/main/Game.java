@@ -8,6 +8,7 @@ import application.Navigation.Navigator;
 
 import application.common.Controller;
 import application.common.GamepadController;
+import application.common.VoiceContrroll;
 import application.constants.Const;
 import application.constants.Images;
 import application.gui.ControllerSelectionScene;
@@ -40,6 +41,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean rag = false;
     private final Controller keyboardController;
     private final Controller gamepadcontroller;
+    private final VoiceContrroll voiceContrroll;
     private ArrayList<Hadouken> hadoukens = new ArrayList<>();
     private final World<Body> physicWorld = new World<>();
     private final Navigator navigator;
@@ -52,9 +54,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean controllerinuseF2 = false;
 
 
-    public Game(Controller keyboardController, GamepadController gamepadController, Navigator navigator) {
+    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
+        this.voiceContrroll = voiceContrroll;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
         controllerSelectionScene = new UserSelectionScene(navigator);
@@ -84,7 +87,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
 
         if (controllerinuseF1) {
-            fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
+            fighter = new BasePlayer(1, 10, 8, voiceContrroll, physicWorld);
 
         } else {
             fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);

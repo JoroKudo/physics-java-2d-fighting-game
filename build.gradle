@@ -11,6 +11,8 @@ repositories {
     mavenCentral()
     jcenter()
     maven { url "https://jitpack.io" }
+    mavenLocal()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 dependencies {
@@ -21,6 +23,8 @@ dependencies {
     compile 'com.github.WilliamAHartman:Jamepad:1.4.0'
     compile 'uk.co.electronstudio.sdl2gdx:sdl2gdx:1.0.4'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
+    compile group: 'edu.cmu.sphinx', name: 'sphinx4-core', version:'5prealpha-SNAPSHOT'
+    compile group: 'edu.cmu.sphinx', name: 'sphinx4-data', version:'5prealpha-SNAPSHOT'
 }
 test {
     useJUnitPlatform()
