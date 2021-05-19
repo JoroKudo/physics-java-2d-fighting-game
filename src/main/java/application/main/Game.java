@@ -73,13 +73,13 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-
-        if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
-            controllerinuseF1 = true;
-        }
-        if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
-            controllerinuseF2 = true;
-        }
+        //TODO
+//        if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
+//            controllerinuseF1 = true;
+//        }
+//        if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
+//            controllerinuseF2 = true;
+//        }
 
 
 

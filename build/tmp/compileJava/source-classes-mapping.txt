@@ -1,7 +1,7 @@
 application/stats/Lifebar.java
  application.stats.Lifebar
-application/Sound/MusicType.java
- application.Sound.MusicType
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
 application/main/App.java
  application.main.App
 application/GameObjects/RagFighter.java
@@ -14,10 +14,10 @@ application/Navigation/Navigator.java
  application.Navigation.Navigator
 application/constants/Const.java
  application.constants.Const
-application/gui/ControllerSelectionScene.java
- application.gui.ControllerSelectionScene
 application/GameObjects/Foot.java
  application.GameObjects.Foot
+application/gui/ControllerSelectionScene.java
+ application.gui.ControllerSelectionScene
 application/gui/GameWinScene.java
  application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
@@ -72,7 +72,7 @@ application/common/ActionType.java
  application.common.ActionType
 application/common/BaseScene.java
  application.common.BaseScene
-application/gui/UserSelectionScene.java
- application.gui.UserSelectionScene
 application/database/Request.java
  application.database.Request
+application/Sound/MusicType.java
+ application.Sound.MusicType
