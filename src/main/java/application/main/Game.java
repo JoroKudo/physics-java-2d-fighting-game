@@ -49,17 +49,18 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter1 = false;
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
-
     public    boolean controllerinuseF1 = false;
     public boolean controllerinuseF2 = false;
 
 
-    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator) {
+    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.voiceContrroll = voiceContrroll;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
+        this.lifebar1 = lifebar1;
+        this.lifebar2 = lifebar2;
         controllerSelectionScene = new UserSelectionScene(navigator);
     }
 
@@ -98,8 +99,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         } else {
             fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
         }
-        lifebar1 = new Lifebar(1);
-        lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(15, 17);
         physicWorld.setGravity(new Vector2(0, 15));
@@ -173,7 +172,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter1 = false;
                 if (lifebar1.getKo()) {
                     physicWorld.removeBody(fighter);
-                    lifebar1.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
 
@@ -190,7 +188,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter2 = false;
                 if (lifebar2.getKo()) {
                     physicWorld.removeBody(fighter);
-                    lifebar2.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
 

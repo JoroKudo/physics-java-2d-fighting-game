@@ -10,12 +10,13 @@ import javafx.scene.input.KeyCode;
 
 public class GameWinScene extends BaseScene {
 
-    private Lifebar lifebar1  = new Lifebar(1);
-    private Lifebar lifebar2  = new Lifebar(2);
+    Lifebar lifebar1;
+    Lifebar lifebar2;
 
-    public GameWinScene(Navigator navigator) {
+    public GameWinScene(Navigator navigator, String p1, String p2, Lifebar lifebar1, Lifebar lifebar2) {
         super(navigator, Images.GameWin);
-
+        this.lifebar1 = lifebar1;
+        this.lifebar2 = lifebar2;
         String text = checkwhowins();
         drawtext(text, 710, 350);
 
@@ -31,10 +32,10 @@ public class GameWinScene extends BaseScene {
 
 
     private String checkwhowins() {
-        if (lifebar1.getKo() == true){
+        if (lifebar1.getKo()){
             return "Player 2 Wins";
         }
-        if (lifebar2.getKo() == true){
+        if (lifebar2.getKo()){
             return "Player 1 Wins";
         }
         else {

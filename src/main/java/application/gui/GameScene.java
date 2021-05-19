@@ -6,11 +6,17 @@ import application.Sound.MusicType;
 import application.Sound.Sound;
 import application.common.*;
 import application.main.Game;
+import application.stats.Lifebar;
 
 public class GameScene extends BaseScene implements Initializable {
 
-    public GameScene(Navigator navigator) {
+    Lifebar lifebar1;
+    Lifebar lifebar2;
+
+    public GameScene(Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
         super(navigator);
+        this.lifebar1 = lifebar1;
+        this.lifebar2 = lifebar2;
     }
 
     @Override
@@ -21,7 +27,7 @@ public class GameScene extends BaseScene implements Initializable {
         this.setOnKeyPressed(keyboardController);
         this.setOnKeyReleased(keyboardController);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator);
+        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2);
         game.load();
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override

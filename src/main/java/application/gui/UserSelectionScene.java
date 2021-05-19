@@ -158,6 +158,14 @@ public class UserSelectionScene extends BaseScene {
 
     }
 
+    public String getValueComboBox1() {
+        return ValueComboBox1;
+    }
+
+    public String getValueComboBox2() {
+        return ValueComboBox2;
+    }
+
     private void drawImage(Image image, double x, double y) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(image, x, y);
