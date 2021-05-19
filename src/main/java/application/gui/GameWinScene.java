@@ -19,11 +19,7 @@ public class GameWinScene extends BaseScene implements Initializable {
         this.lifebar1 = lifebar1;
         this.lifebar2 = lifebar2;
 
-<<<<<<< HEAD
         setOnKeyPressed(e -> {
-=======
-       setOnKeyPressed(e -> {
->>>>>>> refs/remotes/origin/master
             if (e.getCode() == KeyCode.SPACE) {
                 navigator.goTo(SceneType.GAME_SCENE);
             }
@@ -31,10 +27,6 @@ public class GameWinScene extends BaseScene implements Initializable {
     }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
     private void drawtext(String text, int x, int y){
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.fillText(text, x, y);
@@ -42,10 +34,7 @@ public class GameWinScene extends BaseScene implements Initializable {
     }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/master
     @Override
     public void onInitialize() {
         String text;
@@ -59,8 +48,5 @@ public class GameWinScene extends BaseScene implements Initializable {
         }
         drawtext(text, 710, 350);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/master
 }

@@ -55,6 +55,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter1 = false;
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
+
     public    boolean controllerinuseF1 = false;
     public boolean controllerinuseF2 = false;
 
@@ -84,7 +85,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-<<<<<<< HEAD
 
         if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
             controllerinuseF1 = true;
@@ -92,18 +92,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
             controllerinuseF2 = true;
         }
-=======
-        //TODO
-//        if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
-//            controllerinuseF1 = true;
-//        }
-//        if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
-//            controllerinuseF2 = true;
-//        }
-
-
-
->>>>>>> refs/remotes/origin/master
         if (controllerinuseF1) {
             fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
 
@@ -116,6 +104,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         } else {
             fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
         }
+        lifebar1 = new Lifebar(1);
+        lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(15, 17);
         wall1 = new Wall(30, 7);
@@ -195,6 +185,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter1 = false;
                 if (lifebar1.getKo()) {
                     physicWorld.removeBody(fighter);
+                    lifebar1.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
 
@@ -211,6 +202,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter2 = false;
                 if (lifebar2.getKo()) {
                     physicWorld.removeBody(fighter);
+                    lifebar2.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                 }
 
