@@ -23,7 +23,8 @@ public class Images {
     public final static Image shootright = getImageSize("fighter/ShootRight.gif");
     public final static Image chargeright = getImageSize("fighter/RightCharge.gif");
     public final static Image expolsion = getImageSize("fighter/hadoukenexplosion.gif");
-
+    public final static Image controller = getImageSize("controller.png");
+    public final static Image keyboard = getImageSize("keyboard.png");
     public final static Image duck_right= getImageSize("fighter/DuckRight.gif");
     public final static Image background = getImageSize("background.png");
     public final static Image KO = getImageSize("KO.png");

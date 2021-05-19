@@ -9,4 +9,6 @@ public class Const {
     public static final int LIFEBAR_LENGTH = 400;
     public static final int DISTANCE_BETWEEN_LIFEBAR = 100;
     public static final int DISTANCE_CHOICEBOXE_TO_MIDDLE = 250;
+
+
 }

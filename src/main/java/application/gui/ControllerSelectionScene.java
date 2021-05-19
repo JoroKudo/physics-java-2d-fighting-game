@@ -5,6 +5,7 @@ import application.Navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Const;
 import application.constants.Images;
+import application.main.Game;
 import javafx.collections.FXCollections;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -19,15 +20,18 @@ import static javafx.scene.paint.Color.*;
 
 public class ControllerSelectionScene extends BaseScene {
 
-    String ValueComboBox1;
-    String ValueComboBox2;
+    public static  String ValueComboBox1;
+    public static  String ValueComboBox2;
+    public ComboBox combo_box;
+    public ComboBox combo_box_2;
+
 
     public ControllerSelectionScene(Navigator navigator) {
         super(navigator, Images.background);
 
 
         //Create first combobox
-        ComboBox combo_box = new ComboBox(FXCollections.observableArrayList("Keyboard", "Gamepad"));
+         combo_box = new ComboBox(FXCollections.observableArrayList("Keyboard", "Gamepad"));
         combo_box.setEditable(true);
         TilePane tile_pane = new TilePane(combo_box);
         tile_pane.setLayoutX(Const.CANVAS_MIDDLE_X-Const.DISTANCE_CHOICEBOXE_TO_MIDDLE);
@@ -35,7 +39,7 @@ public class ControllerSelectionScene extends BaseScene {
         tile_pane.setHgap(0);
         parent.add(tile_pane);
 
-        ValueComboBox1 = (String) combo_box.getValue();
+
 
         //create Title
         Text title = new Text("choose your options");
@@ -47,15 +51,15 @@ public class ControllerSelectionScene extends BaseScene {
         parent.add(tilePane3);
 
         // create second combobox
-        ComboBox combo_box_2 = new ComboBox(FXCollections.observableArrayList("Keyboard", "Gamepad"));
-        combo_box_2.setEditable(true);
-        TilePane tile_pane_2 = new TilePane(combo_box_2);
+        this.combo_box_2 = new ComboBox(FXCollections.observableArrayList("Keyboard", "Gamepad"));
+        this.combo_box_2.setEditable(true);
+        TilePane tile_pane_2 = new TilePane(  this.combo_box_2);
         tile_pane_2.setLayoutX(Const.CANVAS_MIDDLE_X+Const.DISTANCE_CHOICEBOXE_TO_MIDDLE-combo_box.getWidth());
         tile_pane_2.setLayoutY(300);
         tile_pane_2.setHgap(0);
         parent.add(tile_pane_2);
 
-        ValueComboBox2 = (String) combo_box.getValue();
+
 
 
         //Create Player 1 text
@@ -87,8 +91,11 @@ public class ControllerSelectionScene extends BaseScene {
         tilePane5.setLayoutY(300);
         parent.add(tilePane5);
         submit.setOnAction(e -> {
+            ValueComboBox1 = (String)   this.combo_box.getValue();
+            ValueComboBox2 = (String)   this.combo_box_2.getValue();
             navigator.goTo(SceneType.GAME_SCENE);
         });
+
     }
 
     private void drawImage(Image image, double x, double y) {
@@ -97,11 +104,11 @@ public class ControllerSelectionScene extends BaseScene {
     }
 
     public String getValueComboBox1() {
-        return ValueComboBox1;
+        return   ValueComboBox1;
     }
 
     public String getValueComboBox2() {
-        return ValueComboBox2;
+        return   ValueComboBox2;
     }
 
 

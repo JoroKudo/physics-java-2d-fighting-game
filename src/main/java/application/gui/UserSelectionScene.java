@@ -1,42 +1,36 @@
 package application.gui;
 
-import application.GameObjects.BasePlayer;
-import application.GameObjects.RagFighter;
+
 import application.Navigation.Navigator;
 import application.Navigation.SceneType;
-import application.Sound.MusicType;
-import application.Sound.Sound;
+
 import application.common.*;
-import application.constants.Const;
 import application.constants.Images;
 import application.database.Request;
-import application.main.Game;
 import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
+
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
+
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
+    public static String ValueComboBox1;
+    public static String ValueComboBox2;
+
     public UserSelectionScene(Navigator navigator) {
         super(navigator, Images.background);
 
@@ -51,6 +45,51 @@ public class UserSelectionScene extends BaseScene {
         //create second combobox
         ComboBox combo_box_2 = new ComboBox(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
+
+        //create second combobox
+        ComboBox combo_box_input_1 = new ComboBox(FXCollections.observableArrayList("Keyboard", "Gamepad"));
+        combo_box_input_1.setEditable(true);
+
+        //create second combobox
+        ComboBox combo_box_input_2 = new ComboBox(FXCollections.observableArrayList("Keyboard", "Gamepad"));
+        combo_box_input_2.setEditable(true);
+
+        ImageView ctrlview = new ImageView(Images.controller);
+        ImageView key2img = new ImageView(Images.keyboard);
+
+        ctrlview.setFitHeight(40);
+        key2img.setFitHeight(40);
+
+        ctrlview.setPreserveRatio(true);
+        key2img.setPreserveRatio(true);
+
+        final ToggleGroup group = new ToggleGroup();
+
+        RadioButton controller2 = new RadioButton();
+        RadioButton keyboard2 = new RadioButton();
+
+        keyboard2.setToggleGroup(group);
+        controller2.setToggleGroup(group);
+
+        keyboard2.setSelected(true);
+
+
+        controller2.getStylesheets().add("button.css");
+        keyboard2.getStylesheets().add("button.css");
+
+        controller2.setPrefSize(40, 40);
+        keyboard2.setPrefSize(40, 40);
+
+        controller2.setGraphic(ctrlview);
+        keyboard2.setGraphic(key2img);
+
+
+
+
+
+
+
+
 
         //Create Player 1 text
         Text player1 = new Text("Player 1");
@@ -71,6 +110,8 @@ public class UserSelectionScene extends BaseScene {
 
 
         submit.setOnAction(e -> {
+            ValueComboBox1 = (String) combo_box_input_1.getValue();
+            ValueComboBox2 = (String) combo_box_input_2.getValue();
             String valueComboBox1 = (String) combo_box.getValue();
             String valueComboBox2 = (String) combo_box_2.getValue();
             System.out.println(valueComboBox1);
@@ -78,7 +119,7 @@ public class UserSelectionScene extends BaseScene {
             if (valueComboBox1 != null && valueComboBox2 != null) {
                 Request request = new Request();
                 try {
-                    request.doRequest("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightlog/fight"+ request.getNumberOfFights("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightlog.json")+".json", "PUT", "{\n" +
+                    request.doRequest("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightlog/fight" + request.getNumberOfFights("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightlog.json") + ".json", "PUT", "{\n" +
                             "    \"fighter_1\": {\n" +
                             "        \"name\": \"" + valueComboBox1 + "\"\n" +
                             "    },\n" +
@@ -92,12 +133,19 @@ public class UserSelectionScene extends BaseScene {
                 navigator.goTo(SceneType.GAME_SCENE);
             }
         });
-
-        gridPane.add(combo_box, 9, 5, 1, 1);
-        gridPane.add(combo_box_2, 13, 5, 1, 1);
-        gridPane.add(submit, 11, 5, 1, 1);
-        gridPane.add(player2, 13, 4, 1, 1);
         gridPane.add(player1, 9, 4, 1, 1);
+        gridPane.add(combo_box, 9, 5, 1, 1);
+        gridPane.add(combo_box_input_1, 9, 8, 1, 1);
+
+        gridPane.add(player2, 13, 4, 1, 1);
+        gridPane.add(combo_box_2, 13, 5, 1, 1);
+        gridPane.add(combo_box_input_2, 13, 6, 1, 1);
+        gridPane.add(keyboard2, 13, 7, 1, 1);
+        gridPane.add(controller2, 13, 8, 1, 1);
+
+        gridPane.add(submit, 11, 5, 1, 1);
+
+
         parent.add(gridPane);
 
     }

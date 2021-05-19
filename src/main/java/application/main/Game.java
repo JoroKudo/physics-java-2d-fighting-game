@@ -11,6 +11,7 @@ import application.common.GamepadController;
 import application.constants.Const;
 import application.constants.Images;
 import application.gui.ControllerSelectionScene;
+import application.gui.UserSelectionScene;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -33,7 +34,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
-    private ControllerSelectionScene controllerSelectionScene;
+    private UserSelectionScene controllerSelectionScene ;
     private Timer timer;
     public Floor floor;
     public boolean rag = false;
@@ -47,11 +48,16 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
 
+    public    boolean controllerinuseF1 = false;
+    public boolean controllerinuseF2 = false;
+
+
     public Game(Controller keyboardController, GamepadController gamepadController, Navigator navigator) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.navigator = navigator;
         this.collision = new CollisionHandler(this);
+        controllerSelectionScene = new UserSelectionScene(navigator);
     }
 
     public void draw(GraphicsContext gc) {
@@ -68,17 +74,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void load() {
 
-      //  controllerSelectionScene = new ControllerSelectionScene("", "");
-
-
-        boolean controllerinuseF1 = false;
-        boolean controllerinuseF2 = false;
-
-
-        if (controllerSelectionScene.getValueComboBox1().equals("Gamepad")){
+        if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
             controllerinuseF1 = true;
         }
-        if (controllerSelectionScene.getValueComboBox2().equals("Gamepad")) {
+        if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
             controllerinuseF2 = true;
         }
 
