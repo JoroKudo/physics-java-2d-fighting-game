@@ -12,12 +12,14 @@ public class GameScene extends BaseScene implements Initializable {
 
     Lifebar lifebar1;
     Lifebar lifebar2;
+    UserSelectionScene userSelectionScene;
     private FancyAnimationTimer gameLoop;
 
-    public GameScene(Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
+    public GameScene(Navigator navigator, Lifebar lifebar1, Lifebar lifebar2, UserSelectionScene userSelectionScene) {
         super(navigator);
         this.lifebar1 = lifebar1;
         this.lifebar2 = lifebar2;
+        this.userSelectionScene = userSelectionScene;
     }
 
 
@@ -29,7 +31,7 @@ public class GameScene extends BaseScene implements Initializable {
         this.setOnKeyPressed(keyboardController);
         this.setOnKeyReleased(keyboardController);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2, () -> gameLoopStopper());
+        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2, () -> gameLoopStopper(),userSelectionScene);
         game.load();
         gameLoop = new FancyAnimationTimer() {
             @Override
