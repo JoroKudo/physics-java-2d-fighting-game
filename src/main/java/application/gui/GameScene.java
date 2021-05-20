@@ -28,7 +28,7 @@ public class GameScene extends BaseScene implements Initializable {
         this.setOnKeyPressed(keyboardController);
         this.setOnKeyReleased(keyboardController);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2);
+        game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2);
         game.load();
         FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
             @Override

@@ -12,11 +12,12 @@ import application.common.GamepadController;
 import application.common.VoiceContrroll;
 import application.constants.Const;
 import application.constants.Images;
-import application.gui.ControllerSelectionScene;
+
 import application.gui.UserSelectionScene;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.dyn4j.dynamics.Body;
@@ -32,14 +33,15 @@ import org.dyn4j.world.listener.CollisionListenerAdapter;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
 public class Game extends CopyOnWriteArrayList<GameObject> {
+
 
     private BasePlayer fighter;
     private BasePlayer fighter_2;
     public RagFighter ragfighter;
     private Lifebar lifebar1;
     private Lifebar lifebar2;
-    private UserSelectionScene controllerSelectionScene ;
     private Timer timer;
     public Floor floor;
     public Wall wall1;
@@ -56,11 +58,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
 
-    public    boolean controllerinuseF1 = false;
-    public boolean controllerinuseF2 = false;
 
-
-    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
+    public Game(Controller keyboardController, GamepadController gamepadController, VoiceContrroll voiceContrroll, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.voiceContrroll = voiceContrroll;
@@ -68,9 +67,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         this.collision = new CollisionHandler(this);
         this.lifebar1 = lifebar1;
         this.lifebar2 = lifebar2;
-        controllerSelectionScene = new UserSelectionScene(navigator);
-    }
 
+    }
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
@@ -86,24 +84,28 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void load() {
 
-        if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
-            controllerinuseF1 = true;
-        }
-        if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
-            controllerinuseF2 = true;
-        }
-        if (controllerinuseF1) {
-            fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
 
-        } else {
-            fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
+        switch (UserSelectionScene.controll1) {
+            case "mic" -> {
+                fighter = new BasePlayer(1, 10, 8, voiceContrroll, physicWorld);
+                voiceContrroll.initiate(voiceContrroll.configuration);
+            }
+            case "key" -> fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
+            case "ctrl" -> fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
         }
-        if (controllerinuseF2) {
-            fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
+        switch (UserSelectionScene.controll2) {
+            case "mic" -> {
+                fighter_2 = new BasePlayer(2, 14, 8, voiceContrroll, physicWorld);
+                voiceContrroll.initiate(voiceContrroll.configuration);
+            }
+            case "key" -> fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
+            case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
+        }
+System.out.println(UserSelectionScene.controll1);
+        System.out.println(UserSelectionScene.controll2);
 
-        } else {
-            fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
-        }
+
+
         lifebar1 = new Lifebar(1);
         lifebar2 = new Lifebar(2);
         timer = new Timer();

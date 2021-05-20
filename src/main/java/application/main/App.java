@@ -30,10 +30,9 @@ public class App extends Application {
 
 
         navigator.registerScene(SceneType.USER_SELECTION_SCENE, userSelectionScene);
-        navigator.registerScene(SceneType.CONTROLLER_SELECTION_SCENE, new ControllerSelectionScene(navigator));
         navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator, lifebar1, lifebar2));
-        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, userSelectionScene.getValueComboBox1(), userSelectionScene.getValueComboBox2(), lifebar1, lifebar2));
-        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, userSelectionScene.getValueComboBox2(), userSelectionScene.getValueComboBox2(), lifebar1, lifebar2));
+        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, lifebar1, lifebar2));
+        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator,  lifebar1, lifebar2));
         navigator.goTo(SceneType.WELCOME_SCENE);
         primaryStage.show();
     }

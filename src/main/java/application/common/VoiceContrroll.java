@@ -1,7 +1,6 @@
 package application.common;
 
-import com.studiohartman.jamepad.ControllerManager;
-import com.studiohartman.jamepad.ControllerState;
+
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
@@ -18,35 +17,28 @@ import java.util.logging.Logger;
 
 public class VoiceContrroll implements Controller {
 
-    // Necessary
     private LiveSpeechRecognizer recognizer;
 
-    // Logger
     private Logger logger = Logger.getLogger(getClass().getName());
 
 
-    private String speechRecognitionResult;
+    private String speechRecognitionResult = "stop";
 
 
     private boolean ignoreSpeechRecognitionResults = false;
 
     private boolean speechRecognizerThreadRunning = false;
 
-    private boolean resourcesThreadRunning;
 
 
     private ExecutorService eventsExecutorService = Executors.newFixedThreadPool(2);
+    public Configuration configuration = new Configuration();
 
 
-    public VoiceContrroll() {
-
-        // Loading Message
+    public void initiate(Configuration configuration) {
         logger.log(Level.INFO, "Loading Speech Recognizer...\n");
 
-        // Configuration
-        Configuration configuration = new Configuration();
 
-        // Load model from the jar
         configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
         configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
 
@@ -54,13 +46,11 @@ public class VoiceContrroll implements Controller {
         configuration.setGrammarPath("resource:/grammars");
         configuration.setGrammarName("grammar");
         configuration.setUseGrammar(true);
-
         try {
             recognizer = new LiveSpeechRecognizer(configuration);
         } catch (IOException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
-
         startResourcesThread();
 
         startSpeechRecognition();
@@ -90,6 +80,10 @@ public class VoiceContrroll implements Controller {
         }
 
         if (speechRecognitionResult.equals("stop")) {
+            return null;
+        }
+
+        if (speechRecognitionResult.equals("block")) {
             return ActionType.BLOCK;
         }
 
@@ -102,9 +96,7 @@ public class VoiceContrroll implements Controller {
 
     public synchronized void startSpeechRecognition() {
 
-        if (speechRecognizerThreadRunning)
-            logger.log(Level.INFO, "Speech Recognition Thread already running...\n");
-        else
+
             eventsExecutorService.submit(() -> {
 
                 speechRecognizerThreadRunning = true;
@@ -148,13 +140,11 @@ public class VoiceContrroll implements Controller {
 
     public void startResourcesThread() {
 
-        if (resourcesThreadRunning)
-            logger.log(Level.INFO, "Resources Thread already running...\n");
-        else
+
             eventsExecutorService.submit(() -> {
                 try {
 
-                    resourcesThreadRunning = true;
+
 
                     while (true) {
 
@@ -166,7 +156,6 @@ public class VoiceContrroll implements Controller {
 
                 } catch (InterruptedException ex) {
                     logger.log(Level.WARNING, null, ex);
-                    resourcesThreadRunning = false;
                 }
             });
     }
@@ -176,11 +165,6 @@ public class VoiceContrroll implements Controller {
 
         System.out.println(speech);
 
-    }
-
-
-    public static void main(String[] args) {
-        new VoiceContrroll();
     }
 
 
