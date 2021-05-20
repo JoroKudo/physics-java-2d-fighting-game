@@ -38,4 +38,5 @@ public class Lifebar {
     public void setDamagetoNull(){
         this.damage = 0;
     }
+
 }

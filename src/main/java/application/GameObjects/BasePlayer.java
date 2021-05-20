@@ -74,26 +74,6 @@ public class BasePlayer extends GameBody {
     public void handleNavigationEvents(double elapsedTime) {
         act(controller.FighterXisActing(id), elapsedTime);
 
-
-
-/*
-        if (keyEventHandler.pressedKeys.size() > i) {
-            if (!Arrays.asList(keys).contains(keyEventHandler.pressedKeys.get(i).getChar())) {
-                i++;
-            } else {
-                i = 0;
-            }
-
-        }
-        if (i >= keyEventHandler.pressedKeys.size()) {
-            i = 0;
-            if (currentDirect == Direction.RIGHT) {
-                this.image = Images.fighter_look_right;
-            } else {
-                this.image = Images.fighter_look_left;
-            }
-        }
-*/
     }
 
     @Override
@@ -136,6 +116,7 @@ public class BasePlayer extends GameBody {
 
     public void act(ActionType actionType, double elapsedTime) {
         punch(elapsedTime);
+        duck();
         if ((actionType != ActionType.WALK_lEFT && actionType != ActionType.WALK_RIGHT) && isOnGround()) {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
         }
@@ -146,7 +127,7 @@ public class BasePlayer extends GameBody {
                     this.jump();
                     break;
                 case DUCK:
-                    this.duck();
+
                     break;
                 case WALK_lEFT:
                     this.walkLeft();
@@ -172,7 +153,7 @@ public class BasePlayer extends GameBody {
 
 
             }
-        }else{
+        } else {
             if (currentDirect == Direction.RIGHT) {
                 this.image = Images.fighter_look_right;
             } else {
@@ -184,24 +165,29 @@ public class BasePlayer extends GameBody {
     }
 
 
-    protected void duck() {
-        applyImpulse(new Vector2(0, 100));
-        if (d) {
+    private void duck() {
+
+        if (controller.FighterXisActing(id) == ActionType.DUCK) {
             this.image = Images.duck_right;
-            this.getFixture(1).getShape().translate(0, 1);
-            this.getFixture(2).getShape().translate(0, 1);
-            this.getFixture(3).getShape().translate(0, 1);
-            d = false;
-        }
+            applyImpulse(new Vector2(0, 100));
+
+            if (d) {
+                this.image = Images.duck_right;
+                this.getFixture(1).getShape().translate(0, 1);
+                this.getFixture(2).getShape().translate(0, 1);
+                this.getFixture(3).getShape().translate(0, 1);
+                d = false;
+            }
 
 
-        if (!d) {
+        } else if (!d) {
             this.getFixture(1).getShape().translate(0, -1);
             this.getFixture(2).getShape().translate(0, -1);
             this.getFixture(3).getShape().translate(0, -1);
             d = true;
         }
     }
+
 
     public void jump() {
         if (this.isOnGround()) {

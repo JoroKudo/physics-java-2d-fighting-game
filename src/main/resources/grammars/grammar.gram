@@ -8,6 +8,15 @@ grammar grammar;
 
 
 public <command>  = (ha do ken | punch | jump | duck | stop | block | left | right);
+//public <left>  = (left | lev |lef);
+//public <right>  = (right| rye);
+//public <jump>  = ( jump | chump );
+//public <hop>  = ( hop );
+//public <duck>  = (duck | duhck);
+//public <punch>  = ( punch | puh nch);
+//public <block>  = (block | bloc | blok);
+//public <hadoken>  = (ha do ken | ha duh ken );
+//public <stop>  = (stop |stawp | stopp |shtop);
 
 
 
