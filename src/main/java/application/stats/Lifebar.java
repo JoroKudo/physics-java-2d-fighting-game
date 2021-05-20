@@ -6,23 +6,19 @@ import javafx.scene.paint.Color;
 
 public class Lifebar {
 
-    private Integer LifebarNumber;
+    private int lifebarNumber;
     private double damage = 0;
-    private boolean ko = false;
 
-    public Lifebar(Integer lifebarNumber) {
-        LifebarNumber = lifebarNumber;
+    public Lifebar(int lifebarNumber) {
+        this.lifebarNumber = lifebarNumber;
     }
 
-    public void update(double damage) {
+    public void increaseDamage(double damage) {
         this.damage += damage;
-        if (this.damage >= Const.LIFEBAR_LENGTH) {
-            ko = true;
-        }
     }
 
     public void draw(GraphicsContext gc) {
-        switch (LifebarNumber){
+        switch (lifebarNumber){
             case 1:
                 gc.setFill(Color.GREEN);
                 gc.fillRect((Const.CANVAS_WIDTH-(2*Const.LIFEBAR_LENGTH)-Const.DISTANCE_BETWEEN_LIFEBAR)/2, 50, Const.LIFEBAR_LENGTH, 50); //Starting Point calculated dependent on canvas width
@@ -35,13 +31,11 @@ public class Lifebar {
                 gc.fillRect(Const.CANVAS_WIDTH-(Const.CANVAS_WIDTH-(2*Const.LIFEBAR_LENGTH)-Const.DISTANCE_BETWEEN_LIFEBAR)/2-damage, 50, damage, 50);
         }
     }
-    public boolean getKo(){
-        return ko;
+    public boolean isKo(){
+        return this.damage >= Const.LIFEBAR_LENGTH;
     }
 
     public void setDamagetoNull(){
-        this.ko = false;
         this.damage = 0;
     }
-
 }

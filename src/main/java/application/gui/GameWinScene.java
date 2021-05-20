@@ -14,10 +14,10 @@ import java.io.IOException;
 
 public class GameWinScene extends BaseScene implements Initializable {
 
-    Lifebar lifebar1;
-    Lifebar lifebar2;
-    String winner;
-    UserSelectionScene userSelectionScene;
+    private Lifebar lifebar1;
+    private Lifebar lifebar2;
+    private String winner;
+    private UserSelectionScene userSelectionScene;
 
     public GameWinScene(Navigator navigator, Lifebar l1, Lifebar l2, UserSelectionScene userSelectionScene) {
         super(navigator, Images.GameWin);
@@ -40,11 +40,10 @@ public class GameWinScene extends BaseScene implements Initializable {
     @Override
     public void onInitialize() {
         String text;
-        if (lifebar1.getKo()) {
+        if (lifebar1.isKo()) {
             text = "Player 2 Wins";
             winner = userSelectionScene.getP2();
-        }
-        if (lifebar2.getKo()) {
+        } else if (lifebar2.isKo()) {
             text = "Player 1 Wins";
             winner = userSelectionScene.getP1();
         } else {

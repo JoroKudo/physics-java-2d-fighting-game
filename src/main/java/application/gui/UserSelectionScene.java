@@ -1,46 +1,33 @@
-
 package application.gui;
 
 
-        import application.Navigation.Navigator;
-        import application.Navigation.SceneType;
+import application.Navigation.Navigator;
+import application.Navigation.SceneType;
+import application.common.BaseScene;
+import application.constants.Images;
+import javafx.collections.FXCollections;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
-        import application.common.*;
-        import application.constants.Images;
-        import javafx.collections.FXCollections;
-
-        import javafx.scene.canvas.GraphicsContext;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.ComboBox;
-
-        import javafx.scene.control.RadioButton;
-        import javafx.scene.control.ToggleGroup;
-        import javafx.scene.image.Image;
-
-        import javafx.scene.image.ImageView;
-        import javafx.scene.layout.GridPane;
-
-        import javafx.scene.text.Font;
-        import javafx.scene.text.FontWeight;
-        import javafx.scene.text.Text;
-
-        import static javafx.scene.paint.Color.WHITE;
+import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
-    public  ToggleGroup group1 = new ToggleGroup();
-    public  ToggleGroup group2 = new ToggleGroup();
-    public  String controll1 = "key";
-    public  String controll2 = "key";
+
+    public ToggleGroup group1 = new ToggleGroup();
+    public ToggleGroup group2 = new ToggleGroup();
+    public String controll1 = "key";
+    public String controll2 = "key";
     private String p1;
     private String p2;
-
-    public String getP1() {
-        return p1;
-    }
-
-    public String getP2() {
-        return p2;
-    }
 
     public UserSelectionScene(Navigator navigator) {
         super(navigator, Images.background);
@@ -56,7 +43,6 @@ public class UserSelectionScene extends BaseScene {
         //create second combobox
         ComboBox combo_box_2 = new ComboBox(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
-
 
 
         ImageView ctrlview1 = new ImageView(Images.controller);
@@ -203,6 +189,14 @@ public class UserSelectionScene extends BaseScene {
 
     }
 
+    public String getP1() {
+        return p1;
+    }
+
+    public String getP2() {
+        return p2;
+    }
+
     private void drawImage(Image image, double x, double y) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(image, x, y);
@@ -215,8 +209,6 @@ public class UserSelectionScene extends BaseScene {
     public String getcontroll2() {
         return controll2;
     }
-
-
 
 
 }

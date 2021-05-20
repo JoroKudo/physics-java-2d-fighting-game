@@ -77,7 +77,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void load() {
 
-
         switch (userSelectionScene.controll1) {
             case "mic" -> {
                 fighter = new BasePlayer(1, 10, 8, voiceContrroll, physicWorld);
@@ -94,8 +93,6 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             case "key" -> fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
             case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
         }
-        lifebar1 = new Lifebar(1);
-        lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(15, 17);
         wall1 = new Wall(30, 7);
@@ -167,15 +164,14 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         if (timePassedSinceCooldown >= 0.7) {
             if (id == 1) {
                 if (fighter.isblocking) {
-                    lifebar1.update(50 * 0.35);
+                    lifebar1.increaseDamage(50 * 0.35);
                 } else {
-                    lifebar1.update(50);
+                    lifebar1.increaseDamage(50);
                 }
                 timePassedSinceCooldown = 0;
                 hitFighter1 = false;
-                if (lifebar1.getKo()) {
+                if (lifebar1.isKo()) {
                     physicWorld.removeBody(fighter);
-                    lifebar1.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                     gameLoopStopper.run();
                 }
@@ -184,16 +180,15 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
             if (id == 2) {
                 if (fighter_2.isblocking) {
-                    lifebar2.update(50 * 0.35);
+                    lifebar2.increaseDamage(50 * 0.35);
                 } else {
-                    lifebar2.update(50);
+                    lifebar2.increaseDamage(50);
                 }
 
                 timePassedSinceCooldown = 0;
                 hitFighter2 = false;
-                if (lifebar2.getKo()) {
+                if (lifebar2.isKo()) {
                     physicWorld.removeBody(fighter);
-                    lifebar2.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                     gameLoopStopper.run();
                 }

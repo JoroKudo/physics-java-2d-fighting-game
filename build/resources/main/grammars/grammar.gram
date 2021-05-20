@@ -7,7 +7,7 @@
 grammar grammar;
 
 
-public <command>  = (ha do ken | punch | jump | duck | stop | left | right);
+public <command>  = (ha do ken | punch | jump | duck | stop | block | left | right);
 
 
 
