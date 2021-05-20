@@ -18,16 +18,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import static javafx.scene.paint.Color.WHITE;
+        import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
-
-    public ToggleGroup group1 = new ToggleGroup();
-    public ToggleGroup group2 = new ToggleGroup();
-    public String controll1 = "key";
-    public String controll2 = "key";
+    private ToggleGroup group1 = new ToggleGroup();
+    private ToggleGroup group2 = new ToggleGroup();
+    private String controll1 = "key";
+    private String controll2 = "key";
     private String p1;
     private String p2;
+
 
     public UserSelectionScene(Navigator navigator) {
         super(navigator, Images.background);
@@ -209,6 +209,8 @@ public class UserSelectionScene extends BaseScene {
     public String getcontroll2() {
         return controll2;
     }
+
+
 
 
 }
