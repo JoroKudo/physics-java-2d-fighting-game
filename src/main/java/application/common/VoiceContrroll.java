@@ -40,7 +40,7 @@ public class VoiceContrroll implements Controller {
 
     public VoiceContrroll() {
 
-        // Loading Message
+        /*// Loading Message
         logger.log(Level.INFO, "Loading Speech Recognizer...\n");
 
         // Configuration
@@ -63,7 +63,7 @@ public class VoiceContrroll implements Controller {
 
         startResourcesThread();
 
-        startSpeechRecognition();
+        startSpeechRecognition();*/
     }
 
     @Override

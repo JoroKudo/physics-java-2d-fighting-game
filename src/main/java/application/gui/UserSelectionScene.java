@@ -6,7 +6,6 @@ import application.Navigation.SceneType;
 
 import application.common.*;
 import application.constants.Images;
-import application.database.Request;
 import javafx.collections.FXCollections;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -24,15 +23,21 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-
 import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
-    public static String ValueComboBox1;
-    public static String ValueComboBox2;
+    private String ValueComboBox1;
+    private String ValueComboBox2;
+    private String p1;
+    private String p2;
+
+    public String getP1() {
+        return p1;
+    }
+
+    public String getP2() {
+        return p2;
+    }
 
     public UserSelectionScene(Navigator navigator) {
         super(navigator, Images.background);
@@ -81,7 +86,6 @@ public class UserSelectionScene extends BaseScene {
 
         keyboard2.setSelected(true);
 
-
         controller2.getStylesheets().add("button.css");
         keyboard2.getStylesheets().add("button.css");
         mic2.getStylesheets().add("button.css");
@@ -90,18 +94,9 @@ public class UserSelectionScene extends BaseScene {
         keyboard2.setPrefSize(40, 40);
         mic2.setPrefSize(40, 40);
 
-
         controller2.setGraphic(ctrlview2);
         keyboard2.setGraphic(key2img);
         mic2.setGraphic(micview2);
-
-
-
-
-
-
-
-
 
         //Create Player 1 text
         Text player1 = new Text("Player 1");
@@ -130,12 +125,8 @@ public class UserSelectionScene extends BaseScene {
             System.out.println(valueComboBox2);
             System.out.println(combo_box.getValue());
             if (combo_box.getValue() != null && combo_box_2.getValue() != null) {
-                Request request = new Request();
-                try {
-                    request.addFight((String) combo_box.getValue(), (String) combo_box_2.getValue());
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                p1 = (String) combo_box.getValue();
+                p2 = (String) combo_box_2.getValue();
                 navigator.goTo(SceneType.GAME_SCENE);
             }
 

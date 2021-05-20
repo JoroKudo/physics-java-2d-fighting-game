@@ -12,6 +12,7 @@ import org.dyn4j.world.World;
 public class CollisionHandler {
 
     private final Game game;
+
     private Body body1;
     private Body body2;
     private World<Body> physicWorld;
@@ -19,7 +20,6 @@ public class CollisionHandler {
 
     public CollisionHandler(Game game) {
         this.game = game;
-
     }
 
     public void handle(Body body1, Body body2, World<Body> physicWorld) {
@@ -66,7 +66,6 @@ public class CollisionHandler {
             Hadouken hadouken = (Hadouken) body2;
             if (hadouken.owner != body1) {
                 game.handleHitFighter(hadouken.owner.id);
-
                 physicWorld.removeBody(hadouken);
             }
 

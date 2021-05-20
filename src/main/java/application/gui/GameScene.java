@@ -12,6 +12,7 @@ public class GameScene extends BaseScene implements Initializable {
 
     Lifebar lifebar1;
     Lifebar lifebar2;
+    private FancyAnimationTimer gameLoop;
 
     public GameScene(Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
         super(navigator);
@@ -27,9 +28,9 @@ public class GameScene extends BaseScene implements Initializable {
         this.setOnKeyPressed(keyboardController);
         this.setOnKeyReleased(keyboardController);
         Sound.play(MusicType.FIGHT);
-        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2);
+        Game game = new Game(keyboardController,gamepadController,voiceContrroll, navigator, lifebar1, lifebar2, () -> gameLoopStopper());
         game.load();
-        FancyAnimationTimer gameLoop = new FancyAnimationTimer() {
+        gameLoop = new FancyAnimationTimer() {
             @Override
             public void doHandle(double deltaInSec) {
                 game.update(deltaInSec);
@@ -37,5 +38,10 @@ public class GameScene extends BaseScene implements Initializable {
             }
         };
         gameLoop.start();
+
+    }
+
+    private void gameLoopStopper(){
+        gameLoop.stop();
     }
 }

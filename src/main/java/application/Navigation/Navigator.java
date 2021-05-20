@@ -7,15 +7,15 @@ import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Navigator {
+public class Navigator<T> {
     private final Stage stage;
-    private final Map<SceneType, Scene> viewMap = new HashMap<>();
+    private final Map<T, Scene> viewMap = new HashMap<>();
 
     public Navigator(Stage stage) {
         this.stage = stage;
     }
 
-    public void registerScene(SceneType enumScene, Scene scene) {
+    public void registerScene(T enumScene, Scene scene) {
         viewMap.put(enumScene, scene);
     }
 

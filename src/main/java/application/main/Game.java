@@ -3,12 +3,9 @@ package application.main;
 import application.GameObjects.*;
 import application.Navigation.SceneType;
 
-import application.common.CollisionHandler;
+import application.common.*;
 import application.Navigation.Navigator;
 
-import application.common.Controller;
-import application.common.GamepadController;
-import application.common.VoiceContrroll;
 import application.constants.Const;
 import application.constants.Images;
 import application.gui.ControllerSelectionScene;
@@ -39,6 +36,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Timer timer;
     public Floor floor;
     public boolean rag = false;
+    private Runnable gameLoopStopper;
     private final Controller keyboardController;
     private final Controller gamepadcontroller;
     private final VoiceContrroll voiceContrroll;
@@ -53,7 +51,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean controllerinuseF2 = false;
 
 
-    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2) {
+    public Game(Controller keyboardController, GamepadController gamepadController,VoiceContrroll voiceContrroll, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2, Runnable gameLoopStopper) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.voiceContrroll = voiceContrroll;
@@ -61,6 +59,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         this.collision = new CollisionHandler(this);
         this.lifebar1 = lifebar1;
         this.lifebar2 = lifebar2;
+        this.gameLoopStopper = gameLoopStopper;
         controllerSelectionScene = new UserSelectionScene(navigator);
     }
 
@@ -173,6 +172,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 if (lifebar1.getKo()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
+                    gameLoopStopper.run();
                 }
 
             }
@@ -189,6 +189,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 if (lifebar2.getKo()) {
                     physicWorld.removeBody(fighter);
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
+                    gameLoopStopper.run();
                 }
 
 
