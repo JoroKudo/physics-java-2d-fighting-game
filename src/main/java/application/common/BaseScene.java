@@ -2,6 +2,7 @@ package application.common;
 
 import application.Navigation.Navigator;
 import application.constants.Const;
+import application.main.Game;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -14,6 +15,8 @@ import javafx.scene.image.Image;
 public abstract class BaseScene extends Scene {
     protected final Navigator navigator;
     protected final Canvas canvas;
+    protected Game game;
+
     protected ObservableList<Node> parent;
 
     protected BaseScene(Navigator navigator) {

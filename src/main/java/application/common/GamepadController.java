@@ -2,13 +2,7 @@ package application.common;
 
 import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import org.dyn4j.geometry.Vector2;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class GamepadController implements Controller {
 
@@ -27,8 +21,7 @@ public class GamepadController implements Controller {
                 e++;
             }
 
-            //Print a message when the "A" button is pressed. Exit if the "B" button is pressed
-            //or the controller disconnects.
+
 
             ControllerState currState = controllers.getState(0);
             if (currState.y) {

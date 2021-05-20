@@ -170,6 +170,7 @@ public class BasePlayer extends GameBody {
                     }
                     break;
 
+
             }
         }else{
             if (currentDirect == Direction.RIGHT) {
