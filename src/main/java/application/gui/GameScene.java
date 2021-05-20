@@ -20,6 +20,7 @@ public class GameScene extends BaseScene implements Initializable {
         this.lifebar2 = lifebar2;
     }
 
+
     @Override
     public void  onInitialize() {
         KeyboardController  keyboardController = new KeyboardController();
@@ -45,3 +46,4 @@ public class GameScene extends BaseScene implements Initializable {
         gameLoop.stop();
     }
 }
+

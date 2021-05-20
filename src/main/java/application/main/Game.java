@@ -1,6 +1,7 @@
 package application.main;
 
 import application.GameObjects.*;
+import application.GameObjects.Wall;
 import application.Navigation.SceneType;
 
 import application.common.*;
@@ -13,9 +14,12 @@ import application.gui.UserSelectionScene;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.dyn4j.dynamics.Body;
 
 import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.geometry.Rectangle;
 import org.dyn4j.geometry.Vector2;
 
 import org.dyn4j.world.BroadphaseCollisionData;
@@ -35,6 +39,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private UserSelectionScene controllerSelectionScene ;
     private Timer timer;
     public Floor floor;
+    public Wall wall1;
+    public Wall wall2;
     public boolean rag = false;
     private Runnable gameLoopStopper;
     private final Controller keyboardController;
@@ -47,6 +53,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public boolean hitFighter1 = false;
     public boolean hitFighter2 = false;
     public double timePassedSinceCooldown;
+
     public    boolean controllerinuseF1 = false;
     public boolean controllerinuseF2 = false;
 
@@ -63,6 +70,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         controllerSelectionScene = new UserSelectionScene(navigator);
     }
 
+
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
         gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) / 2, 50);
@@ -76,18 +84,15 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-        //TODO
-//        if (controllerSelectionScene.ValueComboBox1.equals("Gamepad")){
-//            controllerinuseF1 = true;
-//        }
-//        if (controllerSelectionScene.ValueComboBox2.equals("Gamepad")) {
-//            controllerinuseF2 = true;
-//        }
 
-
-
+        if (controllerSelectionScene.getValueComboBox1().equals("Gamepad")){
+            controllerinuseF1 = true;
+        }
+        if (controllerSelectionScene.getValueComboBox2().equals("Gamepad")) {
+            controllerinuseF2 = true;
+        }
         if (controllerinuseF1) {
-            fighter = new BasePlayer(1, 10, 8, voiceContrroll, physicWorld);
+            fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
 
         } else {
             fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
@@ -98,8 +103,13 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         } else {
             fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
         }
+        lifebar1 = new Lifebar(1);
+        lifebar2 = new Lifebar(2);
         timer = new Timer();
         floor = new Floor(15, 17);
+        wall1 = new Wall(30, 7);
+        wall2 = new Wall(0, 7);
+
         physicWorld.setGravity(new Vector2(0, 15));
 
         physicWorld.addBody(fighter);
@@ -114,6 +124,9 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         physicWorld.addJoint(fighter_2.punchshould);
         physicWorld.addJoint(fighter_2.punchfoot);
         physicWorld.addBody(floor);
+        physicWorld.addBody(wall1);
+        physicWorld.addBody(wall2);
+
         physicWorld.setGravity(new Vector2(0, 15));
 
         physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
@@ -171,6 +184,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter1 = false;
                 if (lifebar1.getKo()) {
                     physicWorld.removeBody(fighter);
+                    lifebar1.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                     gameLoopStopper.run();
                 }
@@ -188,6 +202,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
                 hitFighter2 = false;
                 if (lifebar2.getKo()) {
                     physicWorld.removeBody(fighter);
+                    lifebar2.setDamagetoNull();
                     navigator.goTo(SceneType.GAME_WIN_SCENE);
                     gameLoopStopper.run();
                 }
