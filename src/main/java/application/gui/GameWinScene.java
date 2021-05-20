@@ -41,10 +41,10 @@ public class GameWinScene extends BaseScene implements Initializable {
     public void onInitialize() {
         String text;
         if (lifebar1.isKo()) {
-            text = "Player 2 Wins";
+            text = "Player " + userSelectionScene.getP2() + " Wins";
             winner = userSelectionScene.getP2();
         } else if (lifebar2.isKo()) {
-            text = "Player 1 Wins";
+            text = "Player " + userSelectionScene.getP1() + " Wins";
             winner = userSelectionScene.getP1();
         } else {
             text = "Winner can't be indentified";

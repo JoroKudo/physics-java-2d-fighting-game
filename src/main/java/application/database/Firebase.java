@@ -1,22 +1,25 @@
 package application.database;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
+import java.util.Scanner;
 
 public class Firebase {
 
-//    public List<Fights> loadFights(){
-//        return null;
-//    }
+    private String inline;
+    private JSONParser jsonParser = new JSONParser();
 
     public void addFight(String p1, String p2, String winner) throws IOException {
-
-        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/objectListTest/fights.json");
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightLog/fights.json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -36,7 +39,39 @@ public class Firebase {
             System.out.println(response.toString());
         }
     }
+
+    public void getLeaderBoard() throws IOException, ParseException {
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightLog/fights.json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.connect();
+        int responsecode = con.getResponseCode();
+        if (responsecode != 200) {
+            throw new RuntimeException("HttpResponseCode: " + responsecode);
+        } else {
+            Scanner sc = new Scanner(url.openStream());
+            while (sc.hasNext()) {
+                inline += sc.nextLine();
+            }
+            System.out.println("\nJSON data in string format");
+            System.out.println(inline);
+            sc.close();
+        }
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject = (JSONObject) jsonParser.parse(inline);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //String name = (String) jsonObject.get("TestObject"); //TODO this returns null
+        //System.out.println("Name: "+name+"\n");
+        //TODO get json Object null pointer exception
+//        JSONObject fightObject = (JSONObject) jsonObject.get("fight");
+//        String winner = (String) fightObject.get("Winner");
+//        System.out.println("Winner: " + winner);
+    }
 }
+
 
 
 /*

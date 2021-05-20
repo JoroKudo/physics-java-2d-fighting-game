@@ -24,11 +24,10 @@ public class App extends Application {
         welcomescene.getStylesheets().add("button.css");
         UserSelectionScene userSelectionScene = new UserSelectionScene(navigator);
         navigator.registerScene(SceneType.WELCOME_SCENE,  welcomescene);
-
-
         navigator.registerScene(SceneType.USER_SELECTION_SCENE, userSelectionScene);
         navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator, lifebar1, lifebar2,(UserSelectionScene) userSelectionScene));
         navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, lifebar1, lifebar2, (UserSelectionScene) userSelectionScene));
+        navigator.registerScene(SceneType.LEADERBOARD_SCENE, new LeaderboardScene(navigator));
         navigator.goTo(SceneType.WELCOME_SCENE);
         primaryStage.show();
     }
