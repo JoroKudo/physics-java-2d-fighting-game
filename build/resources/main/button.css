@@ -3,22 +3,16 @@
 
     -fx-font-family: 'Press Start 2P';
     -fx-font-size:14px;
-    -fx-font-style: cursive;
     -fx-font-color: #FFE600 !important;
     -fx-text-fill:#FFE600 ;
-
-    -fx-text-shadow: 1px 1px 0px #080A0D;
-    -fx-box-shadow: 1px 1px 1px #BEE2F9;
     -fx-padding: 10px 25px;
     -fx-border-radius: 0px;
     -fx-border-: 4px;
-    -fx-border-insets:#FFF700 ;
     -fx-border-color: #3D0066;
     -fx-background-color: linear-gradient(to top, #3D0066, #000000);
 }
 .button:hover {
     -fx-color: #FF0505 !important;
-    -fx-background: #8F0A8F;
     -fx-background: linear-gradient(to top, #8F0A8F, #3B3B3B);
 }
 
