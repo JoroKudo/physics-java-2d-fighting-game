@@ -163,9 +163,6 @@ public class UserSelectionScene extends BaseScene {
 
             String valueComboBox1 = (String) combo_box.getValue();
             String valueComboBox2 = (String) combo_box_2.getValue();
-            System.out.println(valueComboBox1);
-            System.out.println(valueComboBox2);
-            System.out.println(combo_box.getValue());
             if (combo_box.getValue() != null && combo_box_2.getValue() != null) {
                 p1 = (String) combo_box.getValue();
                 p2 = (String) combo_box_2.getValue();
