@@ -2,10 +2,10 @@ application/common/VoiceController.java
  application.common.VoiceController
 application/stats/Lifebar.java
  application.stats.Lifebar
-application/common/GamepadController.java
- application.common.GamepadController
-application/common/ActionType.java
- application.common.ActionType
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
+application/Sound/MusicType.java
+ application.Sound.MusicType
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
 application/common/Controller.java
@@ -16,18 +16,16 @@ application/constants/Const.java
  application.constants.Const
 application/GameObjects/Foot.java
  application.GameObjects.Foot
-application/Sound/MusicType.java
- application.Sound.MusicType
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
+application/database/Firebase.java
+ application.database.Firebase
+application/common/CollisionHandler.java
+ application.common.CollisionHandler
 application/GameObjects/Wall.java
  application.GameObjects.Wall
-application/main/UserSelection.java
- application.main.UserSelection
-application/Sound/SoundEffectType.java
- application.Sound.SoundEffectType
-application/GameObjects/Direction.java
- application.GameObjects.Direction
 application/stats/Timer.java
  application.stats.Timer
 application/GameObjects/Fist.java
@@ -36,13 +34,13 @@ application/common/KeyboardController.java
  application.common.KeyboardController
 application/Navigation/SceneType.java
  application.Navigation.SceneType
-application/constants/Images.java
- application.constants.Images
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
 application/GameObjects/Floor.java
  application.GameObjects.Floor
-application/Sound/Sound.java
- application.Sound.Sound
- application.Sound.Sound$1
+application/gui/WelcomeScene.java
+ application.gui.WelcomeScene
 application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/GameObjects/BasePlayer.java
@@ -52,28 +50,26 @@ application/main/Launcher.java
  application.main.Launcher
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
-application/common/CollisionHandler.java
- application.common.CollisionHandler
-application/common/Initializable.java
- application.common.Initializable
-application/database/Firebase.java
- application.database.Firebase
-application/gui/GameOverScene.java
- application.gui.GameOverScene
 application/main/Game.java
  application.main.Game
  application.main.Game$1
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
-application/gui/WelcomeScene.java
- application.gui.WelcomeScene
+application/common/Initializable.java
+ application.common.Initializable
+application/common/GamepadController.java
+ application.common.GamepadController
+application/Sound/SoundEffectType.java
+ application.Sound.SoundEffectType
+application/GameObjects/Direction.java
+ application.GameObjects.Direction
+application/constants/Images.java
+ application.constants.Images
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
+application/common/ActionType.java
+ application.common.ActionType
 application/common/BaseScene.java
  application.common.BaseScene
-application/gui/UserSelectionScene.java
- application.gui.UserSelectionScene
-application/gui/GameWinScene.java
- application.gui.GameWinScene
 application/main/App.java
  application.main.App
 application/gui/LeaderboardScene.java
