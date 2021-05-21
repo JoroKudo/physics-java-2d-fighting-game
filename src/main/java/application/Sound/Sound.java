@@ -2,7 +2,6 @@ package application.Sound;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,13 +18,7 @@ public class Sound {
         musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         musicPlayer.play();
     }
-    public static void stop(MusicType music) {
-        if (musicPlayer != null) {
-            musicPlayer.stop();
-        }
-        musicPlayer = createMediaPlayer(getSoundFileName(music));
-        musicPlayer.stop();
-    }
+
     public static void play(SoundEffectType soundEffect) {
         MediaPlayer player = createMediaPlayer(getSoundFileName(soundEffect));
         player.play();
@@ -47,27 +40,18 @@ public class Sound {
     }
 
     private static String getSoundFileName(SoundEffectType soundEffect) {
-        switch (soundEffect) {
-            case FISTPUNCH:
-                return "punch.mp3";
-            case HADOUKEN:
-                return "hadouken.mp3";
-            case BLOCK:
-                return "block.mp3";
-            case FIGHTER_GETS_HIT:
-                return "fighter_gets_hit.wav";
-            case JUMP_LANDING:
-                return "jump_landing.wav";
-            case SCREAM:
-                return "scream.wav";
-            case PAIN:
-                return "man-in-pain.wav";
-            case CHARGEUP:
-                return "chargeup.wav";
-            default:
-                throw new RuntimeException("No Soundfilename set for this enum value:" + soundEffect);
-        }
+        return switch (soundEffect) {
+            case FISTPUNCH -> "punch.mp3";
+            case HADOUKEN -> "hadouken.mp3";
+            case BLOCK -> "block.mp3";
+            case FIGHTER_GETS_HIT -> "fighter_gets_hit.wav";
+            case JUMP_LANDING -> "jump_landing.wav";
+            case SCREAM -> "scream.wav";
+            case PAIN -> "man-in-pain.wav";
+            case CHARGEUP -> "chargeup.wav";
+        };
     }
+
     private static String getSoundFileName(MusicType music) {
         return switch (music) {
             case GAME_BACKGROUND -> null;

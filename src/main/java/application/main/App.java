@@ -17,7 +17,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        Navigator navigator = new Navigator(primaryStage);
+        Navigator<SceneType> navigator = new Navigator<>(primaryStage);
         Lifebar lifebar1 = new Lifebar(1);
         Lifebar lifebar2 = new Lifebar(2);
         welcomescene = new WelcomeScene(navigator);
@@ -25,8 +25,8 @@ public class App extends Application {
         UserSelectionScene userSelectionScene = new UserSelectionScene(navigator);
         navigator.registerScene(SceneType.WELCOME_SCENE,  welcomescene);
         navigator.registerScene(SceneType.USER_SELECTION_SCENE, userSelectionScene);
-        navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator, lifebar1, lifebar2,(UserSelectionScene) userSelectionScene));
-        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, lifebar1, lifebar2, (UserSelectionScene) userSelectionScene));
+        navigator.registerScene(SceneType.GAME_SCENE, new GameScene(navigator, lifebar1, lifebar2, userSelectionScene));
+        navigator.registerScene(SceneType.GAME_WIN_SCENE, new GameWinScene(navigator, lifebar1, lifebar2,userSelectionScene));
         navigator.registerScene(SceneType.LEADERBOARD_SCENE, new LeaderboardScene(navigator));
         navigator.goTo(SceneType.WELCOME_SCENE);
         primaryStage.show();

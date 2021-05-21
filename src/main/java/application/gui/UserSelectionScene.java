@@ -21,27 +21,25 @@ import javafx.scene.text.Text;
         import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
-    private ToggleGroup group1 = new ToggleGroup();
-    private ToggleGroup group2 = new ToggleGroup();
     private String controll1 = "key";
     private String controll2 = "key";
     private String p1;
     private String p2;
 
 
-    public UserSelectionScene(Navigator navigator) {
+    public UserSelectionScene(Navigator<?> navigator) {
         super(navigator, Images.background);
 
-        String players[] = {"Fabian", "Leo", "Jiro"}; //TODO insert values form database here
+        String[] players = {"Fabian", "Leo", "Jiro"}; //TODO insert values form database here
         //Create first combobox
-        ComboBox combo_box = new ComboBox(FXCollections.observableArrayList(players));
+        ComboBox<?> combo_box = new ComboBox<>(FXCollections.observableArrayList(players));
         combo_box.setEditable(true);
         GridPane gridPane = new GridPane();
         gridPane.setHgap(50);
         gridPane.setVgap(60);
 
         //create second combobox
-        ComboBox combo_box_2 = new ComboBox(FXCollections.observableArrayList(players));
+        ComboBox<?> combo_box_2 = new ComboBox<>(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
 
 
@@ -81,10 +79,12 @@ public class UserSelectionScene extends BaseScene {
         RadioButton mic2 = new RadioButton();
 
 
+        ToggleGroup group1 = new ToggleGroup();
         keyboard2.setToggleGroup(group1);
         controller2.setToggleGroup(group1);
         mic2.setToggleGroup(group1);
 
+        ToggleGroup group2 = new ToggleGroup();
         keyboard2.setToggleGroup(group2);
         controller2.setToggleGroup(group2);
         mic2.setToggleGroup(group2);

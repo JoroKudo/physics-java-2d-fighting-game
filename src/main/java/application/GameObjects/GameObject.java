@@ -3,7 +3,6 @@ package application.GameObjects;
 
 
 import application.constants.Const;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import org.dyn4j.geometry.Rectangle;
 

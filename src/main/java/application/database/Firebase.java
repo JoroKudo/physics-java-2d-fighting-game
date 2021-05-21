@@ -1,16 +1,17 @@
 package application.database;
 
+import org.apache.commons.math3.analysis.function.Log;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Firebase {
@@ -41,35 +42,128 @@ public class Firebase {
     }
 
     public void getLeaderBoard() throws IOException, ParseException {
-        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightLog/fights.json");
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fightLog.json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-        con.connect();
-        int responsecode = con.getResponseCode();
-        if (responsecode != 200) {
-            throw new RuntimeException("HttpResponseCode: " + responsecode);
-        } else {
-            Scanner sc = new Scanner(url.openStream());
-            while (sc.hasNext()) {
-                inline += sc.nextLine();
-            }
-            System.out.println("\nJSON data in string format");
-            System.out.println(inline);
-            sc.close();
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("Content-Type");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
         }
+        in.close();
+        con.disconnect();
+        String testValue = (content.toString());
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject = (JSONObject) jsonParser.parse(inline);
+            jsonObject = (JSONObject) jsonParser.parse(testValue);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        //String name = (String) jsonObject.get("TestObject"); //TODO this returns null
-        //System.out.println("Name: "+name+"\n");
-        //TODO get json Object null pointer exception
 //        JSONObject fightObject = (JSONObject) jsonObject.get("fight");
 //        String winner = (String) fightObject.get("Winner");
 //        System.out.println("Winner: " + winner);
     }
+
+    public long getWins(String user) throws IOException {
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("Content-Type");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+        String data = content.toString();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject = (JSONObject) jsonParser.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long wins = (long) jsonObject.get("wins");
+        return wins;
+    }
+    public void addWin(String user) throws IOException {
+        long wins = getWins(user);
+        wins += 1;
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("PUT");
+        con.setRequestProperty("Content-Type", "application/json; utf-8");
+        con.setRequestProperty("Accept", "application/json");
+        con.setDoOutput(true);
+        String jsonInputString = "{\n" +
+                "\"wins\": " + wins + "\n" +
+                "}";
+        try (OutputStream os = con.getOutputStream()) {
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))) {
+            StringBuilder response = new StringBuilder();
+            String responseLine = null;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            System.out.println(response.toString());
+        }
+    }
+    public boolean checkIfFighterExists(String user) throws IOException {
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("Content-Type");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+        String data = content.toString();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject = (JSONObject) jsonParser.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return (jsonObject != null);
+    }
+
+    public void addFighter(String user) throws IOException {
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("PUT");
+        con.setRequestProperty("Content-Type", "application/json; utf-8");
+        con.setRequestProperty("Accept", "application/json");
+        con.setDoOutput(true);
+        String jsonInputString = "{\n" +
+                "\"wins\": 0\n" +
+                "}";
+        try (OutputStream os = con.getOutputStream()) {
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))) {
+            StringBuilder response = new StringBuilder();
+            String responseLine = null;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            System.out.println(response.toString());
+        }
+    }
+
 }
 
 
@@ -130,6 +224,5 @@ public class Firebase {
         return numberOfFights;
     }
 */
-
 
 
