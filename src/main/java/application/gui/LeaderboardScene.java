@@ -11,12 +11,13 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
 public class LeaderboardScene extends BaseScene  {
-    public LeaderboardScene(Navigator navigator) throws IOException, ParseException {
+    public LeaderboardScene(Navigator navigator) throws IOException {
         super(navigator, Images.leaderboard);
 
         Firebase firebase = new Firebase();
 
-        firebase.getLeaderBoard();
+        firebase.addWin("Fabian");
+        System.out.println(firebase.getWins("Fabian"));
 
         setOnKeyPressed(e -> {
             if ((e.getCode() == KeyCode.SPACE)) {
