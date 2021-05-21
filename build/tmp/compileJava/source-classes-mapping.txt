@@ -52,12 +52,12 @@ application/main/Launcher.java
  application.main.Launcher
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
-application/database/Firebase.java
- application.database.Firebase
+application/common/CollisionHandler.java
+ application.common.CollisionHandler
 application/common/Initializable.java
  application.common.Initializable
-application/gui/UserSelectionScene.java
- application.gui.UserSelectionScene
+application/database/Firebase.java
+ application.database.Firebase
 application/gui/GameOverScene.java
  application.gui.GameOverScene
 application/main/Game.java
@@ -68,13 +68,13 @@ application/gui/GameScene.java
  application.gui.GameScene$1
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
 application/common/BaseScene.java
  application.common.BaseScene
-application/common/CollisionHandler.java
- application.common.CollisionHandler
-application/main/App.java
- application.main.App
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
 application/gui/GameWinScene.java
  application.gui.GameWinScene
+application/main/App.java
+ application.main.App
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene
