@@ -29,7 +29,7 @@ public class UserSelectionScene extends BaseScene {
     private String controll2 = "key";
     private String p1;
     private String p2;
-    ArrayList<String> selectedPlayers = new ArrayList<String>();
+    ArrayList<String> selectedPlayers = new ArrayList<>();
 
 
     public UserSelectionScene(Navigator<?> navigator) {
@@ -163,9 +163,6 @@ public class UserSelectionScene extends BaseScene {
 
             String valueComboBox1 = (String) combo_box.getValue();
             String valueComboBox2 = (String) combo_box_2.getValue();
-            System.out.println(valueComboBox1);
-            System.out.println(valueComboBox2);
-            System.out.println(combo_box.getValue());
             if (combo_box.getValue() != null && combo_box_2.getValue() != null) {
                 p1 = (String) combo_box.getValue();
                 p2 = (String) combo_box_2.getValue();
@@ -227,8 +224,6 @@ public class UserSelectionScene extends BaseScene {
     public String getcontroll2() {
         return controll2;
     }
-
-
 
 
 }

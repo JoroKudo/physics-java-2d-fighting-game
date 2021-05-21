@@ -37,7 +37,6 @@ public class Images {
     //SCENES
     public final static Image welcome = getImageSize("Welcome.gif");
     public final static Image GameWin = getImageSize("GameWin.gif");
-    public final static Image Loading_Bar = getImageSize("Loadingbar.gif");
 
     //ENVIROMENT
     public final static Image wall = getImageSize("wall.png");
@@ -53,10 +52,7 @@ public class Images {
     }
 
     private static Image getImageSize(String imagePath) {
-
-
         String firstFourChars;
-
         if (imagePath.length() > 8) {
             firstFourChars = imagePath.substring(0, 8);
         } else {
@@ -65,12 +61,9 @@ public class Images {
         int multiplier = 1;
         if (firstFourChars.equals("fighter/")) multiplier = 2;
         try {
-            Image wimg = new Image("/Images/" + imagePath);
-
-
-
-            double h = wimg.getHeight()*multiplier ;
-            double w = wimg.getWidth()*multiplier ;
+            Image measureImage = new Image("/Images/" + imagePath);
+            double h = measureImage.getHeight() * multiplier;
+            double w = measureImage.getWidth() * multiplier;
             return getImage(imagePath, h, w);
         } catch (Exception ex) {
             throw new RuntimeException("File not found: " + imagePath);

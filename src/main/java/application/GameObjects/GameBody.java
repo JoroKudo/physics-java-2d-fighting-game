@@ -10,10 +10,9 @@ import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Polygon;
 
 
-
 import java.util.List;
 
-public  class GameBody extends Body {
+public class GameBody extends Body {
 
     protected Image image;
 
@@ -35,8 +34,8 @@ public  class GameBody extends Body {
         Polygon rect = (Polygon) this.getFixture(0).getShape();
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
-        if(image != Images.fist_hitbox){
-            drawimage(image,x,y,gc);
+        if (image != Images.fist_hitbox) {
+            drawimage(image, x, y, gc);
         }
         gc.setTransform(originTrans);
     }
@@ -74,7 +73,7 @@ public  class GameBody extends Body {
 
     }
 
-    public  void drawimage(Image image, double x, double y,GraphicsContext gc){
+    public void drawimage(Image image, double x, double y, GraphicsContext gc) {
         gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
     }
 }
