@@ -68,13 +68,13 @@ application/gui/GameScene.java
  application.gui.GameScene$1
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
-application/gui/GameWinScene.java
- application.gui.GameWinScene
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene
 application/common/BaseScene.java
  application.common.BaseScene
 application/common/CollisionHandler.java
  application.common.CollisionHandler
 application/main/App.java
  application.main.App
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
+application/gui/GameWinScene.java
+ application.gui.GameWinScene

@@ -54,6 +54,7 @@ public class GameWinScene extends BaseScene implements Initializable {
         if (userSelectionScene.getP1() != null && userSelectionScene.getP2() != null && winner != null) {
             try {
                 firebase.addFight(userSelectionScene.getP1(), userSelectionScene.getP2(), winner);
+                firebase.addWin(winner);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
