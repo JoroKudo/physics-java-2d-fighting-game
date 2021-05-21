@@ -1,7 +1,6 @@
 package application.common;
 
 import application.GameObjects.*;
-
 import application.Sound.Sound;
 import application.Sound.SoundEffectType;
 import application.main.Game;

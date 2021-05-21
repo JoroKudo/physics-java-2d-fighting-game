@@ -29,7 +29,7 @@ public class UserSelectionScene extends BaseScene {
     private String controll2 = "key";
     private String p1;
     private String p2;
-    ArrayList<String> selectedPlayers = new ArrayList<String>();
+    ArrayList<String> selectedPlayers = new ArrayList<>();
 
 
     public UserSelectionScene(Navigator<?> navigator) {
@@ -227,8 +227,6 @@ public class UserSelectionScene extends BaseScene {
     public String getcontroll2() {
         return controll2;
     }
-
-
 
 
 }

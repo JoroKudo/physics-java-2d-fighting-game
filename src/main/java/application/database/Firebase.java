@@ -69,7 +69,7 @@ public class Firebase {
     }
 
     public long getWins(String user) throws IOException {
-        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/" + user + ".json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
@@ -92,10 +92,11 @@ public class Firebase {
         long wins = (long) jsonObject.get("wins");
         return wins;
     }
+
     public void addWin(String user) throws IOException {
         long wins = getWins(user);
         wins += 1;
-        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/" + user + ".json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("PUT");
         con.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -117,8 +118,9 @@ public class Firebase {
             System.out.println(response.toString());
         }
     }
+
     public boolean checkIfFighterExists(String user) throws IOException {
-        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/" + user + ".json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
@@ -142,7 +144,7 @@ public class Firebase {
     }
 
     public void addFighter(String user) throws IOException {
-        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/"+user+".json");
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters/" + user + ".json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("PUT");
         con.setRequestProperty("Content-Type", "application/json; utf-8");

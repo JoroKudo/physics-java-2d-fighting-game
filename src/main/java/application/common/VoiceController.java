@@ -4,6 +4,7 @@ package application.common;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Port;
 import java.io.IOException;
@@ -28,7 +29,6 @@ public class VoiceController implements Controller {
         configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
         configuration.setGrammarPath("resource:/grammars");
         configuration.setGrammarName("grammar");
-
         configuration.setUseGrammar(true);
         try {
             recognizer = new LiveSpeechRecognizer(configuration);
@@ -36,7 +36,6 @@ public class VoiceController implements Controller {
             logger.log(Level.SEVERE, null, ex);
         }
         startResourcesThread();
-
         startSpeechRecognition();
     }
 
@@ -48,37 +47,26 @@ public class VoiceController implements Controller {
 
             speechRecognizerThreadRunning = true;
             recognizer.startRecognition(true);
-
             System.out.println("You can start to speak...");
-
             while (speechRecognizerThreadRunning) {
-
                 SpeechResult speechResult = recognizer.getResult();
                 speechRecognitionResult = speechResult.getHypothesis();
                 if (speechRecognitionResult.equals("<unk>")) {
                     System.out.println("Sorry i didnt catch that");
                 } else {
-
                     System.out.println("You said: [" + speechRecognitionResult + "]\n");
                 }
-
             }
-
-
         });
     }
 
 
     public void startResourcesThread() {
-
-
         eventsExecutorService.submit(() -> {
             try {
                 if (!AudioSystem.isLineSupported(Port.Info.MICROPHONE))
                     System.out.println("Microphone is not available.");
-
                 Thread.sleep(350);
-
             } catch (InterruptedException ex) {
                 logger.log(Level.WARNING, null, ex);
             }
@@ -87,41 +75,31 @@ public class VoiceController implements Controller {
 
     @Override
     public ActionType FighterXisActing(int id) {
-
         if (speechRecognitionResult.equals("jump")) {
             return ActionType.JUMP;
         }
-
         if (speechRecognitionResult.equals("left")) {
             return ActionType.WALK_lEFT;
         }
-
         if (speechRecognitionResult.equals("right")) {
             return ActionType.WALK_RIGHT;
         }
-
         if (speechRecognitionResult.equals("punch")) {
             return ActionType.PUNCH;
         }
-
         if (speechRecognitionResult.equals("duck")) {
             return ActionType.DUCK;
         }
-
         if (speechRecognitionResult.equals("stop")) {
             return null;
         }
-
         if (speechRecognitionResult.equals("block")) {
             return ActionType.BLOCK;
         }
-
         if (speechRecognitionResult.equals("ha do ken")) {
             return ActionType.HADOUKEN;
         }
-
         return null;
     }
-
 
 }

@@ -3,6 +3,7 @@ package application.common;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,6 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
             KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Q, KeyCode.E, KeyCode.V};
     public KeyCode[] allKeys2 = new KeyCode[]{
             KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
-
 
 
     @Override
@@ -40,20 +40,15 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
 
     @Override
     public ActionType FighterXisActing(int id) {
-
         if (id == 1) {
-
             for (ActionType action : ActionType.values()) {
-
                 if (pressedKeys.contains(allKeys1[action.ordinal()])) {
                     return action;
                 }
             }
-
         } else if (id == 2) {
             for (ActionType action : ActionType.values()) {
                 if (pressedKeys.contains(allKeys2[action.ordinal()])) {
-
                     return action;
                 }
             }

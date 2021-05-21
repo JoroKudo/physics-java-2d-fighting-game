@@ -8,15 +8,16 @@ import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
 import javafx.scene.input.KeyCode;
 
-public class WelcomeScene extends BaseScene  {
+public class WelcomeScene extends BaseScene {
     public ControllerManager controllers;
+
     public WelcomeScene(Navigator<?> navigator) {
         super(navigator, Images.welcome);
 
         controllers = new ControllerManager();
         controllers.initSDLGamepad();
         ControllerState currState = controllers.getState(0);
-        if((currState.a)){
+        if ((currState.a)) {
             navigator.goTo(SceneType.USER_SELECTION_SCENE);
         }
 

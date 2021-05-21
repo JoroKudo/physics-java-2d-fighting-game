@@ -13,13 +13,10 @@ import javafx.scene.image.Image;
 public abstract class BaseScene extends Scene {
     protected final Navigator<?> navigator;
     protected final Canvas canvas;
-
-
     protected ObservableList<Node> parent;
 
     protected BaseScene(Navigator<?> navigator) {
         super(new Group());
-
         this.navigator = navigator;
         canvas = new Canvas(Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT);
         parent = ((Group) getRoot()).getChildren();
@@ -31,11 +28,9 @@ public abstract class BaseScene extends Scene {
         drawBackgroundImage(backgroundImage);
     }
 
-
     private void drawBackgroundImage(Image backgroundImage) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(backgroundImage, 0, 0);
     }
-
 
 }
