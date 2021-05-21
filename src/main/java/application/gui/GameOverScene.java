@@ -7,7 +7,7 @@ import application.constants.Images;
 import javafx.scene.input.KeyCode;
 
 
-public class GameOverScene extends BaseScene  {
+public class GameOverScene extends BaseScene {
     public GameOverScene(Navigator<?> navigator) {
         super(navigator, Images.Loading_Bar);
 

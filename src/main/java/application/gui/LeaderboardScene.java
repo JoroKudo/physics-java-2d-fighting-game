@@ -6,12 +6,11 @@ import application.common.*;
 import application.constants.Images;
 import application.database.Firebase;
 import javafx.scene.input.KeyCode;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
-public class LeaderboardScene extends BaseScene  {
-    public LeaderboardScene(Navigator navigator) throws IOException {
+public class LeaderboardScene extends BaseScene {
+    public LeaderboardScene(Navigator<?> navigator) throws IOException {
         super(navigator, Images.leaderboard);
 
         Firebase firebase = new Firebase();
