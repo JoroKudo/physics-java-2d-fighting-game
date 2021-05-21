@@ -5,8 +5,6 @@ import application.Navigation.SceneType;
 import application.common.*;
 import application.constants.Images;
 import application.database.Firebase;
-import com.studiohartman.jamepad.ControllerManager;
-import com.studiohartman.jamepad.ControllerState;
 import javafx.scene.input.KeyCode;
 import org.json.simple.parser.ParseException;
 

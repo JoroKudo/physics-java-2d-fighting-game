@@ -1,16 +1,13 @@
 package application.GameObjects;
 
 import application.constants.Images;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.MassType;
-import org.dyn4j.world.World;
+
 
 public class Hadouken extends GameObject {
 
 
-    private int speed ;
+    private final int speed ;
     public BasePlayer owner;
 
 

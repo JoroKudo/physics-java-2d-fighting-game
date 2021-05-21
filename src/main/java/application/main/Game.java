@@ -13,10 +13,8 @@ import application.gui.UserSelectionScene;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
-
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
-
 import org.dyn4j.dynamics.joint.WeldJoint;
 import org.dyn4j.geometry.Vector2;
 import org.dyn4j.world.BroadphaseCollisionData;
@@ -32,18 +30,19 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private final Controller keyboardController, gamepadcontroller;
     private final VoiceController voiceController;
     private final World<Body> physicWorld = new World<>();
-    private final Navigator navigator;
+    private final Navigator<?> navigator;
     private final CollisionHandler collision;
     private double timePassedSinceCooldown;
     private BasePlayer fighter, fighter_2;
-    private Lifebar lifebar1, lifebar2;
+    private final Lifebar lifebar1;
+    private final Lifebar lifebar2;
     private Timer timer;
-    private UserSelectionScene userSelectionScene;
-    private Runnable gameLoopStopper;
-    private ArrayList<Hadouken> hadoukens = new ArrayList<>();
+    private final UserSelectionScene userSelectionScene;
+    private final Runnable gameLoopStopper;
+    private final ArrayList<Hadouken> hadoukens = new ArrayList<>();
 
 
-    public Game(Controller keyboardController, GamepadController gamepadController, VoiceController voiceController, Navigator navigator, Lifebar lifebar1, Lifebar lifebar2, Runnable gameLoopStopper, UserSelectionScene userSelectionScene) {
+    public Game(Controller keyboardController, GamepadController gamepadController, VoiceController voiceController, Navigator<?> navigator, Lifebar lifebar1, Lifebar lifebar2, Runnable gameLoopStopper, UserSelectionScene userSelectionScene) {
         this.keyboardController = keyboardController;
         this.gamepadcontroller = gamepadController;
         this.voiceController = voiceController;
@@ -57,7 +56,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
-        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) / 2, 50);
+        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) >> 1, 50);
         lifebar1.draw(gc);
         lifebar2.draw(gc);
         timer.draw(gc);
@@ -144,10 +143,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     public void handleHitFighter(int id) {
         if (timePassedSinceCooldown >= 0.7) {
             double blockProtection = 1;
-            ArrayList<BasePlayer> basePlayer = new ArrayList<BasePlayer>();
+            ArrayList<BasePlayer> basePlayer = new ArrayList<>();
             basePlayer.add(fighter);
             basePlayer.add(fighter_2);
-            ArrayList<Lifebar> lifebars = new ArrayList<Lifebar>();
+            ArrayList<Lifebar> lifebars = new ArrayList<>();
             lifebars.add(lifebar1);
             lifebars.add(lifebar2);
 

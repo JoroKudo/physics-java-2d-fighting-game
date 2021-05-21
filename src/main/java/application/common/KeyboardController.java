@@ -3,8 +3,6 @@ package application.common;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import org.dyn4j.geometry.Vector2;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,7 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
     public KeyCode[] allKeys2 = new KeyCode[]{
             KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
 
-    public ActionType action;
+
 
     @Override
     public void handle(KeyEvent event) {

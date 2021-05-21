@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
 
 public class WelcomeScene extends BaseScene  {
     public ControllerManager controllers;
-    public WelcomeScene(Navigator navigator) {
+    public WelcomeScene(Navigator<?> navigator) {
         super(navigator, Images.welcome);
 
         controllers = new ControllerManager();

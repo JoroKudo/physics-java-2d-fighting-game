@@ -8,8 +8,8 @@ import javafx.scene.input.KeyCode;
 
 
 public class GameOverScene extends BaseScene  {
-    public GameOverScene(Navigator navigator) {
-        super(navigator, Images.Game_over);
+    public GameOverScene(Navigator<?> navigator) {
+        super(navigator, Images.Loading_Bar);
 
         setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.SPACE) {

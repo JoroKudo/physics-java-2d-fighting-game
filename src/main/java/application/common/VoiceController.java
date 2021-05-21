@@ -4,8 +4,6 @@ package application.common;
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
-import edu.cmu.sphinx.jsgf.rule.JSGFRule;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Port;
 import java.io.IOException;

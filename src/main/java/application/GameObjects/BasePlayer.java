@@ -22,8 +22,8 @@ public class BasePlayer extends GameBody {
     public Fist fist;
     public Hadouken hadouken;
     public Foot foot;
-    public WeldJoint punchshould;
-    public WeldJoint punchfoot;
+    public WeldJoint<?> punchshould;
+    public WeldJoint<?> punchfoot;
     protected boolean p = true;
     protected boolean d = true;
     public boolean isblocking = false;
@@ -33,21 +33,15 @@ public class BasePlayer extends GameBody {
     protected boolean doesFighterNeedsToReturnHadouken = false;
     protected Direction currentDirect = Direction.RIGHT;
     protected int dirdecider = 1;
-    private String[] keys;
     public int id;
-    private int i = 0;
-    private Controller controller;
+    private final Controller controller;
 
     public BasePlayer(int id, double x, double y, Controller controller, World<Body> physicWorld) {
         super(Images.fighter_look_right);
         this.controller = controller;
         this.translate(x, y);
-        this.keys = keys;
-
         this.physicWorld = physicWorld;
         this.id = id;
-
-
         Fixture legs = addFixture(new Rectangle(72 / Const.BLOCK_SIZE * 2, 30 / Const.BLOCK_SIZE * 2));
         legs.getShape().translate(0, 3.6);
 
@@ -63,8 +57,8 @@ public class BasePlayer extends GameBody {
         Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE * 2, 21 / Const.BLOCK_SIZE * 2));
         hips.getShape().translate(0, 2.4);
 
-        fist = new Fist(x, y + 2, controller);
-        foot = new Foot(x, y + 4.23, controller);
+        fist = new Fist(x, y + 2);
+        foot = new Foot(x, y + 4.23);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
         punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
@@ -126,9 +120,7 @@ public class BasePlayer extends GameBody {
                 case JUMP:
                     this.jump();
                     break;
-                case DUCK:
 
-                    break;
                 case WALK_lEFT:
                     this.walkLeft();
                     break;
@@ -138,8 +130,7 @@ public class BasePlayer extends GameBody {
                 case BLOCK:
                     this.block();
                     break;
-                case PUNCH:
-                    break;
+
                 case HADOUKEN:
                     if (cooldown <= 0) {
                         hadoukenShoot(elapsedTime);

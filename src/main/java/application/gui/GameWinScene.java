@@ -14,12 +14,11 @@ import java.io.IOException;
 
 public class GameWinScene extends BaseScene implements Initializable {
 
-    private Lifebar lifebar1;
-    private Lifebar lifebar2;
-    private String winner;
-    private UserSelectionScene userSelectionScene;
+    private final Lifebar lifebar1;
+    private final Lifebar lifebar2;
+    private final UserSelectionScene userSelectionScene;
 
-    public GameWinScene(Navigator navigator, Lifebar l1, Lifebar l2, UserSelectionScene userSelectionScene) {
+    public GameWinScene(Navigator<?> navigator, Lifebar l1, Lifebar l2, UserSelectionScene userSelectionScene) {
         super(navigator, Images.GameWin);
         this.lifebar1 = l1;
         this.lifebar2 = l2;
@@ -32,14 +31,15 @@ public class GameWinScene extends BaseScene implements Initializable {
         });
     }
 
-    private void drawtext(String text, int x, int y) {
+    private void drawtext(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.fillText(text, x, y);
+        gc.fillText(text, 710, 350);
     }
 
     @Override
     public void onInitialize() {
         String text;
+        String winner;
         if (lifebar1.isKo()) {
             text = "Player " + userSelectionScene.getP2() + " Wins";
             winner = userSelectionScene.getP2();
@@ -58,7 +58,8 @@ public class GameWinScene extends BaseScene implements Initializable {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+
+            drawtext(text);
         }
-        drawtext(text, 710, 350);
     }
 }
