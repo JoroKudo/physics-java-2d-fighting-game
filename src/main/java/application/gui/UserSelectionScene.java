@@ -5,6 +5,7 @@ import application.Navigation.Navigator;
 import application.Navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Images;
+import application.database.Firebase;
 import javafx.collections.FXCollections;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -18,7 +19,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-        import static javafx.scene.paint.Color.WHITE;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
     private ToggleGroup group1 = new ToggleGroup();
@@ -27,6 +31,7 @@ public class UserSelectionScene extends BaseScene {
     private String controll2 = "key";
     private String p1;
     private String p2;
+    ArrayList<String> selectedPlayers = new ArrayList<String>();
 
 
     public UserSelectionScene(Navigator navigator) {
@@ -164,6 +169,19 @@ public class UserSelectionScene extends BaseScene {
             if (combo_box.getValue() != null && combo_box_2.getValue() != null) {
                 p1 = (String) combo_box.getValue();
                 p2 = (String) combo_box_2.getValue();
+                selectedPlayers.add(p1);
+                selectedPlayers.add(p2);
+                Firebase firebase = new Firebase();
+                try {
+                    for (String player : selectedPlayers) {
+                        if (!firebase.checkIfFighterExists(player)) {
+                            firebase.addFighter(player);
+                        }
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
                 navigator.goTo(SceneType.GAME_SCENE);
             }
 
