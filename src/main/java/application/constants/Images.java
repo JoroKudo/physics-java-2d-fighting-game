@@ -14,9 +14,13 @@ public class Images {
     public final static Image punch_right = getImageSize("fighter/PunchRight2.gif");
     public final static Image punch_left = getImageSize("fighter/PunchLeft.gif");
     public final static Image fighter_look_left = getImageSize("fighter/LookLeft.gif");
-    public final static Image block = getImageSize("fighter/Block.gif");
+    public final static Image block_right = getImageSize("fighter/BlockRight.gif");
     public final static Image shootright = getImageSize("fighter/ShootRight.gif");
+    public final static Image shootleft = getImageSize("fighter/ShootLeft.gif");
     public final static Image chargeright = getImageSize("fighter/RightCharge.gif");
+    public final static Image chargeleft = getImageSize("fighter/ChargeLeft.gif");
+    public final static Image duck_left = getImageSize("fighter/DuckLeft.gif");
+
     public final static Image duck_right = getImageSize("fighter/DuckRight.gif");
 
     //ATTACKS

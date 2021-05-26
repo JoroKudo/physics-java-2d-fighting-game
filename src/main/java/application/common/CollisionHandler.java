@@ -52,15 +52,30 @@ public class CollisionHandler {
         if ((body1 instanceof BasePlayer) && (body2 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body2;
             if (hadouken.owner != body1) {
-                game.handleHitFighter(hadouken.owner.id);
+                switch (hadouken.owner.id){
+                    case 1:
+                        game.handleHitFighter(2);
+
+                    case 2:
+                        game.handleHitFighter(1);
+
+                }
                 physicWorld.removeBody(hadouken);
             }
         }
         if ((body2 instanceof BasePlayer) && (body1 instanceof Hadouken)) {
             Hadouken hadouken = (Hadouken) body1;
             if (hadouken.owner != body2) {
-                game.handleHitFighter(hadouken.owner.id);
+                switch (hadouken.owner.id){
+                    case 1:
+                        game.handleHitFighter(2);
+
+                    case 2:
+                        game.handleHitFighter(1);
+
+                }
                 physicWorld.removeBody(hadouken);
+
             }
         }
     }

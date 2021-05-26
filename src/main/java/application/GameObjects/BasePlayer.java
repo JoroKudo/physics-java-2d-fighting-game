@@ -32,7 +32,7 @@ public class BasePlayer extends GameBody {
     protected double punchcooldown = 0;
     protected boolean doesFighterNeedsToReturnHadouken = false;
     protected Direction currentDirect = Direction.RIGHT;
-    protected int dirdecider = 1;
+
     public int id;
     private final Controller controller;
     private boolean soundcanplay = true;
@@ -80,7 +80,7 @@ public class BasePlayer extends GameBody {
 
         Sound.play(SoundEffectType.HADOUKEN);
         cooldown = 5;
-        hadouken = new Hadouken(this.getWorldCenter().x + (this.dirdecider), this.getWorldCenter().y, this, 10 * (this.dirdecider));
+        hadouken = new Hadouken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()));
         image = Images.shootright;
         physicWorld.addBody(hadouken);
         doesFighterNeedsToReturnHadouken = true;
@@ -99,7 +99,11 @@ public class BasePlayer extends GameBody {
 
     protected void hadoukenShoot(double elapsedTime) {
 
-        this.image = Images.shootright;
+        if (currentDirect == Direction.RIGHT) {
+            this.image = Images.shootright;
+        } else {
+            this.image = Images.shootleft;
+        };
         animcooldown -= elapsedTime;
     }
 
@@ -168,11 +172,15 @@ public class BasePlayer extends GameBody {
     private void duck() {
 
         if (controller.FighterXisActing(id) == ActionType.DUCK) {
-            this.image = Images.duck_right;
+            if (currentDirect == Direction.RIGHT) {
+                this.image = Images.duck_right;
+            } else {
+                this.image = Images.duck_left;
+            }
             applyImpulse(new Vector2(0, 100));
 
             if (d) {
-                this.image = Images.duck_right;
+
                 this.getFixture(1).getShape().translate(0, 1);
                 this.getFixture(2).getShape().translate(0, 1);
                 this.getFixture(3).getShape().translate(0, 1);
@@ -214,15 +222,19 @@ public class BasePlayer extends GameBody {
 
         if (controller.FighterXisActing(id) == ActionType.PUNCH && punchcooldown > 0 && p) {
 
-            this.image = Images.punch_right;
-            this.fist.getFixture(0).getShape().translate(2 * (this.dirdecider), 0);
+            if (currentDirect == Direction.RIGHT) {
+                this.image = Images.punch_right;
+            } else {
+                this.image = Images.punch_left;
+            }
+            this.fist.getFixture(0).getShape().translate(2 * (dirupdate()), 0);
             p = false;
 
         } else {
             punchcooldown += 10 * elapsedTime;
 
             if (!p && punchcooldown > 3) {
-                this.fist.getFixture(0).getShape().translate(-2 * (this.dirdecider), 0);
+                this.fist.getFixture(0).getShape().translate(-2 * (dirupdate()), 0);
                 p = true;
                 punchcooldown = -2.5;
 
@@ -233,16 +245,21 @@ public class BasePlayer extends GameBody {
 
     public void block() {
         isblocking = true;
-        this.image = Images.block;
+        if (currentDirect == Direction.RIGHT) {
+            this.image = Images.block_right;
+        } else {
+            this.image = Images.block_right;
+        }
+
 
     }
 
-    public void dirupdate() {
+    public int dirupdate() {
         if (this.currentDirect == Direction.LEFT) {
-            this.dirdecider = -1;
+            return  -1;
 
         } else {
-            this.dirdecider = 1;
+            return  1;
         }
     }
 
