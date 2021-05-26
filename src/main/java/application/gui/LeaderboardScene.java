@@ -1,12 +1,10 @@
 package application.gui;
 
-import application.Navigation.Navigator;
-import application.Navigation.SceneType;
+import application.navigation.Navigator;
 import application.common.BaseScene;
 import application.constants.Images;
-import application.database.FirebaseRequestHandler;
+import application.firebase.RequestHandler;
 import javafx.geometry.Pos;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -29,9 +27,9 @@ public class LeaderboardScene extends BaseScene {
     public LeaderboardScene(Navigator navigator) throws IOException {
         super(navigator, Images.leaderboard);
 
-        FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
+        RequestHandler requestHandler = new RequestHandler();
 
-        ArrayList<String> players = firebaseRequestHandler.getAllFighters();
+        ArrayList<String> players = requestHandler.getAllFighters();
 
         JSONObject resobj = new JSONObject(players.get(0));
         Iterator<?> keys = resobj.keys();

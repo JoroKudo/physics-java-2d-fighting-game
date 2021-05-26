@@ -34,11 +34,11 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'application.main.Launcher'
+mainClassName = 'application.game.Launcher'
 
 jar {
     manifest{
-        attributes 'Main-Class': 'application.main.Launcher'
+        attributes 'Main-Class': 'application.game.Launcher'
     }
 
     from {

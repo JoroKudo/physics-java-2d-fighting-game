@@ -1,11 +1,11 @@
 package application.gui;
 
-import application.Navigation.Navigator;
-import application.Navigation.SceneType;
+import application.navigation.Navigator;
+import application.navigation.SceneType;
 import application.common.BaseScene;
 import application.common.Initializable;
 import application.constants.Images;
-import application.database.FirebaseRequestHandler;
+import application.firebase.RequestHandler;
 import application.stats.Lifebar;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -67,11 +67,11 @@ public class GameWinScene extends BaseScene implements Initializable {
                 text = "It's a draw!";
             }
         }
-        FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
+        RequestHandler requestHandler = new RequestHandler();
         if (userSelectionScene.getP1() != null && userSelectionScene.getP2() != null && winner != null) {
             try {
-                firebaseRequestHandler.addFight(userSelectionScene.getP1(), userSelectionScene.getP2(), winner);
-                firebaseRequestHandler.addWin(winner);
+                requestHandler.addFight(userSelectionScene.getP1(), userSelectionScene.getP2(), winner);
+                requestHandler.addWin(winner);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
