@@ -4,11 +4,14 @@ import application.controller.KeyboardController;
 import application.controller.GamepadController;
 import application.controller.VoiceController;
 import application.navigation.Navigator;
+import application.navigation.SceneType;
 import application.sound.MusicType;
 import application.sound.Sound;
+
 import application.common.*;
 import application.game.Game;
 import application.stats.Lifebar;
+import javafx.scene.input.KeyCode;
 
 public class GameScene extends BaseScene implements Initializable {
 
@@ -47,7 +50,13 @@ public class GameScene extends BaseScene implements Initializable {
     }
 
     private void gameLoopStopper() {
-        gameLoop.stop();
+        setOnKeyPressed(e -> {
+            if ((e.getCode() == KeyCode.SPACE)) {
+                gameLoop.stop();
+                navigator.goTo(SceneType.GAME_WIN_SCENE);
+            }
+        });
+
     }
 }
 

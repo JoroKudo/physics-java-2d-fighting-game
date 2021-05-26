@@ -6,6 +6,8 @@ import application.navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Images;
 import application.firebase.RequestHandler;
+import application.sound.MusicType;
+import application.sound.Sound;
 import javafx.collections.FXCollections;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -38,6 +40,9 @@ public class UserSelectionScene extends BaseScene {
 
     public UserSelectionScene(Navigator<?> navigator) throws IOException {
         super(navigator, Images.background);
+        getStylesheets().add("css/Style.css");
+        Sound.play(MusicType.MENU);
+
         requestHandler = new RequestHandler();
         playersFromDatabase = requestHandler.getAllFighters();
         JSONObject resobj = new JSONObject(playersFromDatabase.get(0));
@@ -65,16 +70,21 @@ public class UserSelectionScene extends BaseScene {
             } else break;
         }
 
-        //Create first combobox
-        ComboBox<?> combo_box = new ComboBox<>(FXCollections.observableArrayList(players));
-        combo_box.setEditable(true);
+
         GridPane gridPane = new GridPane();
         gridPane.setHgap(50);
         gridPane.setVgap(60);
 
+        //Create first combobox
+        ComboBox<?> combo_box = new ComboBox<>(FXCollections.observableArrayList(players));
+        combo_box.setEditable(true);
+        combo_box.setPromptText("Select User");
+
+
         //create second combobox
         ComboBox<?> combo_box_2 = new ComboBox<>(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
+        combo_box_2.setPromptText("Select User");
 
         ImageView controllerIconLeft = new ImageView(Images.controller);
         ImageView keyboardIconLeft = new ImageView(Images.keyboard);
@@ -113,9 +123,9 @@ public class UserSelectionScene extends BaseScene {
 
 
         ToggleGroup group1 = new ToggleGroup();
-        keyboard2.setToggleGroup(group1);
-        controller2.setToggleGroup(group1);
-        mic2.setToggleGroup(group1);
+        keyboard1.setToggleGroup(group1);
+        controller1.setToggleGroup(group1);
+        mic1.setToggleGroup(group1);
 
         ToggleGroup group2 = new ToggleGroup();
         keyboard2.setToggleGroup(group2);
@@ -125,16 +135,6 @@ public class UserSelectionScene extends BaseScene {
 
         keyboard2.setSelected(true);
         keyboard1.setSelected(true);
-
-
-        controller1.getStylesheets().add("css/Button.css");
-        keyboard1.getStylesheets().add("css/Button.css");
-        mic1.getStylesheets().add("css/Button.css");
-
-
-        controller2.getStylesheets().add("css/Button.css");
-        keyboard2.getStylesheets().add("css/Button.css");
-        mic2.getStylesheets().add("css/Button.css");
 
         controller1.setPrefSize(40, 40);
         keyboard1.setPrefSize(40, 40);
@@ -169,8 +169,7 @@ public class UserSelectionScene extends BaseScene {
         drawImage(Images.fighter_look_right, 460, 350);
         drawImage(Images.fighter_Bwalk_left, 900, 350);
         //Create Submit button
-        Button submit = new Button("Submit");
-        submit.getStylesheets().add("css/Button.css");
+        Button submit = new Button("START");
 
 
         submit.setOnAction(e -> {
@@ -232,6 +231,8 @@ public class UserSelectionScene extends BaseScene {
         gridPane.add(controller2, 13, 8, 1, 1);
 
         gridPane.add(submit, 11, 5, 1, 1);
+
+
 
 
         parent.add(gridPane);

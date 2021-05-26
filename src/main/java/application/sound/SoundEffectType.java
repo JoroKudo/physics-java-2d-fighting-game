@@ -8,6 +8,8 @@ public enum SoundEffectType {
     JUMP_LANDING,
     SCREAM,
     PAIN,
-    CHARGE_UP
+    CHARGE_UP,
+
+    KO
 
 }

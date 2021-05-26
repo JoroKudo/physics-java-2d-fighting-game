@@ -50,12 +50,16 @@ public class Sound {
             case SCREAM -> "scream.wav";
             case PAIN -> "man-in-pain.wav";
             case CHARGE_UP -> "chargeup.wav";
+            case KO -> "KO.mp3";
+
         };
     }
 
     private static String getSoundFileName(MusicType music) {
         return switch (music) {
             case GAME_BACKGROUND -> null;
+            case MENU -> "Menu.mp3";
+
             case FIGHT -> "Fight.mp3";
 
         };

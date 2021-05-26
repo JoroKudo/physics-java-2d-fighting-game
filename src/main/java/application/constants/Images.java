@@ -35,10 +35,12 @@ public class Images {
     public final static Image controller = getImageSize("controller.png");
     public final static Image keyboard = getImageSize("keyboard.png");
     public final static Image microphone = getImageSize("microphone.png");
+    public final static Image LOGO = getImageSize("LOGO.png");
 
     //GAME
     public final static Image background = getImageSize("background.png");
     public final static Image KO = getImageSize("KO.png");
+    public final static Image KO_anim = getImageSize("KO_anim.gif");
 
     //SCENES
     public final static Image welcome = getImageSize("Welcome.gif");

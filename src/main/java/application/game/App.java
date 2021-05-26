@@ -15,7 +15,6 @@ public class App extends Application {
         Lifebar lifebar1 = new Lifebar(1);
         Lifebar lifebar2 = new Lifebar(2);
         WelcomeScene welcomescene = new WelcomeScene(navigator);
-        welcomescene.getStylesheets().add("Button.css");
         UserSelectionScene userSelectionScene = new UserSelectionScene(navigator);
         navigator.registerScene(SceneType.WELCOME_SCENE, welcomescene);
         navigator.registerScene(SceneType.USER_SELECTION_SCENE, userSelectionScene);

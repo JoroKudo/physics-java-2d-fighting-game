@@ -26,9 +26,9 @@ import org.dyn4j.world.listener.CollisionListenerAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Game extends CopyOnWriteArrayList<application.gameObjects.GameObject> {
+
+public class Game  {
 
     private final Controller keyboardController, gamepadcontroller;
     private final VoiceController voiceController;
