@@ -1,11 +1,13 @@
 package application.gui;
 
-import application.common.KeyboardController;
-import application.Navigation.Navigator;
-import application.Sound.MusicType;
-import application.Sound.Sound;
+import application.controller.KeyboardController;
+import application.controller.GamepadController;
+import application.controller.VoiceController;
+import application.navigation.Navigator;
+import application.sound.MusicType;
+import application.sound.Sound;
 import application.common.*;
-import application.main.Game;
+import application.game.Game;
 import application.stats.Lifebar;
 
 public class GameScene extends BaseScene implements Initializable {

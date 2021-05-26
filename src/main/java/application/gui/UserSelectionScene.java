@@ -1,11 +1,11 @@
 package application.gui;
 
 
-import application.Navigation.Navigator;
-import application.Navigation.SceneType;
+import application.navigation.Navigator;
+import application.navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Images;
-import application.database.FirebaseRequestHandler;
+import application.firebase.RequestHandler;
 import javafx.collections.FXCollections;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -33,13 +33,13 @@ public class UserSelectionScene extends BaseScene {
     Map<String, Integer> fighter_score = new HashMap<>();
     ArrayList<String> playersFromDatabase = new ArrayList<>();
     ArrayList<String> selectedPlayers = new ArrayList<>();
-    FirebaseRequestHandler firebaseRequestHandler;
+    RequestHandler requestHandler;
     ArrayList<String> players = new ArrayList<>();
 
     public UserSelectionScene(Navigator<?> navigator) throws IOException {
         super(navigator, Images.background);
-        firebaseRequestHandler = new FirebaseRequestHandler();
-        playersFromDatabase = firebaseRequestHandler.getAllFighters();
+        requestHandler = new RequestHandler();
+        playersFromDatabase = requestHandler.getAllFighters();
         JSONObject resobj = new JSONObject(playersFromDatabase.get(0));
         Iterator<?> keys = resobj.keys();
         while (keys.hasNext()) { //TODO nullPointerException somewhere here
@@ -195,11 +195,11 @@ public class UserSelectionScene extends BaseScene {
                 p2 = p2.toLowerCase();
                 selectedPlayers.add(p1);
                 selectedPlayers.add(p2);
-                FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
+                RequestHandler requestHandler = new RequestHandler();
                 try {
                     for (String player : selectedPlayers) {
-                        if (!firebaseRequestHandler.checkIfFighterExists(player)) {
-                            firebaseRequestHandler.addFighter(player);
+                        if (!requestHandler.checkIfFighterExists(player)) {
+                            requestHandler.addFighter(player);
                         }
                     }
                 } catch (IOException ioException) {

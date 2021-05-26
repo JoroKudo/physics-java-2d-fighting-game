@@ -1,7 +1,7 @@
 package application.gui;
 
-import application.Navigation.Navigator;
-import application.Navigation.SceneType;
+import application.navigation.Navigator;
+import application.navigation.SceneType;
 import application.common.*;
 import application.constants.Images;
 import com.studiohartman.jamepad.ControllerManager;

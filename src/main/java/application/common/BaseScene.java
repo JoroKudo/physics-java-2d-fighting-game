@@ -1,6 +1,6 @@
 package application.common;
 
-import application.Navigation.Navigator;
+import application.navigation.Navigator;
 import application.constants.Const;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
