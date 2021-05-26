@@ -1,5 +1,6 @@
 package application.gui;
 
+import application.constants.Const;
 import application.navigation.Navigator;
 import application.navigation.SceneType;
 import application.common.BaseScene;
@@ -10,6 +11,7 @@ import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 
@@ -34,10 +36,10 @@ public class GameWinScene extends BaseScene implements Initializable {
 
     private void drawtext(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFont(Font.font("Arial", 30.0D));
-        gc.strokeText(text, 650.0D, 560.0D);
-        gc.setFont(Font.font("Arial", 15.0D));
-        gc.strokeText("Press Space to see the leaderboard", 650.0D, 600.0D);
+        gc.setFont(Font.font("Arial", 40));
+        gc.strokeText(text, 630, 560);
+        gc.setFont(Font.font("Arial", 15));
+        gc.strokeText("Press Space to see the leaderboard", 650, 620);
     }
 
     @Override

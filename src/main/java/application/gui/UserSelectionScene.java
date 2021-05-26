@@ -1,13 +1,13 @@
 package application.gui;
 
 
-import application.navigation.Navigator;
-import application.navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Images;
 import application.firebase.RequestHandler;
 import application.sound.MusicType;
 import application.sound.Sound;
+import application.navigation.Navigator;
+import application.navigation.SceneType;
 import javafx.collections.FXCollections;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
