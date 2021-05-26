@@ -7,7 +7,10 @@ import application.common.Initializable;
 import application.constants.Images;
 import application.database.FirebaseRequestHandler;
 import application.stats.Lifebar;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
@@ -34,6 +37,9 @@ public class GameWinScene extends BaseScene implements Initializable {
     private void drawtext(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.fillText(text, 710, 350);
+
+
+
     }
 
     @Override
