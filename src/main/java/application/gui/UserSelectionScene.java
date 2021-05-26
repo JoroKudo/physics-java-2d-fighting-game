@@ -18,10 +18,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import org.json.JSONObject;
+import org.junit.runner.Request;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Locale;
+import java.util.*;
 
 import static javafx.scene.paint.Color.WHITE;
 
@@ -30,13 +31,32 @@ public class UserSelectionScene extends BaseScene {
     private String controll2 = "key";
     private String p1;
     private String p2;
+    Map<String, Integer> fighter_score = new HashMap<>();
+    ArrayList<String> playersFromDatabase = new ArrayList<>();
     ArrayList<String> selectedPlayers = new ArrayList<>();
+    FirebaseRequestHandler firebaseRequestHandler;
+    ArrayList<String> players = new ArrayList<>();
 
-
-    public UserSelectionScene(Navigator<?> navigator) {
+    public UserSelectionScene(Navigator<?> navigator) throws IOException {
         super(navigator, Images.background);
-
-        String[] players = {"Fabian", "Leo", "Jiro"}; //TODO insert values form database here
+        firebaseRequestHandler = new FirebaseRequestHandler();
+        playersFromDatabase = firebaseRequestHandler.getAllFighters();
+        JSONObject resobj = new JSONObject(playersFromDatabase.get(0));
+        Iterator<?> keys = resobj.keys();
+        while (keys.hasNext()) { //TODO nullPointerException somewhere here
+            String key = (String) keys.next();
+            if (resobj.get(key) instanceof JSONObject) {
+                JSONObject xx = new JSONObject(resobj.get(key).toString());
+                fighter_score.put(key, (int) xx.get("wins"));
+            }
+        }
+        for (Map.Entry<String, Integer> entry : fighter_score.entrySet()) {
+            int x = 0;
+            if (x < 10) {
+                players.add("" + entry.getKey());
+                x++;
+            } else break;
+        }
         //Create first combobox
         ComboBox<?> combo_box = new ComboBox<>(FXCollections.observableArrayList(players));
         combo_box.setEditable(true);
