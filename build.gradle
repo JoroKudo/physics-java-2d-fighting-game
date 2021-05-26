@@ -26,6 +26,9 @@ dependencies {
     compile group: 'edu.cmu.sphinx', name: 'sphinx4-core', version:'5prealpha-SNAPSHOT'
     compile group: 'edu.cmu.sphinx', name: 'sphinx4-data', version:'5prealpha-SNAPSHOT'
     compile 'com.google.firebase:firebase-admin:5.8.0'
+    implementation 'net.java.jinput:jinput:2.0.9'
+    implementation 'net.java.jinput:windows-plugin:2.0.9'
+    implementation 'net.java.jinput:osx-plugin:2.0.9'
 }
 test {
     useJUnitPlatform()

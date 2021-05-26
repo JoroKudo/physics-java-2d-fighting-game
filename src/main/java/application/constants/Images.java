@@ -37,7 +37,6 @@ public class Images {
     //SCENES
     public final static Image welcome = getImageSize("Welcome.gif");
     public final static Image GameWin = getImageSize("GameWin.gif");
-    public final static Image Loading_Bar = getImageSize("Loadingbar.gif");
 
     //ENVIROMENT
     public final static Image wall = getImageSize("wall.png");

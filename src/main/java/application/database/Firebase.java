@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -164,6 +165,26 @@ public class Firebase {
             }
             System.out.println(response.toString());
         }
+    }
+
+    public ArrayList<String> returnAllFighters() throws IOException {
+        ArrayList<String> allFighters = new ArrayList<>();
+        URL url = new URL("https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/fighters.json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("Content-Type");
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+            allFighters.add(inputLine);
+        }
+        in.close();
+        con.disconnect();
+        String data = content.toString();
+        return allFighters;
     }
 
 }
