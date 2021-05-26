@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 
@@ -20,6 +21,8 @@ public class GameWinScene extends BaseScene implements Initializable {
     private final Lifebar lifebar1;
     private final Lifebar lifebar2;
     private final UserSelectionScene userSelectionScene;
+
+    Scene test;
 
     public GameWinScene(Navigator<?> navigator, Lifebar l1, Lifebar l2, UserSelectionScene userSelectionScene) {
         super(navigator, Images.GameWin);
@@ -36,9 +39,10 @@ public class GameWinScene extends BaseScene implements Initializable {
 
     private void drawtext(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.fillText(text, 710, 350);
-
-
+        gc.setFont(Font.font("Arial", 30));
+        gc.strokeText(text, 650, 560);
+        gc.setFont(Font.font("Arial", 15));
+        gc.strokeText("press Space to see leaderboard", 650, 600);
 
     }
 
