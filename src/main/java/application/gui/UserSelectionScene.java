@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static javafx.scene.paint.Color.WHITE;
 
@@ -30,6 +31,8 @@ public class UserSelectionScene extends BaseScene {
     private String p1;
     private String p2;
     ArrayList<String> selectedPlayers = new ArrayList<>();
+    int character;
+    String shortedPlayerString;
 
 
     public UserSelectionScene(Navigator<?> navigator) {
@@ -161,11 +164,18 @@ public class UserSelectionScene extends BaseScene {
                 controll2 = "ctrl";
             }
 
-            String valueComboBox1 = (String) combo_box.getValue();
-            String valueComboBox2 = (String) combo_box_2.getValue();
+
             if (combo_box.getValue() != null && combo_box_2.getValue() != null) {
                 p1 = (String) combo_box.getValue();
                 p2 = (String) combo_box_2.getValue();
+                if (p1.length() > 8) {
+                    p1 = p1.substring(0, 8);
+                }
+                if (p2.length() > 8) {
+                    p2 = p2.substring(0, 8);
+                }
+                p1 = p1.toLowerCase();
+                p2 = p2.toLowerCase();
                 selectedPlayers.add(p1);
                 selectedPlayers.add(p2);
                 FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
@@ -178,7 +188,6 @@ public class UserSelectionScene extends BaseScene {
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
-
                 navigator.goTo(SceneType.GAME_SCENE);
             }
 
