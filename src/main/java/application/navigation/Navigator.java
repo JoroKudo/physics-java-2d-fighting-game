@@ -19,7 +19,7 @@ public class Navigator<T> {
         viewMap.put(enumScene, scene);
     }
 
-    public void goTo(SceneType scene) {
+    public void goTo(application.navigation.SceneType scene) {
         Scene activeScene = viewMap.get(scene);
         if (activeScene instanceof Initializable) {
             ((Initializable) activeScene).onInitialize();
