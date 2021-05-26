@@ -40,7 +40,7 @@ public class GameBody extends Body {
         gc.setTransform(originTrans);
     }
 
-    public void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
+    private void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
 
         Affine originTrans = gc.getTransform();
 
@@ -73,7 +73,7 @@ public class GameBody extends Body {
 
     }
 
-    public void drawimage(Image image, double x, double y, GraphicsContext gc) {
+    protected void drawimage(Image image, double x, double y, GraphicsContext gc) {
         gc.drawImage(image, x * Const.BLOCK_SIZE, y * Const.BLOCK_SIZE);
     }
 }

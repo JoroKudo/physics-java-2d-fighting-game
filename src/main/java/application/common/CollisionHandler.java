@@ -24,9 +24,10 @@ public class CollisionHandler {
         this.body1 = body1;
         this.body2 = body2;
         handleFighterPain();
+        removeobjects();
     }
 
-    public void handleFighterPain() {
+    private void handleFighterPain() {
         if ((body1 instanceof BasePlayer) && (body2 instanceof Fist)) {
             BasePlayer fighter = (BasePlayer) body1;
             Sound.play(SoundEffectType.FISTPUNCH);
@@ -79,7 +80,17 @@ public class CollisionHandler {
             }
         }
     }
-}
+    private void removeobjects() {
+        if ((body1 instanceof Wall) && (body2 instanceof Hadouken)) {
+            physicWorld.removeBody(body2);
+        }
+        if ((body2 instanceof Wall) && (body1 instanceof Hadouken)) {
+            physicWorld.removeBody(body1);
+
+        }
+    }
+
+    }
 
 
 

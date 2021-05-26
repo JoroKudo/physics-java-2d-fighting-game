@@ -102,14 +102,14 @@ public class UserSelectionScene extends BaseScene {
         keyboard1.setSelected(true);
 
 
-        controller1.getStylesheets().add("button.css");
-        keyboard1.getStylesheets().add("button.css");
-        mic1.getStylesheets().add("button.css");
+        controller1.getStylesheets().add("css/button.css");
+        keyboard1.getStylesheets().add("css/button.css");
+        mic1.getStylesheets().add("css/button.css");
 
 
-        controller2.getStylesheets().add("button.css");
-        keyboard2.getStylesheets().add("button.css");
-        mic2.getStylesheets().add("button.css");
+        controller2.getStylesheets().add("css/button.css");
+        keyboard2.getStylesheets().add("css/button.css");
+        mic2.getStylesheets().add("css/button.css");
 
         controller1.setPrefSize(40, 40);
         keyboard1.setPrefSize(40, 40);
@@ -145,7 +145,7 @@ public class UserSelectionScene extends BaseScene {
         drawImage(Images.fighter_Bwalk_left, 900, 350);
         //Create Submit button
         Button submit = new Button("Submit");
-        submit.getStylesheets().add("button.css");
+        submit.getStylesheets().add("css/button.css");
 
 
         submit.setOnAction(e -> {
