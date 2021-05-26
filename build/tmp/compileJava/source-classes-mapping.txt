@@ -10,10 +10,10 @@ application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
 application/common/Controller.java
  application.common.Controller
-application/Navigation/Navigator.java
- application.Navigation.Navigator
 application/constants/Const.java
  application.constants.Const
+application/Navigation/Navigator.java
+ application.Navigation.Navigator
 application/GameObjects/Foot.java
  application.GameObjects.Foot
 application/gui/GameWinScene.java
@@ -26,10 +26,10 @@ application/gui/LeaderboardScene.java
  application.gui.LeaderboardScene
 application/stats/Timer.java
  application.stats.Timer
-application/GameObjects/Fist.java
- application.GameObjects.Fist
 application/common/KeyboardController.java
  application.common.KeyboardController
+application/GameObjects/Fist.java
+ application.GameObjects.Fist
 application/Navigation/SceneType.java
  application.Navigation.SceneType
 application/gui/GameScene.java
@@ -48,11 +48,11 @@ application/main/Launcher.java
  application.main.Launcher
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
+application/common/Initializable.java
+ application.common.Initializable
 application/main/Game.java
  application.main.Game
  application.main.Game$1
-application/common/Initializable.java
- application.common.Initializable
 application/common/GamepadController.java
  application.common.GamepadController
 application/Sound/SoundEffectType.java
