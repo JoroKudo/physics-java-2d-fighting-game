@@ -17,7 +17,7 @@ public class Timer {
     public void draw(GraphicsContext gc) {
         gc.setFill(Color.WHITE);
         gc.setFont(Font.font("Arial", FontWeight.BOLD, 25));
-        gc.fillText("" + (int) time, (Const.CANVAS_WIDTH >> 1) - 10, 120);
+        gc.fillText("" + (int) time, (Const.CANVAS_WIDTH >> 1) - 10, 140);
     }
 
     public double getTime() {

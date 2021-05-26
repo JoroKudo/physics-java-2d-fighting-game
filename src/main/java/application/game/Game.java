@@ -1,5 +1,9 @@
 package application.game;
 
+
+import application.gameObjects.*;
+import application.navigation.Navigator;
+import application.navigation.SceneType;
 import application.common.Controller;
 import application.constants.Const;
 import application.constants.Images;
@@ -24,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Game extends CopyOnWriteArrayList<GameObject> {
+public class Game extends CopyOnWriteArrayList<application.gameObjects.GameObject> {
 
     private final Controller keyboardController, gamepadcontroller;
     private final VoiceController voiceController;
@@ -54,9 +58,9 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
-        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBARS) >> 1, 50);
         lifebar1.draw(gc);
         lifebar2.draw(gc);
+        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBARS) >> 1, 50);
         timer.draw(gc);
         for (Body body : physicWorld.getBodies()) {
             GameBody gameBody = (GameBody) body;
