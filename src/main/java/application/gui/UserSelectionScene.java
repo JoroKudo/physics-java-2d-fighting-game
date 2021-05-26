@@ -31,8 +31,6 @@ public class UserSelectionScene extends BaseScene {
     private String p1;
     private String p2;
     ArrayList<String> selectedPlayers = new ArrayList<>();
-    int character;
-    String shortedPlayerString;
 
 
     public UserSelectionScene(Navigator<?> navigator) {
