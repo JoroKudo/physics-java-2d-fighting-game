@@ -38,8 +38,8 @@ public class GameWinScene extends BaseScene implements Initializable {
 
     @Override
     public void onInitialize() {
-        String text;
-        String winner;
+        String text = "";
+        String winner = "";
         if (lifebar1.isKo()) {
             text = "Player " + userSelectionScene.getP2() + " Wins";
             winner = userSelectionScene.getP2();
@@ -47,8 +47,15 @@ public class GameWinScene extends BaseScene implements Initializable {
             text = "Player " + userSelectionScene.getP1() + " Wins";
             winner = userSelectionScene.getP1();
         } else {
-            text = "Winner can't be indentified";
-            winner = "no winner";
+            if (lifebar1.getDamage() < lifebar2.getDamage()) {
+                text = "Player " + userSelectionScene.getP1() + " Wins";
+                winner = userSelectionScene.getP1();
+            } else if (lifebar2.getDamage() < lifebar1.getDamage()) {
+                text = "Player " + userSelectionScene.getP2() + " Wins";
+                winner = userSelectionScene.getP2();
+            } else if (lifebar1.getDamage() == lifebar2.getDamage()) {
+                text = "It's a draw!";
+            }
         }
         FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
         if (userSelectionScene.getP1() != null && userSelectionScene.getP2() != null && winner != null) {
@@ -58,7 +65,6 @@ public class GameWinScene extends BaseScene implements Initializable {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-
             drawtext(text);
         }
     }

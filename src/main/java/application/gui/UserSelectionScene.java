@@ -19,7 +19,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.json.JSONObject;
-import org.junit.runner.Request;
 
 import java.io.IOException;
 import java.util.*;
@@ -52,7 +51,7 @@ public class UserSelectionScene extends BaseScene {
         }
         for (Map.Entry<String, Integer> entry : fighter_score.entrySet()) {
             int x = 0;
-            if (x < 10) {
+            if (x < 8) {
                 players.add("" + entry.getKey());
                 x++;
             } else break;

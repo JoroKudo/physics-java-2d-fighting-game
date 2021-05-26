@@ -36,10 +36,7 @@ public class Lifebar {
         return this.damage >= Const.LIFEBAR_LENGTH;
     }
 
-    /*
-    public void setDamagetoNull(){
-        this.damage = 0;
+    public double getDamage() {
+        return damage;
     }
-    */
-
 }

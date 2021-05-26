@@ -5,10 +5,8 @@ import com.studiohartman.jamepad.ControllerState;
 
 public class GamepadController implements application.common.Controller {
 
-
     public int e = 0;
     public ControllerManager controllers;
-
 
     @Override
     public ActionType FighterXisActing(int id) {

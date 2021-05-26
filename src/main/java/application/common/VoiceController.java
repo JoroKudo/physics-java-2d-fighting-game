@@ -15,13 +15,12 @@ import java.util.logging.Logger;
 
 public class VoiceController implements Controller {
 
-    private LiveSpeechRecognizer recognizer;
     private final Logger logger = Logger.getLogger(getClass().getName());
-    private String speechRecognitionResult = "stop";
-    private boolean speechRecognizerThreadRunning = false;
     private final ExecutorService eventsExecutorService = Executors.newFixedThreadPool(2);
     public Configuration configuration = new Configuration();
-
+    private LiveSpeechRecognizer recognizer;
+    private String speechRecognitionResult = "stop";
+    private boolean speechRecognizerThreadRunning = false;
 
     public void initiate(Configuration configuration) {
         System.out.println("Loading Speech Controller...");

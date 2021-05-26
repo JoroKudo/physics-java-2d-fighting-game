@@ -8,11 +8,7 @@ import javafx.scene.text.FontWeight;
 
 public class Timer {
 
-    private double time = 100;
-
-    public double getTime() {
-        return time;
-    }
+    private double time = 10;
 
     public void update(Double deltaInSec) {
         time -= deltaInSec;
@@ -24,4 +20,7 @@ public class Timer {
         gc.fillText("" + (int) time, (Const.CANVAS_WIDTH >> 1) - 10, 120);
     }
 
+    public double getTime() {
+        return time;
+    }
 }

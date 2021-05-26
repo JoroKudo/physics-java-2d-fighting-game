@@ -39,7 +39,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private Timer timer;
     private final UserSelectionScene userSelectionScene;
     private final Runnable gameLoopStopper;
-    private final ArrayList<Hadouken> hadoukens = new ArrayList<>();
+    private final ArrayList<Hadoken> hadokens = new ArrayList<>();
 
 
     public Game(Controller keyboardController, GamepadController gamepadController, VoiceController voiceController, Navigator<?> navigator, Lifebar lifebar1, Lifebar lifebar2, Runnable gameLoopStopper, UserSelectionScene userSelectionScene) {
@@ -129,16 +129,18 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
         timePassedSinceCooldown += elapsedTime;
         timer.update(elapsedTime);
+        if (timer.getTime() < 0) {
+            navigator.goTo(SceneType.GAME_WIN_SCENE);
+            gameLoopStopper.run();
+        }
 
         if (fighter.isDoesFighterNeedsToReturnHadouken()) {
-            hadoukens.add(fighter.getHadouken());
+            hadokens.add(fighter.getHadouken());
         }
-        for (Hadouken hadouken : hadoukens) {
-            hadouken.update();
+        for (Hadoken hadoken : hadokens) {
+            hadoken.update();
         }
-
     }
-
 
     public void handleHitFighter(int id) {
         if (timePassedSinceCooldown >= 0.7) {

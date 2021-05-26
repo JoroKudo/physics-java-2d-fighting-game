@@ -20,7 +20,7 @@ public class BasePlayer extends GameBody {
 
     private final World<Body> physicWorld;
     public Fist fist;
-    public Hadouken hadouken;
+    public Hadoken hadoken;
     public Foot foot;
     public WeldJoint<?> punchshould;
     public WeldJoint<?> punchfoot;
@@ -90,13 +90,13 @@ public class BasePlayer extends GameBody {
         Sound.play(SoundEffectType.HADOUKEN);
         cooldown = 5;
         if (currentDirect == Direction.RIGHT) {
-            hadouken = new Hadouken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_right);
+            hadoken = new Hadoken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_right);
         } else {
-            hadouken = new Hadouken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_left);
+            hadoken = new Hadoken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_left);
         }
 
         image = Images.shoot_right;
-        physicWorld.addBody(hadouken);
+        physicWorld.addBody(hadoken);
         doesFighterNeedsToReturnHadouken = true;
         soundcanplay = true;
     }
@@ -131,9 +131,9 @@ public class BasePlayer extends GameBody {
         return doesFighterNeedsToReturnHadouken;
     }
 
-    public Hadouken getHadouken() {
+    public Hadoken getHadouken() {
         doesFighterNeedsToReturnHadouken = false;
-        return this.hadouken;
+        return this.hadoken;
     }
 
     private void act(ActionType actionType, double elapsedTime) {
