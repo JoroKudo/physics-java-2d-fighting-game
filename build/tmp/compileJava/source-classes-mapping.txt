@@ -1,49 +1,38 @@
-application/constants/Images.java
- application.constants.Images
-application/common/FancyAnimationTimer.java
- application.common.FancyAnimationTimer
-application/stats/Timer.java
- application.stats.Timer
-application/stats/Lifebar.java
- application.stats.Lifebar
-application/constants/Const.java
- application.constants.Const
-application/common/Initializable.java
- application.common.Initializable
 application/controller/KeyboardController.java
  application.controller.KeyboardController
-application/gui/UserSelectionScene.java
- application.gui.UserSelectionScene
+application/stats/Lifebar.java
+ application.stats.Lifebar
+application/firebase/RequestHandler.java
+ application.firebase.RequestHandler
 application/gameObjects/GameObject.java
  application.gameObjects.GameObject
-application/main/App.java
- application.main.App
 application/gameObjects/Wall.java
  application.gameObjects.Wall
 application/common/Controller.java
  application.common.Controller
+application/constants/Const.java
+ application.constants.Const
 application/gameObjects/Foot.java
  application.gameObjects.Foot
-application/gui/GameWinScene.java
- application.gui.GameWinScene
+application/common/BaseScene.java
+ application.common.BaseScene
+application/common/FancyAnimationTimer.java
+ application.common.FancyAnimationTimer
 application/gui/LeaderboardScene.java
  application.gui.LeaderboardScene
+application/stats/Timer.java
+ application.stats.Timer
 application/gameObjects/Floor.java
  application.gameObjects.Floor
 application/gameObjects/Fist.java
  application.gameObjects.Fist
 application/navigation/Navigator.java
  application.navigation.Navigator
-application/firebase/requestHandler.java
- application.firebase.requestHandler
-application/main/CollisionHandler.java
- application.main.CollisionHandler
 application/sound/Sound.java
  application.sound.Sound
  application.sound.Sound$1
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/controller/ActionType.java
+ application.controller.ActionType
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
 application/sound/MusicType.java
@@ -53,8 +42,8 @@ application/gameObjects/BasePlayer.java
  application.gameObjects.BasePlayer$1
 application/gameObjects/Hadoken.java
  application.gameObjects.Hadoken
-application/main/Launcher.java
- application.main.Launcher
+application/navigation/SceneType.java
+ application.navigation.SceneType
 application/controller/GamepadController.java
  application.controller.GamepadController
 application/sound/SoundEffectType.java
@@ -63,14 +52,25 @@ application/controller/VoiceController.java
  application.controller.VoiceController
 application/gameObjects/GameBody.java
  application.gameObjects.GameBody
+application/common/Initializable.java
+ application.common.Initializable
 application/gameObjects/Direction.java
  application.gameObjects.Direction
-application/main/Game.java
- application.main.Game
- application.main.Game$1
-application/navigation/SceneType.java
- application.navigation.SceneType
-application/common/BaseScene.java
- application.common.BaseScene
-application/controller/ActionType.java
- application.controller.ActionType
+application/constants/Images.java
+ application.constants.Images
+application/game/Game.java
+ application.game.Game
+ application.game.Game$1
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/game/CollisionHandler.java
+ application.game.CollisionHandler
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
+application/game/App.java
+ application.game.App
+application/game/Launcher.java
+ application.game.Launcher

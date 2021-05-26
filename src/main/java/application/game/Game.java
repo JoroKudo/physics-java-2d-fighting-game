@@ -86,7 +86,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
         }
         timer = new Timer();
         Floor floor = new Floor(15, 17);
-        Wall wall1 = new Wall(30, 7);
+        Wall wall1 = new Wall(30.2, 7);
         Wall wall2 = new Wall(0, 7);
 
         physicWorld.setGravity(new Vector2(0, 15));
