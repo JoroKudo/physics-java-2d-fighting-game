@@ -5,7 +5,7 @@ import application.Navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Const;
 import application.constants.Images;
-import application.database.Firebase;
+import application.database.FirebaseRequestHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
@@ -28,9 +28,9 @@ public class LeaderboardScene extends BaseScene {
     public LeaderboardScene(Navigator navigator) throws IOException {
         super(navigator, Images.leaderboard);
 
-        Firebase firebase = new Firebase();
+        FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
 
-        ArrayList<String> players = firebase.getAllFighters();
+        ArrayList<String> players = firebaseRequestHandler.getAllFighters();
 
         JSONObject resobj = new JSONObject(players.get(0));
         Iterator<?> keys = resobj.keys();

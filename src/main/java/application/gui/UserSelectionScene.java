@@ -5,7 +5,7 @@ import application.Navigation.Navigator;
 import application.Navigation.SceneType;
 import application.common.BaseScene;
 import application.constants.Images;
-import application.database.Firebase;
+import application.database.FirebaseRequestHandler;
 import javafx.collections.FXCollections;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -168,11 +168,11 @@ public class UserSelectionScene extends BaseScene {
                 p2 = (String) combo_box_2.getValue();
                 selectedPlayers.add(p1);
                 selectedPlayers.add(p2);
-                Firebase firebase = new Firebase();
+                FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
                 try {
                     for (String player : selectedPlayers) {
-                        if (!firebase.checkIfFighterExists(player)) {
-                            firebase.addFighter(player);
+                        if (!firebaseRequestHandler.checkIfFighterExists(player)) {
+                            firebaseRequestHandler.addFighter(player);
                         }
                     }
                 } catch (IOException ioException) {

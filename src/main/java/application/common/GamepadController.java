@@ -2,15 +2,6 @@ package application.common;
 
 import com.studiohartman.jamepad.ControllerManager;
 import com.studiohartman.jamepad.ControllerState;
-import net.java.games.input.Component;
-import net.java.games.input.ControllerEnvironment;
-import net.java.games.input.Event;
-import net.java.games.input.EventQueue;
-import net.java.games.input.Controller;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class GamepadController implements application.common.Controller {
 
@@ -54,7 +45,7 @@ public class GamepadController implements application.common.Controller {
 
 
 
-//GAMEPADCONTROLLER WITH JINPUT THAT WILL BE FIXED BY LEO ASAP
+//TODO GAMEPAD Controller (LEO)
 
         /*
             List<net.java.games.input.Controller> gamepads = Arrays.stream(ControllerEnvironment.getDefaultEnvironment().getControllers()).filter(controller ->

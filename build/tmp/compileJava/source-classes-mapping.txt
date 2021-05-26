@@ -2,10 +2,10 @@ application/common/VoiceController.java
  application.common.VoiceController
 application/stats/Lifebar.java
  application.stats.Lifebar
-application/Sound/MusicType.java
- application.Sound.MusicType
-application/GameObjects/Wall.java
- application.GameObjects.Wall
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
+application/main/App.java
+ application.main.App
 application/GameObjects/Hadouken.java
  application.GameObjects.Hadouken
 application/common/Controller.java
@@ -16,17 +16,14 @@ application/constants/Const.java
  application.constants.Const
 application/GameObjects/Foot.java
  application.GameObjects.Foot
-application/common/BaseScene.java
- application.common.BaseScene
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/common/ActionType.java
- application.common.ActionType
 application/common/CollisionHandler.java
  application.common.CollisionHandler
-application/Sound/Sound.java
- application.Sound.Sound
- application.Sound.Sound$1
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene
 application/stats/Timer.java
  application.stats.Timer
 application/GameObjects/Fist.java
@@ -64,13 +61,16 @@ application/GameObjects/Direction.java
  application.GameObjects.Direction
 application/constants/Images.java
  application.constants.Images
-application/main/App.java
- application.main.App
-application/gui/UserSelectionScene.java
- application.gui.UserSelectionScene
-application/gui/GameWinScene.java
- application.gui.GameWinScene
-application/database/Firebase.java
- application.database.Firebase
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
+application/Sound/Sound.java
+ application.Sound.Sound
+ application.Sound.Sound$1
+application/database/FirebaseRequestHandler.java
+ application.database.FirebaseRequestHandler
+application/common/ActionType.java
+ application.common.ActionType
+application/common/BaseScene.java
+ application.common.BaseScene
+application/GameObjects/Wall.java
+ application.GameObjects.Wall
+application/Sound/MusicType.java
+ application.Sound.MusicType

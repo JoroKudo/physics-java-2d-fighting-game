@@ -5,7 +5,7 @@ import application.Navigation.SceneType;
 import application.common.BaseScene;
 import application.common.Initializable;
 import application.constants.Images;
-import application.database.Firebase;
+import application.database.FirebaseRequestHandler;
 import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -50,11 +50,11 @@ public class GameWinScene extends BaseScene implements Initializable {
             text = "Winner can't be indentified";
             winner = "no winner";
         }
-        Firebase firebase = new Firebase();
+        FirebaseRequestHandler firebaseRequestHandler = new FirebaseRequestHandler();
         if (userSelectionScene.getP1() != null && userSelectionScene.getP2() != null && winner != null) {
             try {
-                firebase.addFight(userSelectionScene.getP1(), userSelectionScene.getP2(), winner);
-                firebase.addWin(winner);
+                firebaseRequestHandler.addFight(userSelectionScene.getP1(), userSelectionScene.getP2(), winner);
+                firebaseRequestHandler.addWin(winner);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
