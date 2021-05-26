@@ -58,7 +58,7 @@ public class BasePlayer extends GameBody {
         Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE * 2, 21 / Const.BLOCK_SIZE * 2));
         hips.getShape().translate(0, 2.4);
 
-        fist = new Fist(x, y + 2);
+        fist = new Fist(x, y+1);
         foot = new Foot(x, y + 4.23);
 
         punchshould = new WeldJoint<Body>(this, fist, new Vector2(x, y));
@@ -73,37 +73,57 @@ public class BasePlayer extends GameBody {
 
     @Override
     public void drawimage(Image image, double x, double y, GraphicsContext gc) {
-        gc.drawImage(image, x * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
+        if (currentDirect == Direction.LEFT && controller.FighterXisActing(id) == ActionType.PUNCH) {
+            gc.drawImage(image, x-(72 / Const.BLOCK_SIZE * 2) * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
+
+        } else {
+            gc.drawImage(image, x * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
+
+        }
+
+
+
     }
 
-    protected void createHadouken() {
+    private void createHadouken() {
 
         Sound.play(SoundEffectType.HADOUKEN);
         cooldown = 5;
-        hadouken = new Hadouken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()));
-        image = Images.shootright;
+        if (currentDirect == Direction.RIGHT) {
+            hadouken = new Hadouken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_right);
+        } else {
+            hadouken = new Hadouken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_left);
+        }
+
+        image = Images.shoot_right;
         physicWorld.addBody(hadouken);
         doesFighterNeedsToReturnHadouken = true;
         soundcanplay = true;
     }
 
-    protected void hadoukenCharge(double elapsedTime) {
-        if (soundcanplay){
-        Sound.play(SoundEffectType.CHARGEUP);
-        soundcanplay=false;}
+    private void hadoukenCharge(double elapsedTime) {
+        if (soundcanplay) {
+            Sound.play(SoundEffectType.CHARGEUP);
+            soundcanplay = false;
+        }
 
 
-        this.image = Images.chargeright;
+        if (currentDirect == Direction.RIGHT) {
+            this.image = Images.charge_right;
+        } else {
+            this.image = Images.charge_left;
+        }
         cooldown -= elapsedTime;
     }
 
-    protected void hadoukenShoot(double elapsedTime) {
+    private void hadoukenShoot(double elapsedTime) {
 
         if (currentDirect == Direction.RIGHT) {
-            this.image = Images.shootright;
+            this.image = Images.shoot_right;
         } else {
-            this.image = Images.shootleft;
-        };
+            this.image = Images.shoot_left;
+        }
+
         animcooldown -= elapsedTime;
     }
 
@@ -116,9 +136,9 @@ public class BasePlayer extends GameBody {
         return this.hadouken;
     }
 
-    public void act(ActionType actionType, double elapsedTime) {
-        if (actionType!=ActionType.HADOKEN) {
-            soundcanplay =true;
+    private void act(ActionType actionType, double elapsedTime) {
+        if (actionType != ActionType.HADOKEN) {
+            soundcanplay = true;
         }
         punch(elapsedTime);
         duck();
@@ -126,7 +146,6 @@ public class BasePlayer extends GameBody {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
         }
         if (actionType != null) {
-
 
 
             switch (actionType) {
@@ -197,28 +216,32 @@ public class BasePlayer extends GameBody {
     }
 
 
-    public void jump() {
+    private void jump() {
         if (this.isOnGround()) {
-            this.image = Images.jump_right;
+            if (currentDirect == Direction.RIGHT) {
+                this.image = Images.jump_right;
+            } else {
+                this.image = Images.jump_left;
+            }
             applyImpulse(new Vector2(0, -150));
 
         }
     }
 
-    public void walkLeft() {
+    private void walkLeft() {
         this.currentDirect = Direction.LEFT;
         setLinearVelocity(-7, getLinearVelocity().y);
         this.image = Images.fighter_walk_left;
     }
 
-    public void walkRight() {
+    private void walkRight() {
         this.currentDirect = Direction.RIGHT;
 
         setLinearVelocity(7, getLinearVelocity().y);
         this.image = Images.fighter_walk_right;
     }
 
-    public void punch(double elapsedTime) {
+    private void punch(double elapsedTime) {
 
         if (controller.FighterXisActing(id) == ActionType.PUNCH && punchcooldown > 0 && p) {
 
@@ -243,12 +266,12 @@ public class BasePlayer extends GameBody {
     }
 
 
-    public void block() {
+    private void block() {
         isblocking = true;
         if (currentDirect == Direction.RIGHT) {
             this.image = Images.block_right;
         } else {
-            this.image = Images.block_right;
+            this.image = Images.block_left;
         }
 
 
@@ -256,14 +279,14 @@ public class BasePlayer extends GameBody {
 
     public int dirupdate() {
         if (this.currentDirect == Direction.LEFT) {
-            return  -1;
+            return -1;
 
         } else {
-            return  1;
+            return 1;
         }
     }
 
-    public boolean isOnGround() {
+    private boolean isOnGround() {
         for (Body body : physicWorld.getBodies()) {
             if (physicWorld.isInContact(this.foot, body)) {
                 if (!(body instanceof Fist)) {
