@@ -26,7 +26,7 @@ public class GameWinScene extends BaseScene implements Initializable {
 
         setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.SPACE) {
-                navigator.goTo(SceneType.GAME_SCENE);
+                navigator.goTo(SceneType.LEADERBOARD_SCENE);
             }
         });
     }

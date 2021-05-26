@@ -15,7 +15,6 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
     public KeyCode[] allKeys2 = new KeyCode[]{
             KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
 
-
     @Override
     public void handle(KeyEvent event) {
 

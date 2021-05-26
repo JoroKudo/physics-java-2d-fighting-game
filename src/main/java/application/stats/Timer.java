@@ -8,7 +8,7 @@ import javafx.scene.text.FontWeight;
 
 public class Timer {
 
-    private double time = 10;
+    private double time = 120;
 
     public void update(Double deltaInSec) {
         time -= deltaInSec;

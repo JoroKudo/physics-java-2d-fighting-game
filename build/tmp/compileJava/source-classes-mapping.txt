@@ -1,7 +1,8 @@
 application/common/VoiceController.java
  application.common.VoiceController
-application/GameObjects/Hadoken.java
- application.GameObjects.Hadoken
+application/main/Game.java
+ application.main.Game
+ application.main.Game$1
 application/GameObjects/Wall.java
  application.GameObjects.Wall
 application/common/BaseScene.java
@@ -23,14 +24,15 @@ application/common/FancyAnimationTimer.java
 application/Sound/Sound.java
  application.Sound.Sound
  application.Sound.Sound$1
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
+application/GameObjects/BasePlayer.java
+ application.GameObjects.BasePlayer
+ application.GameObjects.BasePlayer$1
 application/common/GamepadController.java
  application.common.GamepadController
 application/GameObjects/Fist.java
  application.GameObjects.Fist
-application/common/KeyboardController.java
- application.common.KeyboardController
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
 application/Navigation/SceneType.java
  application.Navigation.SceneType
 application/common/ActionType.java
@@ -43,34 +45,32 @@ application/GameObjects/GameObject.java
  application.GameObjects.GameObject
 application/constants/Images.java
  application.constants.Images
-application/main/Launcher.java
- application.main.Launcher
+application/common/CollisionHandler.java
+ application.common.CollisionHandler
 application/GameObjects/GameBody.java
  application.GameObjects.GameBody
 application/GameObjects/Direction.java
  application.GameObjects.Direction
 application/common/Initializable.java
  application.common.Initializable
-application/GameObjects/BasePlayer.java
- application.GameObjects.BasePlayer
- application.GameObjects.BasePlayer$1
+application/stats/Lifebar.java
+ application.stats.Lifebar
 application/Sound/SoundEffectType.java
  application.Sound.SoundEffectType
 application/gui/UserSelectionScene.java
  application.gui.UserSelectionScene
-application/stats/Lifebar.java
- application.stats.Lifebar
-application/main/App.java
- application.main.App
+application/common/KeyboardController.java
+ application.common.KeyboardController
+application/stats/Timer.java
+ application.stats.Timer
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
-application/gui/GameWinScene.java
- application.gui.GameWinScene
-application/common/CollisionHandler.java
- application.common.CollisionHandler
-application/stats/Timer.java
- application.stats.Timer
-application/main/Game.java
- application.main.Game
- application.main.Game$1
+application/GameObjects/Hadoken.java
+ application.GameObjects.Hadoken
+application/main/App.java
+ application.main.App
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene
+application/main/Launcher.java
+ application.main.Launcher

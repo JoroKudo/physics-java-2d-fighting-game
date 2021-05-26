@@ -75,11 +75,7 @@ public class LeaderboardScene extends BaseScene {
         userScoreGridPane.setLayoutX(900);
         userScoreGridPane.setLayoutY(250);
         parent.add(userScoreGridPane);
-        setOnKeyPressed(e -> {
-            if ((e.getCode() == KeyCode.SPACE)) {
-                navigator.goTo(SceneType.USER_SELECTION_SCENE);
-            }
-        });
+
     }
 
 }

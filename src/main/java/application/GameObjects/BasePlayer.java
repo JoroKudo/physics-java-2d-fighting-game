@@ -27,7 +27,7 @@ public class BasePlayer extends GameBody {
     protected boolean p = true;
     protected boolean d = true;
     public boolean isblocking = false;
-    protected double cooldown = 5;
+    protected double cooldown = 2;
     protected double animcooldown = 0.3;
     protected double punchcooldown = 0;
     protected boolean doesFighterNeedsToReturnHadouken = false;
@@ -88,7 +88,7 @@ public class BasePlayer extends GameBody {
     private void createHadouken() {
 
         Sound.play(SoundEffectType.HADOUKEN);
-        cooldown = 5;
+        cooldown = 2;
         if (currentDirect == Direction.RIGHT) {
             hadoken = new Hadoken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_right);
         } else {
