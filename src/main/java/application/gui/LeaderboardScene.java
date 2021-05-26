@@ -2,7 +2,7 @@ package application.gui;
 
 import application.Navigation.Navigator;
 import application.Navigation.SceneType;
-import application.common.*;
+import application.common.BaseScene;
 import application.constants.Const;
 import application.constants.Images;
 import application.database.Firebase;
@@ -13,15 +13,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.json.JSONObject;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.*;
 
-import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 
-public class LeaderboardScene extends BaseScene  {
+public class LeaderboardScene extends BaseScene {
 
     Map<String, Integer> fighter_score = new HashMap<>();
     GridPane gridPane = new GridPane();
@@ -32,13 +30,13 @@ public class LeaderboardScene extends BaseScene  {
 
         Firebase firebase = new Firebase();
 
-        ArrayList<String> players = firebase.returnAllFighters();
+        ArrayList<String> players = firebase.getAllFighters();
 
         JSONObject resobj = new JSONObject(players.get(0));
         Iterator<?> keys = resobj.keys();
-        while(keys.hasNext() ) {
-            String key = (String)keys.next();
-            if ( resobj.get(key) instanceof JSONObject ) {
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            if (resobj.get(key) instanceof JSONObject) {
                 JSONObject xx = new JSONObject(resobj.get(key).toString());
                 fighter_score.put(key, (int) xx.get("wins"));
             }
@@ -55,7 +53,6 @@ public class LeaderboardScene extends BaseScene  {
         for (Map.Entry<String, Integer> entry : reverseSortedMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-        String leaderboard = "";
         int x = 0;
         for (Map.Entry<String, Integer> entry : reverseSortedMap.entrySet()) {
             text = new Text(entry.getKey() + ": " + entry.getValue());
@@ -65,7 +62,7 @@ public class LeaderboardScene extends BaseScene  {
             x++;
         }
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setLayoutX(Const.CANVAS_WIDTH/2);
+        gridPane.setLayoutX(Const.CANVAS_WIDTH / 2.0);
         gridPane.setLayoutY(150);
         parent.add(gridPane);
         setOnKeyPressed(e -> {
