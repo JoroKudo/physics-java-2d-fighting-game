@@ -11,14 +11,11 @@ import java.util.List;
 public class KeyboardController implements Controller, EventHandler<KeyEvent> {
 
     public List<KeyCode> pressedKeys = new ArrayList<>();
-    public KeyCode[] allKeys1 = new KeyCode[]{
-            KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Q, KeyCode.E, KeyCode.V};
-    public KeyCode[] allKeys2 = new KeyCode[]{
-            KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
+    public KeyCode[] keysPlayer1 = {KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Q, KeyCode.E, KeyCode.V};
+    public KeyCode[] keysPlayer2 = {KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
 
     @Override
     public void handle(KeyEvent event) {
-
         if (event.getEventType() == KeyEvent.KEY_PRESSED) {
             if (notInList(event.getCode())) {
                 pressedKeys.add(event.getCode());
@@ -42,13 +39,13 @@ public class KeyboardController implements Controller, EventHandler<KeyEvent> {
     public ActionType FighterXisActing(int id) {
         if (id == 1) {
             for (ActionType action : ActionType.values()) {
-                if (pressedKeys.contains(allKeys1[action.ordinal()])) {
+                if (pressedKeys.contains(keysPlayer1[action.ordinal()])) {
                     return action;
                 }
             }
         } else if (id == 2) {
             for (ActionType action : ActionType.values()) {
-                if (pressedKeys.contains(allKeys2[action.ordinal()])) {
+                if (pressedKeys.contains(keysPlayer2[action.ordinal()])) {
                     return action;
                 }
             }

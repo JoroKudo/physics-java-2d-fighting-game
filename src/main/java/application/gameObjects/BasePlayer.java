@@ -19,23 +19,22 @@ import org.dyn4j.world.World;
 public class BasePlayer extends GameBody {
 
     private final World<Body> physicWorld;
-    public Fist fist;
-    public Hadoken hadoken;
-    public Foot foot;
-    public WeldJoint<?> punchTargetPlace;
-    public WeldJoint<?> punchfoot;
-    protected boolean p = true;
-    protected boolean d = true;
-    public boolean isBlocking = false;
-    protected double cooldown = 2;
-    protected double animcooldown = 0.3;
-    protected double punchcooldown = 0;
-    protected boolean doesFighterNeedsToReturnHadouken = false;
-    protected Direction currentDirect = Direction.RIGHT;
-
-    public int id;
+    private Fist fist;
+    private Hadoken hadoken;
+    private Foot foot;
+    private WeldJoint<?> punchTarget;
+    private WeldJoint<?> footHitbox;
+    private boolean punch = true;
+    private boolean duck = true;
+    private boolean blocking = false;
+    private double cooldown = 2;
+    private double animationCooldown = 0.3;
+    private double punchCooldown = 0;
+    private boolean returnHadoken = false;
+    private Direction currentDirection = Direction.RIGHT;
+    private int id;
     private final Controller controller;
-    private boolean soundcanplay = true;
+    private boolean playSound = true;
 
     public BasePlayer(int id, double x, double y, Controller controller, World<Body> physicWorld) {
         super(Images.fighter_look_right);
@@ -43,6 +42,7 @@ public class BasePlayer extends GameBody {
         this.translate(x, y);
         this.physicWorld = physicWorld;
         this.id = id;
+
         Fixture legs = addFixture(new Rectangle(72 / Const.BLOCK_SIZE * 2, 30 / Const.BLOCK_SIZE * 2));
         legs.getShape().translate(0, 3.6);
 
@@ -61,19 +61,18 @@ public class BasePlayer extends GameBody {
         fist = new Fist(x, y+1);
         foot = new Foot(x, y + 4.23);
 
-        punchTargetPlace = new WeldJoint<Body>(this, fist, new Vector2(x, y));
-        punchfoot = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
+        punchTarget = new WeldJoint<Body>(this, fist, new Vector2(x, y));
+        footHitbox = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
 
     public void handleNavigationEvents(double elapsedTime) {
         act(controller.FighterXisActing(id), elapsedTime);
-
     }
 
     @Override
-    public void drawimage(Image image, double x, double y, GraphicsContext gc) {
-        if (currentDirect == Direction.LEFT && controller.FighterXisActing(id) == ActionType.PUNCH) {
+    public void drawImage(Image image, double x, double y, GraphicsContext gc) {
+        if (currentDirection == Direction.LEFT && controller.FighterXisActing(id) == ActionType.PUNCH) {
             gc.drawImage(image, x-(72 / Const.BLOCK_SIZE * 2) * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
         } else {
             gc.drawImage(image, x * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
@@ -81,30 +80,27 @@ public class BasePlayer extends GameBody {
 
     }
 
-    private void createHadouken() {
-
-        Sound.play(SoundEffectType.HADOUKEN);
+    private void createHadoken() {
+        Sound.play(SoundEffectType.HADOKEN);
         cooldown = 2;
-        if (currentDirect == Direction.RIGHT) {
-            hadoken = new Hadoken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_right);
+        if (currentDirection == Direction.RIGHT) {
+            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadouken_right);
         } else {
-            hadoken = new Hadoken(this.getWorldCenter().x + (dirupdate()), this.getWorldCenter().y, this, 10 * (dirupdate()),Images.hadouken_left);
+            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadouken_left);
         }
 
         image = Images.shoot_right;
         physicWorld.addBody(hadoken);
-        doesFighterNeedsToReturnHadouken = true;
-        soundcanplay = true;
+        returnHadoken = true;
+        playSound = true;
     }
 
-    private void hadoukenCharge(double elapsedTime) {
-        if (soundcanplay) {
-            Sound.play(SoundEffectType.CHARGEUP);
-            soundcanplay = false;
+    private void hadokenCharge(double elapsedTime) {
+        if (playSound) {
+            Sound.play(SoundEffectType.CHARGE_UP);
+            playSound = false;
         }
-
-
-        if (currentDirect == Direction.RIGHT) {
+        if (currentDirection == Direction.RIGHT) {
             this.image = Images.charge_right;
         } else {
             this.image = Images.charge_left;
@@ -112,29 +108,29 @@ public class BasePlayer extends GameBody {
         cooldown -= elapsedTime;
     }
 
-    private void hadoukenShoot(double elapsedTime) {
+    private void hadokenShoot(double elapsedTime) {
 
-        if (currentDirect == Direction.RIGHT) {
+        if (currentDirection == Direction.RIGHT) {
             this.image = Images.shoot_right;
         } else {
             this.image = Images.shoot_left;
         }
 
-        animcooldown -= elapsedTime;
+        animationCooldown -= elapsedTime;
     }
 
-    public boolean isDoesFighterNeedsToReturnHadouken() {
-        return doesFighterNeedsToReturnHadouken;
+    public boolean isReturnHadoken() {
+        return returnHadoken;
     }
 
-    public Hadoken getHadouken() {
-        doesFighterNeedsToReturnHadouken = false;
+    public Hadoken getHadoken() {
+        returnHadoken = false;
         return this.hadoken;
     }
 
     private void act(ActionType actionType, double elapsedTime) {
         if (actionType != ActionType.HADOKEN) {
-            soundcanplay = true;
+            playSound = true;
         }
         punch(elapsedTime);
         duck();
@@ -142,13 +138,10 @@ public class BasePlayer extends GameBody {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
         }
         if (actionType != null) {
-
-
             switch (actionType) {
                 case JUMP:
                     this.jump();
                     break;
-
                 case WALK_lEFT:
                     this.walkLeft();
                     break;
@@ -158,63 +151,55 @@ public class BasePlayer extends GameBody {
                 case BLOCK:
                     this.block();
                     break;
-
                 case HADOKEN:
                     if (cooldown <= 0) {
-                        hadoukenShoot(elapsedTime);
-                        if (animcooldown <= 0) {
-                            this.createHadouken();
+                        hadokenShoot(elapsedTime);
+                        if (animationCooldown <= 0) {
+                            this.createHadoken();
                         }
                     } else {
-                        this.hadoukenCharge(elapsedTime);
+                        this.hadokenCharge(elapsedTime);
                     }
                     break;
-
-
             }
         } else {
-            if (currentDirect == Direction.RIGHT) {
+            if (currentDirection == Direction.RIGHT) {
                 this.image = Images.fighter_look_right;
             } else {
                 this.image = Images.fighter_look_left;
             }
         }
-
-
     }
 
 
     private void duck() {
-
         if (controller.FighterXisActing(id) == ActionType.DUCK) {
-            if (currentDirect == Direction.RIGHT) {
+            if (currentDirection == Direction.RIGHT) {
                 this.image = Images.duck_right;
             } else {
                 this.image = Images.duck_left;
             }
             applyImpulse(new Vector2(0, 100));
-
-            if (d) {
-
+            if (duck) {
                 this.getFixture(1).getShape().translate(0, 1);
                 this.getFixture(2).getShape().translate(0, 1);
                 this.getFixture(3).getShape().translate(0, 1);
-                d = false;
+                duck = false;
             }
 
 
-        } else if (!d) {
+        } else if (!duck) {
             this.getFixture(1).getShape().translate(0, -1);
             this.getFixture(2).getShape().translate(0, -1);
             this.getFixture(3).getShape().translate(0, -1);
-            d = true;
+            duck = true;
         }
     }
 
 
     private void jump() {
         if (this.isOnGround()) {
-            if (currentDirect == Direction.RIGHT) {
+            if (currentDirection == Direction.RIGHT) {
                 this.image = Images.jump_right;
             } else {
                 this.image = Images.jump_left;
@@ -225,34 +210,34 @@ public class BasePlayer extends GameBody {
     }
 
     private void walkLeft() {
-        this.currentDirect = Direction.LEFT;
+        this.currentDirection = Direction.LEFT;
         setLinearVelocity(-7, getLinearVelocity().y);
         this.image = Images.fighter_walk_left;
     }
 
     private void walkRight() {
-        this.currentDirect = Direction.RIGHT;
+        this.currentDirection = Direction.RIGHT;
 
         setLinearVelocity(7, getLinearVelocity().y);
         this.image = Images.fighter_walk_right;
     }
 
     private void punch(double elapsedTime) {
-        if (controller.FighterXisActing(id) == ActionType.PUNCH && punchcooldown > 0 && p) {
-            if (currentDirect == Direction.RIGHT) {
+        if (controller.FighterXisActing(id) == ActionType.PUNCH && punchCooldown > 0 && punch) {
+            if (currentDirection == Direction.RIGHT) {
                 this.image = Images.punch_right;
             } else {
                 this.image = Images.punch_left;
             }
-            this.fist.getFixture(0).getShape().translate(2 * (dirupdate()), 0);
-            p = false;
+            this.fist.getFixture(0).getShape().translate(2 * (updateDirection()), 0);
+            punch = false;
 
         } else {
-            punchcooldown += 10 * elapsedTime;
-            if (!p && punchcooldown > 3) {
-                this.fist.getFixture(0).getShape().translate(-2 * (dirupdate()), 0);
-                p = true;
-                punchcooldown = -2.5;
+            punchCooldown += 10 * elapsedTime;
+            if (!punch && punchCooldown > 3) {
+                this.fist.getFixture(0).getShape().translate(-2 * (updateDirection()), 0);
+                punch = true;
+                punchCooldown = -2.5;
 
             }
         }
@@ -260,8 +245,8 @@ public class BasePlayer extends GameBody {
 
 
     private void block() {
-        isBlocking = true;
-        if (currentDirect == Direction.RIGHT) {
+        blocking = true;
+        if (currentDirection == Direction.RIGHT) {
             this.image = Images.block_right;
         } else {
             this.image = Images.block_left;
@@ -270,8 +255,8 @@ public class BasePlayer extends GameBody {
 
     }
 
-    public int dirupdate() {
-        if (this.currentDirect == Direction.LEFT) {
+    public int updateDirection() {
+        if (this.currentDirection == Direction.LEFT) {
             return -1;
 
         } else {
@@ -288,5 +273,29 @@ public class BasePlayer extends GameBody {
             }
         }
         return false;
+    }
+
+    public Fist getFist() {
+        return fist;
+    }
+
+    public Foot getFoot() {
+        return foot;
+    }
+
+    public WeldJoint<?> getPunchTarget() {
+        return punchTarget;
+    }
+
+    public WeldJoint<?> getFootHitbox() {
+        return footHitbox;
+    }
+
+    public boolean isBlocking() {
+        return blocking;
+    }
+
+    public int getId() {
+        return id;
     }
 }

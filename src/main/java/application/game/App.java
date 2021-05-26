@@ -1,26 +1,20 @@
 package application.game;
 
+import application.gui.*;
 import application.navigation.Navigator;
 import application.navigation.SceneType;
-import application.gui.*;
 import application.stats.Lifebar;
 import javafx.application.Application;
-
-
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    public Scene welcomescene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
         Navigator<SceneType> navigator = new Navigator<>(primaryStage);
         Lifebar lifebar1 = new Lifebar(1);
         Lifebar lifebar2 = new Lifebar(2);
-        welcomescene = new WelcomeScene(navigator);
+        WelcomeScene welcomescene = new WelcomeScene(navigator);
         welcomescene.getStylesheets().add("Button.css");
         UserSelectionScene userSelectionScene = new UserSelectionScene(navigator);
         navigator.registerScene(SceneType.WELCOME_SCENE, welcomescene);

@@ -18,7 +18,6 @@ public class Hadoken extends GameObject {
 
     public void update() {
         setLinearVelocity(speed, getLinearVelocity().y);
-
     }
 
 

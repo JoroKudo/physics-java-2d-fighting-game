@@ -62,8 +62,6 @@ public class LeaderboardScene extends BaseScene {
                 pointText.setFont(Font.font("Copperplate Gothic Bold", FontWeight.BOLD, 30));
                 userScoreGridPane.add(pointText, 1, x, 1, 1);
             } else break;
-
-
         }
         userTextGridPane.setAlignment(Pos.CENTER);
         userTextGridPane.setLayoutX(600);

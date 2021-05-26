@@ -7,10 +7,7 @@ import application.common.Initializable;
 import application.constants.Images;
 import application.firebase.RequestHandler;
 import application.stats.Lifebar;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
@@ -21,10 +18,10 @@ public class GameWinScene extends BaseScene implements Initializable {
     private final Lifebar lifebar2;
     private final UserSelectionScene userSelectionScene;
 
-    public GameWinScene(Navigator<?> navigator, Lifebar l1, Lifebar l2, UserSelectionScene userSelectionScene) {
+    public GameWinScene(Navigator<?> navigator, Lifebar lifebar1, Lifebar lifebar2, UserSelectionScene userSelectionScene) {
         super(navigator, Images.GameWin);
-        this.lifebar1 = l1;
-        this.lifebar2 = l2;
+        this.lifebar1 = lifebar1;
+        this.lifebar2 = lifebar2;
         this.userSelectionScene = userSelectionScene;
 
         setOnKeyPressed(e -> {
@@ -37,9 +34,6 @@ public class GameWinScene extends BaseScene implements Initializable {
     private void drawtext(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.fillText(text, 710, 350);
-
-
-
     }
 
     @Override
@@ -47,26 +41,26 @@ public class GameWinScene extends BaseScene implements Initializable {
         String text = "";
         String winner = "";
         if (lifebar1.isKo()) {
-            text = "Player " + userSelectionScene.getP2() + " Wins";
-            winner = userSelectionScene.getP2();
+            text = "Player " + userSelectionScene.getPlayer2() + " Wins";
+            winner = userSelectionScene.getPlayer2();
         } else if (lifebar2.isKo()) {
-            text = "Player " + userSelectionScene.getP1() + " Wins";
-            winner = userSelectionScene.getP1();
+            text = "Player " + userSelectionScene.getPlayer1() + " Wins";
+            winner = userSelectionScene.getPlayer1();
         } else {
             if (lifebar1.getDamage() < lifebar2.getDamage()) {
-                text = "Player " + userSelectionScene.getP1() + " Wins";
-                winner = userSelectionScene.getP1();
+                text = "Player " + userSelectionScene.getPlayer1() + " Wins";
+                winner = userSelectionScene.getPlayer1();
             } else if (lifebar2.getDamage() < lifebar1.getDamage()) {
-                text = "Player " + userSelectionScene.getP2() + " Wins";
-                winner = userSelectionScene.getP2();
+                text = "Player " + userSelectionScene.getPlayer2() + " Wins";
+                winner = userSelectionScene.getPlayer2();
             } else if (lifebar1.getDamage() == lifebar2.getDamage()) {
                 text = "It's a draw!";
             }
         }
         RequestHandler requestHandler = new RequestHandler();
-        if (userSelectionScene.getP1() != null && userSelectionScene.getP2() != null && winner != null) {
+        if (userSelectionScene.getPlayer1() != null && userSelectionScene.getPlayer2() != null && winner != null) {
             try {
-                requestHandler.addFight(userSelectionScene.getP1(), userSelectionScene.getP2(), winner);
+                requestHandler.addFight(userSelectionScene.getPlayer1(), userSelectionScene.getPlayer2(), winner);
                 requestHandler.addWin(winner);
             } catch (IOException ioException) {
                 ioException.printStackTrace();

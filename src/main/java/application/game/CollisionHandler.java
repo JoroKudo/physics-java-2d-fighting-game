@@ -37,8 +37,8 @@ public class CollisionHandler {
     private void checkForHit(Body body1, Body body2) {
         if ((body1 instanceof BasePlayer) && (body2 instanceof Fist)) {
             BasePlayer fighter = (BasePlayer) body1;
-            Sound.play(SoundEffectType.FISTPUNCH);
-            game.handleHitFighter(fighter.id);
+            Sound.play(SoundEffectType.FIST_PUNCH);
+            game.handleHitFighter(fighter.getId());
         }
     }
 
@@ -46,7 +46,7 @@ public class CollisionHandler {
         if ((body1 instanceof BasePlayer) && (body2 instanceof Foot)) {
             BasePlayer fighter = (BasePlayer) body1;
             if (body2.getLinearVelocity().y > 10) {
-                game.handleHitFighter(fighter.id);
+                game.handleHitFighter(fighter.getId());
             }
         }
     }
@@ -55,13 +55,12 @@ public class CollisionHandler {
         if ((body1 instanceof BasePlayer) && (body2 instanceof Hadoken)) {
             Hadoken hadoken = (Hadoken) body2;
             if (hadoken.owner != body1) {
-                switch (hadoken.owner.id) {
+                switch (hadoken.owner.getId()) {
                     case 1:
                         game.handleHitFighter(2);
 
                     case 2:
                         game.handleHitFighter(1);
-
                 }
                 physicWorld.removeBody(hadoken);
             }

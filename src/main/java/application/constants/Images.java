@@ -7,28 +7,20 @@ public class Images {
     //FIGHTER
     public final static Image fighter_look_right = getImageSize("fighter/LookRight.gif");
     public final static Image fighter_look_left = getImageSize("fighter/LookLeft.gif");
-
     public final static Image fighter_Bwalk_right = getImageSize("fighter/BWalkRight.gif");
     public final static Image fighter_Bwalk_left = getImageSize("fighter/BWalkLeft.gif");
-
     public final static Image fighter_walk_right = getImageSize("fighter/FWalkRight.gif");
     public final static Image fighter_walk_left = getImageSize("fighter/FWalkLeft.gif");
-
     public final static Image punch_right = getImageSize("fighter/PunchRight2.gif");
     public final static Image punch_left = getImageSize("fighter/PunchLeft.gif");
-
     public final static Image jump_right = getImageSize("fighter/JumpRight.gif");
     public final static Image jump_left = getImageSize("fighter/JumpLeft.gif");
-
     public final static Image block_right = getImageSize("fighter/BlockRight.gif");
     public final static Image block_left = getImageSize("fighter/BlockLeft.gif");
-
     public final static Image shoot_right = getImageSize("fighter/ShootRight.gif");
     public final static Image shoot_left = getImageSize("fighter/ShootLeft.gif");
-
     public final static Image charge_right = getImageSize("fighter/ChargeRight.gif");
     public final static Image charge_left = getImageSize("fighter/ChargeLeft.gif");
-
     public final static Image duck_left = getImageSize("fighter/DuckLeft.gif");
     public final static Image duck_right = getImageSize("fighter/DuckRight.gif");
 
@@ -37,8 +29,7 @@ public class Images {
     public final static Image foot_hitbox = getImageSize("foot.png");
     public final static Image hadouken_right = getImageSize("fighter/Hadouken.png");
     public final static Image hadouken_left = getImageSize("fighter/HadoukenLeft.png");
-
-    public final static Image expolsion = getImageSize("fighter/hadoukenexplosion.gif");
+    public final static Image explosion = getImageSize("fighter/hadoukenexplosion.gif");
 
     //UI
     public final static Image controller = getImageSize("controller.png");

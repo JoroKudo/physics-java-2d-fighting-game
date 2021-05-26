@@ -23,7 +23,7 @@ public class VoiceController implements Controller {
     private String speechRecognitionResult = "stop";
     private boolean speechRecognizerThreadRunning = false;
 
-    public void initiate(Configuration configuration) {
+    public void initialize(Configuration configuration) {
         System.out.println("Loading Speech Controller...");
         configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
         configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
@@ -41,10 +41,7 @@ public class VoiceController implements Controller {
 
 
     public synchronized void startSpeechRecognition() {
-
-
         eventsExecutorService.submit(() -> {
-
             speechRecognizerThreadRunning = true;
             recognizer.startRecognition(true);
             System.out.println("You can start to speak...");

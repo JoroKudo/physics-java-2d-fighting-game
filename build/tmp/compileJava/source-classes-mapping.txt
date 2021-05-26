@@ -2,75 +2,75 @@ application/controller/KeyboardController.java
  application.controller.KeyboardController
 application/stats/Lifebar.java
  application.stats.Lifebar
+application/game/Launcher.java
+ application.game.Launcher
 application/firebase/RequestHandler.java
  application.firebase.RequestHandler
-application/gameObjects/GameObject.java
- application.gameObjects.GameObject
-application/gameObjects/Wall.java
- application.gameObjects.Wall
+application/sound/MusicType.java
+ application.sound.MusicType
 application/common/Controller.java
  application.common.Controller
 application/constants/Const.java
  application.constants.Const
-application/gameObjects/Foot.java
- application.gameObjects.Foot
-application/common/BaseScene.java
- application.common.BaseScene
+application/controller/GamepadController.java
+ application.controller.GamepadController
+application/constants/Images.java
+ application.constants.Images
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
+application/navigation/SceneType.java
+ application.navigation.SceneType
 application/stats/Timer.java
  application.stats.Timer
+application/gameObjects/Direction.java
+ application.gameObjects.Direction
+application/common/Initializable.java
+ application.common.Initializable
+application/controller/VoiceController.java
+ application.controller.VoiceController
+application/controller/ActionType.java
+ application.controller.ActionType
+application/gui/UserSelectionScene.java
+ application.gui.UserSelectionScene
+application/gameObjects/GameObject.java
+ application.gameObjects.GameObject
+application/sound/SoundEffectType.java
+ application.sound.SoundEffectType
+application/gameObjects/Wall.java
+ application.gameObjects.Wall
+application/gameObjects/Foot.java
+ application.gameObjects.Foot
+application/gameObjects/GameBody.java
+ application.gameObjects.GameBody
+application/gui/GameWinScene.java
+ application.gui.GameWinScene
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene
 application/gameObjects/Floor.java
  application.gameObjects.Floor
 application/gameObjects/Fist.java
  application.gameObjects.Fist
+application/game/Game.java
+ application.game.Game
+ application.game.Game$1
 application/navigation/Navigator.java
  application.navigation.Navigator
 application/sound/Sound.java
  application.sound.Sound
  application.sound.Sound$1
-application/controller/ActionType.java
- application.controller.ActionType
-application/gui/WelcomeScene.java
- application.gui.WelcomeScene
-application/sound/MusicType.java
- application.sound.MusicType
-application/gameObjects/BasePlayer.java
- application.gameObjects.BasePlayer
- application.gameObjects.BasePlayer$1
-application/gameObjects/Hadoken.java
- application.gameObjects.Hadoken
-application/navigation/SceneType.java
- application.navigation.SceneType
-application/controller/GamepadController.java
- application.controller.GamepadController
-application/sound/SoundEffectType.java
- application.sound.SoundEffectType
-application/controller/VoiceController.java
- application.controller.VoiceController
-application/gameObjects/GameBody.java
- application.gameObjects.GameBody
-application/common/Initializable.java
- application.common.Initializable
-application/gameObjects/Direction.java
- application.gameObjects.Direction
-application/constants/Images.java
- application.constants.Images
-application/game/Game.java
- application.game.Game
- application.game.Game$1
-application/gui/UserSelectionScene.java
- application.gui.UserSelectionScene
 application/gui/GameScene.java
  application.gui.GameScene
  application.gui.GameScene$1
+application/gui/WelcomeScene.java
+ application.gui.WelcomeScene
 application/game/CollisionHandler.java
  application.game.CollisionHandler
-application/gui/GameWinScene.java
- application.gui.GameWinScene
+application/common/BaseScene.java
+ application.common.BaseScene
+application/gameObjects/Hadoken.java
+ application.gameObjects.Hadoken
+application/gameObjects/BasePlayer.java
+ application.gameObjects.BasePlayer
+ application.gameObjects.BasePlayer$1
 application/game/App.java
  application.game.App
-application/game/Launcher.java
- application.game.Launcher

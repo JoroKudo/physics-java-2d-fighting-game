@@ -42,14 +42,14 @@ public class Sound {
 
     private static String getSoundFileName(SoundEffectType soundEffect) {
         return switch (soundEffect) {
-            case FISTPUNCH -> "punch.mp3";
-            case HADOUKEN -> "hadouken.mp3";
+            case FIST_PUNCH -> "punch.mp3";
+            case HADOKEN -> "hadouken.mp3";
             case BLOCK -> "block.mp3";
             case FIGHTER_GETS_HIT -> "fighter_gets_hit.wav";
             case JUMP_LANDING -> "jump_landing.wav";
             case SCREAM -> "scream.wav";
             case PAIN -> "man-in-pain.wav";
-            case CHARGEUP -> "chargeup.wav";
+            case CHARGE_UP -> "chargeup.wav";
         };
     }
 

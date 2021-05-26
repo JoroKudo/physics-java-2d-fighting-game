@@ -1,13 +1,13 @@
 package application.sound;
 
 public enum SoundEffectType {
-    FISTPUNCH,
-    HADOUKEN,
+    FIST_PUNCH,
+    HADOKEN,
     BLOCK,
     FIGHTER_GETS_HIT,
     JUMP_LANDING,
     SCREAM,
     PAIN,
-    CHARGEUP
+    CHARGE_UP
 
 }

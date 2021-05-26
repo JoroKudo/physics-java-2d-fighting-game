@@ -26,12 +26,12 @@ import java.util.*;
 import static javafx.scene.paint.Color.WHITE;
 
 public class UserSelectionScene extends BaseScene {
-    private String controll1 = "key";
-    private String controll2 = "key";
-    private String p1;
-    private String p2;
+    private String controllPlayer1 = "key";
+    private String controllPlayer2 = "key";
+    private String player1;
+    private String player2;
     Map<String, Integer> fighter_score = new HashMap<>();
-    ArrayList<String> playersFromDatabase = new ArrayList<>();
+    ArrayList<String> playersFromDatabase;
     ArrayList<String> selectedPlayers = new ArrayList<>();
     RequestHandler requestHandler;
     ArrayList<String> players = new ArrayList<>();
@@ -42,20 +42,29 @@ public class UserSelectionScene extends BaseScene {
         playersFromDatabase = requestHandler.getAllFighters();
         JSONObject resobj = new JSONObject(playersFromDatabase.get(0));
         Iterator<?> keys = resobj.keys();
-        while (keys.hasNext()) { //TODO nullPointerException somewhere here
+        while (keys.hasNext()) {
             String key = (String) keys.next();
             if (resobj.get(key) instanceof JSONObject) {
                 JSONObject xx = new JSONObject(resobj.get(key).toString());
                 fighter_score.put(key, (int) xx.get("wins"));
             }
         }
-        for (Map.Entry<String, Integer> entry : fighter_score.entrySet()) {
-            int x = 0;
-            if (x < 8) {
+
+        LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+
+        fighter_score.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+
+        int i = 0;
+        for (Map.Entry<String, Integer> entry : reverseSortedMap.entrySet()) {
+            if (i < 8) {
                 players.add("" + entry.getKey());
-                x++;
+                i++;
             } else break;
         }
+
         //Create first combobox
         ComboBox<?> combo_box = new ComboBox<>(FXCollections.observableArrayList(players));
         combo_box.setEditable(true);
@@ -67,32 +76,31 @@ public class UserSelectionScene extends BaseScene {
         ComboBox<?> combo_box_2 = new ComboBox<>(FXCollections.observableArrayList(players));
         combo_box_2.setEditable(true);
 
+        ImageView controllerIconLeft = new ImageView(Images.controller);
+        ImageView keyboardIconLeft = new ImageView(Images.keyboard);
+        ImageView microphoneIconLeft = new ImageView(Images.microphone);
 
-        ImageView ctrlview1 = new ImageView(Images.controller);
-        ImageView key1img = new ImageView(Images.keyboard);
-        ImageView micview1 = new ImageView(Images.microphone);
-
-        ImageView ctrlview2 = new ImageView(Images.controller);
-        ImageView key2img = new ImageView(Images.keyboard);
-        ImageView micview2 = new ImageView(Images.microphone);
-
-
-        ctrlview1.setFitHeight(40);
-        key1img.setFitHeight(40);
-        micview1.setFitHeight(40);
-
-        ctrlview2.setFitHeight(40);
-        key2img.setFitHeight(40);
-        micview2.setFitHeight(40);
+        ImageView controllerIconRight = new ImageView(Images.controller);
+        ImageView keyboardIconRight = new ImageView(Images.keyboard);
+        ImageView microphoneIconRight = new ImageView(Images.microphone);
 
 
-        ctrlview1.setPreserveRatio(true);
-        key1img.setPreserveRatio(true);
-        micview1.setPreserveRatio(true);
+        controllerIconLeft.setFitHeight(40);
+        keyboardIconLeft.setFitHeight(40);
+        microphoneIconLeft.setFitHeight(40);
 
-        ctrlview2.setPreserveRatio(true);
-        key2img.setPreserveRatio(true);
-        micview2.setPreserveRatio(true);
+        controllerIconRight.setFitHeight(40);
+        keyboardIconRight.setFitHeight(40);
+        microphoneIconRight.setFitHeight(40);
+
+
+        controllerIconLeft.setPreserveRatio(true);
+        keyboardIconLeft.setPreserveRatio(true);
+        microphoneIconLeft.setPreserveRatio(true);
+
+        controllerIconRight.setPreserveRatio(true);
+        keyboardIconRight.setPreserveRatio(true);
+        microphoneIconRight.setPreserveRatio(true);
 
 
         RadioButton controller1 = new RadioButton();
@@ -137,14 +145,14 @@ public class UserSelectionScene extends BaseScene {
         keyboard2.setPrefSize(40, 40);
         mic2.setPrefSize(40, 40);
 
-        controller1.setGraphic(ctrlview1);
-        keyboard1.setGraphic(key1img);
-        mic1.setGraphic(micview1);
+        controller1.setGraphic(controllerIconLeft);
+        keyboard1.setGraphic(keyboardIconLeft);
+        mic1.setGraphic(microphoneIconLeft);
 
 
-        controller2.setGraphic(ctrlview2);
-        keyboard2.setGraphic(key2img);
-        mic2.setGraphic(micview2);
+        controller2.setGraphic(controllerIconRight);
+        keyboard2.setGraphic(keyboardIconRight);
+        mic2.setGraphic(microphoneIconRight);
 
 
         //Create Player 1 text
@@ -167,34 +175,34 @@ public class UserSelectionScene extends BaseScene {
 
         submit.setOnAction(e -> {
             if (mic1.isSelected()) {
-                controll1 = "mic";
+                controllPlayer1 = "mic";
             } else if (keyboard1.isSelected()) {
-                controll1 = "key";
+                controllPlayer1 = "key";
             } else if (controller1.isSelected()) {
-                controll1 = "ctrl";
+                controllPlayer1 = "ctrl";
             }
             if (mic2.isSelected()) {
-                controll2 = "mic";
+                controllPlayer2 = "mic";
             } else if (keyboard2.isSelected()) {
-                controll2 = "key";
+                controllPlayer2 = "key";
             } else if (controller2.isSelected()) {
-                controll2 = "ctrl";
+                controllPlayer2 = "ctrl";
             }
 
 
             if (combo_box.getValue() != null && combo_box_2.getValue() != null) {
-                p1 = (String) combo_box.getValue();
-                p2 = (String) combo_box_2.getValue();
-                if (p1.length() > 8) {
-                    p1 = p1.substring(0, 8);
+                this.player1 = (String) combo_box.getValue();
+                this.player2 = (String) combo_box_2.getValue();
+                if (this.player1.length() > 8) {
+                    this.player1 = this.player1.substring(0, 8);
                 }
-                if (p2.length() > 8) {
-                    p2 = p2.substring(0, 8);
+                if (this.player2.length() > 8) {
+                    this.player2 = this.player2.substring(0, 8);
                 }
-                p1 = p1.toLowerCase();
-                p2 = p2.toLowerCase();
-                selectedPlayers.add(p1);
-                selectedPlayers.add(p2);
+                this.player1 = this.player1.toLowerCase();
+                this.player2 = this.player2.toLowerCase();
+                selectedPlayers.add(this.player1);
+                selectedPlayers.add(this.player2);
                 RequestHandler requestHandler = new RequestHandler();
                 try {
                     for (String player : selectedPlayers) {
@@ -230,12 +238,12 @@ public class UserSelectionScene extends BaseScene {
 
     }
 
-    public String getP1() {
-        return p1;
+    public String getPlayer1() {
+        return player1;
     }
 
-    public String getP2() {
-        return p2;
+    public String getPlayer2() {
+        return player2;
     }
 
     private void drawImage(Image image, double x, double y) {
@@ -243,12 +251,12 @@ public class UserSelectionScene extends BaseScene {
         gc.drawImage(image, x, y);
     }
 
-    public String getcontroll1() {
-        return controll1;
+    public String getControllPlayer1() {
+        return controllPlayer1;
     }
 
-    public String getcontroll2() {
-        return controll2;
+    public String getControllPlayer2() {
+        return controllPlayer2;
     }
 
 

@@ -1,14 +1,14 @@
 package application.game;
 
-import application.gameObjects.*;
-import application.navigation.Navigator;
-import application.navigation.SceneType;
 import application.common.Controller;
-import application.controller.GamepadController;
-import application.controller.VoiceController;
 import application.constants.Const;
 import application.constants.Images;
+import application.controller.GamepadController;
+import application.controller.VoiceController;
+import application.gameObjects.*;
 import application.gui.UserSelectionScene;
+import application.navigation.Navigator;
+import application.navigation.SceneType;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -31,15 +31,14 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     private final World<Body> physicWorld = new World<>();
     private final Navigator<?> navigator;
     private final CollisionHandler collision;
-    private double timePassedSinceCooldown;
-    private BasePlayer fighter, fighter_2;
     private final Lifebar lifebar1;
     private final Lifebar lifebar2;
-    private Timer timer;
     private final UserSelectionScene userSelectionScene;
     private final Runnable gameLoopStopper;
     private final ArrayList<Hadoken> hadokens = new ArrayList<>();
-
+    private double timePassedSinceCooldown;
+    private BasePlayer fighter, fighter_2;
+    private Timer timer;
 
     public Game(Controller keyboardController, GamepadController gamepadController, VoiceController voiceController, Navigator<?> navigator, Lifebar lifebar1, Lifebar lifebar2, Runnable gameLoopStopper, UserSelectionScene userSelectionScene) {
         this.keyboardController = keyboardController;
@@ -55,7 +54,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(Images.background, 0, 0);
-        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBAR) >> 1, 50);
+        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBARS) >> 1, 50);
         lifebar1.draw(gc);
         lifebar2.draw(gc);
         timer.draw(gc);
@@ -66,41 +65,40 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
     }
 
     public void load() {
-
-
-        switch (userSelectionScene.getcontroll1()) {
+        switch (userSelectionScene.getControllPlayer1()) {
             case "mic" -> {
                 fighter = new BasePlayer(1, 10, 8, voiceController, physicWorld);
-                voiceController.initiate(voiceController.configuration);
+                voiceController.initialize(voiceController.configuration);
             }
             case "key" -> fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
             case "ctrl" -> fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
         }
-        switch (userSelectionScene.getcontroll2()) {
+
+        switch (userSelectionScene.getControllPlayer2()) {
             case "mic" -> {
                 fighter_2 = new BasePlayer(2, 14, 8, voiceController, physicWorld);
-                voiceController.initiate(voiceController.configuration);
+                voiceController.initialize(voiceController.configuration);
             }
             case "key" -> fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
             case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
         }
         timer = new Timer();
-        Floor floor = new Floor(15, 17);
-        Wall wall1 = new Wall(30.2, 7);
-        Wall wall2 = new Wall(0, 7);
+        Floor floor = new Floor();
+        Wall wallLeft = new Wall(0);
+        Wall wallRight = new Wall(30.2);
 
         physicWorld.setGravity(new Vector2(0, 15));
 
         for (BasePlayer basePlayer : Arrays.asList(fighter, fighter_2)) {
             physicWorld.addBody(basePlayer);
-            physicWorld.addBody(basePlayer.fist);
-            physicWorld.addBody(basePlayer.foot);
-            for (WeldJoint weldJoint : Arrays.asList(basePlayer.punchTargetPlace, basePlayer.punchfoot)) {
+            physicWorld.addBody(basePlayer.getFist());
+            physicWorld.addBody(basePlayer.getFoot());
+            for (WeldJoint weldJoint : Arrays.asList(basePlayer.getPunchTarget(), basePlayer.getFootHitbox())) {
                 physicWorld.addJoint(weldJoint);
             }
         }
         physicWorld.addBody(floor);
-        for (Wall wall : Arrays.asList(wall1, wall2)) {
+        for (Wall wall : Arrays.asList(wallRight, wallLeft)) {
             physicWorld.addBody(wall);
         }
 
@@ -123,7 +121,7 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
 
         for (BasePlayer player : Arrays.asList(fighter, fighter_2)) {
             player.handleNavigationEvents(elapsedTime);
-            player.dirupdate();
+            player.updateDirection();
         }
 
         timePassedSinceCooldown += elapsedTime;
@@ -133,8 +131,8 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             gameLoopStopper.run();
         }
 
-        if (fighter.isDoesFighterNeedsToReturnHadouken()) {
-            hadokens.add(fighter.getHadouken());
+        if (fighter.isReturnHadoken()) {
+            hadokens.add(fighter.getHadoken());
         }
         for (Hadoken hadoken : hadokens) {
             hadoken.update();
@@ -151,10 +149,10 @@ public class Game extends CopyOnWriteArrayList<GameObject> {
             lifebars.add(lifebar1);
             lifebars.add(lifebar2);
 
-            if (basePlayer.get(id - 1).isBlocking) {
+            if (basePlayer.get(id - 1).isBlocking()) {
                 blockProtection = 0.35;
             }
-            lifebars.get(id - 1).increaseDamage(Const.HIT_DMG * blockProtection);
+            lifebars.get(id - 1).increaseDamage(Const.HIT_DAMAGE * blockProtection);
             timePassedSinceCooldown = 0;
 
             if (lifebars.get(id - 1).isKo()) {

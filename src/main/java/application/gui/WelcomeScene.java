@@ -20,7 +20,6 @@ public class WelcomeScene extends BaseScene {
         if ((currState.a)) {
             navigator.goTo(SceneType.USER_SELECTION_SCENE);
         }
-
         setOnKeyPressed(e -> {
             if ((e.getCode() == KeyCode.SPACE)) {
                 navigator.goTo(SceneType.USER_SELECTION_SCENE);

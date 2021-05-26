@@ -5,15 +5,15 @@ import com.studiohartman.jamepad.ControllerState;
 
 public class GamepadController implements application.common.Controller {
 
-    public int e = 0;
+    public boolean initialized = false;
     public ControllerManager controllers;
 
     @Override
     public ActionType FighterXisActing(int id) {
-        if (e == 0) {
+        if (!initialized) {
             controllers = new ControllerManager();
             controllers.initSDLGamepad();
-            e++;
+            initialized = true;
         }
         ControllerState currState = controllers.getState(0);
         if (currState.y) {
