@@ -97,9 +97,10 @@ public class VoiceController implements Controller {
             return ActionType.BLOCK;
         }
         if (speechRecognitionResult.equals("ha do ken")) {
-            return ActionType.HADOUKEN;
+            return ActionType.HADOKEN;
         }
         return null;
     }
 
 }
+

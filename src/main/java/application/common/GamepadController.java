@@ -38,7 +38,7 @@ public class GamepadController implements Controller {
             return ActionType.BLOCK;
         }
         if (currState.x) {
-            return ActionType.HADOUKEN;
+            return ActionType.HADOKEN;
         }
         return null;
     }

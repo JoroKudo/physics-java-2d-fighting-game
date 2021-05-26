@@ -171,7 +171,7 @@ public class Firebase {
 
 
 /*
-    public void doRequest(String urlString, String method, String inputString) throws Exception {
+    public void doRequest(St8ring urlString, String method, String inputString) throws Exception {
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         if (method.equals("PUT")) {

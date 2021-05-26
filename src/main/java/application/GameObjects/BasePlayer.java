@@ -35,6 +35,7 @@ public class BasePlayer extends GameBody {
     protected int dirdecider = 1;
     public int id;
     private final Controller controller;
+    private boolean soundcanplay = true;
 
     public BasePlayer(int id, double x, double y, Controller controller, World<Body> physicWorld) {
         super(Images.fighter_look_right);
@@ -83,10 +84,13 @@ public class BasePlayer extends GameBody {
         image = Images.shootright;
         physicWorld.addBody(hadouken);
         doesFighterNeedsToReturnHadouken = true;
+        soundcanplay = true;
     }
 
     protected void hadoukenCharge(double elapsedTime) {
+        if (soundcanplay){
         Sound.play(SoundEffectType.CHARGEUP);
+        soundcanplay=false;}
 
 
         this.image = Images.chargeright;
@@ -109,12 +113,17 @@ public class BasePlayer extends GameBody {
     }
 
     public void act(ActionType actionType, double elapsedTime) {
+        if (actionType!=ActionType.HADOKEN) {
+            soundcanplay =true;
+        }
         punch(elapsedTime);
         duck();
         if ((actionType != ActionType.WALK_lEFT && actionType != ActionType.WALK_RIGHT) && isOnGround()) {
             applyImpulse(new Vector2(-2 * getLinearVelocity().x, 0));
         }
         if (actionType != null) {
+
+
 
             switch (actionType) {
                 case JUMP:
@@ -131,7 +140,7 @@ public class BasePlayer extends GameBody {
                     this.block();
                     break;
 
-                case HADOUKEN:
+                case HADOKEN:
                     if (cooldown <= 0) {
                         hadoukenShoot(elapsedTime);
                         if (animcooldown <= 0) {
