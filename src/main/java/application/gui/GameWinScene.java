@@ -9,6 +9,7 @@ import application.firebase.RequestHandler;
 import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 
@@ -33,7 +34,10 @@ public class GameWinScene extends BaseScene implements Initializable {
 
     private void drawtext(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.fillText(text, 710, 350);
+        gc.setFont(Font.font("Arial", 30.0D));
+        gc.strokeText(text, 650.0D, 560.0D);
+        gc.setFont(Font.font("Arial", 15.0D));
+        gc.strokeText("Press Space to see the leaderboard", 650.0D, 600.0D);
     }
 
     @Override
