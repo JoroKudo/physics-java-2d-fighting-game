@@ -126,6 +126,9 @@ public class Game  {
         for (BasePlayer player : Arrays.asList(fighter, fighter_2)) {
             player.handleNavigationEvents(elapsedTime);
             player.updateDirection();
+            if (player.isReturnHadoken()) {
+                hadokens.add(player.getHadoken());
+            }
         }
 
         timePassedSinceCooldown += elapsedTime;
@@ -135,9 +138,8 @@ public class Game  {
             gameLoopStopper.run();
         }
 
-        if (fighter.isReturnHadoken()) {
-            hadokens.add(fighter.getHadoken());
-        }
+
+
         for (Hadoken hadoken : hadokens) {
             hadoken.update();
         }

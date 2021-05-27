@@ -2,8 +2,10 @@ package application.gameObjects;
 
 import application.constants.Const;
 import application.constants.Images;
+import application.navigation.SceneType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.transform.Affine;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
@@ -21,7 +23,7 @@ public class GameBody extends Body {
 
     public void draw(GraphicsContext gc) {
 
-        this.drawHitboxes(this.getFixtures(), gc);
+        this.drawHitboxes(gc);
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
         transform.appendTranslation(this.transform.getTranslationX() * Const.BLOCK_SIZE, this.transform.getTranslationY() * Const.BLOCK_SIZE);
@@ -37,7 +39,7 @@ public class GameBody extends Body {
         gc.setTransform(originTrans);
     }
 
-    private void drawHitboxes(List<BodyFixture> fixtures, GraphicsContext gc) {
+    protected void drawHitboxes(GraphicsContext gc) {
 
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
@@ -45,7 +47,7 @@ public class GameBody extends Body {
         transform.appendRotation(this.transform.getRotation().toDegrees());
         transform.appendTranslation(1, -1);
         gc.transform(transform);
-        for (BodyFixture fixture : fixtures) {
+        for (BodyFixture fixture : this.getFixtures()) {
             Polygon polygon = (Polygon) fixture.getShape();
             var vertices = polygon.getVertices();
             var firstPoint = vertices[0];
