@@ -58,5 +58,5 @@ Die Charaktere wollen wir als Skelleton implementieren, das heist, dass die vers
 * Physik Engine: Dyn4j
 * Build Tool: Gradle 
 * Database: Google Firebase
-* Controller: Jamepad
+* Controller-Libary: Jamepad
 
