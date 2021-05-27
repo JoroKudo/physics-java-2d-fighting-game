@@ -2,16 +2,14 @@ package application.gameObjects;
 
 import application.constants.Const;
 import application.constants.Images;
-import application.navigation.SceneType;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.transform.Affine;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Polygon;
 
-import java.util.List;
+
 
 public class GameBody extends Body {
 
@@ -22,8 +20,9 @@ public class GameBody extends Body {
     }
 
     public void draw(GraphicsContext gc) {
-if(Const.HITBOXES){
-        this.drawHitboxes(gc);}
+        if (Const.HITBOXES) {
+            this.drawHitboxes(gc);
+        }
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
         transform.appendTranslation(this.transform.getTranslationX() * Const.BLOCK_SIZE, this.transform.getTranslationY() * Const.BLOCK_SIZE);
@@ -33,7 +32,7 @@ if(Const.HITBOXES){
         Polygon rect = (Polygon) this.getFixture(0).getShape();
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
-        if (image != Images.hitbox_fist||image != Images.hitbox_stomp) {
+        if (image != Images.hitbox_fist || image != Images.hitbox_stomp) {
             drawImage(image, x, y, gc);
         }
         gc.setTransform(originTrans);
@@ -57,7 +56,7 @@ if(Const.HITBOXES){
             double[] ypoints = {firstPoint.y * Const.BLOCK_SIZE, secondPoint.y * Const.BLOCK_SIZE, thirdPoint.y * Const.BLOCK_SIZE, fourthPoint.y * Const.BLOCK_SIZE};
             double[] xpoints = {firstPoint.x * Const.BLOCK_SIZE, secondPoint.x * Const.BLOCK_SIZE, thirdPoint.x * Const.BLOCK_SIZE, fourthPoint.x * Const.BLOCK_SIZE};
             gc.strokePolygon(xpoints, ypoints, 4);
-            if (image == Images.hitbox_fist||image == Images.hitbox_stomp) {
+            if (image == Images.hitbox_fist || image == Images.hitbox_stomp) {
                 gc.fillPolygon(xpoints, ypoints, 4);
             }
         }

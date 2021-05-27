@@ -7,5 +7,5 @@ public class Const {
     public static final int LIFEBAR_LENGTH = 400;
     public static final int DISTANCE_BETWEEN_LIFEBARS = 100;
     public static final int HIT_DAMAGE = 50;
-    public static  boolean HITBOXES= false;
+    public static boolean HITBOXES = false;
 }

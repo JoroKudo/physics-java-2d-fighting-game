@@ -1,6 +1,4 @@
 package application.gameObjects;
-
-
 import application.constants.Images;
 import org.dyn4j.geometry.MassType;
 

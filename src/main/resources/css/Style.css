@@ -39,15 +39,12 @@
 {
     -fx-font-family: 'Press Start 2P';
 
-
 }
 
 
 .combo-box-popup .list-view .list-cell
 {
     -fx-padding: 4 0 4 5;
-
-
     -fx-background-color: #23272a;
     -fx-font-color: #FFE600 !important;
     -fx-text-fill:#FFE600 ;
@@ -56,9 +53,7 @@
 .combo-box-popup .list-view
 {
     -fx-background-color: #23272a, #23272a;
-
 }
-
 
 .combo-box-popup .list-view .list-cell:filled:hover
 {

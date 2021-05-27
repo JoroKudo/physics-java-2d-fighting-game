@@ -1,6 +1,5 @@
 package application.game;
 
-
 import application.gameObjects.*;
 import application.navigation.Navigator;
 import application.navigation.SceneType;
@@ -73,111 +72,108 @@ public class Game {
         }
 
 
+    }
 
 
-
-}
-
-
-public void load(){
-        switch(userSelectionScene.getControllPlayer1()){
-        case"mic"->{
-        controllerPlayer1=voiceController;
-        voiceController.initialize(voiceController.configuration);
+    public void load() {
+        switch (userSelectionScene.getControllPlayer1()) {
+            case "mic" -> {
+                controllerPlayer1 = voiceController;
+                voiceController.initialize(voiceController.configuration);
+            }
+            case "key" -> controllerPlayer1 = keyboardController;
+            case "ctrl" -> controllerPlayer1 = gamepadcontroller;
         }
-        case"key"->controllerPlayer1=keyboardController;
-        case"ctrl"->controllerPlayer1=gamepadcontroller;
-        }
-        fighter=new BasePlayer(1,10,8,controllerPlayer1,physicWorld);
+        fighter = new BasePlayer(1, 10, 8, controllerPlayer1, physicWorld);
 
-        switch(userSelectionScene.getControllPlayer2()){
-        case"mic"->{
-        fighter_2=new BasePlayer(2,18,8,voiceController,physicWorld);
-        voiceController.initialize(voiceController.configuration);
+        switch (userSelectionScene.getControllPlayer2()) {
+            case "mic" -> {
+                fighter_2 = new BasePlayer(2, 18, 8, voiceController, physicWorld);
+                voiceController.initialize(voiceController.configuration);
+            }
+            case "key" -> fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
+            case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
         }
-        case"key"->fighter_2=new BasePlayer(2,14,8,keyboardController,physicWorld);
-        case"ctrl"->fighter_2=new BasePlayer(2,14,8,gamepadcontroller,physicWorld);
-        }
-        timer=new Timer();
-        Floor floor=new Floor();
-        Wall wallLeft=new Wall(0);
-        Wall wallRight=new Wall(30.2);
+        timer = new Timer();
+        Floor floor = new Floor();
+        Wall wallLeft = new Wall(0);
+        Wall wallRight = new Wall(30.2);
 
-        physicWorld.setGravity(new Vector2(0,15));
+        physicWorld.setGravity(new Vector2(0, 15));
 
-        for(BasePlayer basePlayer:Arrays.asList(fighter,fighter_2)){
-        physicWorld.addBody(basePlayer);
-        physicWorld.addBody(basePlayer.getFist());
-        physicWorld.addBody(basePlayer.getFoot());
-        for(WeldJoint weldJoint:Arrays.asList(basePlayer.getPunchTarget(),basePlayer.getFootHitbox())){
-        physicWorld.addJoint(weldJoint);
-        }
+        for (BasePlayer basePlayer : Arrays.asList(fighter, fighter_2)) {
+            physicWorld.addBody(basePlayer);
+            physicWorld.addBody(basePlayer.getFist());
+            physicWorld.addBody(basePlayer.getFoot());
+            for (WeldJoint weldJoint : Arrays.asList(basePlayer.getPunchTarget(), basePlayer.getFootHitbox())) {
+                physicWorld.addJoint(weldJoint);
+            }
         }
         physicWorld.addBody(floor);
-        for(Wall wall:Arrays.asList(wallRight,wallLeft)){
-        physicWorld.addBody(wall);
+        for (Wall wall : Arrays.asList(wallRight, wallLeft)) {
+            physicWorld.addBody(wall);
         }
 
-        physicWorld.setGravity(new Vector2(0,15));
+        physicWorld.setGravity(new Vector2(0, 15));
 
-        physicWorld.addCollisionListener(new CollisionListenerAdapter<>(){
-@Override
-public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision){
-        Body body1=collision.getBody1();
-        Body body2=collision.getBody2();
-        Game.this.collision.handle(body1,body2,physicWorld);
-        return true;
-        }
+        physicWorld.addCollisionListener(new CollisionListenerAdapter<>() {
+            @Override
+            public boolean collision(BroadphaseCollisionData<Body, BodyFixture> collision) {
+                Body body1 = collision.getBody1();
+                Body body2 = collision.getBody2();
+                Game.this.collision.handle(body1, body2, physicWorld);
+                return true;
+            }
 
         });
-        }
+    }
 
-public void update(double elapsedTime){
+    public void update(double elapsedTime) {
         physicWorld.update(elapsedTime);
 
-        for(BasePlayer player:Arrays.asList(fighter,fighter_2)){
-        player.handleNavigationEvents(elapsedTime);
-        player.updateDirection();
-        if(player.isReturnHadoken()){
-        hadokens.add(player.getHadoken());
-        }
+        for (BasePlayer player : Arrays.asList(fighter, fighter_2)) {
+            player.handleNavigationEvents(elapsedTime);
+            player.updateDirection();
+            if (player.isReturnHadoken()) {
+                hadokens.add(player.getHadoken());
+            }
         }
 
-        timePassedSinceCooldown+=elapsedTime;
+        timePassedSinceCooldown += elapsedTime;
         timer.update(elapsedTime);
-        if(timer.getTime()< 0){
-        navigator.goTo(SceneType.GAME_WIN_SCENE);
-        gameLoopStopper.run();
+        if (timer.getTime() < 0) {
+            navigator.goTo(SceneType.GAME_WIN_SCENE);
+            gameLoopStopper.run();
         }
 
 
-        for(Hadoken hadoken:hadokens){
-        hadoken.update();
+        for (Hadoken hadoken : hadokens) {
+            hadoken.update();
         }
-        }
+    }
 
-public void handleHitFighter(int id){
-        if(timePassedSinceCooldown>=0.7){
-        double blockProtection=1;
-        ArrayList<BasePlayer> basePlayer=new ArrayList<>();
-        basePlayer.add(fighter);
-        basePlayer.add(fighter_2);
-        ArrayList<Lifebar> lifebars=new ArrayList<>();
-        lifebars.add(lifebar1);
-        lifebars.add(lifebar2);
+    public void handleHitFighter(int id) {
+        if (timePassedSinceCooldown >= 0.7) {
+            double blockProtection = 1;
+            ArrayList<BasePlayer> basePlayer = new ArrayList<>();
+            basePlayer.add(fighter);
+            basePlayer.add(fighter_2);
+            ArrayList<Lifebar> lifebars = new ArrayList<>();
+            lifebars.add(lifebar1);
+            lifebars.add(lifebar2);
 
-        if(basePlayer.get(id-1).isBlocking()){
-        blockProtection=0.35;
-        }
-        lifebars.get(id-1).increaseDamage(Const.HIT_DAMAGE*blockProtection);
-        timePassedSinceCooldown=0;
+            if (basePlayer.get(id - 1).isBlocking()) {
+                blockProtection = 0.35;
+            }
+            lifebars.get(id - 1).increaseDamage(Const.HIT_DAMAGE * blockProtection);
+            timePassedSinceCooldown = 0;
 
-        if(lifebars.get(id-1).isKo()){
-        physicWorld.removeBody(basePlayer.get(id-1));
-        navigator.goTo(SceneType.GAME_WIN_SCENE);
-        gameLoopStopper.run();
+            if (lifebars.get(id - 1).isKo()) {
+                physicWorld.removeBody(basePlayer.get(id - 1));
+                navigator.goTo(SceneType.GAME_WIN_SCENE);
+                gameLoopStopper.run();
+            }
         }
-        }
-        }
-        }
+    }
+}
 
