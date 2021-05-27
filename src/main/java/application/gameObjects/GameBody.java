@@ -22,8 +22,8 @@ public class GameBody extends Body {
     }
 
     public void draw(GraphicsContext gc) {
-
-        this.drawHitboxes(gc);
+if(Const.HITBOXES){
+        this.drawHitboxes(gc);}
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
         transform.appendTranslation(this.transform.getTranslationX() * Const.BLOCK_SIZE, this.transform.getTranslationY() * Const.BLOCK_SIZE);
@@ -33,13 +33,13 @@ public class GameBody extends Body {
         Polygon rect = (Polygon) this.getFixture(0).getShape();
         double x = rect.getVertices()[0].x;
         double y = rect.getVertices()[0].y;
-        if (image != Images.hitbox_fist) {
+        if (image != Images.hitbox_fist||image != Images.hitbox_stomp) {
             drawImage(image, x, y, gc);
         }
         gc.setTransform(originTrans);
     }
 
-    protected void drawHitboxes(GraphicsContext gc) {
+    private void drawHitboxes(GraphicsContext gc) {
 
         Affine originTrans = gc.getTransform();
         Affine transform = new Affine();
@@ -57,7 +57,7 @@ public class GameBody extends Body {
             double[] ypoints = {firstPoint.y * Const.BLOCK_SIZE, secondPoint.y * Const.BLOCK_SIZE, thirdPoint.y * Const.BLOCK_SIZE, fourthPoint.y * Const.BLOCK_SIZE};
             double[] xpoints = {firstPoint.x * Const.BLOCK_SIZE, secondPoint.x * Const.BLOCK_SIZE, thirdPoint.x * Const.BLOCK_SIZE, fourthPoint.x * Const.BLOCK_SIZE};
             gc.strokePolygon(xpoints, ypoints, 4);
-            if (image == Images.hitbox_fist) {
+            if (image == Images.hitbox_fist||image == Images.hitbox_stomp) {
                 gc.fillPolygon(xpoints, ypoints, 4);
             }
         }

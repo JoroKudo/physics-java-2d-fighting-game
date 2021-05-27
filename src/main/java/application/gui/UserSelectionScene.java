@@ -2,6 +2,7 @@ package application.gui;
 
 
 import application.common.BaseScene;
+import application.constants.Const;
 import application.constants.Images;
 import application.firebase.RequestHandler;
 import application.sound.MusicType;
@@ -175,6 +176,7 @@ public class UserSelectionScene extends BaseScene {
         setOnKeyPressed(e -> {
             if ((e.getCode() == KeyCode.L)) {
                 drawImage(Images.splashtxt, 200, 200);
+                Const.HITBOXES = true;
             }
         });
 

@@ -72,11 +72,14 @@ public class BasePlayer extends GameBody {
 
     @Override
     public void drawImage(Image image, double x, double y, GraphicsContext gc) {
+
+
         if (currentDirection == Direction.LEFT && controller.FighterXisActing(id) == ActionType.PUNCH) {
             gc.drawImage(image, x-(72 / Const.BLOCK_SIZE * 2) * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
         } else {
             gc.drawImage(image, x * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
         }
+
 
     }
 
