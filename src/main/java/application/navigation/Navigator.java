@@ -20,10 +20,14 @@ public class Navigator<T> {
         viewMap.put(enumScene, scene);
     }
 
-    public void goTo(application.navigation.SceneType scene) {
+    public void goTo(SceneType scene) {
         Scene activeScene = viewMap.get(scene);
         if (activeScene instanceof Initializable) {
-            ((Initializable) activeScene).onInitialize();
+            try {
+                ((Initializable) activeScene).onInitialize();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         stage.setScene(activeScene);
     }

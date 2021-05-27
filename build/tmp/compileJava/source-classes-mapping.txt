@@ -2,75 +2,75 @@ application/controller/KeyboardController.java
  application.controller.KeyboardController
 application/stats/Lifebar.java
  application.stats.Lifebar
-application/controller/ActionType.java
- application.controller.ActionType
-application/sound/SoundEffectType.java
- application.sound.SoundEffectType
-application/common/BaseScene.java
- application.common.BaseScene
-application/common/Controller.java
- application.common.Controller
-application/constants/Const.java
- application.constants.Const
-application/controller/GamepadController.java
- application.controller.GamepadController
-application/gameObjects/Direction.java
- application.gameObjects.Direction
-application/common/FancyAnimationTimer.java
- application.common.FancyAnimationTimer
-application/firebase/RequestHandler.java
- application.firebase.RequestHandler
-application/stats/Timer.java
- application.stats.Timer
-application/controller/VoiceController.java
- application.controller.VoiceController
-application/game/Launcher.java
- application.game.Launcher
-application/navigation/Navigator.java
- application.navigation.Navigator
-application/sound/Sound.java
- application.sound.Sound
- application.sound.Sound$1
-application/common/Initializable.java
- application.common.Initializable
-application/navigation/SceneType.java
- application.navigation.SceneType
-application/sound/MusicType.java
- application.sound.MusicType
 application/gui/UserSelectionScene.java
  application.gui.UserSelectionScene
 application/gameObjects/GameObject.java
  application.gameObjects.GameObject
 application/gameObjects/Wall.java
  application.gameObjects.Wall
+application/common/Controller.java
+ application.common.Controller
+application/constants/Const.java
+ application.constants.Const
 application/gameObjects/Foot.java
  application.gameObjects.Foot
-application/gameObjects/GameBody.java
- application.gameObjects.GameBody
 application/gui/GameWinScene.java
  application.gui.GameWinScene
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
+application/common/FancyAnimationTimer.java
+ application.common.FancyAnimationTimer
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/stats/Timer.java
+ application.stats.Timer
 application/gameObjects/Floor.java
  application.gameObjects.Floor
 application/gameObjects/Fist.java
  application.gameObjects.Fist
-application/game/Game.java
- application.game.Game
- application.game.Game$1
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
-application/constants/Images.java
- application.constants.Images
+application/navigation/Navigator.java
+ application.navigation.Navigator
+application/sound/Sound.java
+ application.sound.Sound
+ application.sound.Sound$1
+application/firebase/RequestHandler.java
+ application.firebase.RequestHandler
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
-application/game/CollisionHandler.java
- application.game.CollisionHandler
+application/sound/MusicType.java
+ application.sound.MusicType
 application/gameObjects/Hadoken.java
  application.gameObjects.Hadoken
 application/gameObjects/BasePlayer.java
  application.gameObjects.BasePlayer
  application.gameObjects.BasePlayer$1
+application/game/CollisionHandler.java
+ application.game.CollisionHandler
+application/controller/GamepadController.java
+ application.controller.GamepadController
+application/sound/SoundEffectType.java
+ application.sound.SoundEffectType
+application/controller/VoiceController.java
+ application.controller.VoiceController
+application/gameObjects/GameBody.java
+ application.gameObjects.GameBody
+application/common/Initializable.java
+ application.common.Initializable
+application/gameObjects/Direction.java
+ application.gameObjects.Direction
+application/game/Launcher.java
+ application.game.Launcher
+application/constants/Images.java
+ application.constants.Images
+application/navigation/SceneType.java
+ application.navigation.SceneType
+application/controller/ActionType.java
+ application.controller.ActionType
+application/common/BaseScene.java
+ application.common.BaseScene
+application/game/Game.java
+ application.game.Game
+ application.game.Game$1
 application/game/App.java
  application.game.App
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene

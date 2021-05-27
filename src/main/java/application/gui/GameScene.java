@@ -1,23 +1,24 @@
 package application.gui;
 
-import application.controller.KeyboardController;
+import application.common.BaseScene;
+import application.common.FancyAnimationTimer;
+import application.common.Initializable;
 import application.controller.GamepadController;
+import application.controller.KeyboardController;
 import application.controller.VoiceController;
+import application.game.Game;
 import application.navigation.Navigator;
 import application.navigation.SceneType;
 import application.sound.MusicType;
 import application.sound.Sound;
-
-import application.common.*;
-import application.game.Game;
 import application.stats.Lifebar;
 import javafx.scene.input.KeyCode;
 
 public class GameScene extends BaseScene implements Initializable {
 
-    Lifebar lifebar1;
-    Lifebar lifebar2;
-    UserSelectionScene userSelectionScene;
+    private final Lifebar lifebar1;
+    private final Lifebar lifebar2;
+    private final UserSelectionScene userSelectionScene;
     private FancyAnimationTimer gameLoop;
 
     public GameScene(Navigator<?> navigator, Lifebar lifebar1, Lifebar lifebar2, UserSelectionScene userSelectionScene) {
@@ -29,7 +30,7 @@ public class GameScene extends BaseScene implements Initializable {
 
 
     @Override
-    public void onInitialize() {
+    public void onInitialize() throws Exception {
         KeyboardController keyboardController = new KeyboardController();
         GamepadController gamepadController = new GamepadController();
         VoiceController voiceController = new VoiceController();

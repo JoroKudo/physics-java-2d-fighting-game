@@ -1,9 +1,10 @@
 package application.gui;
 
-import application.navigation.Navigator;
 import application.common.BaseScene;
+import application.common.Initializable;
 import application.constants.Images;
 import application.firebase.RequestHandler;
+import application.navigation.Navigator;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -16,7 +17,7 @@ import java.util.*;
 
 import static javafx.scene.paint.Color.WHITE;
 
-public class LeaderboardScene extends BaseScene {
+public class LeaderboardScene extends BaseScene implements Initializable {
 
     Map<String, Integer> fighter_score = new HashMap<>();
     GridPane userTextGridPane = new GridPane();
@@ -26,6 +27,10 @@ public class LeaderboardScene extends BaseScene {
 
     public LeaderboardScene(Navigator navigator) throws IOException {
         super(navigator, Images.leaderboard);
+    }
+
+    @Override
+    public void onInitialize() throws Exception {
 
         RequestHandler requestHandler = new RequestHandler();
 
@@ -73,5 +78,4 @@ public class LeaderboardScene extends BaseScene {
         parent.add(userScoreGridPane);
 
     }
-
 }

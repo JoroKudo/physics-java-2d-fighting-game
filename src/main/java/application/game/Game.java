@@ -38,6 +38,7 @@ public class Game  {
     private final Runnable gameLoopStopper;
     private final ArrayList<Hadoken> hadokens = new ArrayList<>();
     private double timePassedSinceCooldown;
+    private Controller controllerPlayer1;
     private BasePlayer fighter, fighter_2;
     private Timer timer;
 
@@ -65,19 +66,21 @@ public class Game  {
         }
     }
 
+
     public void load() {
         switch (userSelectionScene.getControllPlayer1()) {
             case "mic" -> {
-                fighter = new BasePlayer(1, 10, 8, voiceController, physicWorld);
+                controllerPlayer1 = voiceController;
                 voiceController.initialize(voiceController.configuration);
             }
-            case "key" -> fighter = new BasePlayer(1, 10, 8, keyboardController, physicWorld);
-            case "ctrl" -> fighter = new BasePlayer(1, 10, 8, gamepadcontroller, physicWorld);
+            case "key" -> controllerPlayer1 = keyboardController;
+            case "ctrl" -> controllerPlayer1 = gamepadcontroller;
         }
+        fighter = new BasePlayer(1, 10, 8, controllerPlayer1, physicWorld);
 
         switch (userSelectionScene.getControllPlayer2()) {
             case "mic" -> {
-                fighter_2 = new BasePlayer(2, 14, 8, voiceController, physicWorld);
+                fighter_2 = new BasePlayer(2, 18, 8, voiceController, physicWorld);
                 voiceController.initialize(voiceController.configuration);
             }
             case "key" -> fighter_2 = new BasePlayer(2, 14, 8, keyboardController, physicWorld);
