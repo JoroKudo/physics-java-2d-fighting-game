@@ -13,7 +13,7 @@ Für das AdobeXD file [hier](Mockup.xd) klicken.
 
 * Unterstützung für Controller
 * Cloud Datenbank um Spieler und Ergebnisse zu speichern
-* Leaderboard (Cloud Datenbank)
+* Leaderboard im Spiel
 * Sprachsteuerung
 
 
