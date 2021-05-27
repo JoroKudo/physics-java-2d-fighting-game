@@ -9,10 +9,7 @@ import application.constants.Const;
 import application.constants.Images;
 import application.controller.GamepadController;
 import application.controller.VoiceController;
-import application.gameObjects.*;
 import application.gui.UserSelectionScene;
-import application.navigation.Navigator;
-import application.navigation.SceneType;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -60,7 +57,7 @@ public class Game  {
         gc.drawImage(Images.background, 0, 0);
         lifebar1.draw(gc);
         lifebar2.draw(gc);
-        gc.drawImage(Images.KO, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBARS) >> 1, 50);
+        gc.drawImage(Images.ko, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBARS) >> 1, 50);
         timer.draw(gc);
         for (Body body : physicWorld.getBodies()) {
             GameBody gameBody = (GameBody) body;

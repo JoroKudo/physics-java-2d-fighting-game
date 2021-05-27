@@ -5,7 +5,7 @@ import org.dyn4j.geometry.MassType;
 
 public class Floor extends GameObject {
     public Floor() {
-        super(Images.FLOOR, 15, 17);
+        super(Images.floor, 15, 17);
         setMass(MassType.INFINITE);
     }
 }

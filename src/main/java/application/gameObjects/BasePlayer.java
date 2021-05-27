@@ -84,9 +84,9 @@ public class BasePlayer extends GameBody {
         Sound.play(SoundEffectType.HADOKEN);
         cooldown = 2;
         if (currentDirection == Direction.RIGHT) {
-            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadouken_right);
+            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadoken_right);
         } else {
-            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadouken_left);
+            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadoken_left);
         }
 
         image = Images.shoot_right;

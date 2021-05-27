@@ -15,31 +15,79 @@
     -fx-background: linear-gradient(to top, #8F0A8F, #3B3B3B);
 }
 
+
+
 .radio-button .radio {
     -fx-border-width: 1px;
-    -fx-border-color: #000;
-    -fx-background-color: white;
+    -fx-border-color: #3D0066;    -fx-background-color: #23272a;
     -fx-background-image: null;
     -fx-border-radius: 15px;
     -fx-padding: 4px;
 }
-.radio-button .radio:selected {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:armed {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:determinate {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
-.radio-button -radio:indeterminate {
-    -fx-background-color: white;
-    -fx-background-image: null;
-}
+
+
 .radio-button .dot {
     -fx-background-radius: 15px;
     -fx-padding: 8px;
+    -fx-mark-highlight-color: #FFE600 ;
+    -fx-mark-color: #FFE600 ;
+
 }
+
+
+.combo-box
+{
+    -fx-font-family: 'Press Start 2P';
+
+
+}
+
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 4 0 4 5;
+
+
+    -fx-background-color: #23272a;
+    -fx-font-color: #FFE600 !important;
+    -fx-text-fill:#FFE600 ;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: #23272a, #23272a;
+
+}
+
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: #23272a;
+    -fx-font-color: #FF0505 !important;
+    -fx-text-fill:#FF0505 ;}
+
+
+
+.combo-box-base
+{
+    -fx-background-color: #23272a, #23272a, #23272a, #23272a;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+
+
+
+
+.combo-box, .text-field, .combo-box .arrow-button {
+    -fx-background-color: #23272a;
+    -fx-font-color: #FFE600 !important;
+    -fx-text-fill:#FFE600 ;
+
+}
+.combo-box .arrow{
+    -fx-background-color: #FFE600;
+}
+
+

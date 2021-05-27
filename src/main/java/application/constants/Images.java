@@ -5,51 +5,51 @@ import javafx.scene.image.Image;
 
 public class Images {
     //FIGHTER
-    public final static Image fighter_look_right = getImageSize("fighter/LookRight.gif");
-    public final static Image fighter_look_left = getImageSize("fighter/LookLeft.gif");
-    public final static Image fighter_Bwalk_right = getImageSize("fighter/BWalkRight.gif");
-    public final static Image fighter_Bwalk_left = getImageSize("fighter/BWalkLeft.gif");
-    public final static Image fighter_walk_right = getImageSize("fighter/FWalkRight.gif");
-    public final static Image fighter_walk_left = getImageSize("fighter/FWalkLeft.gif");
-    public final static Image punch_right = getImageSize("fighter/PunchRight2.gif");
-    public final static Image punch_left = getImageSize("fighter/PunchLeft.gif");
-    public final static Image jump_right = getImageSize("fighter/JumpRight.gif");
-    public final static Image jump_left = getImageSize("fighter/JumpLeft.gif");
-    public final static Image block_right = getImageSize("fighter/BlockRight.gif");
-    public final static Image block_left = getImageSize("fighter/BlockLeft.gif");
-    public final static Image shoot_right = getImageSize("fighter/ShootRight.gif");
-    public final static Image shoot_left = getImageSize("fighter/ShootLeft.gif");
-    public final static Image charge_right = getImageSize("fighter/ChargeRight.gif");
-    public final static Image charge_left = getImageSize("fighter/ChargeLeft.gif");
-    public final static Image duck_left = getImageSize("fighter/DuckLeft.gif");
-    public final static Image duck_right = getImageSize("fighter/DuckRight.gif");
+    public final static Image fighter_look_right = getImageSize("fighter/lookRight.gif");
+    public final static Image fighter_look_left = getImageSize("fighter/lookLeft.gif");
+    public final static Image fighter_Bwalk_right = getImageSize("fighter/bWalkRight.gif");
+    public final static Image fighter_Bwalk_left = getImageSize("fighter/bWalkLeft.gif");
+    public final static Image fighter_walk_right = getImageSize("fighter/fWalkRight.gif");
+    public final static Image fighter_walk_left = getImageSize("fighter/fWalkLeft.gif");
+    public final static Image punch_right = getImageSize("fighter/punchRight.gif");
+    public final static Image punch_left = getImageSize("fighter/punchLeft.gif");
+    public final static Image jump_right = getImageSize("fighter/jumpRight.gif");
+    public final static Image jump_left = getImageSize("fighter/jumpLeft.gif");
+    public final static Image block_right = getImageSize("fighter/blockRight.gif");
+    public final static Image block_left = getImageSize("fighter/blockLeft.gif");
+    public final static Image shoot_right = getImageSize("fighter/shootRight.gif");
+    public final static Image shoot_left = getImageSize("fighter/shootLeft.gif");
+    public final static Image charge_right = getImageSize("fighter/chargeRight.gif");
+    public final static Image charge_left = getImageSize("fighter/chargeLeft.gif");
+    public final static Image duck_left = getImageSize("fighter/duckLeft.gif");
+    public final static Image duck_right = getImageSize("fighter/duckRight.gif");
 
     //ATTACKS
-    public final static Image fist_hitbox = getImageSize("fist.png");
-    public final static Image foot_hitbox = getImageSize("foot.png");
-    public final static Image hadouken_right = getImageSize("fighter/Hadouken.png");
-    public final static Image hadouken_left = getImageSize("fighter/HadoukenLeft.png");
-    public final static Image explosion = getImageSize("fighter/hadoukenexplosion.gif");
+    public final static Image hitbox_fist = getImageSize("fist.png");
+    public final static Image hitbox_stomp = getImageSize("foot.png");
+    public final static Image hadoken_right = getImageSize("fighter/hadoken.png");
+    public final static Image hadoken_left = getImageSize("fighter/hadokenLeft.png");
+    public final static Image explosion = getImageSize("fighter/hadokenExplosion.gif");
 
     //UI
     public final static Image controller = getImageSize("controller.png");
     public final static Image keyboard = getImageSize("keyboard.png");
     public final static Image microphone = getImageSize("microphone.png");
-    public final static Image LOGO = getImageSize("LOGO.png");
+    public final static Image ko = getImageSize("ko.png");
+    public final static Image logo = getImageSize("logo.png");
 
-    //GAME
-    public final static Image background = getImageSize("background.png");
-    public final static Image KO = getImageSize("KO.png");
-    public final static Image KO_anim = getImageSize("KO_anim.gif");
+    //Animations
+    //public final static Image ko_animation = getImageSize("KO_anim.gif");
 
     //SCENES
-    public final static Image welcome = getImageSize("Welcome.gif");
-    public final static Image GameWin = getImageSize("GameWin.png");
-
-    //ENVIROMENT
-    public final static Image wall = getImageSize("wall.png");
+    public final static Image welcome = getImageSize("welcome.gif");
+    public final static Image background = getImageSize("background.png");
+    public final static Image gameWin = getImageSize("gameWin.png");
     public final static Image leaderboard = getImageSize("leaderboard.png");
-    public final static Image FLOOR = getImageSize("Floor.png");
+
+    //ENVIRONMENTS
+    public final static Image wall = getImageSize("wall.png");
+    public final static Image floor = getImageSize("floor.png");
 
     private static Image getImage(String imagePath, double height, double width) {
         try {

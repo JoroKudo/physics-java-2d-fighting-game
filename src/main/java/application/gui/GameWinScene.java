@@ -1,6 +1,5 @@
 package application.gui;
 
-import application.constants.Const;
 import application.navigation.Navigator;
 import application.navigation.SceneType;
 import application.common.BaseScene;
@@ -11,7 +10,6 @@ import application.stats.Lifebar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 
@@ -22,7 +20,7 @@ public class GameWinScene extends BaseScene implements Initializable {
     private final UserSelectionScene userSelectionScene;
 
     public GameWinScene(Navigator<?> navigator, Lifebar lifebar1, Lifebar lifebar2, UserSelectionScene userSelectionScene) {
-        super(navigator, Images.GameWin);
+        super(navigator, Images.gameWin);
         this.lifebar1 = lifebar1;
         this.lifebar2 = lifebar2;
         this.userSelectionScene = userSelectionScene;
@@ -34,7 +32,7 @@ public class GameWinScene extends BaseScene implements Initializable {
         });
     }
 
-    private void drawtext(String text) {
+    private void drawText(String text) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFont(Font.font("Arial", 40));
         gc.strokeText(text, 630, 560);
@@ -71,7 +69,7 @@ public class GameWinScene extends BaseScene implements Initializable {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            drawtext(text);
+            drawText(text);
         }
     }
 }
