@@ -36,10 +36,11 @@ public class Images {
     public final static Image keyboard = getImageSize("keyboard.png");
     public final static Image microphone = getImageSize("microphone.png");
     public final static Image ko = getImageSize("ko.png");
-    public final static Image logo = getImageSize("logo.png");
+    public final static Image logo = getImageSize("TitleLogo.png");
+    public final static Image splashtxt = getImageSize("splashtext.png");
 
-    //Animations
-    //public final static Image ko_animation = getImageSize("KO_anim.gif");
+
+
 
     //SCENES
     public final static Image welcome = getImageSize("welcome.gif");
@@ -60,14 +61,16 @@ public class Images {
     }
 
     private static Image getImageSize(String imagePath) {
-        String firstFourChars;
+        String firstEightChars;
         if (imagePath.length() > 8) {
-            firstFourChars = imagePath.substring(0, 8);
+            firstEightChars = imagePath.substring(0, 8);
         } else {
-            firstFourChars = imagePath;
+            firstEightChars = imagePath;
         }
+
         int multiplier = 1;
-        if (firstFourChars.equals("fighter/")) multiplier = 2;
+        if (firstEightChars.equals("fighter/")) multiplier = 2;
+        if (firstEightChars.equals("TitleLog")) multiplier = 2;
         try {
             Image measureImage = new Image("/images/" + imagePath);
             double h = measureImage.getHeight() * multiplier;

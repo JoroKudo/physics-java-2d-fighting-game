@@ -16,6 +16,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -94,7 +95,6 @@ public class UserSelectionScene extends BaseScene {
         ImageView keyboardIconRight = new ImageView(Images.keyboard);
         ImageView microphoneIconRight = new ImageView(Images.microphone);
 
-
         controllerIconLeft.setFitHeight(40);
         keyboardIconLeft.setFitHeight(40);
         microphoneIconLeft.setFitHeight(40);
@@ -150,6 +150,7 @@ public class UserSelectionScene extends BaseScene {
         mic1.setGraphic(microphoneIconLeft);
 
 
+
         controller2.setGraphic(controllerIconRight);
         keyboard2.setGraphic(keyboardIconRight);
         mic2.setGraphic(microphoneIconRight);
@@ -167,10 +168,15 @@ public class UserSelectionScene extends BaseScene {
 
         //Draws Imag
         drawImage(Images.fighter_look_right, 460, 350);
+        drawImage(Images.logo, 200, 100);
         drawImage(Images.fighter_Bwalk_left, 900, 350);
         //Create Submit button
         Button submit = new Button("START");
-
+        setOnKeyPressed(e -> {
+            if ((e.getCode() == KeyCode.L)) {
+                drawImage(Images.splashtxt, 200, 200);
+            }
+        });
 
         submit.setOnAction(e -> {
             if (mic1.isSelected()) {
