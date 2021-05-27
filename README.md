@@ -2,19 +2,19 @@
 
 ## Abstract
 
-Wir wollen ein 2D fighting game entwickeln, ähnlich wie zum Beispiel Street Fighter. Man sollte zu zweit lokal gegeneinander spielen können. Beide Spieler werden eine Lebensleiste haben, wer zuerst auf null ist hat verloren. Schaden machen kann man mit einem Schlag, es gibt auch die Option Schläge zu blocken oder ihnen auszuweichen in dem man sich z.B. duckt. Man kann mit dem richtigen Timing auch kritische Treffer landen. 
+Wir wollen ein 2D fighting game entwickeln, ähnlich wie Street Fighter. Man sollte zu zweit lokal gegeneinander spielen können. Beide Spieler werden eine Lebensleiste haben, wer zuerst auf null ist hat verloren. Schaden machen kann man mit einem Schlag, es gibt auch die Option Schläge zu blocken oder ihnen auszuweichen in dem man sich z.B. duckt.
 
 ## Mockups
 
-![Mockup](Mockup/Mockup.png)
+![Mockup](mockUp/Mockup.png)
 Für das AdobeXD file [hier](Mockup.xd) klicken.
 
 ## Zusätzliche Features
 
 * Unterstützung für Controller
-* Über Netzwerk gegeneinander spielen
 * Cloud Datenbank um Spieler und Ergebnisse zu speichern
-* Leaderboard
+* Leaderboard (Cloud Datenbank)
+* Sprachsteuerung
 
 
 ## Tastenbelegung
@@ -27,7 +27,7 @@ Für das AdobeXD file [hier](Mockup.xd) klicken.
 | Ducken   | s         | k         |
 | Angriff  | e         | o         |
 | Blocken  | q         | u         |
-| Hadouken | v         | m         |
+| Hadoken  | v         | m         |
 
 
 ## Controller
@@ -40,13 +40,15 @@ Für das AdobeXD file [hier](Mockup.xd) klicken.
 | Ducken   | a              |
 | Angriff  | b              |
 | Blocken  | rt             |
-| Hadouken | x              |
-
-
+| Hadoken  | x              |
 
 ## Technische Implementierung
 
 Die Charaktere wollen wir als Skelleton implementieren, das heist, dass die verschiedenen Körperteile sich bewegen können und alle eine unterschiedliche Hitbox haben. Das wird uns die Kollisionserkennung eines Schlages erleichtern.
+
+## UML
+
+![uml](src/main/resources/images/uml.png)
 
 ## Verwendete Frameworks
 

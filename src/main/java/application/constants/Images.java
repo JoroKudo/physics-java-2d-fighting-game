@@ -53,7 +53,7 @@ public class Images {
 
     private static Image getImage(String imagePath, double height, double width) {
         try {
-            return new Image("/Images/" + imagePath, width, height, false, false);
+            return new Image("/images/" + imagePath, width, height, false, false);
         } catch (Exception ex) {
             throw new RuntimeException("File not found: " + imagePath);
         }
@@ -69,7 +69,7 @@ public class Images {
         int multiplier = 1;
         if (firstFourChars.equals("fighter/")) multiplier = 2;
         try {
-            Image measureImage = new Image("/Images/" + imagePath);
+            Image measureImage = new Image("/images/" + imagePath);
             double h = measureImage.getHeight() * multiplier;
             double w = measureImage.getWidth() * multiplier;
             return getImage(imagePath, h, w);
