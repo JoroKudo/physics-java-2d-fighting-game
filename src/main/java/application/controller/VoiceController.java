@@ -40,7 +40,7 @@ public class VoiceController implements Controller {
     }
 
 
-    public synchronized void startSpeechRecognition() {
+    private synchronized void startSpeechRecognition() {
         eventsExecutorService.submit(() -> {
             speechRecognizerThreadRunning = true;
             recognizer.startRecognition(true);
@@ -58,7 +58,7 @@ public class VoiceController implements Controller {
     }
 
 
-    public void startResourcesThread() {
+    private void startResourcesThread() {
         eventsExecutorService.submit(() -> {
             try {
                 if (!AudioSystem.isLineSupported(Port.Info.MICROPHONE))

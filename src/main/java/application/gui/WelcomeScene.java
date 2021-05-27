@@ -9,12 +9,11 @@ import com.studiohartman.jamepad.ControllerState;
 import javafx.scene.input.KeyCode;
 
 public class WelcomeScene extends BaseScene {
-    public ControllerManager controllers;
 
     public WelcomeScene(Navigator<?> navigator) {
         super(navigator, Images.welcome);
 
-        controllers = new ControllerManager();
+        ControllerManager controllers = new ControllerManager();
         controllers.initSDLGamepad();
         ControllerState currState = controllers.getState(0);
         if ((currState.a)) {

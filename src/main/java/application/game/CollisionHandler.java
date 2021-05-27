@@ -17,7 +17,7 @@ public class CollisionHandler {
         this.game = game;
     }
 
-    public void handle(Body body1, Body body2, World<Body> physicWorld) {
+    protected void handle(Body body1, Body body2, World<Body> physicWorld) {
         this.physicWorld = physicWorld;
         this.body1 = body1;
         this.body2 = body2;

@@ -18,7 +18,7 @@ public class RequestHandler {
     private final String baseUrl = "https://ultimate-arena-2d-default-rtdb.europe-west1.firebasedatabase.app/";
     private final JSONParser jsonParser = new JSONParser();
 
-    public long getWins(String user) throws IOException {
+    private long getWins(String user) throws IOException {
         URL url = new URL(baseUrl + "fighters/" + user + ".json");
         HttpURLConnection con = initializeConnection(url, "GET");
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
