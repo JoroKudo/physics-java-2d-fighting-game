@@ -95,9 +95,11 @@ public class Game {
             case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
         }
         timer = new Timer();
-        Floor floor = new Floor();
-        Wall wallLeft = new Wall(0);
-        Wall wallRight = new Wall(30.2);
+        Floor floor = new Floor(15, 18);
+        Floor ceiling = new Floor(15, -2);
+        Wall wallLeft = new Wall(-1);
+        Wall wallRight = new Wall(30.5);
+
 
         physicWorld.setGravity(new Vector2(0, 15));
 
@@ -110,6 +112,8 @@ public class Game {
             }
         }
         physicWorld.addBody(floor);
+        physicWorld.addBody(ceiling);
+
         for (Wall wall : Arrays.asList(wallRight, wallLeft)) {
             physicWorld.addBody(wall);
         }
