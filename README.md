@@ -6,8 +6,8 @@ Wir wollen ein 2D fighting game entwickeln, ähnlich wie Street Fighter. Man sol
 
 ## Mockups
 
-![Mockup](mockUp/Mockup1.png)
 ![Mockup](mockUp/Mockup2.png)
+![Mockup](mockUp/Mockup1.png)
 
 
 ## Zusätzliche Features
