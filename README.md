@@ -33,7 +33,7 @@ Wir wollen ein 2D fighting game entwickeln, ähnlich wie Street Fighter. Man sol
 
 ## Controller
 
-| Funktion | Spieler 1 |
+| Funktion |  Taste         |
 | ---------|:--------------:|
 | Links    | Joystick Links |
 | Rechts   | Joystick Rechts|
