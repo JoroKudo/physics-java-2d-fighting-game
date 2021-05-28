@@ -97,7 +97,7 @@ public class Game {
             case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
         }
         timer = new Timer();
-        Floor floor = new Floor(15, 18);
+        Floor floor = new Floor(15, 17);
         Floor ceiling = new Floor(15, -2);
         Wall wallLeft = new Wall(-1);
         Wall wallRight = new Wall(30.5);
