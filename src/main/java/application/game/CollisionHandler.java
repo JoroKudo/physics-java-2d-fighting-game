@@ -37,7 +37,6 @@ public class CollisionHandler {
     private void checkForHit(Body body1, Body body2) {
         if ((body1 instanceof BasePlayer) && (body2 instanceof Fist)) {
             BasePlayer fighter = (BasePlayer) body1;
-            Sound.play(SoundEffectType.FIST_PUNCH);
             game.handleHitFighter(fighter.getId());
         }
     }

@@ -9,6 +9,8 @@ import application.constants.Images;
 import application.controller.GamepadController;
 import application.controller.VoiceController;
 import application.gui.UserSelectionScene;
+import application.sound.Sound;
+import application.sound.SoundEffectType;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -166,6 +168,8 @@ public class Game {
                 blockProtection = 0.35;
             }
             lifebars.get(id - 1).increaseDamage(Const.HIT_DAMAGE * blockProtection);
+            Sound.play(SoundEffectType.FIST_PUNCH);
+
             timePassedSinceCooldown = 0;
 
             if (lifebars.get(id - 1).isKo()) {
