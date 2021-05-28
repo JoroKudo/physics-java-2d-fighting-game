@@ -22,8 +22,8 @@ public class BasePlayer extends GameBody {
     private final Fist fist;
     private Hadoken hadoken;
     private final Foot foot;
-    private final WeldJoint<?> punchTarget;
-    private final WeldJoint<?> footHitbox;
+    private final WeldJoint<?> fistJoint;
+    private final WeldJoint<?> footJoint;
     private boolean punch = true;
     private boolean duck = true;
     private boolean blocking = false;
@@ -61,8 +61,8 @@ public class BasePlayer extends GameBody {
         fist = new Fist(x, y + 1);
         foot = new Foot(x, y + 4.23);
 
-        punchTarget = new WeldJoint<Body>(this, fist, new Vector2(x, y));
-        footHitbox = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
+        fistJoint = new WeldJoint<Body>(this, fist, new Vector2(x, y));
+        footJoint = new WeldJoint<Body>(this, foot, new Vector2(x, y + 4.23));
         setMass(MassType.FIXED_ANGULAR_VELOCITY);
     }
 
@@ -286,12 +286,12 @@ public class BasePlayer extends GameBody {
         return foot;
     }
 
-    public WeldJoint<?> getPunchTarget() {
-        return punchTarget;
+    public WeldJoint<?> getFistJoint() {
+        return fistJoint;
     }
 
-    public WeldJoint<?> getFootHitbox() {
-        return footHitbox;
+    public WeldJoint<?> getFootJoint() {
+        return footJoint;
     }
 
     public boolean isBlocking() {
