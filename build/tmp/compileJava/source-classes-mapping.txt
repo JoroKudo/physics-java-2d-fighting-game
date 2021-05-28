@@ -1,7 +1,7 @@
-application/controller/KeyboardController.java
- application.controller.KeyboardController
 application/stats/Lifebar.java
  application.stats.Lifebar
+application/controller/KeyboardController.java
+ application.controller.KeyboardController
 application/gui/UserSelectionScene.java
  application.gui.UserSelectionScene
 application/gameObjects/GameObject.java
@@ -18,9 +18,8 @@ application/gui/GameWinScene.java
  application.gui.GameWinScene
 application/common/FancyAnimationTimer.java
  application.common.FancyAnimationTimer
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
+application/gui/LeaderboardScene.java
+ application.gui.LeaderboardScene
 application/stats/Timer.java
  application.stats.Timer
 application/gameObjects/Floor.java
@@ -43,8 +42,8 @@ application/gameObjects/Hadoken.java
 application/gameObjects/BasePlayer.java
  application.gameObjects.BasePlayer
  application.gameObjects.BasePlayer$1
-application/game/CollisionHandler.java
- application.game.CollisionHandler
+application/game/App.java
+ application.game.App
 application/controller/GamepadController.java
  application.controller.GamepadController
 application/sound/SoundEffectType.java
@@ -53,10 +52,10 @@ application/controller/VoiceController.java
  application.controller.VoiceController
 application/gameObjects/GameBody.java
  application.gameObjects.GameBody
-application/common/Initializable.java
- application.common.Initializable
 application/gameObjects/Direction.java
  application.gameObjects.Direction
+application/common/Initializable.java
+ application.common.Initializable
 application/game/Launcher.java
  application.game.Launcher
 application/constants/Images.java
@@ -70,7 +69,8 @@ application/common/BaseScene.java
 application/game/Game.java
  application.game.Game
  application.game.Game$1
-application/game/App.java
- application.game.App
-application/gui/LeaderboardScene.java
- application.gui.LeaderboardScene
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
+application/game/CollisionHandler.java
+ application.game.CollisionHandler
