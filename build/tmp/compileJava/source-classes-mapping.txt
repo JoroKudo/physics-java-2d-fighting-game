@@ -1,7 +1,7 @@
-application/stats/Lifebar.java
- application.stats.Lifebar
 application/controller/KeyboardController.java
  application.controller.KeyboardController
+application/stats/Lifebar.java
+ application.stats.Lifebar
 application/gui/UserSelectionScene.java
  application.gui.UserSelectionScene
 application/gameObjects/GameObject.java
@@ -31,8 +31,9 @@ application/navigation/Navigator.java
 application/sound/Sound.java
  application.sound.Sound
  application.sound.Sound$1
-application/firebase/RequestHandler.java
- application.firebase.RequestHandler
+application/gui/GameScene.java
+ application.gui.GameScene
+ application.gui.GameScene$1
 application/gui/WelcomeScene.java
  application.gui.WelcomeScene
 application/sound/MusicType.java
@@ -52,25 +53,24 @@ application/controller/VoiceController.java
  application.controller.VoiceController
 application/gameObjects/GameBody.java
  application.gameObjects.GameBody
-application/gameObjects/Direction.java
- application.gameObjects.Direction
 application/common/Initializable.java
  application.common.Initializable
-application/game/Launcher.java
- application.game.Launcher
+application/gameObjects/Direction.java
+ application.gameObjects.Direction
+application/game/Game.java
+ application.game.Game
+ application.game.Game$1
 application/constants/Images.java
  application.constants.Images
 application/navigation/SceneType.java
  application.navigation.SceneType
-application/controller/ActionType.java
- application.controller.ActionType
-application/common/BaseScene.java
- application.common.BaseScene
-application/game/Game.java
- application.game.Game
- application.game.Game$1
-application/gui/GameScene.java
- application.gui.GameScene
- application.gui.GameScene$1
 application/game/CollisionHandler.java
  application.game.CollisionHandler
+application/common/BaseScene.java
+ application.common.BaseScene
+application/controller/ActionType.java
+ application.controller.ActionType
+application/firebase/RequestHandler.java
+ application.firebase.RequestHandler
+application/game/Launcher.java
+ application.game.Launcher
