@@ -5,8 +5,8 @@ import com.studiohartman.jamepad.ControllerState;
 
 public class GamepadController implements application.common.Controller {
 
-    public boolean initialized = false;
-    public ControllerManager controllers;
+    private boolean initialized = false;
+    private ControllerManager controllers;
 
     @Override
     public ActionType FighterXisActing(int id) {

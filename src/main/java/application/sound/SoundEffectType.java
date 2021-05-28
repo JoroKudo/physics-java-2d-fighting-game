@@ -9,7 +9,6 @@ public enum SoundEffectType {
     SCREAM,
     PAIN,
     CHARGE_UP,
-
     KO
 
 }

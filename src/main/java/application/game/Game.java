@@ -1,6 +1,5 @@
 package application.game;
 
-
 import application.gameObjects.*;
 import application.navigation.Navigator;
 import application.navigation.SceneType;
@@ -10,6 +9,8 @@ import application.constants.Images;
 import application.controller.GamepadController;
 import application.controller.VoiceController;
 import application.gui.UserSelectionScene;
+import application.sound.Sound;
+import application.sound.SoundEffectType;
 import application.stats.Lifebar;
 import application.stats.Timer;
 import javafx.scene.canvas.GraphicsContext;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class Game  {
+public class Game {
 
     private final Controller keyboardController, gamepadcontroller;
     private final VoiceController voiceController;
@@ -61,9 +62,18 @@ public class Game  {
         gc.drawImage(Images.ko, (Const.CANVAS_WIDTH - Const.DISTANCE_BETWEEN_LIFEBARS) >> 1, 50);
         timer.draw(gc);
         for (Body body : physicWorld.getBodies()) {
-            GameBody gameBody = (GameBody) body;
-            gameBody.draw(gc);
+            if (body instanceof Fist || body instanceof Foot) {
+                if (Const.HITBOXES) {
+                    GameBody gameBody = (GameBody) body;
+                    gameBody.draw(gc);
+                }
+            } else {
+                GameBody gameBody = (GameBody) body;
+                gameBody.draw(gc);
+            }
         }
+
+
     }
 
 
@@ -87,9 +97,11 @@ public class Game  {
             case "ctrl" -> fighter_2 = new BasePlayer(2, 14, 8, gamepadcontroller, physicWorld);
         }
         timer = new Timer();
-        Floor floor = new Floor();
-        Wall wallLeft = new Wall(0);
-        Wall wallRight = new Wall(30.2);
+        Floor floor = new Floor(15, 17);
+        Floor ceiling = new Floor(15, -2);
+        Wall wallLeft = new Wall(-1);
+        Wall wallRight = new Wall(30.5);
+
 
         physicWorld.setGravity(new Vector2(0, 15));
 
@@ -102,6 +114,8 @@ public class Game  {
             }
         }
         physicWorld.addBody(floor);
+        physicWorld.addBody(ceiling);
+
         for (Wall wall : Arrays.asList(wallRight, wallLeft)) {
             physicWorld.addBody(wall);
         }
@@ -139,7 +153,6 @@ public class Game  {
         }
 
 
-
         for (Hadoken hadoken : hadokens) {
             hadoken.update();
         }
@@ -159,6 +172,8 @@ public class Game  {
                 blockProtection = 0.35;
             }
             lifebars.get(id - 1).increaseDamage(Const.HIT_DAMAGE * blockProtection);
+            Sound.play(SoundEffectType.FIST_PUNCH);
+
             timePassedSinceCooldown = 0;
 
             if (lifebars.get(id - 1).isKo()) {

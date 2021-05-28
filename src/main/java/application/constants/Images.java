@@ -7,7 +7,7 @@ public class Images {
     //FIGHTER
     public final static Image fighter_look_right = getImageSize("fighter/lookRight.gif");
     public final static Image fighter_look_left = getImageSize("fighter/lookLeft.gif");
-    public final static Image fighter_Bwalk_right = getImageSize("fighter/bWalkRight.gif");
+    //public final static Image fighter_Bwalk_right = getImageSize("fighter/bWalkRight.gif");
     public final static Image fighter_Bwalk_left = getImageSize("fighter/bWalkLeft.gif");
     public final static Image fighter_walk_right = getImageSize("fighter/fWalkRight.gif");
     public final static Image fighter_walk_left = getImageSize("fighter/fWalkLeft.gif");
@@ -29,7 +29,7 @@ public class Images {
     public final static Image hitbox_stomp = getImageSize("foot.png");
     public final static Image hadoken_right = getImageSize("fighter/hadoken.png");
     public final static Image hadoken_left = getImageSize("fighter/hadokenLeft.png");
-    public final static Image explosion = getImageSize("fighter/hadokenExplosion.gif");
+    //public final static Image explosion = getImageSize("fighter/hadokenExplosion.gif");
 
     //UI
     public final static Image controller = getImageSize("controller.png");
@@ -38,8 +38,6 @@ public class Images {
     public final static Image ko = getImageSize("ko.png");
     public final static Image logo = getImageSize("TitleLogo.png");
     public final static Image splashtxt = getImageSize("splashtext.png");
-
-
 
 
     //SCENES

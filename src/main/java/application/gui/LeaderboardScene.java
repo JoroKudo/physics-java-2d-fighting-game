@@ -11,8 +11,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.*;
 
 import static javafx.scene.paint.Color.WHITE;
@@ -25,7 +23,7 @@ public class LeaderboardScene extends BaseScene implements Initializable {
     Text userText;
     Text pointText;
 
-    public LeaderboardScene(Navigator navigator) throws IOException {
+    public LeaderboardScene(Navigator<?> navigator) {
         super(navigator, Images.leaderboard);
     }
 

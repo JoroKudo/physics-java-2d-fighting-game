@@ -2,6 +2,7 @@ package application.gui;
 
 
 import application.common.BaseScene;
+import application.constants.Const;
 import application.constants.Images;
 import application.firebase.RequestHandler;
 import application.sound.MusicType;
@@ -150,7 +151,6 @@ public class UserSelectionScene extends BaseScene {
         mic1.setGraphic(microphoneIconLeft);
 
 
-
         controller2.setGraphic(controllerIconRight);
         keyboard2.setGraphic(keyboardIconRight);
         mic2.setGraphic(microphoneIconRight);
@@ -175,6 +175,7 @@ public class UserSelectionScene extends BaseScene {
         setOnKeyPressed(e -> {
             if ((e.getCode() == KeyCode.L)) {
                 drawImage(Images.splashtxt, 200, 200);
+                Const.HITBOXES = true;
             }
         });
 
@@ -237,8 +238,6 @@ public class UserSelectionScene extends BaseScene {
         gridPane.add(controller2, 13, 8, 1, 1);
 
         gridPane.add(submit, 11, 5, 1, 1);
-
-
 
 
         parent.add(gridPane);

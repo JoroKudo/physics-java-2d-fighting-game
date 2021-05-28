@@ -10,9 +10,9 @@ import java.util.List;
 
 public class KeyboardController implements Controller, EventHandler<KeyEvent> {
 
-    public List<KeyCode> pressedKeys = new ArrayList<>();
-    public KeyCode[] keysPlayer1 = {KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Q, KeyCode.E, KeyCode.V};
-    public KeyCode[] keysPlayer2 = {KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
+    private List<KeyCode> pressedKeys = new ArrayList<>();
+    private KeyCode[] keysPlayer1 = {KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Q, KeyCode.E, KeyCode.V};
+    private KeyCode[] keysPlayer2 = {KeyCode.I, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.U, KeyCode.O, KeyCode.M};
 
     @Override
     public void handle(KeyEvent event) {

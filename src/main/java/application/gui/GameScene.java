@@ -30,7 +30,7 @@ public class GameScene extends BaseScene implements Initializable {
 
 
     @Override
-    public void onInitialize() throws Exception {
+    public void onInitialize() {
         KeyboardController keyboardController = new KeyboardController();
         GamepadController gamepadController = new GamepadController();
         VoiceController voiceController = new VoiceController();

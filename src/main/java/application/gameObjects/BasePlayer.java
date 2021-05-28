@@ -19,11 +19,11 @@ import org.dyn4j.world.World;
 public class BasePlayer extends GameBody {
 
     private final World<Body> physicWorld;
-    private Fist fist;
+    private final Fist fist;
     private Hadoken hadoken;
-    private Foot foot;
-    private WeldJoint<?> punchTarget;
-    private WeldJoint<?> footHitbox;
+    private final Foot foot;
+    private final WeldJoint<?> punchTarget;
+    private final WeldJoint<?> footHitbox;
     private boolean punch = true;
     private boolean duck = true;
     private boolean blocking = false;
@@ -32,7 +32,7 @@ public class BasePlayer extends GameBody {
     private double punchCooldown = 0;
     private boolean returnHadoken = false;
     private Direction currentDirection = Direction.RIGHT;
-    private int id;
+    private final int id;
     private final Controller controller;
     private boolean playSound = true;
 
@@ -58,7 +58,7 @@ public class BasePlayer extends GameBody {
         Fixture hips = addFixture(new Rectangle(40 / Const.BLOCK_SIZE * 2, 21 / Const.BLOCK_SIZE * 2));
         hips.getShape().translate(0, 2.4);
 
-        fist = new Fist(x, y+1);
+        fist = new Fist(x, y + 1);
         foot = new Foot(x, y + 4.23);
 
         punchTarget = new WeldJoint<Body>(this, fist, new Vector2(x, y));
@@ -72,11 +72,14 @@ public class BasePlayer extends GameBody {
 
     @Override
     public void drawImage(Image image, double x, double y, GraphicsContext gc) {
+
+
         if (currentDirection == Direction.LEFT && controller.FighterXisActing(id) == ActionType.PUNCH) {
-            gc.drawImage(image, x-(72 / Const.BLOCK_SIZE * 2) * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
+            gc.drawImage(image, x - (72 / Const.BLOCK_SIZE * 2) * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
         } else {
             gc.drawImage(image, x * Const.BLOCK_SIZE, y - 0.48 * Const.BLOCK_SIZE);
         }
+
 
     }
 
@@ -84,9 +87,9 @@ public class BasePlayer extends GameBody {
         Sound.play(SoundEffectType.HADOKEN);
         cooldown = 2;
         if (currentDirection == Direction.RIGHT) {
-            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadoken_right);
+            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()), Images.hadoken_right);
         } else {
-            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()),Images.hadoken_left);
+            hadoken = new Hadoken(this.getWorldCenter().x + (updateDirection()), this.getWorldCenter().y, this, 10 * (updateDirection()), Images.hadoken_left);
         }
 
         image = Images.shoot_right;

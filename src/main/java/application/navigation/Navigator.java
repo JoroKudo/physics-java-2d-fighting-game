@@ -1,7 +1,6 @@
 package application.navigation;
 
 import application.common.Initializable;
-import application.navigation.SceneType;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
