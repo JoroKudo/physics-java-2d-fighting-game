@@ -109,7 +109,7 @@ public class Game {
             physicWorld.addBody(basePlayer);
             physicWorld.addBody(basePlayer.getFist());
             physicWorld.addBody(basePlayer.getFoot());
-            for (WeldJoint weldJoint : Arrays.asList(basePlayer.getPunchTarget(), basePlayer.getFootHitbox())) {
+            for (WeldJoint weldJoint : Arrays.asList(basePlayer.getFistJoint(), basePlayer.getFootJoint())) {
                 physicWorld.addJoint(weldJoint);
             }
         }
